@@ -1,0 +1,5 @@
+# Default owner for the entire repository.
+* @terameta
+
+# GitHub configuration and policy files should always route through the owner.
+.github/ @terameta
