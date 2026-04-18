@@ -1,0 +1,30 @@
+# Dependencies
+node_modules/
+
+# Frontend and backend build output
+dist/
+build/
+coverage/
+.turbo/
+.vite/
+*.tsbuildinfo
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Runtime files
+*.pid
+*.pid.lock
+
+# Environment overrides
+.env
+.env.local
+.env.*.local
+
+# Local editor and tooling state
+.codex
+.DS_Store
