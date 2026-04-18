@@ -1,0 +1,19 @@
+{
+  "name": "reados",
+  "version": "0.0.1",
+  "description": "",
+  "homepage": "https://github.com/ReadosCom/reados#readme",
+  "bugs": {
+    "url": "https://github.com/ReadosCom/reados/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ReadosCom/reados.git"
+  },
+  "license": "Apache-2.0",
+  "author": "ReadosCom",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
