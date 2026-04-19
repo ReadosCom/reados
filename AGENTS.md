@@ -25,13 +25,27 @@
 - Prefer semicolons at the end of TypeScript statements.
 - Use `*.server.ts` for server-only shared helpers and entry files.
 - Use single or double quotes for import specifiers. Do not use backticks in `import` statements.
+- Standardize on UUID v7 for identifier generation across frontend and backend.
+- Where possible, prefer PostgreSQL to generate UUID v7 values unless application-side generation is strictly necessary.
 
 ## Frontend
 
 - Use React with TypeScript.
 - Prefer functional React components.
+- Use `@canonical/react-components` as the frontend design/component library for this project.
+- Use `vanilla-framework` and `sass` to support Canonical React Components styling.
+- Use `TanStack Router` as the frontend router for this project.
+- Use the built-in `fetch` API for frontend HTTP requests instead of adding a wrapper such as Axios or Ky by default.
+- Use React Query for shared cross-component state when the state fits query/cache semantics, especially for shared async or server-backed state.
+- Do not use React Query as a blanket replacement for purely local UI interaction state such as modal visibility, drag-and-drop state, or short-lived transient interaction state.
+- Standardize on the ECMAScript Temporal API via `@js-temporal/polyfill` for date/time handling.
+- Use `react-error-boundary` for frontend error-boundary ergonomics.
+- Use `dompurify` when rendering user-provided HTML.
+- Treat multiple languages as a first-class frontend concern.
+- Use `i18next` and `react-i18next` for localization.
 - Use React Hook Form for forms unless a different choice is explicitly made.
 - Keep the frontend as one shared application even when features belong to different modules.
+- Do not introduce API mocking libraries such as `msw`; prefer real integration flows and Playwright end-to-end coverage instead.
 
 ## Backend
 
@@ -48,6 +62,7 @@
 - Use a separate PostgreSQL database per backend module.
 - Use a separate PostgreSQL database for `OpenFGA`.
 - Prefer database connection strings such as `DATABASE_URL` over split database host/port/user/password environment variables.
+- Use `zod-openapi` to derive OpenAPI-compatible schemas from Zod definitions.
 - Use a single `PgBouncer` instance with per-database pool modes:
   - module databases use `transaction` pooling
   - `OpenFGA` uses `session` pooling
