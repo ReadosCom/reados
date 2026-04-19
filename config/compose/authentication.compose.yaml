@@ -1,0 +1,23 @@
+services:
+  authentication:
+    build:
+      context: ../..
+      dockerfile: ./config/compose/server.dockerfile
+    command: npx tsx watch src/authentication.server.ts
+    environment:
+      DATABASE_URL: postgres://postgres:${READOS_POSTGRES_PASSWORD:?Set READOS_POSTGRES_PASSWORD in .env.local}@pgbouncer:6432/authentication
+    volumes:
+      - ../..:/app
+      - authentication_node_modules:/app/node_modules
+    networks:
+      - reados
+    depends_on:
+      pgbouncer:
+        condition: service_healthy
+    labels:
+      traefik.enable: "true"
+      traefik.docker.network: reados
+      traefik.http.routers.authentication.rule: HostRegexp(`^[a-z0-9-]+\.localhost$`) && PathPrefix(`/api/authentication`)
+      traefik.http.routers.authentication.entrypoints: web
+      traefik.http.routers.authentication.priority: "100"
+      traefik.http.services.authentication.loadbalancer.server.port: "3000"

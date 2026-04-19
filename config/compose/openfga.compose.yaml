@@ -1,0 +1,28 @@
+services:
+  openfga-migrate:
+    image: openfga/openfga:v1.11.0
+    command: migrate
+    environment:
+      OPENFGA_DATASTORE_ENGINE: postgres
+      OPENFGA_DATASTORE_URI: postgres://postgres:${READOS_POSTGRES_PASSWORD:?Set READOS_POSTGRES_PASSWORD in .env.local}@pgbouncer:6432/openfga?sslmode=disable
+    networks:
+      - reados
+    depends_on:
+      pgbouncer:
+        condition: service_healthy
+
+  openfga:
+    image: openfga/openfga:v1.11.0
+    command: run
+    environment:
+      OPENFGA_DATASTORE_ENGINE: postgres
+      OPENFGA_DATASTORE_URI: postgres://postgres:${READOS_POSTGRES_PASSWORD:?Set READOS_POSTGRES_PASSWORD in .env.local}@pgbouncer:6432/openfga?sslmode=disable
+      OPENFGA_LOG_FORMAT: json
+      OPENFGA_AUTHN_METHOD: none
+    networks:
+      - reados
+    depends_on:
+      openfga-migrate:
+        condition: service_completed_successfully
+      pgbouncer:
+        condition: service_healthy

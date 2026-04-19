@@ -1,0 +1,23 @@
+services:
+  accounting:
+    build:
+      context: ../..
+      dockerfile: ./config/compose/server.dockerfile
+    command: npx tsx watch src/accounting.server.ts
+    environment:
+      DATABASE_URL: postgres://postgres:${READOS_POSTGRES_PASSWORD:?Set READOS_POSTGRES_PASSWORD in .env.local}@pgbouncer:6432/accounting
+    volumes:
+      - ../..:/app
+      - accounting_node_modules:/app/node_modules
+    networks:
+      - reados
+    depends_on:
+      pgbouncer:
+        condition: service_healthy
+    labels:
+      traefik.enable: "true"
+      traefik.docker.network: reados
+      traefik.http.routers.accounting.rule: HostRegexp(`^[a-z0-9-]+\.localhost$`) && PathPrefix(`/api/accounting`)
+      traefik.http.routers.accounting.entrypoints: web
+      traefik.http.routers.accounting.priority: "100"
+      traefik.http.services.accounting.loadbalancer.server.port: "3000"
