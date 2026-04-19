@@ -50,7 +50,8 @@ pgbouncer:6432:postgres:postgres:${postgres_password}
 EOF
 
 chmod 600 "${env_file}"
-chmod 644 "${pgbouncer_userlist_file}" "${pgadmin_pgpass_file}"
+chmod 644 "${pgbouncer_userlist_file}"
+chmod 644 "${pgadmin_pgpass_file}"
 
 echo "Local secret files have been written."
 echo "Next step:"

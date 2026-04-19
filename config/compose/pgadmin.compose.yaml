@@ -1,16 +1,21 @@
 services:
   pgadmin:
     image: dpage/pgadmin4:9.14.0
+    entrypoint:
+      - /bin/sh
+      - -c
+    command:
+      - cp /pgpassfile.source /tmp/pgpassfile && chmod 600 /tmp/pgpassfile && exec /entrypoint.sh
     environment:
       PGADMIN_DEFAULT_EMAIL: admin@reados.dev
       PGADMIN_DEFAULT_PASSWORD: ${READOS_PGADMIN_PASSWORD:?Set READOS_PGADMIN_PASSWORD in .env}
       PGADMIN_CONFIG_SERVER_MODE: "False"
       PGADMIN_CONFIG_MASTER_PASSWORD_REQUIRED: "False"
-      PGPASS_FILE: /pgpassfile
+      PGPASS_FILE: /tmp/pgpassfile
     volumes:
       - pgadmin_data:/var/lib/pgadmin
       - ./pgadmin/servers.json:/pgadmin4/servers.json:ro
-      - ./pgadmin/pgpassfile.local:/pgpassfile:ro
+      - ./pgadmin/pgpassfile.local:/pgpassfile.source:ro
     networks:
       - reados
     depends_on:
