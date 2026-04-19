@@ -3,7 +3,7 @@ services:
     build:
       context: ../..
       dockerfile: ./config/compose/server.dockerfile
-    command: npx tsx watch src/accounting.server.ts
+    command: npx tsx watch --clear-screen=false src/accounting.server.ts
     environment:
       DATABASE_URL: postgres://postgres:${READOS_POSTGRES_PASSWORD:?Set READOS_POSTGRES_PASSWORD in .env.local}@pgbouncer:6432/accounting
     volumes:
