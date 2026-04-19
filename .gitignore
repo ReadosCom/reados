@@ -25,3 +25,5 @@ config/compose/pgadmin/pgpassfile.local
 *.njsproj
 *.sln
 *.sw?
+
+.vite/
