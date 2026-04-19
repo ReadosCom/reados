@@ -1,0 +1,4 @@
+CREATE DATABASE core;
+CREATE DATABASE authentication;
+CREATE DATABASE accounting;
+CREATE DATABASE openfga;
