@@ -1,0 +1,12 @@
+.text-negative {
+  color: var(--vf-color-button-negative-default);
+}
+
+.text-negative[class*='p-icon--'] {
+  filter: brightness(0) saturate(100%) invert(15%) sepia(85%) saturate(4500%) hue-rotate(345deg) brightness(88%) contrast(110%);
+}
+
+body,
+#root {
+  min-height: 100vh;
+}

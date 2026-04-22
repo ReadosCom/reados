@@ -6,9 +6,10 @@ Reados is a modular business software platform. The product is designed as a set
 
 | Name | Description | Status |
 | --- | --- | --- |
-| `core` | Shared platform foundations and common services. | In progress |
+| `core` | Shared platform foundations and common operations. | In progress |
 | `accounting` | Financial records, ledgers, and reporting. | In progress |
 | `authentication` | Sign-in, identity, and session management. | In progress |
+| `tenant` | Tenant discovery, routing, and tenant configuration. | In progress |
 | `crm` | Customer and relationship management. | Evaluating |
 | `sales` | Quotes, orders, and sales workflows. | Evaluating |
 | `billing` | Invoicing, payments, and billing flows. | Evaluating |
@@ -22,7 +23,6 @@ Reados is a modular business software platform. The product is designed as a set
 | `inbox` | Email inbox and communication workflows. | Evaluating |
 | `cms` | Website and content management tools. | Evaluating |
 | `authorization` | Permissions, roles, and access control. | Evaluating |
-| `tenant` | Tenant configuration and isolation rules. | Evaluating |
 | `workflow` | Automation and cross-module process flows. | Evaluating |
 | `audit` | Audit history and activity tracking. | Evaluating |
 | `search` | Cross-module search and discovery. | Evaluating |
@@ -31,6 +31,20 @@ Reados is a modular business software platform. The product is designed as a set
 ## Product Direction
 
 Reados is intended to support isolated tenant deployments with selectable modules. Each tenant can run its own stack and enable only the applications required for that tenant.
+
+## Authentication and Tenant Discovery
+
+- Reados will support sign-in with external identity providers such as GitHub, Google, and Outlook.
+- Reados will also support one-time-password-based login.
+- Reados will not support password-based login.
+- Reados will use identifier-first login.
+- A dedicated login application, such as `login.example.com`, will be separate from tenant applications.
+- The login flow will be:
+  - a user enters their email address
+  - Reados lists the tenants the user is registered with
+  - the user selects a tenant
+  - Reados redirects the user to that tenant's login UI
+- This requires a dedicated tenant service for tenant discovery and tenant-aware login routing.
 
 ## Platform Decisions
 
@@ -68,3 +82,9 @@ Reados is intended to support isolated tenant deployments with selectable module
 - Backend modules share `server.dockerfile`.
 - Infrastructure definitions should account for `Kafka`, `OpenFGA`, `PostgreSQL`, and `PgBouncer`.
 - The current Compose scaffold includes `Traefik`, `PgAdmin`, `Kafka`, `OpenFGA`, `PostgreSQL`, and `PgBouncer`.
+
+## Documentation
+
+- [Docs Index](docs/index.md)
+- [Authentication Service](docs/authentication-service/index.md)
+- [Tenant Service](docs/tenant-service/index.md)

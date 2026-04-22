@@ -18,8 +18,5 @@
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": [
-    "src/**/*.server.ts",
-    "src/components/**/*.ts"
-  ]
+  "include": ["src/**/*.server.ts", "src/components/**/*.ts"]
 }
