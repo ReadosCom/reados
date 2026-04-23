@@ -14,9 +14,11 @@
 - Each component folder can contain frontend, backend, and validation files for that feature.
 - Shared infrastructure helpers that belong to a component should also live under `src/components/<componentName>/`.
 - Use one folder per component and colocate related files instead of splitting by technical layer at the top level.
+- Do not consider history from other repositories, focus on this repository.
 
 ## Naming
 
+- Use Biome as the repository formatter.
 - Use lowercase names for non-React files such as `accounting.schema.ts`, `accounting.route.ts`, and `accounting.controller.ts`.
 - Use PascalCase for React component files such as `AccountingPage.tsx` and `AccountingForm.tsx`.
 - Use the correct filename for each file in a component.
@@ -46,6 +48,11 @@
 - Use React Hook Form for forms unless a different choice is explicitly made.
 - Keep the frontend as one shared application even when features belong to different modules.
 - Do not introduce API mocking libraries such as `msw`; prefer real integration flows and Playwright end-to-end coverage instead.
+
+## Style Guide
+
+- Prefer right aligned buttons unless there is a solid reason not to. 
+- When right aligned, primary button should be right most button.
 
 ## Backend
 
