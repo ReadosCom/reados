@@ -1,16 +1,14 @@
-CREATE EXTENSION IF NOT EXISTS pgcrypto;
-
 DO $$
 BEGIN
   IF NOT EXISTS (
     SELECT 1
     FROM pg_catalog.pg_proc AS procedureDefinition
-    JOIN pg_catalog.pg_namespace AS namespaceDefinition
-      ON namespaceDefinition.oid = procedureDefinition.pronamespace
-    WHERE namespaceDefinition.nspname = current_schema()
-      AND procedureDefinition.proname = 'uuidv7'
-      AND pg_catalog.pg_get_function_identity_arguments(procedureDefinition.oid) = ''
+    WHERE procedureDefinition.proname = 'uuidv7'
+      AND procedureDefinition.prokind = 'f'
+      AND procedureDefinition.pronargs - procedureDefinition.pronargdefaults = 0
   ) THEN
+    CREATE EXTENSION IF NOT EXISTS pgcrypto;
+
     EXECUTE $function$
       CREATE FUNCTION uuidv7()
       RETURNS uuid
