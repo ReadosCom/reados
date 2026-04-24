@@ -11,7 +11,7 @@
     "check:biome": "biome check .",
     "check:ts": "tsc -b --pretty false",
     "lint": "eslint .",
-    "migrate": "npm run run -- migration.server.ts",
+    "migrate": "npm run run -- src/migration.server.ts",
     "run": "tsx",
     "watch": "tsx watch --clear-screen=false",
     "preview": "vite preview"
@@ -49,6 +49,7 @@
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.6",
     "@types/node": "^24.12.2",
+    "@types/pg": "^8.20.0",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^6.0.1",
