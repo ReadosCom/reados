@@ -5,7 +5,7 @@ import path from 'node:path';
 
 import { Client } from 'pg';
 
-const migrationRootDirectoryPath = path.resolve(process.cwd(), 'config/compose/postgres/migrations');
+const migrationRootDirectoryPath = path.resolve(process.cwd(), 'config/postgres/migrations');
 const orderedMigrationDirectoryNames = ['fncs', 'ddls', 'fncs', 'seed'] as const;
 
 type MigrationDirectory = {

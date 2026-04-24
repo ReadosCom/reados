@@ -61,6 +61,7 @@ Reados is intended to support isolated tenant deployments with selectable module
   - allow development-friendly container commands, mounted source code, and watch mode where needed
 - `compose.yaml` lives at the repository root to make the Docker Compose workflow obvious to contributors.
 - Compose definitions live under `config/compose/`.
+- PostgreSQL migrations live under `config/postgres/migrations/`.
 - Root `compose.yaml` is the main Compose definition.
 - Each application or infrastructure service has its own `*.compose.yaml` file.
 - `Traefik` is the ingress and reverse proxy for local and production-shaped Compose environments.
@@ -70,7 +71,9 @@ Reados is intended to support isolated tenant deployments with selectable module
 - `PgAdmin` is available behind Traefik at `pgadmin.localhost` and connects directly to PostgreSQL.
 - Run `./scripts/start-here.sh` first to generate `.env` and the local secret files needed by Compose.
 - Start the stack with `docker compose up --build`.
-- Run tenant migrations with `npm run migrate -- tenant` or `docker compose -f compose.yaml -f config/compose/migrate.compose.yaml run --rm migration tenant`.
+- Run authentication and tenant migrations with `npm run dc:migrate authentication` and `npm run dc:migrate tenant`.
+- Seed tenant data interactively with `npm run dc:seed tenant`.
+- For staging and production automation, run the same seed command with `SEED_NON_INTERACTIVE=true` and the `SEED_*` environment variables documented in the PostgreSQL migrations guide.
 - Backend module containers use the shared internal port `3000`.
 - The frontend uses `frontend.dockerfile`.
 - Backend modules share `server.dockerfile`.

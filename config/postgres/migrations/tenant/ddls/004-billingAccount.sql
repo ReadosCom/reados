@@ -1,15 +1,15 @@
 CREATE TABLE IF NOT EXISTS "billingAccount" (
   "id" uuid PRIMARY KEY DEFAULT uuidv7(),
-  "tenantId" uuid NOT NULL,
+  "tenant" uuid NOT NULL,
   "name" text NOT NULL,
   "address" text NOT NULL,
   "taxId" text NOT NULL,
   "createdAt" timestamptz NOT NULL DEFAULT statement_timestamp(),
   "updatedAt" timestamptz NOT NULL DEFAULT statement_timestamp(),
-  CONSTRAINT "billingAccountTenantForeignKey" FOREIGN KEY ("tenantId") REFERENCES "tenant" ("id") ON DELETE CASCADE
+  CONSTRAINT "billingAccountTenantForeignKey" FOREIGN KEY ("tenant") REFERENCES "tenant" ("id") ON DELETE CASCADE
 );
 
-CREATE INDEX IF NOT EXISTS "billingAccountTenantIdIndex" ON "billingAccount" ("tenantId");
+CREATE INDEX IF NOT EXISTS "billingAccountTenantIndex" ON "billingAccount" ("tenant");
 
 DROP TRIGGER IF EXISTS "setUpdatedAtOnBillingAccount" ON "billingAccount";
 

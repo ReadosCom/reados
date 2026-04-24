@@ -1,0 +1,22 @@
+services:
+  seed:
+    build:
+      context: .
+      dockerfile: ./config/compose/server.dockerfile
+    entrypoint: ["npm", "run", "seed", "--"]
+    environment:
+      POSTGRES_HOST: postgres
+      READOS_POSTGRES_PASSWORD: ${READOS_POSTGRES_PASSWORD:?Set READOS_POSTGRES_PASSWORD in .env.local}
+    stdin_open: true
+    tty: true
+    volumes:
+      - .:/app
+      - seed_node_modules:/app/node_modules
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - reados
+
+volumes:
+  seed_node_modules:
