@@ -10,8 +10,11 @@
     "format:check": "biome format .",
     "check:biome": "biome check .",
     "check:ts": "tsc -b --pretty false",
+    "dc:migrate": "docker compose -f compose.yaml -f config/compose/migrate.compose.yaml run --rm migration",
+    "dc:seed": "docker compose -f compose.yaml -f config/compose/seed.compose.yaml run --rm seed",
     "lint": "eslint .",
     "migrate": "npm run run -- src/migration.server.ts",
+    "seed": "npm run run -- src/seed.server.ts",
     "run": "tsx",
     "watch": "tsx watch --clear-screen=false",
     "preview": "vite preview"

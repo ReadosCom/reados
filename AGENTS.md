@@ -61,6 +61,7 @@
 - Share one `tsconfig.server.json` across server-side applications.
 - Use one TypeScript server entrypoint per module.
 - Use singular names and camelCase quoted identifiers for PostgreSQL tables, columns, and functions.
+- For PostgreSQL relationship columns, prefer the referenced domain noun over storage-specific suffixes. Use names such as `"tenant"` and `"user"` instead of `"tenantId"` or `"userEmail"` so query aliases read naturally.
 - Validate backend input.
 - Add error handling for network requests.
 - Use a separate PostgreSQL database per backend module.
@@ -84,6 +85,7 @@
 - Expose only `Traefik` to the host machine. Keep other services internal to the Docker network unless there is a deliberate exception.
 - Use `PgAdmin` behind Traefik at `pgadmin.localhost` for local database access, connecting directly to PostgreSQL.
 - Generate local secret files with `./scripts/start-here.sh` and use the default `.env` file for Compose.
+- Keep PostgreSQL migrations under `config/postgres/migrations/`; migrations are database configuration, not Compose configuration.
 - Use the shared internal port `3000` for backend module containers behind Traefik.
 - The frontend uses `frontend.dockerfile`.
 - Backend modules share `server.dockerfile`.
