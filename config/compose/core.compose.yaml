@@ -3,21 +3,21 @@ services:
     build:
       context: ../..
       dockerfile: ./config/compose/server.dockerfile
-    command: npx tsx watch --clear-screen=false src/core.server.ts
+    command: npm run watch -- src/core.server.ts
     environment:
-      DATABASE_URL: postgres://postgres:${READOS_POSTGRES_PASSWORD:?Set READOS_POSTGRES_PASSWORD in .env.local}@pgbouncer:6432/core
+      DATABASE_URL: postgres://postgres:${READOS_POSTGRES_PASSWORD:?Set READOS_POSTGRES_PASSWORD in .env.local}@postgres:5432/core
     volumes:
       - ../..:/app
       - core_node_modules:/app/node_modules
     networks:
       - reados
     depends_on:
-      pgbouncer:
+      postgres:
         condition: service_healthy
     labels:
       traefik.enable: "true"
       traefik.docker.network: reados
-      traefik.http.routers.core.rule: HostRegexp(`^[a-z0-9-]+\.localhost$`) && PathPrefix(`/api/core`)
+      traefik.http.routers.core.rule: HostRegexp(`^core\.[a-z0-9-]+\.reados\.localhost$`)
       traefik.http.routers.core.entrypoints: web
       traefik.http.routers.core.priority: "100"
       traefik.http.services.core.loadbalancer.server.port: "3000"

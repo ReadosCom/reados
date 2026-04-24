@@ -3,13 +3,12 @@ import express from 'express';
 
 type CreateModuleServerOptions = {
   moduleName: string;
-  routePrefix: string;
 };
 
 /**
  * Creates a minimal module server with shared middleware and health endpoints.
  */
-export const createModuleServer = ({ moduleName, routePrefix }: CreateModuleServerOptions) => {
+export const createModuleServer = ({ moduleName }: CreateModuleServerOptions) => {
   const app = express();
 
   app.use(cors());
@@ -22,14 +21,7 @@ export const createModuleServer = ({ moduleName, routePrefix }: CreateModuleServ
     });
   });
 
-  app.get(`${routePrefix}/health`, (_request, response) => {
-    response.json({
-      module: moduleName,
-      status: `ok`,
-    });
-  });
-
-  app.get(routePrefix, (_request, response) => {
+  app.get(`/`, (_request, response) => {
     response.json({
       message: `${moduleName} module is running.`,
       module: moduleName,

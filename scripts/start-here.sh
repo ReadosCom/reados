@@ -5,7 +5,6 @@ set -euo pipefail
 script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 repo_root="$(cd "${script_dir}/.." && pwd)"
 env_file="${repo_root}/.env"
-pgbouncer_userlist_file="${repo_root}/config/compose/pgbouncer/userlist.local.txt"
 pgadmin_pgpass_file="${repo_root}/config/compose/pgadmin/pgpassfile.local"
 default_postgres_password="$(cat /proc/sys/kernel/random/uuid)"
 default_pgadmin_password="$(cat /proc/sys/kernel/random/uuid)"
@@ -41,16 +40,11 @@ READOS_POSTGRES_PASSWORD=${postgres_password}
 READOS_PGADMIN_PASSWORD=${pgadmin_password}
 EOF
 
-cat > "${pgbouncer_userlist_file}" <<EOF
-"postgres" "${postgres_password}"
-EOF
-
 cat > "${pgadmin_pgpass_file}" <<EOF
-pgbouncer:6432:postgres:postgres:${postgres_password}
+postgres:5432:postgres:postgres:${postgres_password}
 EOF
 
 chmod 600 "${env_file}"
-chmod 644 "${pgbouncer_userlist_file}"
 chmod 644 "${pgadmin_pgpass_file}"
 
 echo "Local secret files have been written."
