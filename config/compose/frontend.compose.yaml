@@ -12,7 +12,7 @@ services:
     labels:
       traefik.enable: "true"
       traefik.docker.network: reados
-      traefik.http.routers.frontend.rule: HostRegexp(`^[a-z0-9-]+\.localhost$`) && PathPrefix(`/`)
+      traefik.http.routers.frontend.rule: HostRegexp(`^[a-z0-9-]+\.reados\.localhost$`)
       traefik.http.routers.frontend.entrypoints: web
       traefik.http.routers.frontend.priority: "1"
       traefik.http.services.frontend.loadbalancer.server.port: "5173"

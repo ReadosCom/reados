@@ -1,0 +1,23 @@
+services:
+  tenant:
+    build:
+      context: ../..
+      dockerfile: ./config/compose/server.dockerfile
+    command: npm run watch -- src/tenant.server.ts
+    environment:
+      DATABASE_URL: postgres://postgres:${READOS_POSTGRES_PASSWORD:?Set READOS_POSTGRES_PASSWORD in .env.local}@postgres:5432/tenant
+    volumes:
+      - ../..:/app
+      - tenant_node_modules:/app/node_modules
+    networks:
+      - reados
+    depends_on:
+      postgres:
+        condition: service_healthy
+    labels:
+      traefik.enable: "true"
+      traefik.docker.network: reados
+      traefik.http.routers.tenant.rule: Host(`tenant.reados.localhost`)
+      traefik.http.routers.tenant.entrypoints: web
+      traefik.http.routers.tenant.priority: "100"
+      traefik.http.services.tenant.loadbalancer.server.port: "3000"

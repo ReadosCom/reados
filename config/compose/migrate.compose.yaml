@@ -1,0 +1,20 @@
+services:
+  migration:
+    build:
+      context: .
+      dockerfile: ./config/compose/server.dockerfile
+    entrypoint: ["npm", "run", "migrate", "--"]
+    environment:
+      POSTGRES_HOST: postgres
+      READOS_POSTGRES_PASSWORD: ${READOS_POSTGRES_PASSWORD:?Set READOS_POSTGRES_PASSWORD in .env.local}
+    volumes:
+      - .:/app
+      - migration_node_modules:/app/node_modules
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - reados
+
+volumes:
+  migration_node_modules:

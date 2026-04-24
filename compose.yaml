@@ -5,12 +5,10 @@ include:
   - ./config/compose/pgadmin.compose.yaml
   - ./config/compose/frontend.compose.yaml
   - ./config/compose/core.compose.yaml
+  - ./config/compose/tenant.compose.yaml
   - ./config/compose/authentication.compose.yaml
   - ./config/compose/accounting.compose.yaml
-  - ./config/compose/kafka.compose.yaml
-  - ./config/compose/openfga.compose.yaml
   - ./config/compose/postgres.compose.yaml
-  - ./config/compose/pgbouncer.compose.yaml
 
 networks:
   reados:
@@ -20,7 +18,7 @@ volumes:
   pgadmin_data:
   frontend_node_modules:
   core_node_modules:
+  tenant_node_modules:
   authentication_node_modules:
   accounting_node_modules:
-  kafka_data:
   postgres_data:

@@ -48,15 +48,8 @@ Reados is intended to support isolated tenant deployments with selectable module
 
 ## Platform Decisions
 
-- `Kafka` is the message bus for inter-service and cross-module events.
-- `OpenFGA` is the authorization engine for permissions, roles, and access control.
-- `PgBouncer` sits between application services and PostgreSQL.
-- `PgBouncer` uses port `6432`.
 - Each backend module uses its own PostgreSQL database.
-- `OpenFGA` uses its own PostgreSQL database.
-- A single `PgBouncer` instance is used with per-database pool modes:
-  - module databases use `transaction` pooling
-  - `OpenFGA` uses `session` pooling
+- PostgreSQL tables use singular names.
 
 ## Development and Deployment
 
@@ -71,17 +64,18 @@ Reados is intended to support isolated tenant deployments with selectable module
 - Root `compose.yaml` is the main Compose definition.
 - Each application or infrastructure service has its own `*.compose.yaml` file.
 - `Traefik` is the ingress and reverse proxy for local and production-shaped Compose environments.
-- Tenant-aware local routing uses subdomains such as `<tenant>.localhost`.
-- Module APIs are routed behind the tenant host using service paths such as `/api/core`, `/api/authentication`, and `/api/accounting`.
+- Local routing uses service-specific hosts such as `tenant.reados.localhost`, `<tenant>.reados.localhost`, and `<module>.<tenant>.reados.localhost`.
+- The tenant service is global at `tenant.reados.localhost`, while tenant-scoped module services use hosts such as `accounting.demo.reados.localhost`.
 - Only `Traefik` is exposed to the host machine. Internal services stay on the Docker network.
-- `PgAdmin` is available behind Traefik at `pgadmin.localhost` and connects to databases through `PgBouncer`.
+- `PgAdmin` is available behind Traefik at `pgadmin.localhost` and connects directly to PostgreSQL.
 - Run `./scripts/start-here.sh` first to generate `.env` and the local secret files needed by Compose.
 - Start the stack with `docker compose up --build`.
+- Run tenant migrations with `npm run migrate -- tenant` or `docker compose -f compose.yaml -f config/compose/migrate.compose.yaml run --rm migration tenant`.
 - Backend module containers use the shared internal port `3000`.
 - The frontend uses `frontend.dockerfile`.
 - Backend modules share `server.dockerfile`.
-- Infrastructure definitions should account for `Kafka`, `OpenFGA`, `PostgreSQL`, and `PgBouncer`.
-- The current Compose scaffold includes `Traefik`, `PgAdmin`, `Kafka`, `OpenFGA`, `PostgreSQL`, and `PgBouncer`.
+- Infrastructure definitions should account for `PostgreSQL` and the application services currently in use.
+- The current Compose scaffold includes `Traefik`, `PgAdmin`, `PostgreSQL`, and the active application services.
 
 ## Documentation
 

@@ -60,19 +60,12 @@
 - Prefer Ubuntu latest LTS as the base image for Node.js containers.
 - Share one `tsconfig.server.json` across server-side applications.
 - Use one TypeScript server entrypoint per module.
+- Use singular names and camelCase quoted identifiers for PostgreSQL tables, columns, and functions.
 - Validate backend input.
 - Add error handling for network requests.
-- Use `Kafka` as the message bus for asynchronous and cross-module events.
-- Use `OpenFGA` for authorization.
-- Use `PgBouncer` between application services and PostgreSQL.
-- Use PgBouncer on port `6432`.
 - Use a separate PostgreSQL database per backend module.
-- Use a separate PostgreSQL database for `OpenFGA`.
 - Prefer database connection strings such as `DATABASE_URL` over split database host/port/user/password environment variables.
 - Use `zod-openapi` to derive OpenAPI-compatible schemas from Zod definitions.
-- Use a single `PgBouncer` instance with per-database pool modes:
-  - module databases use `transaction` pooling
-  - `OpenFGA` uses `session` pooling
 
 ## Platform Direction
 
@@ -86,16 +79,16 @@
 - Root `compose.yaml` is the main Compose definition.
 - Each application or infrastructure service has its own `*.compose.yaml` file.
 - Use `Traefik` as the ingress and reverse proxy in Compose environments.
-- Use tenant-aware routing through hosts such as `<tenant>.localhost`.
-- Route module APIs behind the tenant host with service paths such as `/api/core`, `/api/authentication`, and `/api/accounting`.
+- Use service-specific host-based routing locally through hosts such as `tenant.reados.localhost`, `<tenant>.reados.localhost`, and `<module>.<tenant>.reados.localhost`.
+- Treat the tenant service as a global service at `tenant.reados.localhost`, while tenant-scoped module services use hosts such as `accounting.demo.reados.localhost`.
 - Expose only `Traefik` to the host machine. Keep other services internal to the Docker network unless there is a deliberate exception.
-- Use `PgAdmin` behind Traefik for local database access, connecting through `PgBouncer`.
+- Use `PgAdmin` behind Traefik at `pgadmin.localhost` for local database access, connecting directly to PostgreSQL.
 - Generate local secret files with `./scripts/start-here.sh` and use the default `.env` file for Compose.
 - Use the shared internal port `3000` for backend module containers behind Traefik.
 - The frontend uses `frontend.dockerfile`.
 - Backend modules share `server.dockerfile`.
-- Infrastructure should include `Kafka`, `OpenFGA`, `PostgreSQL`, and `PgBouncer`.
-- The current Compose scaffold includes `Traefik`, `PgAdmin`, `Kafka`, `OpenFGA`, `PostgreSQL`, and `PgBouncer`.
+- Infrastructure should include `PostgreSQL` and the application services currently in use.
+- The current Compose scaffold includes `Traefik`, `PgAdmin`, `PostgreSQL`, and the active application services.
 
 ## Current Module Catalog
 

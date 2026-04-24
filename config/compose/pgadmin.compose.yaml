@@ -19,7 +19,7 @@ services:
     networks:
       - reados
     depends_on:
-      pgbouncer:
+      postgres:
         condition: service_healthy
     labels:
       traefik.enable: "true"
