@@ -7,7 +7,7 @@ The tenant service is responsible for tenant discovery and tenant-aware login ro
 - Identify which tenants a user belongs to.
 - Support identifier-first login.
 - Redirect users to the correct tenant login UI.
-- Act as the discovery layer behind a dedicated login host such as `login.example.com`.
+- Act as the discovery layer behind a dedicated login host such as `reados.localhost`.
 
 ## Login Model
 
@@ -18,12 +18,12 @@ The tenant service is responsible for tenant discovery and tenant-aware login ro
 
 ## Login Flow
 
-1. A user opens the dedicated login application, for example `login.example.com`.
-2. The user enters their email address.
+1. A user opens the dedicated login application, for example `reados.localhost`.
+2. The user opens `/identify` and enters their email address.
 3. The tenant service looks up the tenants that the user is registered with.
 4. Reados shows the list of available tenants.
 5. The user selects one tenant.
-6. Reados redirects the user to that tenant's login UI.
+6. Reados redirects the user to that tenant's login UI at `<tenant>.reados.localhost/authentication`.
 
 ## Responsibilities
 
@@ -35,6 +35,6 @@ The tenant service is responsible for tenant discovery and tenant-aware login ro
 
 ## Notes
 
-- A host such as `login.example.com` is a separate application from tenant-local applications.
+- A host such as `reados.localhost` is a separate application from tenant-local applications.
 - Tenant selection happens before the final tenant login UI is shown.
 - The tenant service is a platform capability and should remain independent from password-based authentication because Reados does not support password login.

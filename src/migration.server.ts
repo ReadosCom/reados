@@ -13,14 +13,23 @@ type MigrationDirectory = {
   label: string;
 };
 
-const getServiceName = () => {
+const getRequestedServiceName = () => {
   const serviceName = process.argv[2] ?? process.env.MIGRATION_SERVICE;
 
-  if (!serviceName) {
-    throw new Error('Expected a migration service name as the first argument or MIGRATION_SERVICE.');
+  return serviceName;
+};
+
+const getServiceNames = async (requestedServiceName: string | undefined) => {
+  if (requestedServiceName) {
+    return [requestedServiceName];
   }
 
-  return serviceName;
+  const directoryEntries = await readdir(migrationRootDirectoryPath, { withFileTypes: true });
+
+  return directoryEntries
+    .filter((directoryEntry) => directoryEntry.isDirectory() && directoryEntry.name !== 'fncs')
+    .map((directoryEntry) => directoryEntry.name)
+    .sort((leftServiceName, rightServiceName) => leftServiceName.localeCompare(rightServiceName));
 };
 
 const getDatabaseUrl = (serviceName: string) => {
@@ -78,14 +87,7 @@ const getSqlFilePaths = async ({ directoryPath, label }: MigrationDirectory) => 
   }
 };
 
-const run = async () => {
-  const serviceName = getServiceName();
-  const databaseUrl = getDatabaseUrl(serviceName);
-  const client = new Client({
-    connectionString: databaseUrl,
-  });
-  let isTransactionOpen = false;
-
+const runServiceMigrations = async (serviceName: string) => {
   const migrationDirectories = getMigrationDirectories(serviceName);
   const migrationFiles = (await Promise.all(migrationDirectories.map((migrationDirectory) => getSqlFilePaths(migrationDirectory)))).flat();
 
@@ -93,6 +95,11 @@ const run = async () => {
     console.log(`No migration files found for ${serviceName}.`);
     return;
   }
+
+  const client = new Client({
+    connectionString: getDatabaseUrl(serviceName),
+  });
+  let isTransactionOpen = false;
 
   await client.connect();
 
@@ -120,6 +127,14 @@ const run = async () => {
     throw error;
   } finally {
     await client.end();
+  }
+};
+
+const run = async () => {
+  const serviceNames = await getServiceNames(getRequestedServiceName());
+
+  for (const serviceName of serviceNames) {
+    await runServiceMigrations(serviceName);
   }
 };
 

@@ -7,7 +7,7 @@ export default defineConfig({
   outputDir: './output/test-results',
   reporter: [['list'], ['html', { open: 'never', outputFolder: './output/playwright-report' }]],
   use: {
-    baseURL: 'http://demo.reados.localhost',
+    baseURL: 'http://reados.localhost',
     trace: 'on-first-retry',
   },
   projects: [

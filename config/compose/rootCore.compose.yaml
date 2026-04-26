@@ -1,0 +1,22 @@
+services:
+  root-core:
+    build:
+      context: ../..
+      dockerfile: ./config/compose/rootCore.dockerfile
+    env_file:
+      - ./rootCore.env
+    environment:
+      COVERAGE: ${COVERAGE:-}
+      ROOT_FQDN: ${ROOT_FQDN:-reados.localhost}
+    volumes:
+      - ../..:/app
+      - root_core_node_modules:/app/node_modules
+    networks:
+      - reados
+    labels:
+      traefik.enable: "true"
+      traefik.docker.network: reados
+      traefik.http.routers.root-core.rule: Host(`core.${ROOT_FQDN:-reados.localhost}`)
+      traefik.http.routers.root-core.entrypoints: web
+      traefik.http.routers.root-core.priority: "100"
+      traefik.http.services.root-core.loadbalancer.server.port: "3000"

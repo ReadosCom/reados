@@ -18,11 +18,11 @@ The authentication service is responsible for sign-in flows, identity-provider i
 
 ## Relationship With Tenant Service
 
-1. A user opens the dedicated login application, for example `login.example.com`.
-2. The user enters their email address.
+1. A user opens the dedicated login application, for example `reados.localhost`.
+2. The user opens `/identify` and enters their email address.
 3. The tenant service returns the tenants that the user is registered with.
 4. The user selects one tenant.
-5. The user is redirected to that tenant's login UI.
+5. The user is redirected to that tenant's login UI at `<tenant>.reados.localhost/authentication`.
 6. The authentication service handles the selected login method for that tenant.
 
 ## Responsibilities

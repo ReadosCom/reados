@@ -1,4 +1,9 @@
 {
+  "compilerOptions": {
+    "paths": {
+      "@components/*": ["./src/components/*"]
+    }
+  },
   "files": [],
   "references": [{ "path": "./tsconfig.app.json" }, { "path": "./tsconfig.node.json" }, { "path": "./tsconfig.server.json" }, { "path": "./tsconfig.e2e.json" }]
 }

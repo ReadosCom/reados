@@ -24,8 +24,10 @@ for migration_service in core tenant authentication accounting; do
   fi
 done
 
-tsx testing/wait-for-url.ts http://demo.reados.localhost
+tsx testing/wait-for-url.ts http://reados.localhost
+tsx testing/wait-for-url.ts http://core.reados.localhost/whoami
 tsx testing/wait-for-url.ts http://tenant.reados.localhost
+tsx testing/wait-for-url.ts http://core.demo.reados.localhost/whoami
 tsx testing/wait-for-url.ts http://accounting.demo.reados.localhost
 if [ $? -ne 0 ]; then
   echo "Failed to wait for the URL."

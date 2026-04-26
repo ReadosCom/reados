@@ -8,6 +8,7 @@ env_file="${repo_root}/.env"
 pgadmin_pgpass_file="${repo_root}/config/compose/pgadmin/pgpassfile.local"
 default_postgres_password="$(cat /proc/sys/kernel/random/uuid)"
 default_pgadmin_password="$(cat /proc/sys/kernel/random/uuid)"
+default_root_fqdn="${ROOT_FQDN:-reados.localhost}"
 
 cd "${repo_root}"
 
@@ -59,14 +60,19 @@ printf "Enter the pgAdmin admin password for local development [%s]: " "${defaul
 read -r pgadmin_password
 pgadmin_password="${pgadmin_password:-${default_pgadmin_password}}"
 
-if [[ -z "${postgres_password}" || -z "${pgadmin_password}" ]]; then
-  echo "Passwords cannot be empty."
+printf "Enter the root FQDN for local development [%s]: " "${default_root_fqdn}"
+read -r root_fqdn
+root_fqdn="${root_fqdn:-${default_root_fqdn}}"
+
+if [[ -z "${postgres_password}" || -z "${pgadmin_password}" || -z "${root_fqdn}" ]]; then
+  echo "Passwords and the root FQDN cannot be empty."
   exit 1
 fi
 
 cat > "${env_file}" <<EOF
 READOS_POSTGRES_PASSWORD=${postgres_password}
 READOS_PGADMIN_PASSWORD=${pgadmin_password}
+ROOT_FQDN=${root_fqdn}
 EOF
 
 cat > "${pgadmin_pgpass_file}" <<EOF

@@ -1,9 +1,15 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import istanbul from 'vite-plugin-istanbul';
+import path from 'node:path';
 
 // https://vite.dev/config/
 export default defineConfig({
+  resolve: {
+    alias: {
+      '@components': path.resolve(process.cwd(), 'src/components'),
+    },
+  },
   plugins: [
     react(),
     ...(process.env.COVERAGE === 'true'
