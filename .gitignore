@@ -10,8 +10,11 @@ lerna-debug.log*
 node_modules
 dist
 dist-ssr
+testing/output
 .env
 *.local
+config/compose/*.env
+!config/compose/*.example.env
 config/compose/pgbouncer/userlist.local.txt
 config/compose/pgadmin/pgpassfile.local
 

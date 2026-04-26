@@ -2,10 +2,11 @@ services:
   authentication:
     build:
       context: ../..
-      dockerfile: ./config/compose/server.dockerfile
-    command: npm run watch -- src/authentication.server.ts
+      dockerfile: ./config/compose/authentication.dockerfile
+    env_file:
+      - ./authentication.env
     environment:
-      DATABASE_URL: postgres://postgres:${READOS_POSTGRES_PASSWORD:?Set READOS_POSTGRES_PASSWORD in .env.local}@postgres:5432/authentication
+      COVERAGE: ${COVERAGE:-}
     volumes:
       - ../..:/app
       - authentication_node_modules:/app/node_modules

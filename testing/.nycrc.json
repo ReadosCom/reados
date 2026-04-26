@@ -1,0 +1,10 @@
+{
+  "all": true,
+  "extension": [".ts", ".tsx", ".js", ".jsx"],
+  "include": ["src/**/*.{ts,tsx,js,jsx}"],
+  "exclude": ["src/**/*.spec.ts", "testing/**", "src/migration.server.ts", "src/seed.server.ts"],
+  "instrument": false,
+  "skipEmpty": false,
+  "report-dir": "testing/output/coverage",
+  "temp-dir": "testing/output/.nyc_output"
+}

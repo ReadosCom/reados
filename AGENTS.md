@@ -88,7 +88,8 @@
 - Keep PostgreSQL migrations under `config/postgres/migrations/`; migrations are database configuration, not Compose configuration.
 - Use the shared internal port `3000` for backend module containers behind Traefik.
 - The frontend uses `frontend.dockerfile`.
-- Backend modules share `server.dockerfile`.
+- Backend modules use dedicated service Dockerfiles under `config/compose/` (for example `accounting.dockerfile`, `authentication.dockerfile`, `core.dockerfile`, `tenant.dockerfile`).
+- Keep runtime startup logic in Dockerfile `CMD` blocks for deployability in staging and production.
 - Infrastructure should include `PostgreSQL` and the application services currently in use.
 - The current Compose scaffold includes `Traefik`, `PgAdmin`, `PostgreSQL`, and the active application services.
 

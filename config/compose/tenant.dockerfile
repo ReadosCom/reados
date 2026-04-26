@@ -19,16 +19,19 @@ RUN npm ci
 
 COPY . .
 
-EXPOSE 5173
+EXPOSE 3000
 
 CMD /usr/bin/bash -lc '\
+coverage="$(printf "%s" "${COVERAGE:-false}" | tr "[:upper:]" "[:lower:]" | tr -d "\r")"; \
 devMode="$(printf "%s" "${DEV_MODE:-false}" | tr "[:upper:]" "[:lower:]" | tr -d "\r")"; \
-echo "Starting frontend (devMode=${devMode}, coverage=${COVERAGE:-false})"; \
-npm ci && \
-if [ "${devMode}" = "true" ]; then \
+echo "Starting tenant server (coverage=${coverage}, devMode=${devMode})"; \
+if [ "${coverage}" = "true" ]; then \
+  echo "Mode: coverage"; \
+  NODE_OPTIONS="--loader @istanbuljs/esm-loader-hook" node --import tsx src/tenant.server.ts; \
+elif [ "${devMode}" = "true" ]; then \
   echo "Mode: watch"; \
-  npm run dev -- --host 0.0.0.0; \
+  npm run watch -- src/tenant.server.ts; \
 else \
   echo "Mode: direct"; \
-  npm run build && npm run preview -- --host 0.0.0.0 --port 5173; \
+  node --import tsx src/tenant.server.ts; \
 fi'

@@ -2,10 +2,11 @@ services:
   core:
     build:
       context: ../..
-      dockerfile: ./config/compose/server.dockerfile
-    command: npm run watch -- src/core.server.ts
+      dockerfile: ./config/compose/core.dockerfile
+    env_file:
+      - ./core.env
     environment:
-      DATABASE_URL: postgres://postgres:${READOS_POSTGRES_PASSWORD:?Set READOS_POSTGRES_PASSWORD in .env.local}@postgres:5432/core
+      COVERAGE: ${COVERAGE:-}
     volumes:
       - ../..:/app
       - core_node_modules:/app/node_modules
