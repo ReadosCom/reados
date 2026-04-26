@@ -21,4 +21,14 @@ COPY . .
 
 EXPOSE 5173
 
-CMD /usr/bin/bash -lc 'devMode="$(printf "%s" "${DEV_MODE:-false}" | tr "[:upper:]" "[:lower:]" | tr -d "\r")"; echo "Starting frontend (devMode=${devMode}, coverage=${COVERAGE:-false})"; npm ci && if [ "${devMode}" = "true" ]; then echo "Mode: watch"; npm run dev -- --host 0.0.0.0; else echo "Mode: direct"; npm run build && npm run preview -- --host 0.0.0.0 --port 5173; fi'
+CMD /usr/bin/bash -lc '\
+devMode="$(printf "%s" "${DEV_MODE:-false}" | tr "[:upper:]" "[:lower:]" | tr -d "\r")"; \
+echo "Starting frontend (devMode=${devMode}, coverage=${COVERAGE:-false})"; \
+npm ci && \
+if [ "${devMode}" = "true" ]; then \
+  echo "Mode: watch"; \
+  npm run dev -- --host 0.0.0.0; \
+else \
+  echo "Mode: direct"; \
+  npm run build && npm run preview -- --host 0.0.0.0 --port 5173; \
+fi'
