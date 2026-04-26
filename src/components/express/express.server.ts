@@ -28,5 +28,12 @@ export const createModuleServer = ({ moduleName }: CreateModuleServerOptions) =>
     });
   });
 
+  if (process.env.COVERAGE === `true`) {
+    app.get(`/__coverage__`, (_request, response) => {
+      const runtimeCoverage = (globalThis as { __coverage__?: unknown }).__coverage__ ?? {};
+      response.json(runtimeCoverage);
+    });
+  }
+
   return app;
 };

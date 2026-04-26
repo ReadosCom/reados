@@ -2,10 +2,11 @@ services:
   tenant:
     build:
       context: ../..
-      dockerfile: ./config/compose/server.dockerfile
-    command: npm run watch -- src/tenant.server.ts
+      dockerfile: ./config/compose/tenant.dockerfile
+    env_file:
+      - ./tenant.env
     environment:
-      DATABASE_URL: postgres://postgres:${READOS_POSTGRES_PASSWORD:?Set READOS_POSTGRES_PASSWORD in .env.local}@postgres:5432/tenant
+      COVERAGE: ${COVERAGE:-}
     volumes:
       - ../..:/app
       - tenant_node_modules:/app/node_modules

@@ -10,6 +10,7 @@
     "format:check": "biome format .",
     "check:biome": "biome check .",
     "check:ts": "tsc -b --pretty false",
+    "test": "sh -c 'testing/run.sh'",
     "dc:migrate": "docker compose -f compose.yaml -f config/compose/migrate.compose.yaml run --rm migration",
     "dc:seed": "docker compose -f compose.yaml -f config/compose/seed.compose.yaml run --rm seed",
     "lint": "eslint .",
@@ -47,6 +48,7 @@
   "devDependencies": {
     "@biomejs/biome": "2.4.12",
     "@eslint/js": "^9.39.4",
+    "@istanbuljs/esm-loader-hook": "^0.3.0",
     "@playwright/test": "^1.59.1",
     "@tanstack/react-query-devtools": "^5.99.2",
     "@types/cors": "^2.8.19",
@@ -61,10 +63,12 @@
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.5.2",
     "globals": "^17.4.0",
+    "nyc": "^18.0.0",
     "sass-embedded": "^1.99.0",
     "tsx": "^4.21.0",
     "typescript": "~6.0.2",
     "typescript-eslint": "^8.58.0",
-    "vite": "^8.0.4"
+    "vite": "^8.0.4",
+    "vite-plugin-istanbul": "^8.0.0"
   }
 }
