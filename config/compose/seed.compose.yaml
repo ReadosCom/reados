@@ -4,7 +4,7 @@ services:
       context: .
       dockerfile: ./config/compose/server.dockerfile
     env_file:
-      - ./seed.env
+      - ./config/compose/seed.env
     entrypoint: ["npm", "run", "seed", "--"]
     stdin_open: true
     tty: true

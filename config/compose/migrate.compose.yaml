@@ -4,7 +4,7 @@ services:
       context: .
       dockerfile: ./config/compose/server.dockerfile
     env_file:
-      - ./migrate.env
+      - ./config/compose/migrate.env
     entrypoint: ["npm", "run", "migrate", "--"]
     volumes:
       - .:/app
