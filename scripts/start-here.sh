@@ -11,6 +11,35 @@ default_pgadmin_password="$(cat /proc/sys/kernel/random/uuid)"
 
 cd "${repo_root}"
 
+copy_service_env_files() {
+  local compose_dir="${repo_root}/config/compose"
+  local example_file
+  local target_file
+  local copied_count=0
+  local skipped_count=0
+
+  shopt -s nullglob
+  for example_file in "${compose_dir}"/*.example.env; do
+    target_file="${example_file/.example.env/.env}"
+
+    if [[ -f "${target_file}" ]]; then
+      skipped_count=$((skipped_count + 1))
+      continue
+    fi
+
+    cp "${example_file}" "${target_file}"
+    copied_count=$((copied_count + 1))
+    echo "Created ${target_file#${repo_root}/} from ${example_file#${repo_root}/}."
+  done
+  shopt -u nullglob
+
+  if [[ ${copied_count} -gt 0 || ${skipped_count} -gt 0 ]]; then
+    echo "Service env initialization: ${copied_count} created, ${skipped_count} already existed."
+  fi
+}
+
+copy_service_env_files
+
 if [[ -f "${env_file}" ]]; then
   printf ".env already exists. Overwrite it? [y/N] "
   read -r overwrite_choice
