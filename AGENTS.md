@@ -91,7 +91,7 @@
 - Treat the tenant service as a global service at `tenant.reados.localhost`, while tenant-scoped module services use hosts such as `accounting.demo.reados.localhost`.
 - Expose only `Traefik` to the host machine. Keep other services internal to the Docker network unless there is a deliberate exception.
 - Use `PgAdmin` behind Traefik at `pgadmin.localhost` for local database access, connecting directly to PostgreSQL.
-- Generate local secret files with `./scripts/start-here.sh` and use the default `.env` file for Compose.
+- Generate local secret files with `./scripts/start-here.sh` and use the default `.env` file for Compose. Use `--no-questions` in CI/CD so the script can run non-interactively with defaults.
 - Keep PostgreSQL migrations under `config/postgres/migrations/`; migrations are database configuration, not Compose configuration.
 - Use the shared internal port `3000` for backend module containers behind Traefik.
 - The frontend uses `frontend.dockerfile`.

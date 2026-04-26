@@ -9,6 +9,19 @@ pgadmin_pgpass_file="${repo_root}/config/compose/pgadmin/pgpassfile.local"
 default_postgres_password="$(cat /proc/sys/kernel/random/uuid)"
 default_pgadmin_password="$(cat /proc/sys/kernel/random/uuid)"
 default_root_fqdn="${ROOT_FQDN:-reados.localhost}"
+no_questions=false
+
+for argument in "$@"; do
+  case "${argument}" in
+    --no-questions)
+      no_questions=true
+      ;;
+    *)
+      echo "Unknown argument: ${argument}" >&2
+      exit 1
+      ;;
+  esac
+done
 
 cd "${repo_root}"
 
@@ -41,7 +54,7 @@ copy_service_env_files() {
 
 copy_service_env_files
 
-if [[ -f "${env_file}" ]]; then
+if [[ -f "${env_file}" && "${no_questions}" = false ]]; then
   printf ".env already exists. Overwrite it? [y/N] "
   read -r overwrite_choice
 
@@ -52,17 +65,23 @@ if [[ -f "${env_file}" ]]; then
   fi
 fi
 
-printf "Enter the PostgreSQL password for local development [%s]: " "${default_postgres_password}"
-read -r postgres_password
-postgres_password="${postgres_password:-${default_postgres_password}}"
+if [[ "${no_questions}" = true ]]; then
+  postgres_password="${default_postgres_password}"
+  pgadmin_password="${default_pgadmin_password}"
+  root_fqdn="${default_root_fqdn}"
+else
+  printf "Enter the PostgreSQL password for local development [%s]: " "${default_postgres_password}"
+  read -r postgres_password
+  postgres_password="${postgres_password:-${default_postgres_password}}"
 
-printf "Enter the pgAdmin admin password for local development [%s]: " "${default_pgadmin_password}"
-read -r pgadmin_password
-pgadmin_password="${pgadmin_password:-${default_pgadmin_password}}"
+  printf "Enter the pgAdmin admin password for local development [%s]: " "${default_pgadmin_password}"
+  read -r pgadmin_password
+  pgadmin_password="${pgadmin_password:-${default_pgadmin_password}}"
 
-printf "Enter the root FQDN for local development [%s]: " "${default_root_fqdn}"
-read -r root_fqdn
-root_fqdn="${root_fqdn:-${default_root_fqdn}}"
+  printf "Enter the root FQDN for local development [%s]: " "${default_root_fqdn}"
+  read -r root_fqdn
+  root_fqdn="${root_fqdn:-${default_root_fqdn}}"
+fi
 
 if [[ -z "${postgres_password}" || -z "${pgadmin_password}" || -z "${root_fqdn}" ]]; then
   echo "Passwords and the root FQDN cannot be empty."

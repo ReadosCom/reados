@@ -27,7 +27,7 @@ jobs:
         run: npm ci
 
       - name: Initialize local env files
-        run: printf '\n\n' | bash ./scripts/start-here.sh
+        run: bash ./scripts/start-here.sh --no-questions
 
       - name: Install Playwright Chrome
         run: npx playwright install --with-deps chrome

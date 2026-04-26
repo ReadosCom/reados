@@ -72,7 +72,7 @@ Reados is intended to support isolated tenant deployments with selectable module
 - `ROOT_FQDN=reados.localhost` defines the root login domain and the shared CORS origin family for backend services.
 - Only `Traefik` is exposed to the host machine. Internal services stay on the Docker network.
 - `PgAdmin` is available behind Traefik at `pgadmin.localhost` and connects directly to PostgreSQL.
-- Run `./scripts/start-here.sh` first to generate `.env` with `ROOT_FQDN` and the local secret files needed by Compose.
+- Run `./scripts/start-here.sh` first to generate `.env` with `ROOT_FQDN` and the local secret files needed by Compose. Use `--no-questions` in CI/CD to accept defaults automatically.
 - Start the stack with `docker compose up --build`.
 - Run `npm run dc:migrate` to apply all database migrations, or pass a service name such as `npm run dc:migrate authentication` for a single database.
 - Seed tenant data interactively with `npm run dc:seed tenant`. The seed command now runs all migrations first.
