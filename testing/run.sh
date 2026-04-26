@@ -16,6 +16,14 @@ if [ $? -ne 0 ]; then
   exit 1
 fi
 
+for migration_service in core tenant authentication accounting; do
+  npm run dc:migrate -- "${migration_service}"
+  if [ $? -ne 0 ]; then
+    echo "Failed to run migrations for ${migration_service}."
+    exit 1
+  fi
+done
+
 tsx testing/wait-for-url.ts http://demo.reados.localhost
 tsx testing/wait-for-url.ts http://tenant.reados.localhost
 tsx testing/wait-for-url.ts http://accounting.demo.reados.localhost
