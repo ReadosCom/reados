@@ -21,17 +21,4 @@ COPY . .
 
 EXPOSE 3000
 
-CMD /usr/bin/bash -lc '\
-coverage="$(printf "%s" "${COVERAGE:-false}" | tr "[:upper:]" "[:lower:]" | tr -d "\r")"; \
-devMode="$(printf "%s" "${DEV_MODE:-false}" | tr "[:upper:]" "[:lower:]" | tr -d "\r")"; \
-echo "Starting authentication server (coverage=${coverage}, devMode=${devMode})"; \
-if [ "${coverage}" = "true" ]; then \
-  echo "Mode: coverage"; \
-  NODE_OPTIONS="--loader @istanbuljs/esm-loader-hook" node --import tsx src/authentication.server.ts; \
-elif [ "${devMode}" = "true" ]; then \
-  echo "Mode: watch"; \
-  npm run watch -- src/authentication.server.ts; \
-else \
-  echo "Mode: direct"; \
-  node --import tsx src/authentication.server.ts; \
-fi'
+CMD ["/app/config/compose/run-entrypoint.sh", "backend", "src/authentication.server.ts", "authentication"]

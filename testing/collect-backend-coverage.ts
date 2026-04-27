@@ -9,6 +9,7 @@ type BackendTarget = {
 };
 
 const backendTargets: BackendTarget[] = [
+  { name: `rootCore`, url: `http://core.reados.localhost/__coverage__` },
   { name: `tenant`, url: `http://tenant.reados.localhost/__coverage__` },
   { name: `authentication`, url: `http://authentication.demo.reados.localhost/__coverage__` },
   { name: `accounting`, url: `http://accounting.demo.reados.localhost/__coverage__` },

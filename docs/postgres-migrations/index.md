@@ -23,13 +23,16 @@ Conventions:
 Running migrations:
 
 - Directly from the repository root:
+  - `npm run migrate` applies all service migrations in alphabetical order.
   - `DATABASE_URL=postgres://postgres:<password>@localhost:5432/authentication npm run migrate -- authentication`
   - `DATABASE_URL=postgres://postgres:<password>@localhost:5432/tenant npm run migrate -- tenant`
 - Through Docker Compose with the dedicated migration file:
+  - `npm run dc:migrate` applies all service migrations in alphabetical order.
   - `npm run dc:migrate authentication`
   - `npm run dc:migrate tenant`
 - If `DATABASE_URL` is not set, the migration runner falls back to `postgres://postgres:${READOS_POSTGRES_PASSWORD}@${POSTGRES_HOST:-localhost}:5432/<service>`.
-- The argument after `--` selects the service migration folder, and `DATABASE_URL` selects the database to migrate.
+- The argument after `--` selects a single service migration folder. When no service name is provided, the migration runner applies every top-level service folder under `config/postgres/migrations/`.
+- `DATABASE_URL` selects the database to migrate when a single service is targeted.
 
 The migration runner executes shared SQL from `migrations/fncs` first, then service-specific SQL in this order:
 
@@ -40,8 +43,8 @@ The migration runner executes shared SQL from `migrations/fncs` first, then serv
 Tenant seed data:
 
 - The `"user"` table belongs to the `authentication` database. The tenant database stores tenant membership by `"user"` without owning the user row.
-- Run authentication and tenant migrations before seeding.
-- Run `npm run dc:seed tenant` to ask for tenant, admin user, and billing account values interactively inside the Compose network.
+- Run service migrations before seeding when you invoke `npm run seed -- tenant` directly.
+- Run `npm run dc:seed tenant` to ask for tenant, admin user, and billing account values interactively inside the Compose network. The Compose seed command runs all migrations first.
 - If you are connecting to externally reachable databases, `npm run seed -- tenant` also works with `AUTHENTICATION_DATABASE_URL` and `TENANT_DATABASE_URL`.
 - For staging and production automation, set `SEED_NON_INTERACTIVE=true` and provide values through environment variables.
 - Non-interactive mode requires every supported `SEED_*` variable unless `SEED_USE_DEFAULTS=true` is set for local automation.

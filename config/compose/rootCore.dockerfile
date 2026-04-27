@@ -21,4 +21,4 @@ COPY . .
 
 EXPOSE 3000
 
-CMD ["/app/config/compose/run-entrypoint.sh", "backend", "src/core.server.ts", "core"]
+CMD ["/app/config/compose/run-entrypoint.sh", "backend", "src/rootCore.server.ts", "root-core"]

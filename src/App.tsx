@@ -1,5 +1,10 @@
-import { AuthenticationIdentifier } from './components/authentication/AuthenticationIdentifier';
+import { RouterProvider } from '@tanstack/react-router';
+
+import { useRootApplicationQuery } from '@components/app/app.query.ts';
+import { router } from './router.tsx';
 
 export const App = () => {
-  return <AuthenticationIdentifier />;
+  useRootApplicationQuery();
+
+  return <RouterProvider router={router} />;
 };

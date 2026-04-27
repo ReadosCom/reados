@@ -24,8 +24,16 @@ for migration_service in core tenant authentication accounting; do
   fi
 done
 
-tsx testing/wait-for-url.ts http://demo.reados.localhost
+docker compose -f compose.yaml -f config/compose/seed.compose.yaml run --rm -e SEED_NON_INTERACTIVE=true -e SEED_USE_DEFAULTS=true seed tenant
+if [ $? -ne 0 ]; then
+  echo "Failed to seed tenant data."
+  exit 1
+fi
+
+tsx testing/wait-for-url.ts http://reados.localhost
+tsx testing/wait-for-url.ts http://core.reados.localhost/whoami
 tsx testing/wait-for-url.ts http://tenant.reados.localhost
+tsx testing/wait-for-url.ts http://core.demo.reados.localhost/whoami
 tsx testing/wait-for-url.ts http://accounting.demo.reados.localhost
 if [ $? -ne 0 ]; then
   echo "Failed to wait for the URL."
