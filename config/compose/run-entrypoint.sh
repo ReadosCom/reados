@@ -32,7 +32,6 @@ case "${service_type}" in
     dev_mode="$(printf "%s" "${DEV_MODE:-false}" | tr "[:upper:]" "[:lower:]" | tr -d "\r")"
 
     echo "Starting frontend (devMode=${dev_mode}, coverage=${COVERAGE:-false})"
-    npm ci
 
     if [ "${dev_mode}" = "true" ]; then
       echo "Mode: watch"

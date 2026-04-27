@@ -1,6 +1,6 @@
 services:
   traefik:
-    image: traefik:v3.5
+    image: traefik:v3.6.14
     env_file:
       - ./traefik.env
     command:

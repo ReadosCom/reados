@@ -19,7 +19,7 @@ services:
     labels:
       traefik.enable: "true"
       traefik.docker.network: reados
-      traefik.http.routers.tenant.rule: Host(`tenant.reados.localhost`)
+      traefik.http.routers.tenant.rule: Host(`tenant.${ROOT_FQDN:-reados.localhost}`)
       traefik.http.routers.tenant.entrypoints: web
       traefik.http.routers.tenant.priority: "100"
       traefik.http.services.tenant.loadbalancer.server.port: "3000"

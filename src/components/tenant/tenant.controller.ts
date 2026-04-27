@@ -7,9 +7,9 @@ import type { TenantDiscoveryRequest, TenantDiscoveryTenant } from './tenant.sch
  * Builds the tenant-specific login URL for a discovered tenant.
  */
 export const getTenantLoginUrl = (tenantSlug: string) => {
-  const tunnelFqdn = process.env.CLOUDFLARED_TUNNEL_FQDN?.trim();
-  const hostSuffix = tunnelFqdn || `reados.localhost`;
-  const protocol = tunnelFqdn ? `https` : `http`;
+  const rootFqdn = process.env.ROOT_FQDN?.trim() || `reados.localhost`;
+  const hostSuffix = rootFqdn;
+  const protocol = hostSuffix.endsWith(`.localhost`) ? `http` : `https`;
 
   return `${protocol}://${tenantSlug}.${hostSuffix}/authentication`;
 };

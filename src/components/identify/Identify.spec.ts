@@ -3,9 +3,9 @@ import { expect, test } from '../../../testing/e2e';
 test('identify accepts an email address', async ({ page }) => {
   await page.goto('/');
 
-  await expect(page.getByRole('heading', { name: 'One entry point for every tenant workspace.' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Welcome to Reados' })).toBeVisible();
 
-  await page.getByRole('link', { name: 'Sign in' }).click();
+  await page.getByRole('link', { name: 'Start here' }).click();
 
   await expect(page.getByRole('heading', { name: 'Sign in to Reados' })).toBeVisible();
 
