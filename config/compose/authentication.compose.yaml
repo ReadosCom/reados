@@ -6,7 +6,6 @@ services:
     env_file:
       - ./authentication.env
     environment:
-      AUTHENTICATION_EMAIL_TRANSPORT: ${AUTHENTICATION_EMAIL_TRANSPORT:-smtp}
       COVERAGE: ${COVERAGE:-}
       ROOT_FQDN: ${ROOT_FQDN:-reados.localhost}
     volumes:
