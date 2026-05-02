@@ -13,5 +13,5 @@ test('identify accepts an email address', async ({ page }) => {
   await page.getByRole('button', { name: 'Sign in' }).click();
 
   await expect(page.getByText('Choose a tenant for admin@reados.localhost.')).toBeVisible();
-  await expect(page.getByRole('link', { name: 'Continue to Demo Tenant' })).toHaveAttribute('href', 'http://demo.reados.localhost/authentication');
+  await expect(page.getByRole('link', { name: 'Continue to Demo Tenant' })).toHaveAttribute('href', 'http://demo.reados.localhost/authentication?email=admin%40reados.localhost');
 });

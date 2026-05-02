@@ -6,8 +6,7 @@ script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 repo_root="$(cd "${script_dir}/.." && pwd)"
 env_file="${repo_root}/.env"
 pgadmin_pgpass_file="${repo_root}/config/compose/pgadmin/pgpassfile.local"
-default_postgres_password="$(cat /proc/sys/kernel/random/uuid)"
-default_pgadmin_password="$(cat /proc/sys/kernel/random/uuid)"
+postgres_env_file="${repo_root}/config/compose/postgres.env"
 default_root_fqdn="${ROOT_FQDN:-reados.localhost}"
 no_questions=false
 
@@ -66,33 +65,33 @@ if [[ -f "${env_file}" && "${no_questions}" = false ]]; then
 fi
 
 if [[ "${no_questions}" = true ]]; then
-  postgres_password="${default_postgres_password}"
-  pgadmin_password="${default_pgadmin_password}"
   root_fqdn="${default_root_fqdn}"
 else
-  printf "Enter the PostgreSQL password for local development [%s]: " "${default_postgres_password}"
-  read -r postgres_password
-  postgres_password="${postgres_password:-${default_postgres_password}}"
-
-  printf "Enter the pgAdmin admin password for local development [%s]: " "${default_pgadmin_password}"
-  read -r pgadmin_password
-  pgadmin_password="${pgadmin_password:-${default_pgadmin_password}}"
-
   printf "Enter the root FQDN for local development [%s]: " "${default_root_fqdn}"
   read -r root_fqdn
   root_fqdn="${root_fqdn:-${default_root_fqdn}}"
 fi
 
-if [[ -z "${postgres_password}" || -z "${pgadmin_password}" || -z "${root_fqdn}" ]]; then
-  echo "Passwords and the root FQDN cannot be empty."
+if [[ -z "${root_fqdn}" ]]; then
+  echo "The root FQDN cannot be empty."
   exit 1
 fi
 
 cat > "${env_file}" <<EOF
-READOS_POSTGRES_PASSWORD=${postgres_password}
-READOS_PGADMIN_PASSWORD=${pgadmin_password}
 ROOT_FQDN=${root_fqdn}
 EOF
+
+if [[ ! -f "${postgres_env_file}" ]]; then
+  echo "Missing ${postgres_env_file#${repo_root}/}. Run this script after env files are initialized."
+  exit 1
+fi
+
+postgres_password="$(sed -n 's/^POSTGRES_PASSWORD=//p' "${postgres_env_file}" | head -n 1)"
+
+if [[ -z "${postgres_password}" ]]; then
+  echo "POSTGRES_PASSWORD is missing in ${postgres_env_file#${repo_root}/}."
+  exit 1
+fi
 
 cat > "${pgadmin_pgpass_file}" <<EOF
 postgres:5432:postgres:postgres:${postgres_password}

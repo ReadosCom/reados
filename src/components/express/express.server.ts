@@ -1,25 +1,23 @@
 import cors from 'cors';
 import express from 'express';
+import { v7 as uuidv7 } from 'uuid';
 import { z } from 'zod';
 
 type CreateModuleServerOptions = {
   moduleName: string;
 };
 
-const getRootFullyQualifiedDomainName = () => {
+const getRootFQDN = () => {
   const envFqdn = process.env.ROOT_FQDN?.trim() || `reados.localhost`;
-  console.log(`Using root fully qualified domain name: ${envFqdn}`);
   return envFqdn;
 };
 
 const isAllowedCorsOrigin = (origin: string) => {
-  console.log(`Checking CORS origin: ${origin}`);
-  console.log(`Allowed root fully qualified domain name: ${getRootFullyQualifiedDomainName()}`);
   try {
     const requestOrigin = new URL(origin);
-    const rootFullyQualifiedDomainName = getRootFullyQualifiedDomainName();
+    const rootFQDN = getRootFQDN();
 
-    return requestOrigin.hostname === rootFullyQualifiedDomainName || requestOrigin.hostname.endsWith(`.${rootFullyQualifiedDomainName}`);
+    return requestOrigin.hostname === rootFQDN || requestOrigin.hostname.endsWith(`.${rootFQDN}`);
   } catch {
     return false;
   }
@@ -46,6 +44,45 @@ export const validateRequestBody = <Schema extends z.ZodTypeAny>(schema: Schema)
 };
 
 /**
+ * Validates an incoming request query against a Zod schema before the route handler runs.
+ */
+export const validateRequestQuery = <Schema extends z.ZodTypeAny>(schema: Schema): express.RequestHandler => {
+  return (request, response, next) => {
+    const parsedQuery = schema.safeParse(request.query);
+
+    if (!parsedQuery.success) {
+      response.status(400).json({
+        message: `Invalid request query.`,
+        issues: parsedQuery.error.flatten(),
+      });
+      return;
+    }
+
+    response.locals.validatedQuery = parsedQuery.data;
+    next();
+  };
+};
+
+/**
+ * Resolves the current correlation identifier from request context.
+ */
+export const getCorrelationId = (request: express.Request, response: express.Response) => {
+  const responseCorrelationId = response.locals.correlationId;
+
+  if (typeof responseCorrelationId === `string` && responseCorrelationId.trim().length > 0) {
+    return responseCorrelationId;
+  }
+
+  const requestCorrelationId = request.header(`x-correlation-id`);
+
+  if (typeof requestCorrelationId === `string` && requestCorrelationId.trim().length > 0) {
+    return requestCorrelationId.trim();
+  }
+
+  return uuidv7();
+};
+
+/**
  * Creates a minimal module server with shared middleware and health endpoints.
  */
 export const createModuleServer = ({ moduleName }: CreateModuleServerOptions) => {
@@ -53,17 +90,30 @@ export const createModuleServer = ({ moduleName }: CreateModuleServerOptions) =>
 
   app.use(
     cors({
+      credentials: true,
       origin: (origin, callback) => {
         if (!origin) {
           callback(null, true);
           return;
         }
 
-        callback(null, isAllowedCorsOrigin(origin));
+        if (isAllowedCorsOrigin(origin)) {
+          callback(null, origin);
+          return;
+        }
+
+        callback(null, false);
       },
     }),
   );
   app.use(express.json());
+  app.use((request, response, next) => {
+    const correlationId = getCorrelationId(request, response);
+
+    response.locals.correlationId = correlationId;
+    response.setHeader(`x-correlation-id`, correlationId);
+    next();
+  });
 
   app.get(`/health`, (_request, response) => {
     response.json({

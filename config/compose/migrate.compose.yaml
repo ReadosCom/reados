@@ -5,6 +5,7 @@ services:
       dockerfile: ./config/compose/server.dockerfile
     env_file:
       - ./config/compose/migrate.env
+      - ./config/compose/postgres.env
     entrypoint: ["npm", "run", "migrate", "--"]
     volumes:
       - .:/app

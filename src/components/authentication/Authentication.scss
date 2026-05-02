@@ -1,8 +1,27 @@
 .authentication {
-  min-height: 100vh;
+  display: block;
 }
 
 .authentication .page-row {
-  align-items: center;
+  align-items: flex-start;
   min-height: 100vh;
+}
+
+.authentication__form {
+  margin-top: 1.5rem;
+}
+
+.authentication__status {
+  margin-top: 1rem;
+}
+
+.authentication__error {
+  color: #b91c1c;
+  margin-top: 0.75rem;
+}
+
+.authentication__actions {
+  column-gap: 0.75rem;
+  display: flex;
+  justify-content: flex-end;
 }

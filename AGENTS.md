@@ -25,12 +25,13 @@
 - Use PascalCase for React component files such as `AccountingPage.tsx` and `AccountingForm.tsx`.
 - Use the correct filename for each file in a component.
 - Keep all component-level types in `*.schema.ts` files, including both Zod-inferred types and manually declared types, instead of creating separate `*.types.ts` files.
-- Use `*.controller.ts` only for backend business logic and request handlers.
+- Use `*.controller.ts` only for backend business logic and data-access orchestration; keep controllers framework-agnostic and free of Express request/response handling.
 - Use `*.query.ts` for TanStack Query hooks and query/mutation wrappers.
-- Use `*.api.ts` for plain HTTP request helpers and API clients.
-- Use `*.client.ts` for browser-only helpers that are not React Query hooks.
+- Use `*.client.ts` for browser-side HTTP request helpers and API clients (non-React-Query wrappers).
 - Prefer semicolons at the end of TypeScript statements.
-- Use `*.router.ts` for route definitions and `*.server.ts` for server-only shared helpers and entry files.
+- Use `*.router.ts` for route definitions.
+- Reserve `*.server.ts` for service entry files only.
+- Keep server-side helper logic in the component `*.controller.ts` file instead of introducing separate service files.
 - Use single or double quotes for import specifiers. Do not use backticks in `import` statements.
 - Use the `@components/*` alias for imports that cross component boundaries within `src/components`.
 - Standardize on UUID v7 for identifier generation across frontend and backend.
@@ -73,6 +74,7 @@
 - Add error handling for network requests.
 - Use a separate PostgreSQL database per backend module.
 - Use `ensurePool` from `src/components/postgres/pool.ts` for shared PostgreSQL access instead of creating ad hoc pools in backend modules.
+- Initialize database pools at module load time in backend components; do not lazily create connections inside route registration or request handlers.
 - Prefer database connection strings such as `DATABASE_URL` over split database host/port/user/password environment variables.
 - Use `zod-openapi` to derive OpenAPI-compatible schemas from Zod definitions.
 

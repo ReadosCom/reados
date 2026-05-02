@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 import { type IdentifierLoginFormValues, identifierLoginSchema } from './identify.schema';
-import { useDiscoverTenantsMutation } from '@components/tenant/tenant.api.ts';
+import { useDiscoverTenantsMutation } from '@components/tenant/tenant.client.ts';
 import './Identify.scss';
 
 /**
@@ -68,7 +68,7 @@ export const Identify = () => {
                     <ul className="identify__tenant-list">
                       {data.tenants.map((tenant) => (
                         <li key={tenant.slug}>
-                          <Button appearance={ButtonAppearance.BRAND} element="a" href={tenant.loginUrl}>
+                          <Button appearance={ButtonAppearance.BRAND} element="a" href={`${tenant.loginUrl}?email=${encodeURIComponent(lookupEmail)}`}>
                             Continue to {tenant.name}
                           </Button>
                         </li>

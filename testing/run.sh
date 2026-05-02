@@ -10,7 +10,7 @@ status=0
 mkdir -p testing/output/.nyc_frontend
 chmod 0777 testing/output/.nyc_frontend
 
-COVERAGE=true docker compose up -d --build
+COVERAGE=true AUTHENTICATION_EMAIL_TRANSPORT=test docker compose up -d --build
 if [ $? -ne 0 ]; then
   echo "Failed to start the Docker containers."
   exit 1
@@ -33,6 +33,7 @@ fi
 tsx testing/wait-for-url.ts http://reados.localhost
 tsx testing/wait-for-url.ts http://core.reados.localhost/whoami
 tsx testing/wait-for-url.ts http://tenant.reados.localhost
+tsx testing/wait-for-url.ts http://authentication.demo.reados.localhost
 tsx testing/wait-for-url.ts http://core.demo.reados.localhost/whoami
 tsx testing/wait-for-url.ts http://accounting.demo.reados.localhost
 if [ $? -ne 0 ]; then
