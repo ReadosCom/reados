@@ -1,5 +1,7 @@
 import { expect, test } from '../../../testing/e2e';
 
+const sleep = (milliseconds: number) => new Promise((resolve) => setTimeout(resolve, milliseconds));
+
 test(`authentication OTP flow signs in and creates a session`, async ({ page }) => {
   await page.goto(`/`);
   await page.getByRole(`link`, { name: `Start here` }).click();
@@ -7,15 +9,19 @@ test(`authentication OTP flow signs in and creates a session`, async ({ page }) 
   await page.getByRole(`button`, { name: `Sign in` }).click();
   await page.getByRole(`link`, { name: `Continue to Demo Tenant` }).click();
 
-  await expect(page).toHaveURL(`http://demo.reados.localhost/authentication`);
+  await expect(page).toHaveURL(`http://demo.reados.localhost/authentication?email=admin%40reados.localhost`);
   await expect(page.getByRole(`heading`, { name: `Sign in with a one-time code` })).toBeVisible();
 
-  await page.getByLabel(`Email address`).fill(`admin@reados.localhost`);
   await page.getByRole(`button`, { name: `Send verification code` }).click();
 
   await expect(page.getByText(`If this account is eligible, we sent a verification code.`)).toBeVisible();
 
-  const otpResponse = await page.request.get(`http://authentication.demo.reados.localhost/test/otp/latest?email=admin%40reados.localhost`);
+  let otpResponse = await page.request.get(`http://authentication.demo.reados.localhost/test/otp/latest?email=admin%40reados.localhost`);
+
+  for (let attempt = 0; !otpResponse.ok() && attempt < 20; attempt += 1) {
+    await sleep(250);
+    otpResponse = await page.request.get(`http://authentication.demo.reados.localhost/test/otp/latest?email=admin%40reados.localhost`);
+  }
 
   expect(otpResponse.ok()).toBeTruthy();
 
@@ -55,9 +61,8 @@ test(`authentication OTP flow signs in and creates a session`, async ({ page }) 
 });
 
 test(`authentication rejects invalid OTP codes`, async ({ page }) => {
-  await page.goto(`http://demo.reados.localhost/authentication`);
+  await page.goto(`http://demo.reados.localhost/authentication?email=admin%40reados.localhost`);
 
-  await page.getByLabel(`Email address`).fill(`admin@reados.localhost`);
   await page.getByRole(`button`, { name: `Send verification code` }).click();
 
   await expect(page.getByText(`If this account is eligible, we sent a verification code.`)).toBeVisible();
@@ -66,5 +71,5 @@ test(`authentication rejects invalid OTP codes`, async ({ page }) => {
   await page.getByRole(`button`, { name: `Verify and continue` }).click();
 
   await expect(page.getByText(`The verification code is invalid or expired.`)).toBeVisible();
-  await expect(page).toHaveURL(`http://demo.reados.localhost/authentication`);
+  await expect(page).toHaveURL(`http://demo.reados.localhost/authentication?email=admin%40reados.localhost`);
 });

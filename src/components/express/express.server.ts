@@ -7,20 +7,17 @@ type CreateModuleServerOptions = {
   moduleName: string;
 };
 
-const getRootFullyQualifiedDomainName = () => {
+const getRootFQDN = () => {
   const envFqdn = process.env.ROOT_FQDN?.trim() || `reados.localhost`;
-  console.log(`Using root fully qualified domain name: ${envFqdn}`);
   return envFqdn;
 };
 
 const isAllowedCorsOrigin = (origin: string) => {
-  console.log(`Checking CORS origin: ${origin}`);
-  console.log(`Allowed root fully qualified domain name: ${getRootFullyQualifiedDomainName()}`);
   try {
     const requestOrigin = new URL(origin);
-    const rootFullyQualifiedDomainName = getRootFullyQualifiedDomainName();
+    const rootFQDN = getRootFQDN();
 
-    return requestOrigin.hostname === rootFullyQualifiedDomainName || requestOrigin.hostname.endsWith(`.${rootFullyQualifiedDomainName}`);
+    return requestOrigin.hostname === rootFQDN || requestOrigin.hostname.endsWith(`.${rootFQDN}`);
   } catch {
     return false;
   }
@@ -100,7 +97,12 @@ export const createModuleServer = ({ moduleName }: CreateModuleServerOptions) =>
           return;
         }
 
-        callback(null, isAllowedCorsOrigin(origin));
+        if (isAllowedCorsOrigin(origin)) {
+          callback(null, origin);
+          return;
+        }
+
+        callback(null, false);
       },
     }),
   );

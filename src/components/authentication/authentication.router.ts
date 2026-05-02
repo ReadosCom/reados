@@ -1,6 +1,6 @@
 import { createModuleServer, getCorrelationId, validateRequestBody, validateRequestQuery } from '@components/express/express.server.ts';
 
-import { authenticationSessionCookieName, getLatestOtpForTesting, getSessionFromCookie, isAuthenticationTestTransportEnabled, logoutSession, requestOtp, verifyOtpAndCreateSession } from './authentication.controller.ts';
+import { authenticationSessionCookieName, getLatestOtpForTesting, getSessionFromCookie, isAuthenticationTestEndpointEnabled, logoutSession, requestOtp, verifyOtpAndCreateSession } from './authentication.controller.ts';
 import { otpRequestBodySchema, otpTestQuerySchema, otpVerifyBodySchema, type OtpRequestBody, type OtpTestQuery, type OtpVerifyBody } from './authentication.schema.ts';
 
 /**
@@ -119,10 +119,10 @@ export const createAuthenticationServer = () => {
     });
   });
 
-  if (isAuthenticationTestTransportEnabled()) {
-    app.get(`/test/otp/latest`, validateRequestQuery(otpTestQuerySchema), (_request, response) => {
+  if (isAuthenticationTestEndpointEnabled()) {
+    app.get(`/test/otp/latest`, validateRequestQuery(otpTestQuerySchema), async (_request, response) => {
       const { email } = response.locals.validatedQuery as OtpTestQuery;
-      const latestOtpCode = getLatestOtpForTesting({ email });
+      const latestOtpCode = await getLatestOtpForTesting({ email });
 
       if (!latestOtpCode) {
         response.status(404).json({

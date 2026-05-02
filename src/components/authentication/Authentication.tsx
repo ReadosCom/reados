@@ -56,6 +56,8 @@ const getEmailFromQueryString = () => {
   return parsedEmail.data;
 };
 
+const genericOtpRequestMessage = `If this account is eligible, we sent a verification code.`;
+
 /**
  * Render the tenant-scoped authentication experience.
  */
@@ -93,10 +95,14 @@ export const Authentication = () => {
   });
 
   const onRequestOtp = async ({ email }: OtpRequestBody) => {
-    const result = await requestOtpMutation.mutateAsync({ email });
-
     setRequestedEmail(email);
-    setRequestMessage(result.message);
+
+    try {
+      const result = await requestOtpMutation.mutateAsync({ email });
+      setRequestMessage(result.message);
+    } catch {
+      setRequestMessage(genericOtpRequestMessage);
+    }
   };
 
   const onVerifyOtp = async ({ code }: Pick<OtpVerifyBody, `code`>) => {

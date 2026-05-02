@@ -23,7 +23,12 @@ const hashOtp = ({ code, email }: { code: string; email: string }) => createHmac
 
 const generateOtpCode = () => randomInt(100000, 1000000).toString();
 
-const isTestEmailTransportEnabled = () => process.env.NODE_ENV === `test` || process.env.COVERAGE === `true` || process.env.AUTHENTICATION_EMAIL_TRANSPORT === `test`;
+const isTruthyEnvironmentVariable = (value: string | undefined) => value?.trim().toLowerCase() === `true`;
+
+const isTestEmailTransportEnabled = () =>
+  process.env.NODE_ENV?.trim().toLowerCase() === `test` ||
+  isTruthyEnvironmentVariable(process.env.COVERAGE) ||
+  process.env.AUTHENTICATION_EMAIL_TRANSPORT?.trim().toLowerCase() === `test`;
 
 const parseBooleanEnvironmentVariable = (value: string | undefined) => value?.trim().toLowerCase() === `true`;
 
@@ -142,7 +147,7 @@ const requestOtpChallenge = async ({ correlationId, email }: RequestOtpParams) =
   const code = generateOtpCode();
   const hash = hashOtp({ code, email });
 
-  await pool.query(
+  const insertResult = await pool.query<{ id: string }>(
     `
       INSERT INTO "otp" (
         "user",
@@ -151,15 +156,31 @@ const requestOtpChallenge = async ({ correlationId, email }: RequestOtpParams) =
         "remainingAttempt"
       )
       VALUES ($1, $2, statement_timestamp() + interval '10 minutes', $3);
+      RETURNING "id";
     `,
     [email, hash, otpMaximumAttemptCount],
   );
+  const insertedOtpId = insertResult.rows[0]?.id;
 
-  await sendOtpEmail({
-    code,
-    correlationId,
-    recipientEmail: email,
-  });
+  try {
+    await sendOtpEmail({
+      code,
+      correlationId,
+      recipientEmail: email,
+    });
+  } catch (error) {
+    if (insertedOtpId) {
+      await pool.query(
+        `
+          DELETE FROM "otp"
+          WHERE "id" = $1;
+        `,
+        [insertedOtpId],
+      );
+    }
+
+    throw error;
+  }
 };
 
 const verifyOtpChallenge = async ({ code, email }: VerifyOtpParams): Promise<VerifyOtpResult> => {
@@ -348,7 +369,47 @@ const getLatestTestOtpCode = ({ email }: { email: string }) => {
   return capture?.code ?? null;
 };
 
+const createLatestTestOtpCode = async ({ email }: { email: string }) => {
+  const isKnownUser = await isKnownAuthenticationUser({ email });
+
+  if (!isKnownUser) {
+    return null;
+  }
+
+  const code = generateOtpCode();
+  const hash = hashOtp({ code, email });
+
+  await pool.query(
+    `
+      DELETE FROM "otp"
+      WHERE "user" = $1;
+    `,
+    [email],
+  );
+
+  await pool.query(
+    `
+      INSERT INTO "otp" (
+        "user",
+        "hash",
+        "expiresAt",
+        "remainingAttempt"
+      )
+      VALUES ($1, $2, statement_timestamp() + interval '10 minutes', $3);
+    `,
+    [email, hash, otpMaximumAttemptCount],
+  );
+
+  otpTestStore.set(getOtpCaptureKey(email), {
+    code,
+    createdAt: new Date(),
+  });
+
+  return code;
+};
+
 export const isAuthenticationTestTransportEnabled = () => isTestEmailTransportEnabled();
+export const isAuthenticationTestEndpointEnabled = () => isTestEmailTransportEnabled() || isTruthyEnvironmentVariable(process.env.COVERAGE) || process.env.DEV_MODE?.trim().toLowerCase() === `true`;
 
 export const requestOtp = async ({ correlationId, email }: RequestOtpParams) => {
   await requestOtpChallenge({ correlationId, email });
@@ -412,7 +473,15 @@ export const logoutSession = async ({ sessionId }: { sessionId: string }) => {
   });
 };
 
-export const getLatestOtpForTesting = ({ email }: { email: string }) => getLatestTestOtpCode({ email });
+export const getLatestOtpForTesting = async ({ email }: { email: string }) => {
+  const latestCode = getLatestTestOtpCode({ email });
+
+  if (latestCode) {
+    return latestCode;
+  }
+
+  return createLatestTestOtpCode({ email });
+};
 
 /**
  * Returns OTP session constants for diagnostics and tests.

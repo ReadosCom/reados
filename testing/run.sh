@@ -10,7 +10,7 @@ status=0
 mkdir -p testing/output/.nyc_frontend
 chmod 0777 testing/output/.nyc_frontend
 
-COVERAGE=true docker compose up -d --build
+COVERAGE=true AUTHENTICATION_EMAIL_TRANSPORT=test docker compose up -d --build
 if [ $? -ne 0 ]; then
   echo "Failed to start the Docker containers."
   exit 1
