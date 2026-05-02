@@ -25,10 +25,7 @@ const generateOtpCode = () => randomInt(100000, 1000000).toString();
 
 const isTruthyEnvironmentVariable = (value: string | undefined) => value?.trim().toLowerCase() === `true`;
 
-const isTestEmailTransportEnabled = () =>
-  process.env.NODE_ENV?.trim().toLowerCase() === `test` ||
-  isTruthyEnvironmentVariable(process.env.COVERAGE) ||
-  process.env.AUTHENTICATION_EMAIL_TRANSPORT?.trim().toLowerCase() === `test`;
+const isTestEmailTransportEnabled = () => process.env.NODE_ENV?.trim().toLowerCase() === `test` || isTruthyEnvironmentVariable(process.env.COVERAGE) || process.env.AUTHENTICATION_EMAIL_TRANSPORT?.trim().toLowerCase() === `test`;
 
 const parseBooleanEnvironmentVariable = (value: string | undefined) => value?.trim().toLowerCase() === `true`;
 
@@ -155,7 +152,7 @@ const requestOtpChallenge = async ({ correlationId, email }: RequestOtpParams) =
         "expiresAt",
         "remainingAttempt"
       )
-      VALUES ($1, $2, statement_timestamp() + interval '10 minutes', $3);
+      VALUES ($1, $2, statement_timestamp() + interval '10 minutes', $3)
       RETURNING "id";
     `,
     [email, hash, otpMaximumAttemptCount],
