@@ -1,9 +1,7 @@
-import { createModuleServer } from '@components/express/express.server.ts';
+import { createAuthenticationServer } from '@components/authentication/authentication.router.ts';
 
 const port = Number(process.env.PORT ?? 3000);
-const app = createModuleServer({
-  moduleName: `authentication`,
-});
+const app = createAuthenticationServer();
 
 app.listen(port, () => {
   console.log(`authentication server listening on port ${port}`);

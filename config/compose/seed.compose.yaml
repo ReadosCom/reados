@@ -5,6 +5,7 @@ services:
       dockerfile: ./config/compose/server.dockerfile
     env_file:
       - ./config/compose/seed.env
+      - ./config/compose/postgres.env
     entrypoint: ["npm", "run", "seed", "--"]
     stdin_open: true
     tty: true

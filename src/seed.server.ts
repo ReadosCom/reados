@@ -116,11 +116,11 @@ const getDatabaseUrl = (serviceName: string) => {
     return databaseUrl;
   }
 
-  const postgresPassword = process.env.READOS_POSTGRES_PASSWORD;
+  const postgresPassword = process.env.POSTGRES_PASSWORD ?? process.env.READOS_POSTGRES_PASSWORD;
   const postgresHost = process.env.POSTGRES_HOST ?? `localhost`;
 
   if (!postgresPassword) {
-    throw new Error(`Expected DATABASE_URL or READOS_POSTGRES_PASSWORD to be defined for the seed runner.`);
+    throw new Error(`Expected DATABASE_URL or POSTGRES_PASSWORD to be defined for the seed runner.`);
   }
 
   return `postgres://postgres:${postgresPassword}@${postgresHost}:5432/${serviceName}`;

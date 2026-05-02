@@ -33,6 +33,7 @@ fi
 tsx testing/wait-for-url.ts http://reados.localhost
 tsx testing/wait-for-url.ts http://core.reados.localhost/whoami
 tsx testing/wait-for-url.ts http://tenant.reados.localhost
+tsx testing/wait-for-url.ts http://authentication.demo.reados.localhost
 tsx testing/wait-for-url.ts http://core.demo.reados.localhost/whoami
 tsx testing/wait-for-url.ts http://accounting.demo.reados.localhost
 if [ $? -ne 0 ]; then

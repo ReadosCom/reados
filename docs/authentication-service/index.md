@@ -33,6 +33,29 @@ The authentication service is responsible for sign-in flows, identity-provider i
 - Support tenant-aware login entrypoints after tenant selection has already happened.
 - Keep authentication separate from password-based login because Reados does not support password authentication.
 
+## Email Transport Configuration
+
+The authentication service supports two OTP delivery modes controlled by `AUTHENTICATION_EMAIL_TRANSPORT`.
+
+- `AUTHENTICATION_EMAIL_TRANSPORT=smtp`
+- This is the default runtime mode for normal environments.
+- OTP emails are sent using SMTP.
+- Required SMTP environment variables:
+  - `SMTP_HOST`
+  - `SMTP_PORT`
+  - `SMTP_USER`
+  - `SMTP_PASSWORD`
+  - `SMTP_FROM`
+- Optional SMTP environment variable:
+  - `SMTP_SECURE` (`true` or `false`)
+
+- `AUTHENTICATION_EMAIL_TRANSPORT=test`
+- This is intended for automated testing.
+- OTP emails are not sent over SMTP.
+- OTP codes are captured in-memory by the authentication service.
+- The test-only endpoint `GET /test/otp/latest?email=<email>` can be used by e2e tests to retrieve the latest code.
+- This endpoint is only exposed in test-oriented runtime conditions.
+
 ## Notes
 
 - The authentication service is distinct from the tenant service.
