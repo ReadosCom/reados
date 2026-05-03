@@ -1,26 +1,17 @@
 import { useMutation } from '@tanstack/react-query';
 
+import { getBrowserProtocol } from '@components/app/app.browser.ts';
+import { getAppConfig } from '@components/app/app.config.ts';
 import { tenantDiscoveryRequestSchema, tenantDiscoveryResponseSchema, type TenantDiscoveryRequest, type TenantDiscoveryResponse } from './tenant.schema.ts';
 
 const getTenantServiceOrigin = () => {
-  const browserWindow = (
-    globalThis as {
-      window?: {
-        location: {
-          hostname: string;
-          protocol: string;
-        };
-      };
-    }
-  ).window;
+  const protocol = getBrowserProtocol();
 
-  if (!browserWindow) {
-    return `http://tenant.reados.localhost`;
+  if (!protocol) {
+    return `http://${getAppConfig().tenantServiceFqdn}`;
   }
 
-  const { hostname, protocol } = browserWindow.location;
-
-  return `${protocol}//tenant.${hostname}`;
+  return `${protocol}//${getAppConfig().tenantServiceFqdn}`;
 };
 
 /**

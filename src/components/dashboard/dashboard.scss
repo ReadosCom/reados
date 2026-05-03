@@ -1,0 +1,64 @@
+.dashboard {
+  margin: 0 auto;
+  max-width: 72rem;
+  min-height: 100vh;
+  padding: 3rem 1.5rem;
+}
+
+.dashboard__header {
+  margin-bottom: 2rem;
+}
+
+.dashboard__eyebrow {
+  color: #525f7f;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.dashboard__lead {
+  color: #39455f;
+  margin-bottom: 0;
+}
+
+.dashboard__modules {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  margin-bottom: 2rem;
+}
+
+.dashboard__card {
+  background: #fff;
+  border: 1px solid #dce2ee;
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
+
+.dashboard__card h2 {
+  font-size: 1rem;
+  margin-top: 0;
+}
+
+.dashboard__card p {
+  color: #4b5570;
+  margin-bottom: 1rem;
+}
+
+.dashboard__card-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.dashboard__go-button {
+  justify-content: center;
+  min-width: 5rem;
+}
+
+.dashboard__actions {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: flex-end;
+}

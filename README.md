@@ -38,13 +38,13 @@ Reados is intended to support isolated tenant deployments with selectable module
 - Reados will also support one-time-password-based login.
 - Reados will not support password-based login.
 - Reados will use identifier-first login.
-- A dedicated login application, such as `reados.localhost`, will be separate from tenant applications.
+- A dedicated login application, such as `app.reados.localhost`, will be separate from tenant applications.
 - The login flow will be:
   - a user opens the home page and clicks `Start here`
   - the user enters their email address on `/identify`
   - Reados lists the tenants the user is registered with
   - the user selects a tenant
-  - Reados redirects the user to that tenant's login UI at `<tenant>.reados.localhost/authentication`
+  - Reados redirects the user to that tenant's login UI at `<tenant>.<root_fqdn>/authentication` (for example `demo.reados.localhost/authentication`)
 - This requires a dedicated tenant service for tenant discovery and tenant-aware login routing.
 
 ## Platform Decisions
@@ -69,10 +69,11 @@ Reados is intended to support isolated tenant deployments with selectable module
 - Local routing uses service-specific hosts such as `reados.localhost`, `tenant.reados.localhost`, `<tenant>.reados.localhost`, and `<module>.<tenant>.reados.localhost`.
 - The root core service is reachable at `core.reados.localhost` for the root app, and the tenant core service is reachable at `core.<tenant>.reados.localhost` for tenant-scoped core access.
 - The tenant service is global at `tenant.reados.localhost`, while tenant-scoped module services use hosts such as `accounting.demo.reados.localhost`.
-- `ROOT_FQDN=reados.localhost` defines the root login domain and the shared CORS origin family for backend services.
+- Frontend runtime host behavior is configured via `public/config.json` (`rootFqdn`, `appFqdn`, `tenantServiceFqdn`).
+- `ROOT_FQDN` in `.env` is generated from `public/config.json` by `./scripts/start-here.sh` for Compose host routing.
 - Only `Traefik` is exposed to the host machine. Internal services stay on the Docker network.
 - `PgAdmin` is available behind Traefik at `pgadmin.localhost` and connects directly to PostgreSQL.
-- Run `./scripts/start-here.sh` first to generate `.env` with `ROOT_FQDN` and the local secret files needed by Compose. Use `--no-questions` in CI/CD to accept defaults automatically.
+- Set `public/config.json` first (copy from `public/default.config.json` if needed), then run `./scripts/start-here.sh` to initialize local secret files and sync `.env` `ROOT_FQDN`. Use `--no-questions` in CI/CD.
 - Start the stack with `docker compose up --build`.
 - Run `npm run dc:migrate` to apply all database migrations, or pass a service name such as `npm run dc:migrate authentication` for a single database.
 - Seed tenant data interactively with `npm run dc:seed tenant`. The seed command now runs all migrations first.

@@ -1,26 +1,29 @@
 import { expect, test } from '../../../testing/e2e';
+import { getAppOrigin, getAuthenticationOrigin, getTenantOrigin } from '../../../testing/hosts';
 
 const sleep = (milliseconds: number) => new Promise((resolve) => setTimeout(resolve, milliseconds));
 
 test(`authentication OTP flow signs in and creates a session`, async ({ page }) => {
-  await page.goto(`/`);
-  await page.getByRole(`link`, { name: `Start here` }).click();
+  const tenantOrigin = getTenantOrigin(`demo`);
+  const authenticationOrigin = getAuthenticationOrigin(`demo`);
+
+  await page.goto(`${getAppOrigin()}/`);
   await page.getByLabel(`Email address`).fill(`admin@reados.localhost`);
   await page.getByRole(`button`, { name: `Sign in` }).click();
   await page.getByRole(`link`, { name: `Continue to Demo Tenant` }).click();
 
-  await expect(page).toHaveURL(`http://demo.reados.localhost/authentication?email=admin%40reados.localhost`);
+  await expect(page).toHaveURL(`${tenantOrigin}/authentication?email=admin%40reados.localhost`);
   await expect(page.getByRole(`heading`, { name: `Sign in with a one-time code` })).toBeVisible();
 
   await page.getByRole(`button`, { name: `Send verification code` }).click();
 
   await expect(page.getByText(`If this account is eligible, we sent a verification code.`)).toBeVisible();
 
-  let otpResponse = await page.request.get(`http://authentication.demo.reados.localhost/test/otp/latest?email=admin%40reados.localhost`);
+  let otpResponse = await page.request.get(`${authenticationOrigin}/test/otp/latest?email=admin%40reados.localhost`);
 
   for (let attempt = 0; !otpResponse.ok() && attempt < 20; attempt += 1) {
     await sleep(250);
-    otpResponse = await page.request.get(`http://authentication.demo.reados.localhost/test/otp/latest?email=admin%40reados.localhost`);
+    otpResponse = await page.request.get(`${authenticationOrigin}/test/otp/latest?email=admin%40reados.localhost`);
   }
 
   expect(otpResponse.ok()).toBeTruthy();
@@ -35,9 +38,10 @@ test(`authentication OTP flow signs in and creates a session`, async ({ page }) 
   await page.getByLabel(`Verification code`).fill(otpJson.code);
   await page.getByRole(`button`, { name: `Verify and continue` }).click();
 
-  await expect(page).toHaveURL(`http://demo.reados.localhost/`);
+  await expect(page).toHaveURL(`${tenantOrigin}/`);
+  await expect(page.getByRole(`heading`, { name: `Reados Dashboard` })).toBeVisible();
 
-  const sessionResponse = await page.request.get(`http://authentication.demo.reados.localhost/session/me`);
+  const sessionResponse = await page.request.get(`${authenticationOrigin}/session/me`);
 
   expect(sessionResponse.ok()).toBeTruthy();
 
@@ -51,17 +55,18 @@ test(`authentication OTP flow signs in and creates a session`, async ({ page }) 
   expect(sessionJson.authenticated).toBe(true);
   expect(sessionJson.session.userEmail).toBe(`admin@reados.localhost`);
 
-  const logoutResponse = await page.request.post(`http://authentication.demo.reados.localhost/session/logout`);
+  const logoutResponse = await page.request.post(`${authenticationOrigin}/session/logout`);
 
   expect(logoutResponse.ok()).toBeTruthy();
 
-  const loggedOutSessionResponse = await page.request.get(`http://authentication.demo.reados.localhost/session/me`);
+  const loggedOutSessionResponse = await page.request.get(`${authenticationOrigin}/session/me`);
 
   expect(loggedOutSessionResponse.ok()).toBeFalsy();
 });
 
 test(`authentication rejects invalid OTP codes`, async ({ page }) => {
-  await page.goto(`http://demo.reados.localhost/authentication?email=admin%40reados.localhost`);
+  const tenantOrigin = getTenantOrigin(`demo`);
+  await page.goto(`${tenantOrigin}/authentication?email=admin%40reados.localhost`);
 
   await page.getByRole(`button`, { name: `Send verification code` }).click();
 
@@ -71,5 +76,5 @@ test(`authentication rejects invalid OTP codes`, async ({ page }) => {
   await page.getByRole(`button`, { name: `Verify and continue` }).click();
 
   await expect(page.getByText(`The verification code is invalid or expired.`)).toBeVisible();
-  await expect(page).toHaveURL(`http://demo.reados.localhost/authentication?email=admin%40reados.localhost`);
+  await expect(page).toHaveURL(`${tenantOrigin}/authentication?email=admin%40reados.localhost`);
 });

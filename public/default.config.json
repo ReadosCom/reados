@@ -1,0 +1,5 @@
+{
+  "rootFqdn": "reados.localhost",
+  "appFqdn": "app.reados.localhost",
+  "tenantServiceFqdn": "tenant.reados.localhost"
+}

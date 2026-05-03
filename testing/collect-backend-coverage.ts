@@ -1,5 +1,6 @@
 import { mkdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
+import { getAuthenticationOrigin, getCoreOrigin, getFrontendConfig, getRootCoreOrigin } from './hosts';
 
 type CoverageMap = Record<string, unknown>;
 
@@ -9,11 +10,11 @@ type BackendTarget = {
 };
 
 const backendTargets: BackendTarget[] = [
-  { name: `rootCore`, url: `http://core.reados.localhost/__coverage__` },
-  { name: `tenant`, url: `http://tenant.reados.localhost/__coverage__` },
-  { name: `authentication`, url: `http://authentication.demo.reados.localhost/__coverage__` },
-  { name: `accounting`, url: `http://accounting.demo.reados.localhost/__coverage__` },
-  { name: `core`, url: `http://core.demo.reados.localhost/__coverage__` },
+  { name: `rootCore`, url: `${getRootCoreOrigin()}/__coverage__` },
+  { name: `tenant`, url: `http://${getFrontendConfig().tenantServiceFqdn}/__coverage__` },
+  { name: `authentication`, url: `${getAuthenticationOrigin(`demo`)}/__coverage__` },
+  { name: `accounting`, url: `http://accounting.demo.${getFrontendConfig().rootFqdn}/__coverage__` },
+  { name: `core`, url: `${getCoreOrigin(`demo`)}/__coverage__` },
 ];
 
 const outputDirectory = path.join(process.cwd(), `testing/output/.nyc_backend`);
