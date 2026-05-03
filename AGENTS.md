@@ -41,8 +41,12 @@
 
 - Use React with TypeScript.
 - Prefer functional React components.
-- Use `@canonical/react-components` as the frontend design/component library for this project.
-- Use `vanilla-framework` and `sass` to support Canonical React Components styling.
+- Use `shadcn/ui` as the frontend design/component library for this project.
+- Use `Radix UI` primitives as the accessibility-focused foundation under `shadcn/ui`.
+- Use `Tailwind CSS` and design tokens via CSS variables for styling and theming.
+- Do not use `@canonical/react-components` in this repository.
+- Do not use `vanilla-framework` in this repository.
+- Do not introduce `sass`/`scss` for application styling.
 - Use `TanStack Router` as the frontend router for this project.
 - Use the built-in `fetch` API for frontend HTTP requests instead of adding a wrapper such as Axios or Ky by default.
 - Use TanStack Query for shared async and server-backed data.
@@ -106,8 +110,9 @@
 
 ## Current Module Catalog
 
-- `accounting`
-- `crm`
+- `erp` service
+  - `accounting` module (under ERP)
+  - `crm` module (under ERP)
 - `sales`
 - `billing`
 - `contract management`

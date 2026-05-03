@@ -1,6 +1,6 @@
 import { createRootRoute, createRoute, createRouter, lazyRouteComponent, Outlet } from '@tanstack/react-router';
 
-import { RootIndex } from '@components/app/RootIndex';
+import { RootIndex } from '@components/application/RootIndex.tsx';
 import { Identify } from '@components/identify/Identify';
 
 const Authentication = lazyRouteComponent(() => import('@components/authentication/Authentication'), `Authentication`);

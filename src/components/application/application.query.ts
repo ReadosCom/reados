@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 
-import { getBrowserHostname, getBrowserProtocol } from '@components/app/app.browser.ts';
+import { getBrowserHostname, getBrowserProtocol } from '@components/application/application.browser.ts';
 
 /**
  * Builds the core service origin for the current browser hostname.
