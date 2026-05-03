@@ -17,6 +17,7 @@ config/compose/*.env
 !config/compose/*.example.env
 config/compose/pgbouncer/userlist.local.txt
 config/compose/pgadmin/pgpassfile.local
+public/config.json
 
 # Editor directories and files
 .vscode/*

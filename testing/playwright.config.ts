@@ -1,4 +1,5 @@
 import { defineConfig, devices } from '@playwright/test';
+import { getAppOrigin } from './hosts';
 
 export default defineConfig({
   testDir: '../src',
@@ -7,7 +8,7 @@ export default defineConfig({
   outputDir: './output/test-results',
   reporter: [['list'], ['html', { open: 'never', outputFolder: './output/playwright-report' }]],
   use: {
-    baseURL: 'http://reados.localhost',
+    baseURL: getAppOrigin(),
     trace: 'on-first-retry',
   },
   projects: [

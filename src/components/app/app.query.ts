@@ -1,35 +1,17 @@
 import { useQuery } from '@tanstack/react-query';
 
-const getCurrentBrowserOrigin = () => {
-  const browserWindow = (
-    globalThis as {
-      window?: {
-        location: {
-          hostname: string;
-          protocol: string;
-        };
-      };
-    }
-  ).window;
-
-  if (!browserWindow) {
-    return null;
-  }
-
-  return browserWindow.location;
-};
+import { getBrowserHostname, getBrowserProtocol } from '@components/app/app.browser.ts';
 
 /**
  * Builds the core service origin for the current browser hostname.
  */
 export const getCoreServiceOrigin = () => {
-  const browserLocation = getCurrentBrowserOrigin();
+  const hostname = getBrowserHostname();
+  const protocol = getBrowserProtocol();
 
-  if (!browserLocation) {
+  if (!hostname || !protocol) {
     return null;
   }
-
-  const { hostname, protocol } = browserLocation;
 
   return `${protocol}//core.${hostname}`;
 };

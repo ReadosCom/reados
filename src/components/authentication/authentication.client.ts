@@ -1,22 +1,13 @@
+import { getBrowserHostname, getBrowserProtocol } from '@components/app/app.browser.ts';
 import { otpRequestBodySchema, otpRequestResponseSchema, otpTestResponseSchema, otpVerifyBodySchema, otpVerifyResponseSchema, sessionMeResponseSchema } from './authentication.schema.ts';
 
 const getAuthenticationServiceOrigin = () => {
-  const browserWindow = (
-    globalThis as {
-      window?: {
-        location: {
-          hostname: string;
-          protocol: string;
-        };
-      };
-    }
-  ).window;
+  const hostname = getBrowserHostname();
+  const protocol = getBrowserProtocol();
 
-  if (!browserWindow) {
-    return `http://authentication.demo.reados.localhost`;
+  if (!hostname || !protocol) {
+    throw new Error(`Authentication service origin could not be resolved from browser location.`);
   }
-
-  const { hostname, protocol } = browserWindow.location;
 
   return `${protocol}//authentication.${hostname}`;
 };

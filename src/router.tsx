@@ -1,8 +1,8 @@
 import { createRootRoute, createRoute, createRouter, lazyRouteComponent, Outlet } from '@tanstack/react-router';
 
-import { Home } from '@components/home/home';
+import { RootIndex } from '@components/app/RootIndex';
+import { Identify } from '@components/identify/Identify';
 
-const Identify = lazyRouteComponent(() => import('@components/identify/Identify'), `Identify`);
 const Authentication = lazyRouteComponent(() => import('@components/authentication/Authentication'), `Authentication`);
 
 const rootRoute = createRootRoute({
@@ -12,7 +12,7 @@ const rootRoute = createRootRoute({
 const indexRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: `/`,
-  component: Home,
+  component: RootIndex,
 });
 
 const identifyRoute = createRoute({

@@ -4,10 +4,8 @@ set -euo pipefail
 
 script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 repo_root="$(cd "${script_dir}/.." && pwd)"
-env_file="${repo_root}/.env"
 pgadmin_pgpass_file="${repo_root}/config/compose/pgadmin/pgpassfile.local"
 postgres_env_file="${repo_root}/config/compose/postgres.env"
-default_root_fqdn="${ROOT_FQDN:-reados.localhost}"
 no_questions=false
 
 for argument in "$@"; do
@@ -53,33 +51,7 @@ copy_service_env_files() {
 
 copy_service_env_files
 
-if [[ -f "${env_file}" && "${no_questions}" = false ]]; then
-  printf ".env already exists. Overwrite it? [y/N] "
-  read -r overwrite_choice
-
-  if [[ ! "${overwrite_choice}" =~ ^[Yy]$ ]]; then
-    echo "Keeping the existing .env file."
-    echo "Run the stack with: docker compose up --build"
-    exit 0
-  fi
-fi
-
-if [[ "${no_questions}" = true ]]; then
-  root_fqdn="${default_root_fqdn}"
-else
-  printf "Enter the root FQDN for local development [%s]: " "${default_root_fqdn}"
-  read -r root_fqdn
-  root_fqdn="${root_fqdn:-${default_root_fqdn}}"
-fi
-
-if [[ -z "${root_fqdn}" ]]; then
-  echo "The root FQDN cannot be empty."
-  exit 1
-fi
-
-cat > "${env_file}" <<EOF
-ROOT_FQDN=${root_fqdn}
-EOF
+node "${repo_root}/scripts/sync-root-fqdn-from-config.mjs"
 
 if [[ ! -f "${postgres_env_file}" ]]; then
   echo "Missing ${postgres_env_file#${repo_root}/}. Run this script after env files are initialized."
@@ -97,9 +69,9 @@ cat > "${pgadmin_pgpass_file}" <<EOF
 postgres:5432:postgres:postgres:${postgres_password}
 EOF
 
-chmod 600 "${env_file}"
 chmod 644 "${pgadmin_pgpass_file}"
 
 echo "Local secret files have been written."
+echo "ROOT_FQDN has been synced to .env from public/config.json (fallback: public/default.config.json)."
 echo "Next step:"
 echo "  docker compose up --build"

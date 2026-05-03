@@ -3,45 +3,29 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 
+import { getBrowserOrigin, getBrowserSearch, setBrowserLocation } from '@components/app/app.browser.ts';
 import { otpRequestBodySchema, otpVerifyBodySchema, type OtpRequestBody, type OtpVerifyBody } from './authentication.schema.ts';
 import { useRequestAuthenticationOtpMutation, useVerifyAuthenticationOtpMutation } from './authentication.query.ts';
 import './Authentication.scss';
 
 const getCurrentTenantRootPath = () => {
-  const browserWindow = (
-    globalThis as {
-      window?: {
-        location: {
-          host: string;
-          protocol: string;
-        };
-      };
-    }
-  ).window;
+  const browserOrigin = getBrowserOrigin();
 
-  if (!browserWindow) {
+  if (!browserOrigin) {
     return `/`;
   }
 
-  return `${browserWindow.location.protocol}//${browserWindow.location.host}/`;
+  return `${browserOrigin}/`;
 };
 
 const getEmailFromQueryString = () => {
-  const browserWindow = (
-    globalThis as {
-      window?: {
-        location: {
-          search: string;
-        };
-      };
-    }
-  ).window;
+  const search = getBrowserSearch();
 
-  if (!browserWindow) {
+  if (!search) {
     return ``;
   }
 
-  const queryEmail = new URLSearchParams(browserWindow.location.search).get(`email`);
+  const queryEmail = new URLSearchParams(search).get(`email`);
 
   if (!queryEmail) {
     return ``;
@@ -115,7 +99,7 @@ export const Authentication = () => {
       email: requestedEmail,
     });
 
-    window.location.href = getCurrentTenantRootPath();
+    setBrowserLocation(getCurrentTenantRootPath());
   };
 
   return (

@@ -6,6 +6,16 @@ docker compose run --rm --no-deps frontend /usr/bin/bash -lc "rm -rf /app/testin
 docker compose down -v >/dev/null 2>&1 || true
 rm -rf testing/output/*
 
+ROOT_FQDN="reados.localhost"
+if [[ -f ".env" ]]; then
+  # shellcheck disable=SC1091
+  source ".env"
+  ROOT_FQDN="${ROOT_FQDN:-reados.localhost}"
+fi
+
+APP_FQDN="app.${ROOT_FQDN}"
+TENANT_SERVICE_FQDN="tenant.${ROOT_FQDN}"
+
 status=0
 mkdir -p testing/output/.nyc_frontend
 chmod 0777 testing/output/.nyc_frontend
@@ -30,12 +40,12 @@ if [ $? -ne 0 ]; then
   exit 1
 fi
 
-tsx testing/wait-for-url.ts http://reados.localhost
-tsx testing/wait-for-url.ts http://core.reados.localhost/whoami
-tsx testing/wait-for-url.ts http://tenant.reados.localhost
-tsx testing/wait-for-url.ts http://authentication.demo.reados.localhost
-tsx testing/wait-for-url.ts http://core.demo.reados.localhost/whoami
-tsx testing/wait-for-url.ts http://accounting.demo.reados.localhost
+tsx testing/wait-for-url.ts "http://${APP_FQDN}"
+tsx testing/wait-for-url.ts "http://core.${ROOT_FQDN}/whoami"
+tsx testing/wait-for-url.ts "http://${TENANT_SERVICE_FQDN}"
+tsx testing/wait-for-url.ts "http://authentication.demo.${ROOT_FQDN}"
+tsx testing/wait-for-url.ts "http://core.demo.${ROOT_FQDN}/whoami"
+tsx testing/wait-for-url.ts "http://accounting.demo.${ROOT_FQDN}"
 if [ $? -ne 0 ]; then
   echo "Failed to wait for the URL."
   exit 1
