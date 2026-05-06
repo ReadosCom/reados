@@ -141,6 +141,7 @@ export const applicationSidebarData: ApplicationSidebarData = {
       icon: AiContentGenerator02Icon,
     },
   ],
+  projects: [],
 };
 
 export const applicationModules = [

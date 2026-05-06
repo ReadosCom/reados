@@ -8,6 +8,8 @@ test(`authentication OTP flow signs in and creates a session`, async ({ page }) 
   const authenticationOrigin = getAuthenticationOrigin(`demo`);
 
   await page.goto(`${getAppOrigin()}/`);
+  await expect(page.getByRole(`heading`, { name: `Welcome to Reados` })).toBeVisible();
+  await page.getByRole(`link`, { name: `Start here` }).click();
   await page.getByLabel(`Email address`).fill(`admin@reados.localhost`);
   await page.getByRole(`button`, { name: `Sign in` }).click();
   await page.getByRole(`link`, { name: `Continue to Demo Tenant` }).click();
@@ -39,7 +41,7 @@ test(`authentication OTP flow signs in and creates a session`, async ({ page }) 
   await page.getByRole(`button`, { name: `Verify and continue` }).click();
 
   await expect(page).toHaveURL(`${tenantOrigin}/`);
-  await expect(page.getByRole(`heading`, { name: `Reados Dashboard` })).toBeVisible();
+  await expect(page.getByRole(`heading`, { name: `Accounting` })).toBeVisible();
 
   const sessionResponse = await page.request.get(`${authenticationOrigin}/session/me`);
 
