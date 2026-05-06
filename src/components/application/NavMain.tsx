@@ -36,15 +36,15 @@ export const NavMain = ({ items }: NavMainProps) => {
       <SidebarGroupContent>
         <SidebarMenu>
           {items.map((item) => (
-            <Collapsible defaultOpen={item.isActive} key={item.title} asChild>
-              <SidebarMenuItem>
-                <CollapsibleTrigger asChild>
-                  <SidebarMenuButton tooltip={item.title}>
-                    {item.icon ? <HugeiconsIcon icon={item.icon} strokeWidth={2} /> : null}
-                    <span>{item.title}</span>
-                  </SidebarMenuButton>
-                </CollapsibleTrigger>
-                {item.items?.length ? (
+            item.items?.length ? (
+              <Collapsible defaultOpen={item.isActive} key={item.title} asChild>
+                <SidebarMenuItem>
+                  <CollapsibleTrigger asChild>
+                    <SidebarMenuButton tooltip={item.title}>
+                      {item.icon ? <HugeiconsIcon icon={item.icon} strokeWidth={2} /> : null}
+                      <span>{item.title}</span>
+                    </SidebarMenuButton>
+                  </CollapsibleTrigger>
                   <CollapsibleContent>
                     <SidebarMenuSub>
                       {item.items.map((subItem) => (
@@ -59,9 +59,18 @@ export const NavMain = ({ items }: NavMainProps) => {
                       ))}
                     </SidebarMenuSub>
                   </CollapsibleContent>
-                ) : null}
+                </SidebarMenuItem>
+              </Collapsible>
+            ) : (
+              <SidebarMenuItem key={item.title}>
+                <SidebarMenuButton asChild tooltip={item.title}>
+                  <a href={item.url}>
+                    {item.icon ? <HugeiconsIcon icon={item.icon} strokeWidth={2} /> : null}
+                    <span>{item.title}</span>
+                  </a>
+                </SidebarMenuButton>
               </SidebarMenuItem>
-            </Collapsible>
+            )
           ))}
         </SidebarMenu>
       </SidebarGroupContent>
