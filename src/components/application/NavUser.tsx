@@ -1,3 +1,5 @@
+import { setBrowserLocation } from '@components/application/application.browser.ts';
+import { useLogoutAuthenticationSessionMutation } from '@components/authentication/authentication.query.ts';
 import { Avatar, AvatarFallback } from '@components/uiframework/Avatar';
 import {
   DropdownMenu,
@@ -27,6 +29,16 @@ const toInitials = (name: string) => {
 };
 
 export const NavUser = ({ user }: NavUserProps) => {
+  const { isPending, mutateAsync } = useLogoutAuthenticationSessionMutation();
+
+  const onSignOut = async () => {
+    try {
+      await mutateAsync();
+    } finally {
+      setBrowserLocation('/authentication');
+    }
+  };
+
   return (
     <SidebarMenu>
       <SidebarMenuItem>
@@ -43,8 +55,14 @@ export const NavUser = ({ user }: NavUserProps) => {
             </SidebarMenuButton>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className="w-56">
-            <DropdownMenuItem asChild>
-              <a href="/authentication">Sign out</a>
+            <DropdownMenuItem
+              disabled={isPending}
+              onSelect={(event) => {
+                event.preventDefault();
+                void onSignOut();
+              }}
+            >
+              {isPending ? 'Signing out...' : 'Sign out'}
             </DropdownMenuItem>
             <DropdownMenuItem asChild>
               <a href="/">Go to home</a>
