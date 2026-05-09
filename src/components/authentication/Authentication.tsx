@@ -1,6 +1,7 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useTranslation } from '@components/i18n/useTranslation.ts';
 
 import { getBrowserOrigin, getBrowserSearch, setBrowserLocation } from '@components/application/application.browser.ts';
 import { Button } from '@components/uiframework/Button';
@@ -40,12 +41,11 @@ const getEmailFromQueryString = () => {
   return parsedEmail.data;
 };
 
-const genericOtpRequestMessage = 'If this account is eligible, we sent a verification code.';
-
 /**
  * Render the tenant-scoped authentication experience.
  */
 export const Authentication = () => {
+  const { t } = useTranslation(`./Authentication.i18n.ts`);
   const initialEmail = getEmailFromQueryString();
   const [requestMessage, setRequestMessage] = useState<string | null>(null);
   const [requestedEmail, setRequestedEmail] = useState<string | null>(null);
@@ -85,7 +85,7 @@ export const Authentication = () => {
       const result = await requestOtpMutation.mutateAsync({ email });
       setRequestMessage(result.message);
     } catch {
-      setRequestMessage(genericOtpRequestMessage);
+      setRequestMessage(t('If this account is eligible, we sent a verification code.'));
     }
   };
 
@@ -112,9 +112,9 @@ export const Authentication = () => {
             <img alt="Reados" className="h-16 w-auto shrink-0" src="/assets/images/reados.png" />
             <div>
               <h1 className="text-balance text-3xl font-semibold tracking-tight text-card-foreground" id="authentication-page-title">
-                Sign in with a one-time code
+                {t('Sign in with a one-time code')}
               </h1>
-              <p className="mt-0 text-sm leading-6 text-muted-foreground sm:text-base">Enter your work email to receive a one-time verification code.</p>
+              <p className="mt-0 text-sm leading-6 text-muted-foreground sm:text-base">{t('Enter your work email to receive a one-time verification code.')}</p>
             </div>
           </div>
 
@@ -126,22 +126,15 @@ export const Authentication = () => {
           >
             <div className="space-y-2">
               <label className="block text-sm font-medium text-card-foreground" htmlFor="authentication-email">
-                Email address
+                {t('Email address')}
               </label>
-              <Input
-                {...registerRequest('email')}
-                autoComplete="email"
-                disabled={isSubmittingRequest || Boolean(requestedEmail)}
-                id="authentication-email"
-                placeholder="name@example.com"
-                type="email"
-              />
-              {requestErrors.email?.message ? <p className="text-sm text-destructive">{requestErrors.email.message}</p> : null}
+              <Input {...registerRequest('email')} autoComplete="email" disabled={isSubmittingRequest || Boolean(requestedEmail)} id="authentication-email" placeholder={t('name@example.com')} type="email" />
+              {requestErrors.email?.message ? <p className="text-sm text-destructive">{t(requestErrors.email.message)}</p> : null}
             </div>
 
             <div className="flex justify-end">
               <Button disabled={isSubmittingRequest || Boolean(requestedEmail)} size="lg" type="submit">
-                Send verification code
+                {t('Send verification code')}
               </Button>
             </div>
           </form>
@@ -152,7 +145,7 @@ export const Authentication = () => {
             </p>
           ) : null}
 
-          {requestOtpMutation.error ? <p className="mt-4 text-sm text-destructive">We could not request a verification code right now. Please try again.</p> : null}
+          {requestOtpMutation.error ? <p className="mt-4 text-sm text-destructive">{t('We could not request a verification code right now. Please try again.')}</p> : null}
 
           {requestedEmail ? (
             <form
@@ -163,24 +156,24 @@ export const Authentication = () => {
             >
               <div className="space-y-2">
                 <label className="block text-sm font-medium text-card-foreground" htmlFor="authentication-otp-code">
-                  Verification code
+                  {t('Verification code')}
                 </label>
-                <Input {...registerVerify('code')} id="authentication-otp-code" maxLength={6} placeholder="123456" type="text" />
-                {verifyErrors.code?.message ? <p className="text-sm text-destructive">{verifyErrors.code.message}</p> : null}
+                <Input {...registerVerify('code')} id="authentication-otp-code" maxLength={6} placeholder={t('123456')} type="text" />
+                {verifyErrors.code?.message ? <p className="text-sm text-destructive">{t(verifyErrors.code.message)}</p> : null}
               </div>
 
               <div className="flex justify-end gap-3">
                 <Button asChild variant="outline">
-                  <a href="/">Back to home</a>
+                  <a href="/">{t('Back to home')}</a>
                 </Button>
                 <Button disabled={isSubmittingVerify} type="submit">
-                  Verify and continue
+                  {t('Verify and continue')}
                 </Button>
               </div>
             </form>
           ) : null}
 
-          {verifyOtpMutation.error ? <p className="mt-4 text-sm text-destructive">The verification code is invalid or expired.</p> : null}
+          {verifyOtpMutation.error ? <p className="mt-4 text-sm text-destructive">{t('The verification code is invalid or expired.')}</p> : null}
         </div>
       </section>
     </main>
