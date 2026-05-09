@@ -5,6 +5,7 @@ import {
   DropdownMenuTrigger,
 } from '@components/uiframework/DropdownMenu';
 import { SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@components/uiframework/Sidebar';
+import { useTranslation } from '@components/i18n/useTranslation.ts';
 
 type TenantItem = {
   name: string;
@@ -16,6 +17,7 @@ type TenantSwitcherProps = {
 };
 
 export const TenantSwitcher = ({ tenants }: TenantSwitcherProps) => {
+  const { t } = useTranslation(`./TenantSwitcher.i18n.ts`);
   const activeTenant = tenants[0];
 
   if (!activeTenant) {
@@ -33,7 +35,7 @@ export const TenantSwitcher = ({ tenants }: TenantSwitcherProps) => {
               </div>
               <div className="grid flex-1 text-left text-sm leading-tight">
                 <span className="truncate font-medium">{activeTenant.name}</span>
-                <span className="truncate text-xs text-muted-foreground">{activeTenant.plan}</span>
+                <span className="truncate text-xs text-muted-foreground">{t(activeTenant.plan)}</span>
               </div>
             </SidebarMenuButton>
           </DropdownMenuTrigger>
@@ -41,7 +43,7 @@ export const TenantSwitcher = ({ tenants }: TenantSwitcherProps) => {
             {tenants.map((tenant) => (
               <DropdownMenuItem key={tenant.name}>
                 <span>{tenant.name}</span>
-                <span className="ml-auto text-xs text-muted-foreground">{tenant.plan}</span>
+                <span className="ml-auto text-xs text-muted-foreground">{t(tenant.plan)}</span>
               </DropdownMenuItem>
             ))}
           </DropdownMenuContent>

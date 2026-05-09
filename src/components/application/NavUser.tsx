@@ -1,6 +1,7 @@
 import { setBrowserLocation } from '@components/application/application.browser.ts';
 import { useLogoutAuthenticationSessionMutation } from '@components/authentication/authentication.query.ts';
 import { Avatar, AvatarFallback } from '@components/uiframework/Avatar';
+import { useTranslation } from '@components/i18n/useTranslation.ts';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -29,6 +30,7 @@ const toInitials = (name: string) => {
 };
 
 export const NavUser = ({ user }: NavUserProps) => {
+  const { t } = useTranslation(`./NavUser.i18n.ts`);
   const { isPending, mutateAsync } = useLogoutAuthenticationSessionMutation();
 
   const onSignOut = async () => {
@@ -62,10 +64,10 @@ export const NavUser = ({ user }: NavUserProps) => {
                 void onSignOut();
               }}
             >
-              {isPending ? 'Signing out...' : 'Sign out'}
+              {isPending ? t('Signing out...') : t('Sign out')}
             </DropdownMenuItem>
             <DropdownMenuItem asChild>
-              <a href="/">Go to home</a>
+              <a href="/">{t('Go to home')}</a>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

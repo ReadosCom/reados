@@ -56,6 +56,8 @@
 - Use `dompurify` when rendering user-provided HTML.
 - Treat multiple languages as a first-class frontend concern.
 - Use `i18next` and `react-i18next` for localization.
+- Use backticks for string literals everywhere except import specifiers and object keys.
+- Use double quotes for import specifiers and object keys.
 - Use React Hook Form for forms unless a different choice is explicitly made.
 - Keep the frontend as one shared application even when features belong to different modules.
 - Do not introduce API mocking libraries such as `msw`; prefer real integration flows and Playwright end-to-end coverage instead.
