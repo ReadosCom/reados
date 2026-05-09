@@ -2,6 +2,22 @@
 
 set -euo pipefail
 
+print_service_diagnostics() {
+  echo
+  echo "Service diagnostics:"
+  ./testing/diagnose-services.sh
+}
+
+wait_for_url_or_fail() {
+  local target_url="$1"
+
+  if ! tsx testing/wait-for-url.ts "${target_url}"; then
+    echo "Failed while waiting for ${target_url}"
+    print_service_diagnostics
+    exit 1
+  fi
+}
+
 docker compose run --rm --no-deps frontend /usr/bin/bash -lc "rm -rf /app/testing/output/.nyc_frontend /app/testing/output/.nyc_backend /app/testing/output/.nyc_merged /app/testing/output/coverage /app/testing/output/playwright-report /app/testing/output/test-results" >/dev/null 2>&1 || true
 docker compose down -v >/dev/null 2>&1 || true
 rm -rf testing/output/*
@@ -40,16 +56,12 @@ if [ $? -ne 0 ]; then
   exit 1
 fi
 
-tsx testing/wait-for-url.ts "http://${APP_FQDN}"
-tsx testing/wait-for-url.ts "http://core.${ROOT_FQDN}/whoami"
-tsx testing/wait-for-url.ts "http://${TENANT_SERVICE_FQDN}"
-tsx testing/wait-for-url.ts "http://authentication.demo.${ROOT_FQDN}"
-tsx testing/wait-for-url.ts "http://core.demo.${ROOT_FQDN}/whoami"
-tsx testing/wait-for-url.ts "http://accounting.demo.${ROOT_FQDN}"
-if [ $? -ne 0 ]; then
-  echo "Failed to wait for the URL."
-  exit 1
-fi
+wait_for_url_or_fail "http://${APP_FQDN}"
+wait_for_url_or_fail "http://core.${ROOT_FQDN}/whoami"
+wait_for_url_or_fail "http://${TENANT_SERVICE_FQDN}"
+wait_for_url_or_fail "http://authentication.demo.${ROOT_FQDN}"
+wait_for_url_or_fail "http://core.demo.${ROOT_FQDN}/whoami"
+wait_for_url_or_fail "http://accounting.demo.${ROOT_FQDN}"
 
 set +e
 playwright test --config testing/playwright.config.ts

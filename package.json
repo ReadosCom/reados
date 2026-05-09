@@ -11,6 +11,7 @@
     "check:biome": "biome check .",
     "check:ts": "tsc -b --pretty false",
     "test": "sh -c 'testing/run.sh'",
+    "test:services": "sh -c 'testing/diagnose-services.sh'",
     "dc:migrate": "docker compose -f compose.yaml -f config/compose/migrate.compose.yaml run --rm migration",
     "dc:seed": "sh -c 'npm run dc:migrate && docker compose -f compose.yaml -f config/compose/seed.compose.yaml run --rm seed'",
     "lint": "eslint .",
