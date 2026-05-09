@@ -1,7 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
 
-import { getBrowserProtocol } from '@components/app/app.browser.ts';
-import { getAppConfig } from '@components/app/app.config.ts';
+import { getBrowserProtocol } from '@components/application/application.browser.ts';
+import { getAppConfig } from '@components/application/application.config.ts';
 import { tenantDiscoveryRequestSchema, tenantDiscoveryResponseSchema, type TenantDiscoveryRequest, type TenantDiscoveryResponse } from './tenant.schema.ts';
 
 const getTenantServiceOrigin = () => {

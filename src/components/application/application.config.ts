@@ -1,4 +1,4 @@
-import type { AppConfig } from '@components/app/app.schema.ts';
+import type { AppConfig } from '@components/application/application.schema.ts';
 
 const defaultAppConfig: AppConfig = {
   rootFqdn: `reados.localhost`,

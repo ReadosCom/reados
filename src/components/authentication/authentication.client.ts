@@ -1,4 +1,4 @@
-import { getBrowserHostname, getBrowserProtocol } from '@components/app/app.browser.ts';
+import { getBrowserHostname, getBrowserProtocol } from '@components/application/application.browser.ts';
 import { otpRequestBodySchema, otpRequestResponseSchema, otpTestResponseSchema, otpVerifyBodySchema, otpVerifyResponseSchema, sessionMeResponseSchema } from './authentication.schema.ts';
 
 const getAuthenticationServiceOrigin = () => {

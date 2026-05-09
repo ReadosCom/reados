@@ -18,5 +18,5 @@
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["testing/**/*.ts", "src/**/*.spec.ts", "testing/e2e.ts", "testing/wait-for-url.ts"]
+  "include": ["testing/**/*.ts", "testing/**/*.d.ts", "src/**/*.spec.ts", "testing/e2e.ts", "testing/wait-for-url.ts"]
 }

@@ -1,18 +1,18 @@
-import { Button, ButtonAppearance, Input, LoginPageLayout } from '@canonical/react-components';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
 import { useState } from 'react';
+import { useForm } from 'react-hook-form';
 
-import { getBrowserOrigin, getBrowserSearch, setBrowserLocation } from '@components/app/app.browser.ts';
+import { getBrowserOrigin, getBrowserSearch, setBrowserLocation } from '@components/application/application.browser.ts';
+import { Button } from '@components/uiframework/Button';
+import { Input } from '@components/uiframework/Input';
 import { otpRequestBodySchema, otpVerifyBodySchema, type OtpRequestBody, type OtpVerifyBody } from './authentication.schema.ts';
 import { useRequestAuthenticationOtpMutation, useVerifyAuthenticationOtpMutation } from './authentication.query.ts';
-import './Authentication.scss';
 
 const getCurrentTenantRootPath = () => {
   const browserOrigin = getBrowserOrigin();
 
   if (!browserOrigin) {
-    return `/`;
+    return '/';
   }
 
   return `${browserOrigin}/`;
@@ -22,25 +22,25 @@ const getEmailFromQueryString = () => {
   const search = getBrowserSearch();
 
   if (!search) {
-    return ``;
+    return '';
   }
 
-  const queryEmail = new URLSearchParams(search).get(`email`);
+  const queryEmail = new URLSearchParams(search).get('email');
 
   if (!queryEmail) {
-    return ``;
+    return '';
   }
 
   const parsedEmail = otpRequestBodySchema.shape.email.safeParse(queryEmail);
 
   if (!parsedEmail.success) {
-    return ``;
+    return '';
   }
 
   return parsedEmail.data;
 };
 
-const genericOtpRequestMessage = `If this account is eligible, we sent a verification code.`;
+const genericOtpRequestMessage = 'If this account is eligible, we sent a verification code.';
 
 /**
  * Render the tenant-scoped authentication experience.
@@ -67,9 +67,9 @@ export const Authentication = () => {
     formState: { errors: verifyErrors, isSubmitting: isSubmittingVerify },
     handleSubmit: handleVerifySubmit,
     register: registerVerify,
-  } = useForm<Pick<OtpVerifyBody, `code`>>({
+  } = useForm<Pick<OtpVerifyBody, 'code'>>({
     defaultValues: {
-      code: ``,
+      code: '',
     },
     resolver: zodResolver(
       otpVerifyBodySchema.pick({
@@ -89,7 +89,7 @@ export const Authentication = () => {
     }
   };
 
-  const onVerifyOtp = async ({ code }: Pick<OtpVerifyBody, `code`>) => {
+  const onVerifyOtp = async ({ code }: Pick<OtpVerifyBody, 'code'>) => {
     if (!requestedEmail) {
       return;
     }
@@ -103,65 +103,86 @@ export const Authentication = () => {
   };
 
   return (
-    <main className="authentication" aria-labelledby="authentication-page-title">
-      <LoginPageLayout title="Authenticate with Reados" logo={{ src: `/assets/images/reados.png`, title: `Reados`, url: `/` }}>
-        <h1 id="authentication-page-title">Sign in with a one-time code</h1>
-        <p>Enter your work email to receive a one-time verification code.</p>
+    <main aria-labelledby="authentication-page-title" className="relative min-h-screen overflow-hidden bg-background">
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,oklch(0.95_0.02_220),transparent_60%)]" />
 
-        <form
-          className="authentication__form"
-          onSubmit={(event) => {
-            void handleRequestSubmit(onRequestOtp)(event);
-          }}
-        >
-          <Input
-            {...registerRequest(`email`)}
-            disabled={isSubmittingRequest || Boolean(requestedEmail)}
-            error={requestErrors.email?.message}
-            id={`authentication-email`}
-            label={`Email address`}
-            placeholder={`name@example.com`}
-            stacked
-            type={`email`}
-          />
-
-          <div className="u-align--right">
-            <Button appearance={ButtonAppearance.BRAND} disabled={isSubmittingRequest || Boolean(requestedEmail)} type={`submit`}>
-              Send verification code
-            </Button>
+      <section className="relative mx-auto flex min-h-screen w-full max-w-4xl items-start px-6 py-12">
+        <div className="w-full rounded-2xl border border-border bg-card/90 p-8 shadow-sm backdrop-blur sm:p-10">
+          <div className="mb-8 flex items-center gap-4">
+            <img alt="Reados" className="h-16 w-auto shrink-0" src="/assets/images/reados.png" />
+            <div>
+              <h1 className="text-balance text-3xl font-semibold tracking-tight text-card-foreground" id="authentication-page-title">
+                Sign in with a one-time code
+              </h1>
+              <p className="mt-0 text-sm leading-6 text-muted-foreground sm:text-base">Enter your work email to receive a one-time verification code.</p>
+            </div>
           </div>
-        </form>
 
-        {requestMessage ? (
-          <p className="authentication__status" aria-live="polite">
-            {requestMessage}
-          </p>
-        ) : null}
-
-        {requestOtpMutation.error ? <p className="authentication__error">We could not request a verification code right now. Please try again.</p> : null}
-
-        {requestedEmail ? (
           <form
-            className="authentication__form"
+            className="space-y-6"
             onSubmit={(event) => {
-              void handleVerifySubmit(onVerifyOtp)(event);
+              void handleRequestSubmit(onRequestOtp)(event);
             }}
           >
-            <Input {...registerVerify(`code`)} error={verifyErrors.code?.message} id={`authentication-otp-code`} label={`Verification code`} maxLength={6} placeholder={`123456`} stacked type={`text`} />
+            <div className="space-y-2">
+              <label className="block text-sm font-medium text-card-foreground" htmlFor="authentication-email">
+                Email address
+              </label>
+              <Input
+                {...registerRequest('email')}
+                autoComplete="email"
+                disabled={isSubmittingRequest || Boolean(requestedEmail)}
+                id="authentication-email"
+                placeholder="name@example.com"
+                type="email"
+              />
+              {requestErrors.email?.message ? <p className="text-sm text-destructive">{requestErrors.email.message}</p> : null}
+            </div>
 
-            <div className="u-align--right authentication__actions">
-              <Button appearance={ButtonAppearance.BASE} element="a" href={`/`}>
-                Back to home
-              </Button>
-              <Button appearance={ButtonAppearance.BRAND} disabled={isSubmittingVerify} type={`submit`}>
-                Verify and continue
+            <div className="flex justify-end">
+              <Button disabled={isSubmittingRequest || Boolean(requestedEmail)} size="lg" type="submit">
+                Send verification code
               </Button>
             </div>
           </form>
-        ) : null}
 
-        {verifyOtpMutation.error ? <p className="authentication__error">The verification code is invalid or expired.</p> : null}
-      </LoginPageLayout>
+          {requestMessage ? (
+            <p aria-live="polite" className="mt-6 text-sm text-muted-foreground">
+              {requestMessage}
+            </p>
+          ) : null}
+
+          {requestOtpMutation.error ? <p className="mt-4 text-sm text-destructive">We could not request a verification code right now. Please try again.</p> : null}
+
+          {requestedEmail ? (
+            <form
+              className="mt-8 space-y-6"
+              onSubmit={(event) => {
+                void handleVerifySubmit(onVerifyOtp)(event);
+              }}
+            >
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-card-foreground" htmlFor="authentication-otp-code">
+                  Verification code
+                </label>
+                <Input {...registerVerify('code')} id="authentication-otp-code" maxLength={6} placeholder="123456" type="text" />
+                {verifyErrors.code?.message ? <p className="text-sm text-destructive">{verifyErrors.code.message}</p> : null}
+              </div>
+
+              <div className="flex justify-end gap-3">
+                <Button asChild variant="outline">
+                  <a href="/">Back to home</a>
+                </Button>
+                <Button disabled={isSubmittingVerify} type="submit">
+                  Verify and continue
+                </Button>
+              </div>
+            </form>
+          ) : null}
+
+          {verifyOtpMutation.error ? <p className="mt-4 text-sm text-destructive">The verification code is invalid or expired.</p> : null}
+        </div>
+      </section>
     </main>
   );
 };

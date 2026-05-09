@@ -4,6 +4,8 @@ import { getAppOrigin, getTenantOrigin } from '../../../testing/hosts';
 test('identify accepts an email address', async ({ page }) => {
   await page.goto(`${getAppOrigin()}/`);
 
+  await expect(page.getByRole('heading', { name: 'Welcome to Reados' })).toBeVisible();
+  await page.getByRole('link', { name: 'Start here' }).click();
   await expect(page.getByRole('heading', { name: 'Sign in to Reados' })).toBeVisible();
 
   await page.getByLabel('Email address').fill('admin@reados.localhost');
