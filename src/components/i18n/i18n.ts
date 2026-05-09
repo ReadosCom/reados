@@ -6,7 +6,7 @@ void i18n.use(initReactI18next).init({
   interpolation: {
     escapeValue: false,
   },
-  lng: 'tr',
+  lng: 'en',
   parseMissingKeyHandler: (key) => key,
   react: {
     useSuspense: false,
