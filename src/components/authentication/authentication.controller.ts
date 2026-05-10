@@ -3,7 +3,7 @@ import { createHmac, randomInt } from 'node:crypto';
 import nodemailer from 'nodemailer';
 
 import { ensurePool } from '@components/postgres/pool.ts';
-import type { CreateSessionParams, OtpChallengeRow, OtpEmailPayload, OtpTestCapture, OtpVerifyBody, RequestOtpParams, SessionIdentity, SessionRow, VerifyOtpParams, VerifyOtpResult } from './authentication.schema.ts';
+import type { CreateSessionParams, OtpChallengeRow, OtpEmailPayload, OtpTestCapture, OtpVerifyBody, ProfileUpdateBody, RequestOtpParams, SessionIdentity, SessionRow, VerifyOtpParams, VerifyOtpResult } from './authentication.schema.ts';
 
 const genericOtpRequestMessage = `If this account is eligible, we sent a verification code.`;
 const otpTimeToLiveMinutes = 10;
@@ -309,11 +309,18 @@ const getActiveSession = async ({ sessionId }: { sessionId: string }): Promise<S
   const result = await pool.query<SessionIdentity>(
     `
       SELECT
-        "user" AS "userEmail"
+        COALESCE("user"."profile"->>'displayName', "session"."user") AS "displayName",
+        "user" AS "email",
+        COALESCE("user"."profile"->>'firstName', "session"."user") AS "firstName",
+        COALESCE("user"."profile"->>'language', 'en') AS "language",
+        COALESCE("user"."profile"->>'lastName', "session"."user") AS "lastName",
+        "user"."profile"->>'middleName' AS "middleName"
       FROM "session"
-      WHERE "id" = $1
-        AND "revokedAt" IS NULL
-        AND "expiresAt" > statement_timestamp()
+      INNER JOIN "user"
+        ON "user"."email" = "session"."user"
+      WHERE "session"."id" = $1
+        AND "session"."revokedAt" IS NULL
+        AND "session"."expiresAt" > statement_timestamp()
       LIMIT 1;
     `,
     [sessionId],
@@ -468,6 +475,59 @@ export const logoutSession = async ({ sessionId }: { sessionId: string }) => {
   await revokeSession({
     sessionId,
   });
+};
+
+export const updateSessionProfile = async ({ profile, sessionId }: { profile: ProfileUpdateBody; sessionId: string }) => {
+  const updateResult = await pool.query<SessionIdentity>(
+    `
+      UPDATE "user"
+      SET "profile" = jsonb_strip_nulls(
+        COALESCE("profile", '{}'::jsonb) ||
+        jsonb_build_object(
+          'displayName', COALESCE($2::text, "profile"->>'displayName', "email"),
+          'firstName', COALESCE($3::text, "profile"->>'firstName', "email"),
+          'language', COALESCE($4::text, "profile"->>'language', 'en'),
+          'lastName', COALESCE($5::text, "profile"->>'lastName', "email"),
+          'middleName', CASE
+            WHEN $6::text IS NULL THEN COALESCE("profile"->>'middleName', NULL)
+            WHEN $6::text = '' THEN NULL
+            ELSE $6::text
+          END
+        )
+      )
+      WHERE "email" = (
+        SELECT "user"
+        FROM "session"
+        WHERE "id" = $1
+          AND "revokedAt" IS NULL
+          AND "expiresAt" > statement_timestamp()
+        LIMIT 1
+      )
+      RETURNING
+        COALESCE("profile"->>'displayName', "email") AS "displayName",
+        "email" AS "email",
+        COALESCE("profile"->>'firstName', "email") AS "firstName",
+        COALESCE("profile"->>'language', 'en') AS "language",
+        COALESCE("profile"->>'lastName', "email") AS "lastName",
+        "profile"->>'middleName' AS "middleName"
+    `,
+    [sessionId, profile.displayName, profile.firstName, profile.language, profile.lastName, profile.middleName ?? null],
+  );
+
+  const updated = updateResult.rows[0];
+
+  if (!updated) {
+    return null;
+  }
+
+  return {
+    displayName: updated.displayName,
+    email: updated.email,
+    firstName: updated.firstName,
+    language: updated.language,
+    lastName: updated.lastName,
+    middleName: updated.middleName,
+  } satisfies SessionIdentity;
 };
 
 export const getLatestOtpForTesting = async ({ email }: { email: string }) => {

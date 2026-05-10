@@ -9,9 +9,4 @@ CREATE TABLE IF NOT EXISTS "tenantUser" (
 
 CREATE INDEX IF NOT EXISTS "tenantUserUserIndex" ON "tenantUser" ("user");
 
-DROP TRIGGER IF EXISTS "setUpdatedAtOnTenantUser" ON "tenantUser";
-
-CREATE TRIGGER "setUpdatedAtOnTenantUser"
-BEFORE UPDATE ON "tenantUser"
-FOR EACH ROW
-EXECUTE FUNCTION "setUpdatedAt"();
+SELECT "ensureSetUpdatedAtTrigger"('tenantUser');

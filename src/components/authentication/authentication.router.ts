@@ -1,7 +1,7 @@
 import { createModuleServer, getCorrelationId, validateRequestBody, validateRequestQuery } from '@components/express/express.server.ts';
 
-import { authenticationSessionCookieName, getLatestOtpForTesting, getSessionFromCookie, isAuthenticationTestEndpointEnabled, logoutSession, requestOtp, verifyOtpAndCreateSession } from './authentication.controller.ts';
-import { otpRequestBodySchema, otpTestQuerySchema, otpVerifyBodySchema, type OtpRequestBody, type OtpTestQuery, type OtpVerifyBody } from './authentication.schema.ts';
+import { authenticationSessionCookieName, getLatestOtpForTesting, getSessionFromCookie, isAuthenticationTestEndpointEnabled, logoutSession, requestOtp, updateSessionProfile, verifyOtpAndCreateSession } from './authentication.controller.ts';
+import { otpRequestBodySchema, otpTestQuerySchema, otpVerifyBodySchema, profileUpdateBodySchema, type OtpRequestBody, type OtpTestQuery, type OtpVerifyBody, type ProfileUpdateBody } from './authentication.schema.ts';
 
 /**
  * Creates the authentication server with OTP and session routes.
@@ -116,6 +116,37 @@ export const createAuthenticationServer = () => {
     });
     response.json({
       success: true,
+    });
+  });
+
+  app.patch(`/profile/me`, validateRequestBody(profileUpdateBodySchema), async (request, response) => {
+    const session = await getSessionFromCookie({
+      cookieHeader: request.header(`cookie`),
+    });
+
+    if (!session) {
+      response.status(401).json({
+        message: `Unauthenticated request.`,
+      });
+      return;
+    }
+
+    const profile = response.locals.validatedBody as ProfileUpdateBody;
+    const updatedProfile = await updateSessionProfile({
+      profile,
+      sessionId: session.sessionId,
+    });
+
+    if (!updatedProfile) {
+      response.status(401).json({
+        message: `Unauthenticated request.`,
+      });
+      return;
+    }
+
+    response.json({
+      authenticated: true,
+      session: updatedProfile,
     });
   });
 

@@ -1,6 +1,9 @@
 import { setBrowserLocation } from '@components/application/application.browser.ts';
 import { useLogoutAuthenticationSessionMutation } from '@components/authentication/authentication.query.ts';
+import { UnfoldMoreIcon } from '@hugeicons/core-free-icons';
+import { Link } from '@tanstack/react-router';
 import { Avatar, AvatarFallback } from '@components/uiframework/Avatar';
+import { HugeiconsIcon } from '@hugeicons/react';
 import { useTranslation } from '@components/i18n/useTranslation.ts';
 import {
   DropdownMenu,
@@ -32,6 +35,12 @@ const toInitials = (name: string) => {
 export const NavUser = ({ user }: NavUserProps) => {
   const { t } = useTranslation(`./NavUser.i18n.ts`);
   const { isPending, mutateAsync } = useLogoutAuthenticationSessionMutation();
+  const profileItem: {
+    link?: string;
+    url?: string;
+  } = {
+    link: `/profile`,
+  };
 
   const onSignOut = async () => {
     try {
@@ -41,12 +50,24 @@ export const NavUser = ({ user }: NavUserProps) => {
     }
   };
 
+  const renderProfileNavigationTarget = () => {
+    if (profileItem.url) {
+      return <a href={profileItem.url}>{t('Profile')}</a>;
+    }
+
+    if (profileItem.link) {
+      return <Link to={profileItem.link}>{t('Profile')}</Link>;
+    }
+
+    return <span>{t('Profile')}</span>;
+  };
+
   return (
     <SidebarMenu>
       <SidebarMenuItem>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <SidebarMenuButton size="lg">
+            <SidebarMenuButton className="cursor-pointer" size="lg">
               <Avatar size="sm">
                 <AvatarFallback>{toInitials(user.name)}</AvatarFallback>
               </Avatar>
@@ -54,9 +75,13 @@ export const NavUser = ({ user }: NavUserProps) => {
                 <span className="truncate font-medium">{user.name}</span>
                 <span className="truncate text-xs text-muted-foreground">{user.email}</span>
               </div>
+              <HugeiconsIcon className="ml-auto size-4" icon={UnfoldMoreIcon} strokeWidth={2} />
             </SidebarMenuButton>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className="w-56">
+            <DropdownMenuItem asChild={Boolean(profileItem.url || profileItem.link)}>
+              {renderProfileNavigationTarget()}
+            </DropdownMenuItem>
             <DropdownMenuItem
               disabled={isPending}
               onSelect={(event) => {
@@ -65,9 +90,6 @@ export const NavUser = ({ user }: NavUserProps) => {
               }}
             >
               {isPending ? t('Signing out...') : t('Sign out')}
-            </DropdownMenuItem>
-            <DropdownMenuItem asChild>
-              <a href="/">{t('Go to home')}</a>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

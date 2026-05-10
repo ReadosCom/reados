@@ -6,6 +6,17 @@ export const authenticationEmailSchema = z.string().check(z.trim(), z.email(`Ent
   id: `AuthenticationEmail`,
 });
 
+export const profileLanguageSchema = z.enum([`en`, `tr`, `de`, `es`, `fr`, `it`, `pt`, `nl`, `pl`]).meta({
+  description: `Preferred language for the current user profile.`,
+  id: `ProfileLanguage`,
+});
+
+export const profileNameSchema = z.string().trim().min(1);
+export const profileMiddleNameSchema = z
+  .union([z.string(), z.null()])
+  .transform((value) => (typeof value === `string` ? value.trim() : null))
+  .transform((value) => (value ? value : null));
+
 export const otpCodeSchema = z
   .string()
   .check(z.trim(), z.regex(/^\d{6}$/u, `Enter the 6-digit code.`))
@@ -49,7 +60,12 @@ export const otpVerifyResponseSchema = z
 
 export const sessionIdentitySchema = z
   .object({
-    userEmail: authenticationEmailSchema,
+    displayName: z.string().trim().min(1),
+    email: authenticationEmailSchema,
+    firstName: profileNameSchema,
+    language: profileLanguageSchema,
+    lastName: profileNameSchema,
+    middleName: z.string().nullable(),
   })
   .meta({
     id: `SessionIdentity`,
@@ -72,6 +88,33 @@ export const logoutResponseSchema = z
     id: `LogoutResponse`,
   });
 
+export const profileEditableSchema = z
+  .object({
+    displayName: profileNameSchema,
+    firstName: profileNameSchema,
+    language: profileLanguageSchema,
+    lastName: profileNameSchema,
+    middleName: z.string().trim(),
+  })
+  .meta({
+    id: `ProfileEditable`,
+  });
+
+export const profileUpdateBodySchema = z
+  .object({
+    displayName: profileEditableSchema.shape.displayName.optional(),
+    firstName: profileEditableSchema.shape.firstName.optional(),
+    language: profileEditableSchema.shape.language.optional(),
+    lastName: profileEditableSchema.shape.lastName.optional(),
+    middleName: profileMiddleNameSchema.optional(),
+  })
+  .refine((value) => Object.values(value).some((fieldValue) => fieldValue !== undefined), {
+    message: `At least one profile field must be provided.`,
+  })
+  .meta({
+    id: `ProfileUpdateBody`,
+  });
+
 export const otpTestQuerySchema = z.object({
   email: authenticationEmailSchema,
 });
@@ -88,6 +131,8 @@ export type OtpVerifyResponse = z.infer<typeof otpVerifyResponseSchema>;
 export type SessionIdentity = z.infer<typeof sessionIdentitySchema>;
 export type SessionMeResponse = z.infer<typeof sessionMeResponseSchema>;
 export type LogoutResponse = z.infer<typeof logoutResponseSchema>;
+export type ProfileEditable = z.infer<typeof profileEditableSchema>;
+export type ProfileUpdateBody = z.infer<typeof profileUpdateBodySchema>;
 export type OtpTestQuery = z.infer<typeof otpTestQuerySchema>;
 export type OtpTestResponse = z.infer<typeof otpTestResponseSchema>;
 

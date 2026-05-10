@@ -25,6 +25,8 @@
 - Use PascalCase for React component files such as `AccountingPage.tsx` and `AccountingForm.tsx`.
 - Use the correct filename for each file in a component.
 - Keep all component-level types in `*.schema.ts` files, including both Zod-inferred types and manually declared types, instead of creating separate `*.types.ts` files.
+- Do not allow backend/frontend schema drift: when a contract is shared by both sides, define it once in the component `*.schema.ts` file and import that same schema/type everywhere.
+- Do not duplicate equivalent validators across components; extract and reuse shared schema primitives when the same field contract (for example email, language, profile fields) appears in multiple flows.
 - Use `*.controller.ts` only for backend business logic and data-access orchestration; keep controllers framework-agnostic and free of Express request/response handling.
 - Use `*.query.ts` for TanStack Query hooks and query/mutation wrappers.
 - Use `*.client.ts` for browser-side HTTP request helpers and API clients (non-React-Query wrappers).
@@ -77,6 +79,7 @@
 - Use singular names and camelCase quoted identifiers for PostgreSQL tables, columns, and functions.
 - For PostgreSQL relationship columns, prefer the referenced domain noun over storage-specific suffixes. Use names such as `"tenant"` and `"user"` instead of `"tenantId"` or `"userEmail"` so query aliases read naturally.
 - Validate backend input.
+- Validate frontend request payloads and backend request/response payloads with the same shared Zod schemas for shared contracts.
 - Add error handling for network requests.
 - Use a separate PostgreSQL database per backend module.
 - Use `ensurePool` from `src/components/postgres/pool.ts` for shared PostgreSQL access instead of creating ad hoc pools in backend modules.
