@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
-import { getAuthenticationSession, logoutAuthenticationSession, requestAuthenticationOtp, verifyAuthenticationOtp } from './authentication.client.ts';
+import { getAuthenticationSession, logoutAuthenticationSession, requestAuthenticationOtp, updateAuthenticationProfile, verifyAuthenticationOtp } from './authentication.client.ts';
 
 /**
  * Returns the current authentication session.
@@ -45,6 +45,22 @@ export const useLogoutAuthenticationSessionMutation = () => {
 
   return useMutation({
     mutationFn: logoutAuthenticationSession,
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: [`authentication`, `session`],
+      });
+    },
+  });
+};
+
+/**
+ * Mutation hook for updating the current authentication profile.
+ */
+export const useUpdateAuthenticationProfileMutation = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: updateAuthenticationProfile,
     onSuccess: async () => {
       await queryClient.invalidateQueries({
         queryKey: [`authentication`, `session`],

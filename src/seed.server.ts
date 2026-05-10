@@ -186,15 +186,30 @@ export const seedAuthenticationData = async (client: Client, seedData: TenantSee
   await client.query(
     `
       INSERT INTO "user" 
-        ( "email", "firstName", "middleName", "lastName", "displayName" )
+        ( "email", "profile" )
       VALUES 
-        ( $1,      $2,          $3,            $4,        $5 )
+        (
+          $1,
+          jsonb_strip_nulls(jsonb_build_object(
+            'firstName', $2::text,
+            'middleName', $3::text,
+            'lastName', $4::text,
+            'displayName', $5::text,
+            'language', 'en'
+          ))
+        )
       ON CONFLICT ("email")
       DO UPDATE SET
-        "firstName" = EXCLUDED."firstName",
-        "middleName" = EXCLUDED."middleName",
-        "lastName" = EXCLUDED."lastName",
-        "displayName" = EXCLUDED."displayName";
+        "profile" = jsonb_strip_nulls(
+          COALESCE("user"."profile", '{}'::jsonb) ||
+          jsonb_build_object(
+            'firstName', EXCLUDED."profile"->>'firstName',
+            'middleName', EXCLUDED."profile"->>'middleName',
+            'lastName', EXCLUDED."profile"->>'lastName',
+            'displayName', EXCLUDED."profile"->>'displayName',
+            'language', COALESCE("user"."profile"->>'language', EXCLUDED."profile"->>'language', 'en')
+          )
+        );
     `,
     [seedData.userEmail, seedData.userFirstName, seedData.userMiddleName, seedData.userLastName, seedData.userDisplayName],
   );

@@ -11,9 +11,4 @@ CREATE TABLE IF NOT EXISTS "billingAccount" (
 
 CREATE INDEX IF NOT EXISTS "billingAccountTenantIndex" ON "billingAccount" ("tenant");
 
-DROP TRIGGER IF EXISTS "setUpdatedAtOnBillingAccount" ON "billingAccount";
-
-CREATE TRIGGER "setUpdatedAtOnBillingAccount"
-BEFORE UPDATE ON "billingAccount"
-FOR EACH ROW
-EXECUTE FUNCTION "setUpdatedAt"();
+SELECT "ensureSetUpdatedAtTrigger"('billingAccount');

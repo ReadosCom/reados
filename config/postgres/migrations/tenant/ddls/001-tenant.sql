@@ -9,9 +9,4 @@ CREATE TABLE IF NOT EXISTS "tenant" (
   CONSTRAINT "tenantSlugFormat" CHECK ("slug" ~ '^[a-z0-9]+(?:-[a-z0-9]+)*$')
 );
 
-DROP TRIGGER IF EXISTS "setUpdatedAtOnTenant" ON "tenant";
-
-CREATE TRIGGER "setUpdatedAtOnTenant"
-BEFORE UPDATE ON "tenant"
-FOR EACH ROW
-EXECUTE FUNCTION "setUpdatedAt"();
+SELECT "ensureSetUpdatedAtTrigger"('tenant');

@@ -14,6 +14,7 @@
     "test:services": "sh -c 'testing/diagnose-services.sh'",
     "dc:migrate": "docker compose -f compose.yaml -f config/compose/migrate.compose.yaml run --rm migration",
     "dc:seed": "sh -c 'npm run dc:migrate && docker compose -f compose.yaml -f config/compose/seed.compose.yaml run --rm seed'",
+    "dc:seed:silent": "sh -c 'npm run dc:migrate && docker compose -f compose.yaml -f config/compose/seed.compose.yaml run --rm -e SEED_NON_INTERACTIVE=true -e SEED_USE_DEFAULTS=true seed'",
     "lint": "eslint .",
     "migrate": "npm run run -- src/migration.server.ts",
     "seed": "npm run run -- src/seed.server.ts",

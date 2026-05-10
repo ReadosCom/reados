@@ -9,6 +9,7 @@ import {
   FlyingHumanIcon,
   Invoice03Icon,
   LegalDocument02Icon,
+  Home01Icon,
   Note04Icon,
   PayByCheckIcon,
   Trolley01Icon,
@@ -19,13 +20,13 @@ export type ApplicationIcon = typeof Building06Icon;
 
 type NavItem = {
   title: string;
-  url: string;
+  link?: string;
   icon?: ApplicationIcon;
 };
 
 type NavMainItem = {
   title: string;
-  url: string;
+  link?: string;
   icon?: ApplicationIcon;
   isActive?: boolean;
   items?: NavItem[];
@@ -33,7 +34,7 @@ type NavMainItem = {
 
 type ProjectItem = {
   name: string;
-  url: string;
+  link: string;
 };
 
 type TenantItem = {
@@ -41,25 +42,13 @@ type TenantItem = {
   plan: string;
 };
 
-type UserItem = {
-  name: string;
-  email: string;
-  avatar: string;
-};
-
 export type ApplicationSidebarData = {
-  user: UserItem;
   tenants: TenantItem[];
   navMain: NavMainItem[];
   projects: ProjectItem[];
 };
 
 export const applicationSidebarData: ApplicationSidebarData = {
-  user: {
-    name: 'Demo User',
-    email: 'demo@reados.local',
-    avatar: '',
-  },
   tenants: [
     {
       name: 'Reados',
@@ -68,76 +57,81 @@ export const applicationSidebarData: ApplicationSidebarData = {
   ],
   navMain: [
     {
+      title: 'Home',
+      link: '/',
+      icon: Home01Icon,
+    },
+    {
       title: 'ERP',
-      url: '/erp',
+      link: '/erp',
       icon: Building06Icon,
       isActive: true,
       items: [
         {
           title: 'Accounting',
-          url: '/erp/accounting',
+          link: '/erp/accounting',
           icon: BookOpen02Icon,
         },
         {
           title: 'CRM',
-          url: '/erp/crm',
+          link: '/erp/crm',
           icon: UserGroupIcon,
         },
         {
           title: 'Sales',
-          url: '/erp/sales',
+          link: '/erp/sales',
           icon: BadgePercentIcon,
         },
         {
           title: 'Billing',
-          url: '/erp/billing',
+          link: '/erp/billing',
           icon: Invoice03Icon,
         },
         {
           title: 'Contract Management',
-          url: '/erp/contract-management',
+          link: '/erp/contract-management',
           icon: ContractsIcon,
         },
         {
           title: 'Inventory',
-          url: '/erp/inventory',
+          link: '/erp/inventory',
           icon: BoundingBoxIcon,
         },
         {
           title: 'Procurement',
-          url: '/erp/procurement',
+          link: '/erp/procurement',
           icon: Trolley01Icon,
         },
         {
           title: 'HR',
-          url: '/erp/hr',
+          link: '/erp/hr',
           icon: FlyingHumanIcon,
         },
         {
           title: 'Payroll',
-          url: '/erp/payroll',
+          link: '/erp/payroll',
           icon: PayByCheckIcon,
         },
       ],
     },
     {
       title: 'Project Management',
-      url: '/project-management',
+      link: '/project-management',
       icon: Note04Icon,
     },
     {
       title: 'Document Management',
-      url: '/document-management',
+      link: '/document-management',
       icon: LegalDocument02Icon,
     },
     {
       title: 'Communication',
-      url: '/communication',
+      link: '/communication',
       icon: BubbleChatSparkIcon,
     },
     {
       title: 'Content Management',
-      url: '/content-management',
+      link: '/content-management',
       icon: AiContentGenerator02Icon,
     },
   ],
@@ -145,21 +139,21 @@ export const applicationSidebarData: ApplicationSidebarData = {
 };
 
 export const applicationModules = [
-  { name: 'Accounting', path: '/erp/accounting' },
-  { name: 'CRM', path: '/erp/crm' },
-  { name: 'Sales', path: '/erp/sales' },
-  { name: 'Billing', path: '/erp/billing' },
-  { name: 'Contract Management', path: '/erp/contract-management' },
-  { name: 'Inventory', path: '/erp/inventory' },
-  { name: 'Procurement', path: '/erp/procurement' },
-  { name: 'HR', path: '/erp/hr' },
-  { name: 'Payroll', path: '/erp/payroll' },
-  { name: 'Projects', path: '/project-management' },
-  { name: 'Documents', path: '/document-management' },
-  { name: 'Communication', path: '/communication' },
-  { name: 'Content Management', path: '/content-management' },
-  { name: 'Workflow', path: '/workflow' },
-  { name: 'Audit', path: '/audit' },
-  { name: 'Search', path: '/search' },
-  { name: 'Notification', path: '/notification' },
+  { name: 'Accounting', link: '/erp/accounting' },
+  { name: 'CRM', link: '/erp/crm' },
+  { name: 'Sales', link: '/erp/sales' },
+  { name: 'Billing', link: '/erp/billing' },
+  { name: 'Contract Management', link: '/erp/contract-management' },
+  { name: 'Inventory', link: '/erp/inventory' },
+  { name: 'Procurement', link: '/erp/procurement' },
+  { name: 'HR', link: '/erp/hr' },
+  { name: 'Payroll', link: '/erp/payroll' },
+  { name: 'Projects', link: '/project-management' },
+  { name: 'Documents', link: '/document-management' },
+  { name: 'Communication', link: '/communication' },
+  { name: 'Content Management', link: '/content-management' },
+  { name: 'Workflow', link: '/workflow' },
+  { name: 'Audit', link: '/audit' },
+  { name: 'Search', link: '/search' },
+  { name: 'Notification', link: '/notification' },
 ] as const;

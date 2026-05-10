@@ -1,14 +1,14 @@
 import type { Translations } from "@components/i18n/i18n.types.ts";
 export const translations = {
-  "Main": {
-    "tr": { translation: `Ana Menü`, translatedBy: `AI` },
-    "de": { translation: `Hauptmenü`, translatedBy: `AI` },
-    "es": { translation: `Principal`, translatedBy: `AI` },
-    "fr": { translation: `Principal`, translatedBy: `AI` },
-    "it": { translation: `Principale`, translatedBy: `AI` },
-    "pt": { translation: `Principal`, translatedBy: `AI` },
-    "nl": { translation: `Hoofdmenu`, translatedBy: `AI` },
-    "pl": { translation: `Główne`, translatedBy: `AI` },
+  "Home": {
+    "tr": { translation: `Ana sayfa`, translatedBy: `AI` },
+    "de": { translation: `Startseite`, translatedBy: `AI` },
+    "es": { translation: `Inicio`, translatedBy: `AI` },
+    "fr": { translation: `Accueil`, translatedBy: `AI` },
+    "it": { translation: `Home`, translatedBy: `AI` },
+    "pt": { translation: `Início`, translatedBy: `AI` },
+    "nl": { translation: `Home`, translatedBy: `AI` },
+    "pl": { translation: `Strona główna`, translatedBy: `AI` },
   },
   "ERP": {
     "tr": { translation: `ERP`, translatedBy: `AI` },

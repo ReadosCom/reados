@@ -1,5 +1,5 @@
 import { getBrowserHostname, getBrowserProtocol } from '@components/application/application.browser.ts';
-import { otpRequestBodySchema, otpRequestResponseSchema, otpTestResponseSchema, otpVerifyBodySchema, otpVerifyResponseSchema, sessionMeResponseSchema } from './authentication.schema.ts';
+import { otpRequestBodySchema, otpRequestResponseSchema, otpTestResponseSchema, otpVerifyBodySchema, otpVerifyResponseSchema, profileUpdateBodySchema, sessionMeResponseSchema } from './authentication.schema.ts';
 
 const getAuthenticationServiceOrigin = () => {
   const hostname = getBrowserHostname();
@@ -62,11 +62,15 @@ export const getAuthenticationSession = async () => {
     credentials: `include`,
   });
 
-  if (!response.ok) {
+  if (response.status === 401) {
     return {
       authenticated: false,
       session: null,
     };
+  }
+
+  if (!response.ok) {
+    throw new Error(`Could not load authentication session.`);
   }
 
   return sessionMeResponseSchema.parse(await response.json());
@@ -80,6 +84,27 @@ export const logoutAuthenticationSession = async () => {
     credentials: `include`,
     method: `POST`,
   });
+};
+
+/**
+ * Updates authenticated user profile fields in authentication service.
+ */
+export const updateAuthenticationProfile = async (body: unknown) => {
+  const parsedBody = profileUpdateBodySchema.parse(body);
+  const response = await fetch(`${getAuthenticationServiceOrigin()}/profile/me`, {
+    body: JSON.stringify(parsedBody),
+    credentials: `include`,
+    headers: {
+      'Content-Type': `application/json`,
+    },
+    method: `PATCH`,
+  });
+
+  if (!response.ok) {
+    throw new Error(`Could not update authentication profile.`);
+  }
+
+  return sessionMeResponseSchema.parse(await response.json());
 };
 
 /**
