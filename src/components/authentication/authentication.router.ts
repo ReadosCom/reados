@@ -125,19 +125,14 @@ route({
       return;
     }
 
+    let revocationError: unknown = null;
+
     try {
       await logoutSession({
         sessionId: session.sessionId,
       });
     } catch (error) {
-      fail({
-        cause: error,
-        code: `logout_revoke_failed`,
-        logMessage: `Failed to revoke session ${session.sessionId}.`,
-        message: `We could not revoke the session right now.`,
-        status: 500,
-      });
-      return;
+      revocationError = error;
     }
 
     response.clearCookie(authenticationSessionCookieName, {
@@ -145,6 +140,17 @@ route({
       path: `/`,
       sameSite: `lax`,
     });
+
+    if (revocationError) {
+      fail({
+        cause: revocationError,
+        code: `logout_revoke_failed`,
+        logMessage: `Failed to revoke session ${session.sessionId}.`,
+        message: `We could not revoke the session right now.`,
+        status: 500,
+      });
+      return;
+    }
 
     respond({
       success: true,
