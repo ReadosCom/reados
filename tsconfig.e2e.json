@@ -6,6 +6,9 @@
     "module": "ESNext",
     "types": ["node", "@playwright/test"],
     "skipLibCheck": true,
+    "paths": {
+      "@components/*": ["./src/components/*"]
+    },
 
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,

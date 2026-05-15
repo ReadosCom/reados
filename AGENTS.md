@@ -68,6 +68,7 @@
 - Keep the frontend as one shared application even when features belong to different modules.
 - Do not introduce API mocking libraries such as `msw`; prefer real integration flows and Playwright end-to-end coverage instead.
 - When running end-to-end tests, use `npm test`.
+- In tests, do not define inline API response shapes. Import and use shared `*.schema.ts` schemas/types (prefer schema `.parse(...)`) so test assertions stay aligned with runtime contracts.
 
 ## Style Guide
 
