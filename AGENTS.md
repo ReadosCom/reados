@@ -23,6 +23,7 @@
 - Use Biome as the repository formatter.
 - Use lowercase names for non-React files such as `accounting.schema.ts`, `accounting.router.ts`, and `accounting.query.ts`.
 - Use PascalCase for React component files such as `AccountingPage.tsx` and `AccountingForm.tsx`.
+- Do not use non-descriptive suffixes in React component or file names (for example `Page`, `View`, `Screen`, `Component`, `Container`, `Wrapper`, `Manager`, `Handler`, `Util`, `Helper`, `Thing`, `Data`). Name components by domain intent instead (for example `Accounting`, `InvoiceList`, `ProfileForm`).
 - Use the correct filename for each file in a component.
 - Keep all component-level types in `*.schema.ts` files, including both Zod-inferred types and manually declared types, instead of creating separate `*.types.ts` files.
 - Do not allow backend/frontend schema drift: when a contract is shared by both sides, define it once in the component `*.schema.ts` file and import that same schema/type everywhere.
@@ -36,6 +37,7 @@
 - Keep server-side helper logic in the component `*.controller.ts` file instead of introducing separate service files.
 - Use single or double quotes for import specifiers. Do not use backticks in `import` statements.
 - Use the `@components/*` alias for imports that cross component boundaries within `src/components`.
+- Do not create pass-through re-export wrappers (for example forwarding a helper unchanged from one module to another). Consumers should import the canonical helper directly from its source module.
 - Standardize on UUID v7 for identifier generation across frontend and backend.
 - Where possible, prefer PostgreSQL to generate UUID v7 values unless application-side generation is strictly necessary.
 
@@ -61,9 +63,13 @@
 - Use backticks for string literals everywhere except import specifiers and object keys.
 - Use double quotes for import specifiers and object keys.
 - Use React Hook Form for forms unless a different choice is explicitly made.
+- For form validation and form state, standardize on `react-hook-form` + `zod` + `@hookform/resolvers/zod` as documented in shadcn React Hook Form guides.
+- For form UI primitives, use shadcn components and patterns (`Form`, `FormField`, `FormItem`, `FormLabel`, `FormControl`, `FormDescription`, `FormMessage`) with repository wrappers under `src/components/uiframework/`.
+- Install and use form-related shadcn primitives in `src/components/uiframework/` as needed (`Field`, `Label`, `Input`, `Textarea`, `Select`, `NativeSelect`, `Checkbox`, `RadioGroup`, `Switch`, `InputOTP`), and compose them with React Hook Form + Zod.
 - Keep the frontend as one shared application even when features belong to different modules.
 - Do not introduce API mocking libraries such as `msw`; prefer real integration flows and Playwright end-to-end coverage instead.
 - When running end-to-end tests, use `npm test`.
+- In tests, do not define inline API response shapes. Import and use shared `*.schema.ts` schemas/types (prefer schema `.parse(...)`) so test assertions stay aligned with runtime contracts.
 
 ## Style Guide
 

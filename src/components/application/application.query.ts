@@ -1,43 +1,26 @@
 import { useQuery } from '@tanstack/react-query';
+import { z } from 'zod';
 
-import { getBrowserHostname, getBrowserProtocol } from '@components/application/application.browser.ts';
-
-/**
- * Builds the core service origin for the current browser hostname.
- */
-export const getCoreServiceOrigin = () => {
-  const hostname = getBrowserHostname();
-  const protocol = getBrowserProtocol();
-
-  if (!hostname || !protocol) {
-    return null;
-  }
-
-  return `${protocol}//core.${hostname}`;
-};
+import { apiSuccessSchema } from '@components/application/api.schema.ts';
+import { getCoreServiceOrigin } from '@components/application/application.host.ts';
 
 /**
  * Probes whether the browser is running on the root Reados application host.
  */
 export const probeRootApplication = async () => {
-  const coreServiceOrigin = getCoreServiceOrigin();
-
-  if (!coreServiceOrigin) {
-    return false;
-  }
-
   try {
+    const coreServiceOrigin = getCoreServiceOrigin();
     const response = await fetch(`${coreServiceOrigin}/whoami`);
 
     if (!response.ok) {
       return false;
     }
 
-    const body = (await response.json()) as {
-      whoami?: string;
-    };
+    const parsedBody = apiSuccessSchema(z.object({
+      whoami: z.string().optional(),
+    })).parse(await response.json());
 
-    return body.whoami === `root`;
+    return parsedBody.data.whoami === `root`;
   } catch {
     return false;
   }

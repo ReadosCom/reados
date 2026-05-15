@@ -1,5 +1,6 @@
 import type { Pool } from 'pg';
 import type { Request, Response } from 'express';
+import { getCorrelationId } from '@components/express/express.server.ts';
 
 import type { TenantDiscoveryRequest, TenantDiscoveryTenant } from './tenant.schema.ts';
 
@@ -19,7 +20,7 @@ export const getTenantLoginUrl = (tenantSlug: string) => {
  */
 export const createTenantDiscoveryHandler = (pool: Pool) => {
   return async (_request: Request, response: Response) => {
-    const { email } = response.locals.validatedBody as TenantDiscoveryRequest;
+    const { email } = response.locals.body as TenantDiscoveryRequest;
 
     try {
       const discoveryResult = await pool.query<{ name: string; slug: string }>(
@@ -42,13 +43,21 @@ export const createTenantDiscoveryHandler = (pool: Pool) => {
         slug,
       }));
 
-      response.json({
-        tenants,
+      response.status(200).json({
+        data: {
+          tenants,
+        },
+        success: true,
       });
     } catch (error) {
       console.error(`Failed to discover tenants for ${email}.`, error);
       response.status(500).json({
-        message: `We could not look up your tenants right now.`,
+        error: {
+          code: `tenant_discovery_failed`,
+          correlationId: getCorrelationId(_request, response),
+          message: `We could not look up your tenants right now.`,
+        },
+        success: false,
       });
     }
   };

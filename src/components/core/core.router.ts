@@ -1,18 +1,15 @@
-import { createModuleServer } from '@components/express/express.server.ts';
+import express from "express";
 
 /**
- * Creates the tenant core server with a tenant whoami route.
+ * Defines tenant core routes.
  */
-export const createCoreServer = () => {
-  const app = createModuleServer({
-    moduleName: `core`,
-  });
+export const coreRouter = express.Router();
 
-  app.get(`/whoami`, (_request, response) => {
-    response.json({
+coreRouter.get(`/whoami`, (_request, response) => {
+  response.status(200).json({
+    data: {
       whoami: `tenant`,
-    });
+    },
+    success: true,
   });
-
-  return app;
-};
+});

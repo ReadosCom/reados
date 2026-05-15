@@ -2,6 +2,17 @@ import { getBrowserHash, getBrowserHostname, getBrowserPathname, getBrowserPort,
 
 let authenticationEntryHost = `app.reados.localhost`;
 
+const getServiceOrigin = (service: string) => {
+  const hostname = getBrowserHostname();
+  const protocol = getBrowserProtocol();
+
+  if (!hostname || !protocol) {
+    throw new Error(`${service} service origin could not be resolved from browser location.`);
+  }
+
+  return `${protocol}//${service}.${hostname}`;
+};
+
 export const setAuthenticationEntryHost = (appFqdn: string) => {
   const normalized = appFqdn.trim();
 
@@ -44,3 +55,7 @@ export const isAuthenticationEntryHost = () => {
 
   return hostname === authenticationEntryHost;
 };
+
+export const getAuthenticationServiceOrigin = () => getServiceOrigin(`authentication`);
+export const getCoreServiceOrigin = () => getServiceOrigin(`core`);
+export const getErpServiceOrigin = () => getServiceOrigin(`erp`);

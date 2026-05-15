@@ -1,8 +1,11 @@
 import { expect, test } from '../../../testing/e2e';
 import { getAppOrigin, getAuthenticationOrigin, getTenantOrigin } from '../../../testing/hosts';
+import { otpTestResponseSchema, sessionMeResponseSchema } from './authentication.schema.ts';
 
 const sleep = (milliseconds: number) => new Promise((resolve) => setTimeout(resolve, milliseconds));
 const accountingHeadingPattern = /^(Accounting|Muhasebe)$/u;
+
+test.describe.configure({ mode: `serial` });
 
 test(`authentication OTP flow signs in and creates a session`, async ({ page }) => {
   const tenantOrigin = getTenantOrigin(`demo`);
@@ -16,6 +19,7 @@ test(`authentication OTP flow signs in and creates a session`, async ({ page }) 
 
   await expect(page).toHaveURL(`${tenantOrigin}/authentication?email=admin%40reados.localhost`);
   await page.locator(`form`).first().locator(`button[type="submit"]`).click();
+  await expect(page.getByText(`If this account is eligible, we sent a verification code.`)).toBeVisible();
 
   let otpResponse = await page.request.get(`${authenticationOrigin}/test/otp/latest?email=admin%40reados.localhost`);
 
@@ -26,14 +30,11 @@ test(`authentication OTP flow signs in and creates a session`, async ({ page }) 
 
   expect(otpResponse.ok()).toBeTruthy();
 
-  const otpJson = (await otpResponse.json()) as {
-    code: string;
-    found: boolean;
-  };
+  const otpJson = otpTestResponseSchema.parse(await otpResponse.json());
 
-  expect(otpJson.found).toBe(true);
+  expect(otpJson.data.found).toBe(true);
 
-  await page.locator(`#authentication-otp-code`).fill(otpJson.code);
+  await page.locator(`#authentication-otp-code`).fill(otpJson.data.code);
   await page.locator(`form`).nth(1).locator(`button[type="submit"]`).click();
 
   await expect(page).toHaveURL(`${tenantOrigin}/`);
@@ -43,15 +44,11 @@ test(`authentication OTP flow signs in and creates a session`, async ({ page }) 
 
   expect(sessionResponse.ok()).toBeTruthy();
 
-  const sessionJson = (await sessionResponse.json()) as {
-    authenticated: boolean;
-    session: {
-      email: string;
-    };
-  };
+  const sessionJson = sessionMeResponseSchema.parse(await sessionResponse.json());
 
-  expect(sessionJson.authenticated).toBe(true);
-  expect(sessionJson.session.email).toBe(`admin@reados.localhost`);
+  expect(sessionJson.data.authenticated).toBe(true);
+  expect(sessionJson.data.session).not.toBeNull();
+  expect(sessionJson.data.session?.email).toBe(`admin@reados.localhost`);
 
   const logoutResponse = await page.request.post(`${authenticationOrigin}/session/logout`);
 
@@ -86,6 +83,7 @@ test(`authentication profile language preference is applied in tenant app`, asyn
 
   await expect(page).toHaveURL(`${tenantOrigin}/authentication?email=admin%40reados.localhost`);
   await page.locator(`form`).first().locator(`button[type="submit"]`).click();
+  await expect(page.getByText(`If this account is eligible, we sent a verification code.`)).toBeVisible();
 
   let otpResponse = await page.request.get(`${authenticationOrigin}/test/otp/latest?email=admin%40reados.localhost`);
 
@@ -96,19 +94,16 @@ test(`authentication profile language preference is applied in tenant app`, asyn
 
   expect(otpResponse.ok()).toBeTruthy();
 
-  const otpJson = (await otpResponse.json()) as {
-    code: string;
-    found: boolean;
-  };
+  const otpJson = otpTestResponseSchema.parse(await otpResponse.json());
 
-  expect(otpJson.found).toBe(true);
+  expect(otpJson.data.found).toBe(true);
 
-  await page.locator(`#authentication-otp-code`).fill(otpJson.code);
+  await page.locator(`#authentication-otp-code`).fill(otpJson.data.code);
   await page.locator(`form`).nth(1).locator(`button[type="submit"]`).click();
   await expect(page).toHaveURL(`${tenantOrigin}/`);
   await expect(page.getByRole(`heading`, { name: accountingHeadingPattern })).toBeVisible();
 
-  const updatedProfile = (await page.evaluate(async (origin) => {
+  const updatedProfile = sessionMeResponseSchema.parse(await page.evaluate(async (origin) => {
     const response = await fetch(`${origin}/profile/me`, {
       body: JSON.stringify({
         language: `tr`,
@@ -121,17 +116,12 @@ test(`authentication profile language preference is applied in tenant app`, asyn
     });
 
     return response.json();
-  }, authenticationOrigin)) as {
-    authenticated: boolean;
-    session: {
-      email: string;
-      language: string;
-    };
-  };
+  }, authenticationOrigin));
 
-  expect(updatedProfile.authenticated).toBeTruthy();
-  expect(updatedProfile.session.language).toBe(`tr`);
-  expect(updatedProfile.session.email).toBe(`admin@reados.localhost`);
+  expect(updatedProfile.data.authenticated).toBeTruthy();
+  expect(updatedProfile.data.session).not.toBeNull();
+  expect(updatedProfile.data.session?.language).toBe(`tr`);
+  expect(updatedProfile.data.session?.email).toBe(`admin@reados.localhost`);
 
   await page.reload();
   await expect(page.getByRole(`heading`, { name: `Muhasebe` })).toBeVisible();
