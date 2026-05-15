@@ -37,6 +37,7 @@
 - Keep server-side helper logic in the component `*.controller.ts` file instead of introducing separate service files.
 - Use single or double quotes for import specifiers. Do not use backticks in `import` statements.
 - Use the `@components/*` alias for imports that cross component boundaries within `src/components`.
+- Do not create pass-through re-export wrappers (for example forwarding a helper unchanged from one module to another). Consumers should import the canonical helper directly from its source module.
 - Standardize on UUID v7 for identifier generation across frontend and backend.
 - Where possible, prefer PostgreSQL to generate UUID v7 values unless application-side generation is strictly necessary.
 

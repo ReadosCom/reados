@@ -1,23 +1,14 @@
-import { getBrowserHostname, getBrowserProtocol } from '@components/application/application.browser.ts';
+import { getAuthenticationServiceOrigin } from '@components/application/application.host.ts';
 import { otpRequestBodySchema, otpRequestResponseSchema, otpTestResponseSchema, otpVerifyBodySchema, otpVerifyResponseSchema, profileUpdateBodySchema, sessionMeResponseDataSchema, sessionMeResponseSchema } from './authentication.schema.ts';
 
-const getAuthenticationServiceOrigin = () => {
-  const hostname = getBrowserHostname();
-  const protocol = getBrowserProtocol();
-
-  if (!hostname || !protocol) {
-    throw new Error(`Authentication service origin could not be resolved from browser location.`);
-  }
-
-  return `${protocol}//authentication.${hostname}`;
-};
+const authenticationServiceOrigin = getAuthenticationServiceOrigin();
 
 /**
  * Requests an OTP code for tenant-scoped authentication.
  */
 export const requestAuthenticationOtp = async (body: unknown) => {
   const parsedBody = otpRequestBodySchema.parse(body);
-  const response = await fetch(`${getAuthenticationServiceOrigin()}/otp/request`, {
+  const response = await fetch(`${authenticationServiceOrigin}/otp/request`, {
     body: JSON.stringify(parsedBody),
     credentials: `include`,
     headers: {
@@ -38,7 +29,7 @@ export const requestAuthenticationOtp = async (body: unknown) => {
  */
 export const verifyAuthenticationOtp = async (body: unknown) => {
   const parsedBody = otpVerifyBodySchema.parse(body);
-  const response = await fetch(`${getAuthenticationServiceOrigin()}/otp/verify`, {
+  const response = await fetch(`${authenticationServiceOrigin}/otp/verify`, {
     body: JSON.stringify(parsedBody),
     credentials: `include`,
     headers: {
@@ -58,7 +49,7 @@ export const verifyAuthenticationOtp = async (body: unknown) => {
  * Retrieves the authenticated session state.
  */
 export const getAuthenticationSession = async () => {
-  const response = await fetch(`${getAuthenticationServiceOrigin()}/session/me`, {
+  const response = await fetch(`${authenticationServiceOrigin}/session/me`, {
     credentials: `include`,
   });
 
@@ -80,7 +71,7 @@ export const getAuthenticationSession = async () => {
  * Logs out the current authenticated session.
  */
 export const logoutAuthenticationSession = async () => {
-  await fetch(`${getAuthenticationServiceOrigin()}/session/logout`, {
+  await fetch(`${authenticationServiceOrigin}/session/logout`, {
     credentials: `include`,
     method: `POST`,
   });
@@ -91,7 +82,7 @@ export const logoutAuthenticationSession = async () => {
  */
 export const updateAuthenticationProfile = async (body: unknown) => {
   const parsedBody = profileUpdateBodySchema.parse(body);
-  const response = await fetch(`${getAuthenticationServiceOrigin()}/profile/me`, {
+  const response = await fetch(`${authenticationServiceOrigin}/profile/me`, {
     body: JSON.stringify(parsedBody),
     credentials: `include`,
     headers: {
@@ -111,7 +102,7 @@ export const updateAuthenticationProfile = async (body: unknown) => {
  * Reads the latest OTP for e2e tests from the test-only transport endpoint.
  */
 export const getLatestOtpForTesting = async ({ email }: { email: string }) => {
-  const response = await fetch(`${getAuthenticationServiceOrigin()}/test/otp/latest?email=${encodeURIComponent(email)}`, {
+  const response = await fetch(`${authenticationServiceOrigin}/test/otp/latest?email=${encodeURIComponent(email)}`, {
     credentials: `include`,
   });
 
