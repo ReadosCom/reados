@@ -1,5 +1,5 @@
 import { getBrowserHostname, getBrowserProtocol } from '@components/application/application.browser.ts';
-import { otpRequestBodySchema, otpRequestResponseSchema, otpTestResponseSchema, otpVerifyBodySchema, otpVerifyResponseSchema, profileUpdateBodySchema, sessionMeResponseSchema } from './authentication.schema.ts';
+import { otpRequestBodySchema, otpRequestResponseSchema, otpTestResponseSchema, otpVerifyBodySchema, otpVerifyResponseSchema, profileUpdateBodySchema, sessionMeResponseDataSchema, sessionMeResponseSchema } from './authentication.schema.ts';
 
 const getAuthenticationServiceOrigin = () => {
   const hostname = getBrowserHostname();
@@ -30,7 +30,7 @@ export const requestAuthenticationOtp = async (body: unknown) => {
     throw new Error(`Failed to request OTP.`);
   }
 
-  return otpRequestResponseSchema.parse(await response.json());
+  return otpRequestResponseSchema.parse(await response.json()).data;
 };
 
 /**
@@ -51,7 +51,7 @@ export const verifyAuthenticationOtp = async (body: unknown) => {
     throw new Error(`Failed to verify OTP.`);
   }
 
-  return otpVerifyResponseSchema.parse(await response.json());
+  return otpVerifyResponseSchema.parse(await response.json()).data;
 };
 
 /**
@@ -63,17 +63,17 @@ export const getAuthenticationSession = async () => {
   });
 
   if (response.status === 401) {
-    return {
+    return sessionMeResponseDataSchema.parse({
       authenticated: false,
       session: null,
-    };
+    });
   }
 
   if (!response.ok) {
     throw new Error(`Could not load authentication session.`);
   }
 
-  return sessionMeResponseSchema.parse(await response.json());
+  return sessionMeResponseSchema.parse(await response.json()).data;
 };
 
 /**
@@ -104,7 +104,7 @@ export const updateAuthenticationProfile = async (body: unknown) => {
     throw new Error(`Could not update authentication profile.`);
   }
 
-  return sessionMeResponseSchema.parse(await response.json());
+  return sessionMeResponseSchema.parse(await response.json()).data;
 };
 
 /**
@@ -119,5 +119,5 @@ export const getLatestOtpForTesting = async ({ email }: { email: string }) => {
     throw new Error(`Could not load the latest OTP for testing.`);
   }
 
-  return otpTestResponseSchema.parse(await response.json());
+  return otpTestResponseSchema.parse(await response.json()).data;
 };

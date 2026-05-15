@@ -13,7 +13,7 @@ const backendTargets: BackendTarget[] = [
   { name: `rootCore`, url: `${getRootCoreOrigin()}/__coverage__` },
   { name: `tenant`, url: `http://${getFrontendConfig().tenantServiceFqdn}/__coverage__` },
   { name: `authentication`, url: `${getAuthenticationOrigin(`demo`)}/__coverage__` },
-  { name: `accounting`, url: `http://accounting.demo.${getFrontendConfig().rootFqdn}/__coverage__` },
+  { name: `erp`, url: `http://erp.demo.${getFrontendConfig().rootFqdn}/__coverage__` },
   { name: `core`, url: `${getCoreOrigin(`demo`)}/__coverage__` },
 ];
 

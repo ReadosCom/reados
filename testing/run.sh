@@ -42,7 +42,7 @@ if [ $? -ne 0 ]; then
   exit 1
 fi
 
-for migration_service in core tenant authentication accounting; do
+for migration_service in core tenant authentication erp; do
   npm run dc:migrate -- "${migration_service}"
   if [ $? -ne 0 ]; then
     echo "Failed to run migrations for ${migration_service}."
@@ -61,7 +61,7 @@ wait_for_url_or_fail "http://core.${ROOT_FQDN}/whoami"
 wait_for_url_or_fail "http://${TENANT_SERVICE_FQDN}"
 wait_for_url_or_fail "http://authentication.demo.${ROOT_FQDN}"
 wait_for_url_or_fail "http://core.demo.${ROOT_FQDN}/whoami"
-wait_for_url_or_fail "http://accounting.demo.${ROOT_FQDN}"
+wait_for_url_or_fail "http://erp.demo.${ROOT_FQDN}"
 
 set +e
 playwright test --config testing/playwright.config.ts

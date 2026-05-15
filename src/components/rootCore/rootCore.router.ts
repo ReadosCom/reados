@@ -1,18 +1,15 @@
-import { createModuleServer } from '@components/express/express.server.ts';
+import express from "express";
 
 /**
- * Creates the root core server with a root whoami route.
+ * Defines root core routes.
  */
-export const createRootCoreServer = () => {
-  const app = createModuleServer({
-    moduleName: `root-core`,
-  });
+export const rootCoreRouter = express.Router();
 
-  app.get(`/whoami`, (_request, response) => {
-    response.json({
+rootCoreRouter.get(`/whoami`, (_request, response) => {
+  response.status(200).json({
+    data: {
       whoami: `root`,
-    });
+    },
+    success: true,
   });
-
-  return app;
-};
+});

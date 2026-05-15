@@ -8,7 +8,7 @@ include:
   - ./config/compose/core.compose.yaml
   - ./config/compose/tenant.compose.yaml
   - ./config/compose/authentication.compose.yaml
-  - ./config/compose/accounting.compose.yaml
+  - ./config/compose/erp.compose.yaml
   - ./config/compose/postgres.compose.yaml
 
 networks:
@@ -22,5 +22,5 @@ volumes:
   core_node_modules:
   tenant_node_modules:
   authentication_node_modules:
-  accounting_node_modules:
+  erp_node_modules:
   postgres_data:

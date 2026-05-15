@@ -1,5 +1,6 @@
 import 'zod-openapi';
 import { z } from 'zod';
+import { apiSuccessSchema } from '@components/application/api.schema.ts';
 
 export const authenticationEmailSchema = z.string().check(z.trim(), z.email(`Enter a valid email address.`), z.toLowerCase()).meta({
   description: `User email address used for OTP authentication.`,
@@ -42,21 +43,23 @@ export const otpVerifyBodySchema = z
     id: `OtpVerifyBody`,
   });
 
-export const otpRequestResponseSchema = z
+export const otpRequestResponseDataSchema = z
   .object({
     message: z.string().trim().min(1),
   })
   .meta({
     id: `OtpRequestResponse`,
   });
+export const otpRequestResponseSchema = apiSuccessSchema(otpRequestResponseDataSchema);
 
-export const otpVerifyResponseSchema = z
+export const otpVerifyResponseDataSchema = z
   .object({
     authenticated: z.literal(true),
   })
   .meta({
     id: `OtpVerifyResponse`,
   });
+export const otpVerifyResponseSchema = apiSuccessSchema(otpVerifyResponseDataSchema);
 
 export const sessionIdentitySchema = z
   .object({
@@ -71,7 +74,7 @@ export const sessionIdentitySchema = z
     id: `SessionIdentity`,
   });
 
-export const sessionMeResponseSchema = z
+export const sessionMeResponseDataSchema = z
   .object({
     authenticated: z.boolean(),
     session: sessionIdentitySchema.nullable(),
@@ -79,14 +82,16 @@ export const sessionMeResponseSchema = z
   .meta({
     id: `SessionMeResponse`,
   });
+export const sessionMeResponseSchema = apiSuccessSchema(sessionMeResponseDataSchema);
 
-export const logoutResponseSchema = z
+export const logoutResponseDataSchema = z
   .object({
     success: z.literal(true),
   })
   .meta({
     id: `LogoutResponse`,
   });
+export const logoutResponseSchema = apiSuccessSchema(logoutResponseDataSchema);
 
 export const profileEditableSchema = z
   .object({
@@ -119,21 +124,27 @@ export const otpTestQuerySchema = z.object({
   email: authenticationEmailSchema,
 });
 
-export const otpTestResponseSchema = z.object({
+export const otpTestResponseDataSchema = z.object({
   code: otpCodeSchema,
   found: z.literal(true),
 });
+export const otpTestResponseSchema = apiSuccessSchema(otpTestResponseDataSchema);
 
 export type OtpRequestBody = z.infer<typeof otpRequestBodySchema>;
 export type OtpVerifyBody = z.infer<typeof otpVerifyBodySchema>;
+export type OtpRequestResponseData = z.infer<typeof otpRequestResponseDataSchema>;
 export type OtpRequestResponse = z.infer<typeof otpRequestResponseSchema>;
+export type OtpVerifyResponseData = z.infer<typeof otpVerifyResponseDataSchema>;
 export type OtpVerifyResponse = z.infer<typeof otpVerifyResponseSchema>;
 export type SessionIdentity = z.infer<typeof sessionIdentitySchema>;
+export type SessionMeResponseData = z.infer<typeof sessionMeResponseDataSchema>;
 export type SessionMeResponse = z.infer<typeof sessionMeResponseSchema>;
+export type LogoutResponseData = z.infer<typeof logoutResponseDataSchema>;
 export type LogoutResponse = z.infer<typeof logoutResponseSchema>;
 export type ProfileEditable = z.infer<typeof profileEditableSchema>;
 export type ProfileUpdateBody = z.infer<typeof profileUpdateBodySchema>;
 export type OtpTestQuery = z.infer<typeof otpTestQuerySchema>;
+export type OtpTestResponseData = z.infer<typeof otpTestResponseDataSchema>;
 export type OtpTestResponse = z.infer<typeof otpTestResponseSchema>;
 
 export type OtpChallengeRow = {

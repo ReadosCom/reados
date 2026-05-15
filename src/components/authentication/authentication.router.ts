@@ -1,18 +1,24 @@
-import { createModuleServer, getCorrelationId, validateRequestBody, validateRequestQuery } from '@components/express/express.server.ts';
+import express from 'express';
+
+import { defineRoutes, getCorrelationId } from '@components/express/express.server.ts';
 
 import { authenticationSessionCookieName, getLatestOtpForTesting, getSessionFromCookie, isAuthenticationTestEndpointEnabled, logoutSession, requestOtp, updateSessionProfile, verifyOtpAndCreateSession } from './authentication.controller.ts';
-import { otpRequestBodySchema, otpTestQuerySchema, otpVerifyBodySchema, profileUpdateBodySchema, type OtpRequestBody, type OtpTestQuery, type OtpVerifyBody, type ProfileUpdateBody } from './authentication.schema.ts';
+import { otpRequestBodySchema, otpTestQuerySchema, otpVerifyBodySchema, profileUpdateBodySchema, type ProfileUpdateBody } from './authentication.schema.ts';
 
 /**
- * Creates the authentication server with OTP and session routes.
+ * Defines authentication routes for OTP and session flows.
  */
-export const createAuthenticationServer = () => {
-  const app = createModuleServer({
-    moduleName: `authentication`,
-  });
+export const authenticationRouter = express.Router();
+const route = defineRoutes(authenticationRouter);
 
-  app.post(`/otp/request`, validateRequestBody(otpRequestBodySchema), async (request, response) => {
-    const { email } = response.locals.validatedBody as OtpRequestBody;
+route({
+  method: `post`,
+  route: `/otp/request`,
+  validators: {
+    body: otpRequestBodySchema,
+  },
+  handler: async ({ body, fail, request, respond, response }) => {
+    const { email } = body;
 
     try {
       const result = await requestOtp({
@@ -20,20 +26,27 @@ export const createAuthenticationServer = () => {
         email,
       });
 
-      response.json(result);
+      respond(result);
     } catch (error) {
-      console.error(`Failed to request OTP for ${email}.`, {
-        correlationId: getCorrelationId(request, response),
-        error,
-      });
-      response.status(500).json({
+      fail({
+        cause: error,
+        code: `otp_request_failed`,
+        logMessage: `Failed to request OTP for ${email}.`,
         message: `We could not request a verification code right now.`,
+        status: 500,
       });
     }
-  });
+  },
+});
 
-  app.post(`/otp/verify`, validateRequestBody(otpVerifyBodySchema), async (request, response) => {
-    const { code, email } = response.locals.validatedBody as OtpVerifyBody;
+route({
+  method: `post`,
+  route: `/otp/verify`,
+  validators: {
+    body: otpVerifyBodySchema,
+  },
+  handler: async ({ body, fail, request, respond, response }) => {
+    const { code, email } = body;
     const forwardedForHeader = request.header(`x-forwarded-for`);
     const ipAddress = forwardedForHeader ? (forwardedForHeader.split(`,`)[0]?.trim() ?? null) : (request.ip ?? null);
 
@@ -47,53 +60,67 @@ export const createAuthenticationServer = () => {
       });
 
       if (!result.authenticated) {
-        response.status(401).json({
+        fail({
+          code: `otp_invalid_or_expired`,
           message: `The verification code is invalid or expired.`,
+          status: 401,
         });
         return;
       }
 
       response.cookie(result.cookieName, result.sessionId, result.cookieOptions);
-      response.json({
+      respond({
         authenticated: true,
       });
     } catch (error) {
-      console.error(`Failed to verify OTP for ${email}.`, {
-        correlationId: getCorrelationId(request, response),
-        error,
-      });
-      response.status(500).json({
+      fail({
+        cause: error,
+        code: `otp_verify_failed`,
+        logMessage: `Failed to verify OTP for ${email}.`,
         message: `We could not verify the code right now.`,
+        status: 500,
       });
     }
-  });
+  },
+});
 
-  app.get(`/session/me`, async (request, response) => {
+route({
+  method: `get`,
+  route: `/session/me`,
+  handler: async ({ fail, request, respond }) => {
     const session = await getSessionFromCookie({
       cookieHeader: request.header(`cookie`),
     });
 
     if (!session) {
-      response.status(401).json({
+      fail({
+        code: `unauthenticated`,
         message: `Unauthenticated request.`,
+        status: 401,
       });
       return;
     }
 
-    response.json({
+    respond({
       authenticated: true,
       session: session.sessionIdentity,
     });
-  });
+  },
+});
 
-  app.post(`/session/logout`, async (request, response) => {
+route({
+  method: `post`,
+  route: `/session/logout`,
+  handler: async ({ fail, request, respond, response }) => {
     const session = await getSessionFromCookie({
       cookieHeader: request.header(`cookie`),
     });
 
     if (!session) {
-      response.status(401).json({
+      fail({
+        code: `unauthenticated`,
         message: `Unauthenticated request.`,
+        status: 401,
       });
       return;
     }
@@ -103,10 +130,14 @@ export const createAuthenticationServer = () => {
         sessionId: session.sessionId,
       });
     } catch (error) {
-      console.error(`Failed to revoke session ${session.sessionId}.`, {
-        correlationId: getCorrelationId(request, response),
-        error,
+      fail({
+        cause: error,
+        code: `logout_revoke_failed`,
+        logMessage: `Failed to revoke session ${session.sessionId}.`,
+        message: `We could not revoke the session right now.`,
+        status: 500,
       });
+      return;
     }
 
     response.clearCookie(authenticationSessionCookieName, {
@@ -114,60 +145,79 @@ export const createAuthenticationServer = () => {
       path: `/`,
       sameSite: `lax`,
     });
-    response.json({
+
+    respond({
       success: true,
     });
-  });
+  },
+});
 
-  app.patch(`/profile/me`, validateRequestBody(profileUpdateBodySchema), async (request, response) => {
+route({
+  method: `patch`,
+  route: `/profile/me`,
+  validators: {
+    body: profileUpdateBodySchema,
+  },
+  handler: async ({ body, fail, request, respond }) => {
     const session = await getSessionFromCookie({
       cookieHeader: request.header(`cookie`),
     });
 
     if (!session) {
-      response.status(401).json({
+      fail({
+        code: `unauthenticated`,
         message: `Unauthenticated request.`,
+        status: 401,
       });
       return;
     }
 
-    const profile = response.locals.validatedBody as ProfileUpdateBody;
+    const profile = body as ProfileUpdateBody;
     const updatedProfile = await updateSessionProfile({
       profile,
       sessionId: session.sessionId,
     });
 
     if (!updatedProfile) {
-      response.status(401).json({
+      fail({
+        code: `unauthenticated`,
         message: `Unauthenticated request.`,
+        status: 401,
       });
       return;
     }
 
-    response.json({
+    respond({
       authenticated: true,
       session: updatedProfile,
     });
-  });
+  },
+});
 
-  if (isAuthenticationTestEndpointEnabled()) {
-    app.get(`/test/otp/latest`, validateRequestQuery(otpTestQuerySchema), async (_request, response) => {
-      const { email } = response.locals.validatedQuery as OtpTestQuery;
+if (isAuthenticationTestEndpointEnabled()) {
+  route({
+    method: `get`,
+    route: `/test/otp/latest`,
+    validators: {
+      query: otpTestQuerySchema,
+    },
+    handler: async ({ fail, query, respond }) => {
+      const { email } = query;
       const latestOtpCode = await getLatestOtpForTesting({ email });
 
       if (!latestOtpCode) {
-        response.status(404).json({
+        fail({
+          code: `otp_not_found`,
           message: `No OTP found.`,
+          status: 404,
         });
         return;
       }
 
-      response.json({
+      respond({
         code: latestOtpCode,
         found: true,
       });
-    });
-  }
-
-  return app;
-};
+    },
+  });
+}

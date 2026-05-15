@@ -1,67 +1,233 @@
-import cors from 'cors';
 import express from 'express';
 import { v7 as uuidv7 } from 'uuid';
 import { z } from 'zod';
 
-type CreateModuleServerOptions = {
-  moduleName: string;
+type ValidateOptions = {
+  body?: z.ZodType | undefined;
+  params?: z.ZodType | undefined;
+  query?: z.ZodType | undefined;
 };
 
-const getRootFQDN = () => {
-  const envFqdn = process.env.ROOT_FQDN?.trim() || `reados.localhost`;
-  return envFqdn;
+type InferValidatedValue<Schema extends z.ZodType | undefined> = Schema extends z.ZodType ? z.infer<Schema> : unknown;
+
+type ValidatedResponseLocals<BodySchema extends z.ZodType | undefined, QuerySchema extends z.ZodType | undefined, ParamsSchema extends z.ZodType | undefined> = {
+  body: InferValidatedValue<BodySchema>;
+  params: InferValidatedValue<ParamsSchema>;
+  query: InferValidatedValue<QuerySchema>;
 };
 
-const isAllowedCorsOrigin = (origin: string) => {
-  try {
-    const requestOrigin = new URL(origin);
-    const rootFQDN = getRootFQDN();
+type ValidatedHandler<BodySchema extends z.ZodType | undefined, QuerySchema extends z.ZodType | undefined, ParamsSchema extends z.ZodType | undefined> = (
+  request: express.Request,
+  response: express.Response<unknown, ValidatedResponseLocals<BodySchema, QuerySchema, ParamsSchema>>,
+  next: express.NextFunction,
+) => unknown;
 
-    return requestOrigin.hostname === rootFQDN || requestOrigin.hostname.endsWith(`.${rootFQDN}`);
-  } catch {
-    return false;
-  }
+type RouteMethod = `delete` | `get` | `patch` | `post` | `put`;
+type RequestLogger = {
+  error: (object: Record<string, unknown>, message?: string) => void;
+  info: (object: Record<string, unknown>, message?: string) => void;
+};
+type RouteFailOptions = ApiErrorOptions & { cause?: unknown; logMessage?: string };
+
+type RouteOptions<BodySchema extends z.ZodType | undefined, QuerySchema extends z.ZodType | undefined, ParamsSchema extends z.ZodType | undefined> = {
+  handler: (context: {
+    body: InferValidatedValue<BodySchema>;
+    fail: (options: RouteFailOptions) => void;
+    params: InferValidatedValue<ParamsSchema>;
+    query: InferValidatedValue<QuerySchema>;
+    request: express.Request;
+    respond: <Data>(data: Data, status?: number) => void;
+    response: express.Response;
+  }) => unknown;
+  method: RouteMethod;
+  route: string;
+  validators?: {
+    body?: BodySchema;
+    params?: ParamsSchema;
+    query?: QuerySchema;
+  };
 };
 
-/**
- * Validates an incoming request body against a Zod schema before the route handler runs.
- */
-export const validateRequestBody = <Schema extends z.ZodTypeAny>(schema: Schema): express.RequestHandler => {
-  return (request, response, next) => {
-    const parsedBody = schema.safeParse(request.body);
+type ApiErrorOptions = {
+  code: string;
+  details?: unknown;
+  message: string;
+  status: number;
+};
 
-    if (!parsedBody.success) {
-      response.status(400).json({
-        message: `Invalid request body.`,
-        issues: parsedBody.error.flatten(),
-      });
-      return;
-    }
+type ApiErrorResponse = {
+  error: {
+    code: string;
+    correlationId: string;
+    details?: unknown;
+    message: string;
+  };
+  success: false;
+};
 
-    response.locals.validatedBody = parsedBody.data;
-    next();
+const createRouteResponder = (request: express.Request, response: express.Response, logger: RequestLogger | undefined) => {
+  const correlationId = getCorrelationId(request, response);
+
+  const fail = ({ cause, code, details, logMessage, message, status }: RouteFailOptions) => {
+    logger?.error(
+      {
+        code,
+        correlationId,
+        details,
+        error: cause,
+        status,
+      },
+      logMessage ?? message,
+    );
+
+    response.status(status).json({
+      error: {
+        code,
+        correlationId,
+        details,
+        message,
+      },
+      success: false,
+    } satisfies ApiErrorResponse);
+  };
+
+  const respond = <Data>(data: Data, status = 200) => {
+    logger?.info(
+      {
+        correlationId,
+        status,
+      },
+      `Route handler succeeded.`,
+    );
+    response.status(status).json({
+      data,
+      success: true,
+    });
+  };
+
+  return {
+    fail,
+    respond,
+  };
+};
+
+export const route = <BodySchema extends z.ZodType | undefined, QuerySchema extends z.ZodType | undefined, ParamsSchema extends z.ZodType | undefined>(
+  router: express.Router,
+  { handler, method, route, validators }: RouteOptions<BodySchema, QuerySchema, ParamsSchema>,
+) => {
+  const registerHandler = validate(validators ?? {}, async (request, response) => {
+    const locals = response.locals as ValidatedResponseLocals<BodySchema, QuerySchema, ParamsSchema>;
+    const logger = (request as express.Request & { log?: RequestLogger }).log;
+    const { fail, respond } = createRouteResponder(request, response, logger);
+
+    await handler({
+      body: locals.body,
+      fail,
+      params: locals.params,
+      query: locals.query,
+      request,
+      respond,
+      response,
+    });
+  });
+
+  router[method](route, registerHandler);
+};
+
+export const defineRoutes = (router: express.Router) => {
+  return <BodySchema extends z.ZodType | undefined, QuerySchema extends z.ZodType | undefined, ParamsSchema extends z.ZodType | undefined>(
+    options: RouteOptions<BodySchema, QuerySchema, ParamsSchema>,
+  ) => {
+    route(router, options);
   };
 };
 
 /**
- * Validates an incoming request query against a Zod schema before the route handler runs.
+ * Validates request sources against provided Zod schemas and stores parsed data on response.locals.
  */
-export const validateRequestQuery = <Schema extends z.ZodTypeAny>(schema: Schema): express.RequestHandler => {
-  return (request, response, next) => {
-    const parsedQuery = schema.safeParse(request.query);
+export function validate<BodySchema extends z.ZodType | undefined, QuerySchema extends z.ZodType | undefined, ParamsSchema extends z.ZodType | undefined>(options: {
+  body?: BodySchema;
+  params?: ParamsSchema;
+  query?: QuerySchema;
+}): express.RequestHandler;
 
-    if (!parsedQuery.success) {
-      response.status(400).json({
-        message: `Invalid request query.`,
-        issues: parsedQuery.error.flatten(),
-      });
+export function validate<BodySchema extends z.ZodType | undefined, QuerySchema extends z.ZodType | undefined, ParamsSchema extends z.ZodType | undefined>(
+  options: {
+    body?: BodySchema;
+    params?: ParamsSchema;
+    query?: QuerySchema;
+  },
+  handler: ValidatedHandler<BodySchema, QuerySchema, ParamsSchema>,
+): express.RequestHandler;
+
+export function validate({ body, params, query }: ValidateOptions, handler?: ValidatedHandler<z.ZodType | undefined, z.ZodType | undefined, z.ZodType | undefined>): express.RequestHandler {
+  return (request, response, next) => {
+    if (body) {
+      const parsedBody = body.safeParse(request.body);
+
+      if (!parsedBody.success) {
+        response.status(400).json({
+          error: {
+            code: `invalid_request_body`,
+            correlationId: getCorrelationId(request, response),
+            details: z.flattenError(parsedBody.error),
+            message: `Invalid request body.`,
+          },
+          success: false,
+        } satisfies ApiErrorResponse);
+        return;
+      }
+
+      response.locals.body = parsedBody.data;
+    }
+
+    if (query) {
+      const parsedQuery = query.safeParse(request.query);
+
+      if (!parsedQuery.success) {
+        response.status(400).json({
+          error: {
+            code: `invalid_request_query`,
+            correlationId: getCorrelationId(request, response),
+            details: z.flattenError(parsedQuery.error),
+            message: `Invalid request query.`,
+          },
+          success: false,
+        } satisfies ApiErrorResponse);
+        return;
+      }
+
+      response.locals.query = parsedQuery.data;
+    }
+
+    if (params) {
+      const parsedParams = params.safeParse(request.params);
+
+      if (!parsedParams.success) {
+        response.status(400).json({
+          error: {
+            code: `invalid_request_params`,
+            correlationId: getCorrelationId(request, response),
+            details: z.flattenError(parsedParams.error),
+            message: `Invalid request params.`,
+          },
+          success: false,
+        } satisfies ApiErrorResponse);
+        return;
+      }
+
+      response.locals.params = parsedParams.data;
+    }
+
+    if (handler) {
+      const typedResponse = response as express.Response<unknown, ValidatedResponseLocals<z.ZodType | undefined, z.ZodType | undefined, z.ZodType | undefined>>;
+      Promise.resolve(handler(request, typedResponse, next)).catch(next);
       return;
     }
 
-    response.locals.validatedQuery = parsedQuery.data;
     next();
   };
-};
+}
 
 /**
  * Resolves the current correlation identifier from request context.
@@ -80,61 +246,4 @@ export const getCorrelationId = (request: express.Request, response: express.Res
   }
 
   return uuidv7();
-};
-
-/**
- * Creates a minimal module server with shared middleware and health endpoints.
- */
-export const createModuleServer = ({ moduleName }: CreateModuleServerOptions) => {
-  const app = express();
-
-  app.use(
-    cors({
-      credentials: true,
-      origin: (origin, callback) => {
-        if (!origin) {
-          callback(null, true);
-          return;
-        }
-
-        if (isAllowedCorsOrigin(origin)) {
-          callback(null, origin);
-          return;
-        }
-
-        callback(null, false);
-      },
-    }),
-  );
-  app.use(express.json());
-  app.use((request, response, next) => {
-    const correlationId = getCorrelationId(request, response);
-
-    response.locals.correlationId = correlationId;
-    response.setHeader(`x-correlation-id`, correlationId);
-    next();
-  });
-
-  app.get(`/health`, (_request, response) => {
-    response.json({
-      module: moduleName,
-      status: `ok`,
-    });
-  });
-
-  app.get(`/`, (_request, response) => {
-    response.json({
-      message: `${moduleName} module is running.`,
-      module: moduleName,
-    });
-  });
-
-  if (process.env.COVERAGE === `true`) {
-    app.get(`/__coverage__`, (_request, response) => {
-      const runtimeCoverage = (globalThis as { __coverage__?: unknown }).__coverage__ ?? {};
-      response.json(runtimeCoverage);
-    });
-  }
-
-  return app;
 };

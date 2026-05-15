@@ -1,5 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
+import { z } from 'zod';
 
+import { apiSuccessSchema } from '@components/application/api.schema.ts';
 import { getBrowserHostname, getBrowserProtocol } from '@components/application/application.browser.ts';
 
 /**
@@ -33,11 +35,11 @@ export const probeRootApplication = async () => {
       return false;
     }
 
-    const body = (await response.json()) as {
-      whoami?: string;
-    };
+    const parsedBody = apiSuccessSchema(z.object({
+      whoami: z.string().optional(),
+    })).parse(await response.json());
 
-    return body.whoami === `root`;
+    return parsedBody.data.whoami === `root`;
   } catch {
     return false;
   }
