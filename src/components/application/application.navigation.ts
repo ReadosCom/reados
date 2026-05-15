@@ -1,52 +1,20 @@
+import type { ApplicationSidebarData } from '@components/application/application.navigation.schema.ts';
 import {
-  AiContentGenerator02Icon,
-  BadgePercentIcon,
-  BookOpen02Icon,
-  BoundingBoxIcon,
-  BubbleChatSparkIcon,
-  Building06Icon,
-  ContractsIcon,
-  FlyingHumanIcon,
-  Invoice03Icon,
-  LegalDocument02Icon,
-  Home01Icon,
-  Note04Icon,
-  PayByCheckIcon,
-  Trolley01Icon,
-  UserGroupIcon,
-} from '@hugeicons/core-free-icons';
-
-export type ApplicationIcon = typeof Building06Icon;
-
-type NavItem = {
-  title: string;
-  link?: string;
-  icon?: ApplicationIcon;
-};
-
-type NavMainItem = {
-  title: string;
-  link?: string;
-  icon?: ApplicationIcon;
-  isActive?: boolean;
-  items?: NavItem[];
-};
-
-type ProjectItem = {
-  name: string;
-  link: string;
-};
-
-type TenantItem = {
-  name: string;
-  plan: string;
-};
-
-export type ApplicationSidebarData = {
-  tenants: TenantItem[];
-  navMain: NavMainItem[];
-  projects: ProjectItem[];
-};
+  IconBook,
+  IconBuilding,
+  IconChecklist,
+  IconCoin,
+  IconFileDescription,
+  IconHome,
+  IconMessageCircle,
+  IconNotebook,
+  IconPackage,
+  IconReceipt2,
+  IconShoppingCart,
+  IconSparkles,
+  IconUsers,
+  IconUserStar,
+} from '@tabler/icons-react';
 
 export const applicationSidebarData: ApplicationSidebarData = {
   tenants: [
@@ -59,80 +27,80 @@ export const applicationSidebarData: ApplicationSidebarData = {
     {
       title: 'Home',
       link: '/',
-      icon: Home01Icon,
+      Icon: IconHome,
     },
     {
       title: 'ERP',
       link: '/erp',
-      icon: Building06Icon,
+      Icon: IconBuilding,
       isActive: true,
       items: [
         {
           title: 'Accounting',
           link: '/erp/accounting',
-          icon: BookOpen02Icon,
+          Icon: IconBook,
         },
         {
           title: 'CRM',
           link: '/erp/crm',
-          icon: UserGroupIcon,
+          Icon: IconUsers,
         },
         {
           title: 'Sales',
           link: '/erp/sales',
-          icon: BadgePercentIcon,
+          Icon: IconCoin,
         },
         {
           title: 'Billing',
           link: '/erp/billing',
-          icon: Invoice03Icon,
+          Icon: IconReceipt2,
         },
         {
           title: 'Contract Management',
           link: '/erp/contract-management',
-          icon: ContractsIcon,
+          Icon: IconFileDescription,
         },
         {
           title: 'Inventory',
           link: '/erp/inventory',
-          icon: BoundingBoxIcon,
+          Icon: IconPackage,
         },
         {
           title: 'Procurement',
           link: '/erp/procurement',
-          icon: Trolley01Icon,
+          Icon: IconShoppingCart,
         },
         {
           title: 'HR',
           link: '/erp/hr',
-          icon: FlyingHumanIcon,
+          Icon: IconUserStar,
         },
         {
           title: 'Payroll',
           link: '/erp/payroll',
-          icon: PayByCheckIcon,
+          Icon: IconChecklist,
         },
       ],
     },
     {
       title: 'Project Management',
       link: '/project-management',
-      icon: Note04Icon,
+      Icon: IconNotebook,
     },
     {
       title: 'Document Management',
       link: '/document-management',
-      icon: LegalDocument02Icon,
+      Icon: IconFileDescription,
     },
     {
       title: 'Communication',
       link: '/communication',
-      icon: BubbleChatSparkIcon,
+      Icon: IconMessageCircle,
     },
     {
       title: 'Content Management',
       link: '/content-management',
-      icon: AiContentGenerator02Icon,
+      Icon: IconSparkles,
     },
   ],
   projects: [],

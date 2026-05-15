@@ -1,9 +1,8 @@
 import { setBrowserLocation } from '@components/application/application.browser.ts';
 import { useLogoutAuthenticationSessionMutation } from '@components/authentication/authentication.query.ts';
-import { UnfoldMoreIcon } from '@hugeicons/core-free-icons';
+import { IconSelector } from '@tabler/icons-react';
 import { Link } from '@tanstack/react-router';
 import { Avatar, AvatarFallback } from '@components/uiframework/Avatar';
-import { HugeiconsIcon } from '@hugeicons/react';
 import { useTranslation } from '@components/i18n/useTranslation.ts';
 import {
   DropdownMenu,
@@ -75,7 +74,7 @@ export const NavUser = ({ user }: NavUserProps) => {
                 <span className="truncate font-medium">{user.name}</span>
                 <span className="truncate text-xs text-muted-foreground">{user.email}</span>
               </div>
-              <HugeiconsIcon className="ml-auto size-4" icon={UnfoldMoreIcon} strokeWidth={2} />
+              <IconSelector className="ml-auto size-4" stroke={2} />
             </SidebarMenuButton>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className="w-56">

@@ -1,21 +1,9 @@
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from '@components/uiframework/DropdownMenu';
-import { UnfoldMoreIcon } from '@hugeicons/core-free-icons';
-import { Link } from '@tanstack/react-router';
-import { HugeiconsIcon } from '@hugeicons/react';
-import { SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@components/uiframework/Sidebar';
+import type { TenantItem } from '@components/application/application.navigation.schema.ts';
 import { useTranslation } from '@components/i18n/useTranslation.ts';
-
-type TenantItem = {
-  link?: string;
-  name: string;
-  plan: string;
-  url?: string;
-};
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@components/uiframework/DropdownMenu';
+import { SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@components/uiframework/Sidebar';
+import { IconSelector } from '@tabler/icons-react';
+import { Link } from '@tanstack/react-router';
 
 type TenantSwitcherProps = {
   tenants: TenantItem[];
@@ -61,14 +49,12 @@ export const TenantSwitcher = ({ tenants }: TenantSwitcherProps) => {
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <SidebarMenuButton className="cursor-pointer" size="lg">
-              <div className="flex size-8 items-center justify-center rounded-md bg-sidebar-primary text-sidebar-primary-foreground">
-                {activeTenant.name.slice(0, 1).toUpperCase()}
-              </div>
+              <div className="flex size-8 items-center justify-center rounded-md bg-sidebar-primary text-sidebar-primary-foreground">{activeTenant.name.slice(0, 1).toUpperCase()}</div>
               <div className="grid flex-1 text-left text-sm leading-tight">
                 <span className="truncate font-medium">{activeTenant.name}</span>
                 <span className="truncate text-xs text-muted-foreground">{t(activeTenant.plan)}</span>
               </div>
-              <HugeiconsIcon className="ml-auto size-4" icon={UnfoldMoreIcon} strokeWidth={2} />
+              <IconSelector className="ml-auto size-4" stroke={2} />
             </SidebarMenuButton>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="start" className="w-56">

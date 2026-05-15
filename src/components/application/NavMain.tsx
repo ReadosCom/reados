@@ -1,7 +1,6 @@
-import type { ApplicationIcon } from '@components/application/application.navigation.ts';
-import { ArrowRight01Icon } from '@hugeicons/core-free-icons';
+import type { NavMainItem, NavigationTarget } from '@components/application/application.navigation.schema.ts';
+import { IconChevronRight } from '@tabler/icons-react';
 import { Link } from '@tanstack/react-router';
-import { HugeiconsIcon } from '@hugeicons/react';
 import { useTranslation } from '@components/i18n/useTranslation.ts';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@components/uiframework/Collapsible';
 import {
@@ -15,31 +14,17 @@ import {
   SidebarMenuSubItem,
 } from '@components/uiframework/Sidebar';
 
-type NavMainItem = {
-  title: string;
-  url?: string;
-  link?: string;
-  icon?: ApplicationIcon;
-  isActive?: boolean;
-  items?: Array<{
-    title: string;
-    url?: string;
-    link?: string;
-    icon?: ApplicationIcon;
-  }>;
-};
-
 type NavMainProps = {
   items: NavMainItem[];
 };
 
 export const NavMain = ({ items }: NavMainProps) => {
   const { t } = useTranslation(`./NavMain.i18n.ts`);
-  const renderNavigationTarget = ({ icon, link, title, url }: { icon?: ApplicationIcon; link?: string; title: string; url?: string }) => {
+  const renderNavigationTarget = ({ Icon, link, title, url }: NavigationTarget) => {
     if (url) {
       return (
         <a href={url}>
-          {icon ? <HugeiconsIcon icon={icon} strokeWidth={2} /> : null}
+          {Icon ? <Icon stroke={2} /> : null}
           <span>{t(title)}</span>
         </a>
       );
@@ -48,7 +33,7 @@ export const NavMain = ({ items }: NavMainProps) => {
     if (link) {
       return (
         <Link to={link as never}>
-          {icon ? <HugeiconsIcon icon={icon} strokeWidth={2} /> : null}
+          {Icon ? <Icon stroke={2} /> : null}
           <span>{t(title)}</span>
         </Link>
       );
@@ -56,7 +41,7 @@ export const NavMain = ({ items }: NavMainProps) => {
 
     return (
       <span>
-        {icon ? <HugeiconsIcon icon={icon} strokeWidth={2} /> : null}
+        {Icon ? <Icon stroke={2} /> : null}
         <span>{t(title)}</span>
       </span>
     );
@@ -72,9 +57,9 @@ export const NavMain = ({ items }: NavMainProps) => {
                 <SidebarMenuItem>
                   <CollapsibleTrigger asChild>
                     <SidebarMenuButton tooltip={t(item.title)}>
-                      {item.icon ? <HugeiconsIcon icon={item.icon} strokeWidth={2} /> : null}
+                      {item.Icon ? <item.Icon stroke={2} /> : null}
                       <span>{t(item.title)}</span>
-                      <HugeiconsIcon className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" icon={ArrowRight01Icon} strokeWidth={2} />
+                      <IconChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" stroke={2} />
                     </SidebarMenuButton>
                   </CollapsibleTrigger>
                   <CollapsibleContent>
