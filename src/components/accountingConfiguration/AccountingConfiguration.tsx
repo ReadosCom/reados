@@ -1,5 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -23,11 +23,21 @@ export const AccountingConfiguration = () => {
   const { mutateAsync, isPending: isUpdating } = useUpdateAccountingConfigurationMutation();
   const [saveState, setSaveState] = useState<`error` | `idle` | `saved`>(`idle`);
   const form = useForm<AccountingConfigurationFormValues>({
-    resolver: zodResolver(accountingConfigurationFormSchema),
-    values: {
-      finalized: data?.configuration.finalized === true,
+    defaultValues: {
+      finalized: false,
     },
+    resolver: zodResolver(accountingConfigurationFormSchema),
   });
+
+  useEffect(() => {
+    if (!data) {
+      return;
+    }
+
+    form.reset({
+      finalized: data.configuration.finalized === true,
+    });
+  }, [data, form]);
 
   const onSubmit = async (values: AccountingConfigurationFormValues) => {
     setSaveState(`idle`);
