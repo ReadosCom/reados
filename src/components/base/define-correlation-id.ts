@@ -1,6 +1,6 @@
 import type { Express } from "express";
 
-import { getCorrelationId } from "@components/express/express.server.ts";
+import { getCorrelationId } from "@components/express/express.router.ts";
 
 export const defineCorrelationId = (app: Express) => {
   app.use((request, response, next) => {

@@ -1,7 +1,7 @@
-import type { Request, Response, Router } from "express";
+import type { Router } from "express";
 import { z } from "zod";
 
-import { getCorrelationId, validate } from "@components/express/express.server.ts";
+import { defineRoutes } from "@components/express/express.router.ts";
 import { ensurePool } from "@components/postgres/pool.ts";
 
 import { getAccountingConfiguration, updateAccountingConfiguration } from "./accountingConfiguration.controller.ts";
@@ -13,73 +13,73 @@ type RouteRegistrationOptions = {
 
 const pool = ensurePool();
 
-const respondValidationError = (request: Request, response: Response, error: z.ZodError) => {
-  response.status(400).json({
-    error: {
-      code: `invalid_accounting_configuration`,
-      correlationId: getCorrelationId(request, response),
-      details: z.flattenError(error),
-      message: `Invalid accounting configuration.`,
-    },
-    success: false,
-  });
-};
-
 /**
  * Registers accounting configuration routes on the provided app.
  */
 export const registerAccountingConfigurationRoutes = (app: Router, options: RouteRegistrationOptions = {}) => {
   const prefix = options.prefix ?? ``;
+  const route = defineRoutes(app);
 
-  app.get(prefix, async (request, response) => {
-    try {
-      const configuration = await getAccountingConfiguration(pool);
-      response.status(200).json({
-        data: configuration,
-        success: true,
-      });
-    } catch (error) {
-      if (error instanceof z.ZodError) {
-        respondValidationError(request, response, error);
-        return;
-      }
+  route({
+    method: `get`,
+    route: prefix,
+    handler: async ({ fail, respond }) => {
+      try {
+        const configuration = await getAccountingConfiguration(pool);
+        respond(configuration);
+      } catch (error) {
+        if (error instanceof z.ZodError) {
+          fail({
+            cause: error,
+            code: `invalid_accounting_configuration`,
+            details: z.flattenError(error),
+            message: `Invalid accounting configuration.`,
+            status: 400,
+          });
+          return;
+        }
 
-      console.error(`Failed to load accounting configuration.`, error);
-      response.status(500).json({
-        error: {
+        fail({
+          cause: error,
           code: `accounting_configuration_fetch_failed`,
-          correlationId: getCorrelationId(request, response),
+          logMessage: `Failed to load accounting configuration.`,
           message: `We could not load accounting configuration right now.`,
-        },
-        success: false,
-      });
-    }
+          status: 500,
+        });
+      }
+    },
   });
 
-  app.patch(prefix, validate({ body: accountingConfigurationUpdateBodySchema }, async (_request, response) => {
-    const body = response.locals.body;
+  route({
+    method: `patch`,
+    route: prefix,
+    validators: {
+      body: accountingConfigurationUpdateBodySchema,
+    },
+    handler: async ({ body, fail, respond }) => {
+      try {
+        const configuration = await updateAccountingConfiguration(pool, body);
+        respond(configuration);
+      } catch (error) {
+        if (error instanceof z.ZodError) {
+          fail({
+            cause: error,
+            code: `invalid_accounting_configuration`,
+            details: z.flattenError(error),
+            message: `Invalid accounting configuration.`,
+            status: 400,
+          });
+          return;
+        }
 
-    try {
-      const configuration = await updateAccountingConfiguration(pool, body);
-      response.status(200).json({
-        data: configuration,
-        success: true,
-      });
-    } catch (error) {
-      if (error instanceof z.ZodError) {
-        respondValidationError(_request, response, error);
-        return;
-      }
-
-      console.error(`Failed to update accounting configuration.`, error);
-      response.status(500).json({
-        error: {
+        fail({
+          cause: error,
           code: `accounting_configuration_update_failed`,
-          correlationId: getCorrelationId(_request, response),
+          logMessage: `Failed to update accounting configuration.`,
           message: `We could not update accounting configuration right now.`,
-        },
-        success: false,
-      });
-    }
-  }));
+          status: 500,
+        });
+      }
+    },
+  });
 };

@@ -1,5 +1,5 @@
 import type { Router } from "express";
-import { getCorrelationId } from "@components/express/express.server.ts";
+import { defineRoutes } from "@components/express/express.router.ts";
 
 import { getAccountingDashboardSummary } from "./accounting.controller.ts";
 
@@ -15,26 +15,26 @@ export const registerAccountingRoutes = (
   options: RouteRegistrationOptions = {},
 ) => {
   const prefix = options.prefix ?? ``;
+  const route = defineRoutes(app);
 
-  app.get(`${prefix}/dashboard/summary`, async (request, response) => {
-    try {
-      const summary = await getAccountingDashboardSummary();
-      response.status(200).json({
-        data: {
+  route({
+    method: `get`,
+    route: `${prefix}/dashboard/summary`,
+    handler: async ({ fail, respond }) => {
+      try {
+        const summary = await getAccountingDashboardSummary();
+        respond({
           summary,
-        },
-        success: true,
-      });
-    } catch (error) {
-      console.error(`Failed to load accounting summary.`, error);
-      response.status(500).json({
-        error: {
+        });
+      } catch (error) {
+        fail({
+          cause: error,
           code: `accounting_summary_failed`,
-          correlationId: getCorrelationId(request, response),
+          logMessage: `Failed to load accounting summary.`,
           message: `We could not load the accounting summary right now.`,
-        },
-        success: false,
-      });
-    }
+          status: 500,
+        });
+      }
+    },
   });
 };
