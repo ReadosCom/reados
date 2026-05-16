@@ -43,7 +43,6 @@ export const AccountingConfiguration = () => {
         .map((segment) => ({
           active: segment.active,
           id: segment.id,
-          key: segment.key,
           label: segment.label,
         })),
     });
@@ -56,7 +55,6 @@ export const AccountingConfiguration = () => {
       const customSegments = values.optionalSegments.map((segment, index) => ({
         active: segment.active,
         id: segment.id,
-        key: segment.key,
         label: segment.label,
         order: index + 2,
         required: false as const,
@@ -132,7 +130,6 @@ export const AccountingConfiguration = () => {
                     optionalSegments.append({
                       active: true,
                       id: uuidv7(),
-                      key: ``,
                       label: ``,
                     });
                   }}
@@ -154,20 +151,6 @@ export const AccountingConfiguration = () => {
                         <FormControl>
                           <Input {...optionalLabelField} />
                         </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name={`optionalSegments.${index}.key`}
-                    render={({ field: optionalKeyField }) => (
-                      <FormItem>
-                        <FormLabel>{t(`Key`)}</FormLabel>
-                        <FormControl>
-                          <Input {...optionalKeyField} />
-                        </FormControl>
-                        <FormDescription>{t(`Use lowercase, numbers, and underscore only.`)}</FormDescription>
                         <FormMessage />
                       </FormItem>
                     )}

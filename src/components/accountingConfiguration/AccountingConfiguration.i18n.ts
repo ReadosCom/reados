@@ -28,9 +28,6 @@ export const translations = {
   "Finalized": {
     "tr": { translation: `Tamamlandı`, translatedBy: `AI` },
   },
-  "Key": {
-    "tr": { translation: `Anahtar`, translatedBy: `AI` },
-  },
   "Label": {
     "tr": { translation: `Etiket`, translatedBy: `AI` },
   },
@@ -54,8 +51,5 @@ export const translations = {
   },
   "System required segment": {
     "tr": { translation: `Sistem tarafından zorunlu segment`, translatedBy: `AI` },
-  },
-  "Use lowercase, numbers, and underscore only.": {
-    "tr": { translation: `Yalnızca küçük harf, sayı ve alt çizgi kullanın.`, translatedBy: `AI` },
   },
 } as const satisfies Translations;

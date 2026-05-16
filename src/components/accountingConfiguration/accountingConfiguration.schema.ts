@@ -4,7 +4,6 @@ import { apiSuccessSchema } from "@components/application/api.schema.ts";
 export const systemSegmentSchema = z.object({
   active: z.literal(true),
   id: z.string().trim().min(1),
-  key: z.enum([`account`, `entity`]),
   label: z.string().trim().min(1),
   order: z.number().int().nonnegative(),
   required: z.literal(true),
@@ -14,12 +13,6 @@ export const systemSegmentSchema = z.object({
 export const customSegmentSchema = z.object({
   active: z.boolean(),
   id: z.string().trim().min(1),
-  key: z
-    .string()
-    .trim()
-    .min(1)
-    .max(32)
-    .regex(/^[a-z][a-z0-9_]*$/u),
   label: z.string().trim().min(1).max(64),
   order: z.number().int().nonnegative(),
   required: z.literal(false),
@@ -31,7 +24,6 @@ export const segmentSchema = z.discriminatedUnion(`source`, [systemSegmentSchema
 export const accountSystemSegment = {
   active: true,
   id: `segment-account`,
-  key: `account`,
   label: `Account`,
   order: 1,
   required: true,
@@ -41,7 +33,6 @@ export const accountSystemSegment = {
 export const entitySystemSegment = {
   active: true,
   id: `segment-entity`,
-  key: `entity`,
   label: `Entity`,
   order: 0,
   required: true,
@@ -56,21 +47,10 @@ export const accountingConfigurationSchema = z
     segments: z.array(segmentSchema).min(2),
   })
   .superRefine((value, context) => {
-    const requiredKeys = new Set([`entity`, `account`]);
-    const seenKeys = new Set<string>();
+    const requiredIds = new Set([entitySystemSegment.id, accountSystemSegment.id]);
     const seenOrders = new Set<number>();
 
     for (const segment of value.segments) {
-      if (seenKeys.has(segment.key)) {
-        context.addIssue({
-          code: `custom`,
-          message: `Segment keys must be unique.`,
-          path: [`segments`],
-        });
-      } else {
-        seenKeys.add(segment.key);
-      }
-
       if (seenOrders.has(segment.order)) {
         context.addIssue({
           code: `custom`,
@@ -82,12 +62,12 @@ export const accountingConfigurationSchema = z
       }
     }
 
-    for (const requiredKey of requiredKeys) {
-      const segment = value.segments.find((candidate) => candidate.key === requiredKey);
+    for (const requiredId of requiredIds) {
+      const segment = value.segments.find((candidate) => candidate.id === requiredId);
       if (!segment) {
         context.addIssue({
           code: `custom`,
-          message: `Required segment "${requiredKey}" is missing.`,
+          message: `Required segment "${requiredId}" is missing.`,
           path: [`segments`],
         });
         continue;
@@ -96,7 +76,7 @@ export const accountingConfigurationSchema = z
       if (segment.source !== `system` || segment.required !== true || segment.active !== true) {
         context.addIssue({
           code: `custom`,
-          message: `Required segment "${requiredKey}" must be active system segment.`,
+          message: `Required segment "${requiredId}" must be active system segment.`,
           path: [`segments`],
         });
       }
@@ -124,7 +104,6 @@ export const accountingConfigurationUpdateBodySchema = z.object({
 export const accountingConfigurationOptionalSegmentFormSchema = customSegmentSchema.pick({
   active: true,
   id: true,
-  key: true,
   label: true,
 });
 

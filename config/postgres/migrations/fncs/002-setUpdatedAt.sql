@@ -3,7 +3,7 @@ RETURNS trigger
 LANGUAGE plpgsql
 AS $$
 BEGIN
-  NEW."updatedAt" := statement_timestamp();
+  NEW."updatedAt" := transaction_timestamp();
   RETURN NEW;
 END;
 $$;
