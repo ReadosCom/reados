@@ -1,17 +1,19 @@
 import express from "express";
 
 import { defineMiddlewares } from "@components/base/define-middlewares.ts";
-import type { CreateModuleAppOptions, StartModuleServerOptions } from "./express.schema.ts";
+import type { CreateServerOptions } from "./express.schema.ts";
 
 /**
  * Creates a standardized module Express application with shared middleware, health, root, and coverage routes.
  */
-export const createServer = ({ module, router }: CreateModuleAppOptions) => {
+export const createServer = ({ module, port, routers }: CreateServerOptions) => {
   const app = express();
 
   app.set(`trust proxy`, 1);
   defineMiddlewares(app);
-  app.use(router);
+  for (const router of routers) {
+    app.use(router);
+  }
 
   app.get(`/health`, (_request, response) => {
     response.status(200).json({
@@ -40,14 +42,9 @@ export const createServer = ({ module, router }: CreateModuleAppOptions) => {
     });
   }
 
-  return app;
-};
-
-/**
- * Starts a standardized module server.
- */
-export const startModuleServer = ({ app, module, port }: StartModuleServerOptions) => {
   app.listen(port, () => {
     console.log(`${module} server listening on port ${port}`);
   });
+
+  return app;
 };

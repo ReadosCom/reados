@@ -69,13 +69,8 @@ export type ApiErrorResponse = {
   success: false;
 };
 
-export type CreateModuleAppOptions = {
-  module: string;
-  router: express.Router;
-};
-
-export type StartModuleServerOptions = {
-  app: express.Express;
+export type CreateServerOptions = {
   module: string;
   port: number;
+  routers: express.Router[];
 };

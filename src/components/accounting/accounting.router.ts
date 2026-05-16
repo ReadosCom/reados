@@ -11,11 +11,11 @@ type RouteRegistrationOptions = {
  * Registers accounting routes on the provided module app.
  */
 export const registerAccountingRoutes = (
-  app: Router,
+  parentRouter: Router,
   options: RouteRegistrationOptions = {},
 ) => {
   const prefix = options.prefix ?? ``;
-  const route = defineRoutes(app);
+  const route = defineRoutes(parentRouter);
 
   route({
     method: `get`,
