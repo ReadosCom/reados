@@ -1,12 +1,36 @@
-import type { Pool } from "pg";
+import type { Pool } from 'pg';
 
-import type { AccountingConfigurationUpdateBody } from "./accountingConfiguration.schema.ts";
+import { accountingConfigurationSchema, type AccountingConfiguration, type AccountingConfigurationUpdateBody } from './accountingConfiguration.schema.ts';
 
 const accountingModuleName = `accounting`;
 
 type SetupRow = {
   configuration: Record<string, unknown>;
   module: string;
+};
+
+const defaultAccountingConfiguration: AccountingConfiguration = {
+  finalized: false,
+  segments: [
+    {
+      active: true,
+      id: `segment-entity`,
+      key: `entity`,
+      label: `Entity`,
+      order: 0,
+      required: true,
+      source: `system`,
+    },
+    {
+      active: true,
+      id: `segment-account`,
+      key: `account`,
+      label: `Account`,
+      order: 1,
+      required: true,
+      source: `system`,
+    },
+  ],
 };
 
 /**
@@ -29,13 +53,15 @@ export const getAccountingConfiguration = async (pool: Pool) => {
 
   if (!row) {
     return {
-      configuration: {},
+      configuration: defaultAccountingConfiguration,
       module: accountingModuleName,
     } as const;
   }
 
+  const configuration = accountingConfigurationSchema.parse(row.configuration);
+
   return {
-    configuration: row.configuration,
+    configuration,
     module: accountingModuleName,
   } as const;
 };
@@ -44,6 +70,8 @@ export const getAccountingConfiguration = async (pool: Pool) => {
  * Upserts configuration for the accounting module.
  */
 export const updateAccountingConfiguration = async (pool: Pool, body: AccountingConfigurationUpdateBody) => {
+  const configuration = accountingConfigurationSchema.parse(body.configuration);
+
   const result = await pool.query<SetupRow>(
     `
       INSERT INTO "setup" (
@@ -61,7 +89,7 @@ export const updateAccountingConfiguration = async (pool: Pool, body: Accounting
         "module",
         "configuration";
     `,
-    [accountingModuleName, JSON.stringify(body.configuration)],
+    [accountingModuleName, JSON.stringify(configuration)],
   );
 
   const row = result.rows[0];
@@ -74,7 +102,7 @@ export const updateAccountingConfiguration = async (pool: Pool, body: Accounting
   }
 
   return {
-    configuration: row.configuration,
+    configuration: accountingConfigurationSchema.parse(row.configuration),
     module: accountingModuleName,
   } as const;
 };

@@ -1,10 +1,9 @@
 import { AppShell } from "@components/application/AppShell";
 import { useAccountingConfigurationQuery } from "@components/accountingConfiguration/accountingConfiguration.query.ts";
 import { useTranslation } from "@components/i18n/useTranslation.ts";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@components/uiframework/Card";
+import { Card, CardContent, CardHeader, CardTitle } from "@components/uiframework/Card";
 import { Navigate } from "@tanstack/react-router";
 
-import { AccountingForm } from "./AccountingForm.tsx";
 import { useAccountingDashboardSummaryQuery } from "./accounting.query.ts";
 
 const asCurrency = (amount: number, currency: string) => {
@@ -62,17 +61,6 @@ export const Accounting = () => {
               <CardContent className="text-3xl font-semibold">{summary ? asCurrency(summary.unpaidBalance, summary.currency) : `--`}</CardContent>
             </Card>
           </section>
-
-          <Card className="mt-4">
-            <CardHeader>
-              <CardTitle>{t(`Accounting configuration`)}</CardTitle>
-              <CardDescription>{t(`Scaffolded workspace for your accounting module.`)}</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <AccountingForm defaultFiscalYear={summary?.asOf.slice(0, 4) ?? `2026`} />
-            </CardContent>
-          </Card>
-
           {isPending ? <p className="mt-4 text-sm text-muted-foreground">{t(`Loading accounting summary...`)}</p> : null}
           {isError ? <p className="mt-4 text-sm text-destructive">{t(`Could not load accounting summary right now.`)}</p> : null}
         </div>
