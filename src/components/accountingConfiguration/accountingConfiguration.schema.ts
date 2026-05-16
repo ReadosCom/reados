@@ -21,33 +21,12 @@ export const customSegmentSchema = z.object({
 
 export const segmentSchema = z.discriminatedUnion(`source`, [systemSegmentSchema, customSegmentSchema]);
 
-export const accountSystemSegment = {
-  active: true,
-  id: `segment-account`,
-  label: `Account`,
-  order: 1,
-  required: true,
-  source: `system`,
-} as const satisfies z.infer<typeof systemSegmentSchema>;
-
-export const entitySystemSegment = {
-  active: true,
-  id: `segment-entity`,
-  label: `Entity`,
-  order: 0,
-  required: true,
-  source: `system`,
-} as const satisfies z.infer<typeof systemSegmentSchema>;
-
-export const defaultSystemSegments = [entitySystemSegment, accountSystemSegment] as const;
-
 export const accountingConfigurationSchema = z
   .object({
     finalized: z.boolean(),
-    segments: z.array(segmentSchema).min(2),
+    segments: z.array(segmentSchema),
   })
   .superRefine((value, context) => {
-    const requiredIds = new Set([entitySystemSegment.id, accountSystemSegment.id]);
     const seenOrders = new Set<number>();
 
     for (const segment of value.segments) {
@@ -62,24 +41,14 @@ export const accountingConfigurationSchema = z
       }
     }
 
-    for (const requiredId of requiredIds) {
-      const segment = value.segments.find((candidate) => candidate.id === requiredId);
-      if (!segment) {
-        context.addIssue({
-          code: `custom`,
-          message: `Required segment "${requiredId}" is missing.`,
-          path: [`segments`],
-        });
-        continue;
-      }
+    const activeRequiredSystemSegments = value.segments.filter((segment) => segment.source === `system` && segment.required === true && segment.active === true);
 
-      if (segment.source !== `system` || segment.required !== true || segment.active !== true) {
-        context.addIssue({
-          code: `custom`,
-          message: `Required segment "${requiredId}" must be active system segment.`,
-          path: [`segments`],
-        });
-      }
+    if (activeRequiredSystemSegments.length < 2) {
+      context.addIssue({
+        code: `custom`,
+        message: `At least two active required system segments must exist.`,
+        path: [`segments`],
+      });
     }
 
     if (value.finalized && context.issues.length > 0) {

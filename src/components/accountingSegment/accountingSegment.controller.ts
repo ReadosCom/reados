@@ -2,6 +2,9 @@ import type { Pool } from 'pg';
 
 import { AccountingSegmentNotFoundError, type AccountingSegment, type AccountingSegmentRow, type CreateAccountingSegmentBody, type UpdateAccountingSegmentBody } from './accountingSegment.schema.ts';
 
+const entitySystemSegmentId = `00000000-0000-7000-8000-000000000001`;
+const accountSystemSegmentId = `00000000-0000-7000-8000-000000000002`;
+
 const asAccountingSegment = (row: AccountingSegmentRow): AccountingSegment => {
   return {
     active: row.active,
@@ -15,11 +18,8 @@ const asAccountingSegment = (row: AccountingSegmentRow): AccountingSegment => {
   };
 };
 
-/**
- * Returns all accounting segments ordered for presentation/processing.
- */
-export const listAccountingSegments = async (pool: Pool) => {
-  const result = await pool.query<AccountingSegmentRow>(
+const selectAccountingSegments = async (pool: Pool) => {
+  return pool.query<AccountingSegmentRow>(
     `
       SELECT
         "id",
@@ -34,6 +34,38 @@ export const listAccountingSegments = async (pool: Pool) => {
       ORDER BY "order" ASC;
     `,
   );
+};
+
+const ensureDefaultAccountingSegments = async (pool: Pool) => {
+  await pool.query(
+    `
+      INSERT INTO "accountingSegment" (
+        "id",
+        "label",
+        "order",
+        "required",
+        "active",
+        "source"
+      )
+      VALUES
+        ($1, 'Entity', 0, true, true, 'system'),
+        ($2, 'Account', 1, true, true, 'system')
+      ON CONFLICT ("id") DO NOTHING;
+    `,
+    [entitySystemSegmentId, accountSystemSegmentId],
+  );
+};
+
+/**
+ * Returns all accounting segments ordered for presentation/processing.
+ */
+export const listAccountingSegments = async (pool: Pool) => {
+  let result = await selectAccountingSegments(pool);
+
+  if (result.rowCount === 0) {
+    await ensureDefaultAccountingSegments(pool);
+    result = await selectAccountingSegments(pool);
+  }
 
   return result.rows.map(asAccountingSegment);
 };

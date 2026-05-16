@@ -9,14 +9,19 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@comp
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@components/uiframework/Form";
 import { Input } from "@components/uiframework/Input";
 import { Switch } from "@components/uiframework/Switch";
+import { useAccountingSegmentsQuery, useCreateAccountingSegmentMutation, useDeleteAccountingSegmentMutation, useUpdateAccountingSegmentMutation } from "@components/accountingSegment/accountingSegment.query.ts";
 
 import { useAccountingConfigurationQuery, useUpdateAccountingConfigurationMutation } from "./accountingConfiguration.query.ts";
-import { accountingConfigurationFormSchema, accountSystemSegment, entitySystemSegment, type AccountingConfigurationFormValues } from "./accountingConfiguration.schema.ts";
+import { accountingConfigurationFormSchema, type AccountingConfigurationFormValues } from "./accountingConfiguration.schema.ts";
 
 export const AccountingConfiguration = () => {
   const { t } = useTranslation(`./AccountingConfiguration.i18n.ts`);
-  const { data, isError, isPending } = useAccountingConfigurationQuery();
-  const { mutateAsync, isPending: isUpdating } = useUpdateAccountingConfigurationMutation();
+  const { data: configurationData, isError: isConfigurationError, isPending: isConfigurationPending } = useAccountingConfigurationQuery();
+  const { data: segmentData, isError: isSegmentError, isPending: isSegmentPending, refetch: refetchSegments } = useAccountingSegmentsQuery();
+  const { mutateAsync: updateConfigurationAsync, isPending: isConfigurationUpdating } = useUpdateAccountingConfigurationMutation();
+  const { mutateAsync: createSegmentAsync, isPending: isCreateSegmentPending } = useCreateAccountingSegmentMutation();
+  const { mutateAsync: updateSegmentAsync, isPending: isUpdateSegmentPending } = useUpdateAccountingSegmentMutation();
+  const { mutateAsync: deleteSegmentAsync, isPending: isDeleteSegmentPending } = useDeleteAccountingSegmentMutation();
   const [saveState, setSaveState] = useState<`error` | `idle` | `saved`>(`idle`);
   const form = useForm<AccountingConfigurationFormValues>({
     defaultValues: {
@@ -31,13 +36,13 @@ export const AccountingConfiguration = () => {
   });
 
   useEffect(() => {
-    if (!data) {
+    if (!configurationData && !segmentData) {
       return;
     }
 
     form.reset({
-      finalized: data.configuration.finalized === true,
-      optionalSegments: data.configuration.segments
+      finalized: configurationData?.configuration.finalized === true,
+      optionalSegments: (segmentData ?? [])
         .filter((segment) => segment.source === `custom`)
         .sort((left, right) => left.order - right.order)
         .map((segment) => ({
@@ -46,25 +51,76 @@ export const AccountingConfiguration = () => {
           label: segment.label,
         })),
     });
-  }, [data, form]);
+  }, [configurationData, form, segmentData]);
 
   const onSubmit = async (values: AccountingConfigurationFormValues) => {
     setSaveState(`idle`);
 
     try {
-      const customSegments = values.optionalSegments.map((segment, index) => ({
-        active: segment.active,
-        id: segment.id,
-        label: segment.label,
-        order: index + 2,
-        required: false as const,
-        source: `custom` as const,
-      }));
+      const existingCustomSegments = (segmentData ?? []).filter((segment) => segment.source === `custom`);
+      const existingById = new Map(existingCustomSegments.map((segment) => [segment.id, segment] as const));
+      const nextIds = new Set(values.optionalSegments.map((segment) => segment.id));
 
-      await mutateAsync({
+      for (const existingSegment of existingCustomSegments) {
+        if (!nextIds.has(existingSegment.id)) {
+          await deleteSegmentAsync(existingSegment.id);
+        }
+      }
+
+      for (const [index, segment] of values.optionalSegments.entries()) {
+        const existingSegment = existingById.get(segment.id);
+
+        if (!existingSegment) {
+          await createSegmentAsync({
+            active: segment.active,
+            label: segment.label,
+            order: index + 2,
+            required: false,
+            source: `custom`,
+          });
+          continue;
+        }
+
+        if (existingSegment.active !== segment.active || existingSegment.label !== segment.label || existingSegment.order !== index + 2) {
+          await updateSegmentAsync({
+            body: {
+              active: segment.active,
+              label: segment.label,
+              order: index + 2,
+            },
+            id: existingSegment.id,
+          });
+        }
+      }
+
+      const latestSegmentQuery = await refetchSegments();
+      const latestSegments = latestSegmentQuery.data ?? [];
+      const segments = latestSegments.map((segment) => {
+        if (segment.source === `system`) {
+          return {
+            active: true as const,
+            id: segment.id,
+            label: segment.label,
+            order: segment.order,
+            required: true as const,
+            source: `system` as const,
+          };
+        }
+
+        return {
+          active: segment.active,
+          id: segment.id,
+          label: segment.label,
+          order: segment.order,
+          required: false as const,
+          source: `custom` as const,
+        };
+      });
+
+      await updateConfigurationAsync({
         configuration: {
           finalized: values.finalized,
-          segments: [entitySystemSegment, accountSystemSegment, ...customSegments],
+          segments,
         },
       });
       setSaveState(`saved`);
@@ -73,7 +129,11 @@ export const AccountingConfiguration = () => {
     }
   };
 
-  if (isPending) {
+  const isUpdating = isConfigurationUpdating || isCreateSegmentPending || isUpdateSegmentPending || isDeleteSegmentPending;
+  const isFinalized = form.watch(`finalized`);
+  const requiredSegments = (segmentData ?? []).filter((segment) => segment.source === `system`).sort((left, right) => left.order - right.order);
+
+  if (isConfigurationPending || isSegmentPending) {
     return <p className="text-sm text-muted-foreground">{t(`Loading accounting configuration...`)}</p>;
   }
 
@@ -110,21 +170,9 @@ export const AccountingConfiguration = () => {
               )}
             />
 
-            <section className="space-y-3" aria-label={t(`Required segments`)}>
-              <h3 className="text-sm font-semibold">{t(`Required segments`)}</h3>
-              <div className="rounded-md border border-border p-3 text-sm">
-                <p className="font-medium">{t(`Entity`)}</p>
-                <p className="text-muted-foreground">{t(`System required segment`)}</p>
-              </div>
-              <div className="rounded-md border border-border p-3 text-sm">
-                <p className="font-medium">{t(`Account`)}</p>
-                <p className="text-muted-foreground">{t(`System required segment`)}</p>
-              </div>
-            </section>
-
-            <section className="space-y-3" aria-label={t(`Optional segments`)}>
+            <section className="space-y-3" aria-label={t(`Segments`)}>
               <div className="flex items-center justify-between">
-                <h3 className="text-sm font-semibold">{t(`Optional segments`)}</h3>
+                <h3 className="text-sm font-semibold">{t(`Segments`)}</h3>
                 <Button
                   onClick={() => {
                     optionalSegments.append({
@@ -139,6 +187,13 @@ export const AccountingConfiguration = () => {
                   {t(`Add segment`)}
                 </Button>
               </div>
+
+              {requiredSegments.map((segment) => (
+                <div className="rounded-md border border-border p-3 text-sm" key={segment.id}>
+                  <p className="font-medium">{segment.label}</p>
+                  <p className="text-muted-foreground">{t(`System required segment`)}</p>
+                </div>
+              ))}
 
               {optionalSegments.fields.map((field, index) => (
                 <div className="space-y-3 rounded-md border border-border p-3" key={field.id}>
@@ -174,6 +229,7 @@ export const AccountingConfiguration = () => {
                   />
                   <div className="flex justify-end">
                     <Button
+                      disabled={isFinalized}
                       onClick={() => {
                         optionalSegments.remove(index);
                       }}
@@ -187,7 +243,7 @@ export const AccountingConfiguration = () => {
               ))}
             </section>
 
-            {isError ? <p className="text-sm text-destructive">{t(`Could not load accounting configuration right now.`)}</p> : null}
+            {isConfigurationError || isSegmentError ? <p className="text-sm text-destructive">{t(`Could not load accounting configuration right now.`)}</p> : null}
             {saveState === `saved` ? <p className="text-sm text-muted-foreground">{t(`Configuration saved.`)}</p> : null}
             {saveState === `error` ? <p className="text-sm text-destructive">{t(`Could not save configuration right now.`)}</p> : null}
 
