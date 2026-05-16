@@ -1,13 +1,13 @@
 import { getErpServiceOrigin } from "@components/application/application.host.ts";
 import { accountingConfigurationResponseSchema, accountingConfigurationUpdateBodySchema, type AccountingConfigurationResponseData, type AccountingConfigurationUpdateBody } from "./accountingConfiguration.schema.ts";
 
-const erpServiceOrigin = getErpServiceOrigin();
+const root = getErpServiceOrigin();
 
 /**
  * Fetches accounting configuration.
  */
 export const getAccountingConfiguration = async (): Promise<AccountingConfigurationResponseData> => {
-  const response = await fetch(`${erpServiceOrigin}/configuration/accounting`, {
+  const response = await fetch(`${root}/accounting/configuration`, {
     credentials: `include`,
   });
 
@@ -23,7 +23,7 @@ export const getAccountingConfiguration = async (): Promise<AccountingConfigurat
  */
 export const updateAccountingConfiguration = async (body: AccountingConfigurationUpdateBody): Promise<AccountingConfigurationResponseData> => {
   const parsedBody = accountingConfigurationUpdateBodySchema.parse(body);
-  const response = await fetch(`${erpServiceOrigin}/configuration/accounting`, {
+  const response = await fetch(`${root}/accounting/configuration`, {
     body: JSON.stringify(parsedBody),
     credentials: `include`,
     headers: {

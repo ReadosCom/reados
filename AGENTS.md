@@ -13,6 +13,7 @@
 
 - Keep application source code under `src/`.
 - Keep feature code under `src/components/<componentName>/`.
+- Keep component folders 100% flat directly under `src/components/`; do not nest component directories under other components.
 - Each component folder can contain frontend, backend, and validation files for that feature.
 - Shared infrastructure helpers that belong to a component should also live under `src/components/<componentName>/`.
 - Use one folder per component and colocate related files instead of splitting by technical layer at the top level.
