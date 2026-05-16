@@ -14,14 +14,10 @@ export const accountingSegmentSchema = z.object({
   updatedAt: z.string().trim().min(1),
 });
 
-export const accountingSegmentListResponseDataSchema = z.object({
-  segments: z.array(accountingSegmentSchema),
-});
+export const accountingSegmentListResponseDataSchema = z.array(accountingSegmentSchema);
 export const accountingSegmentListResponseSchema = apiSuccessSchema(accountingSegmentListResponseDataSchema);
 
-export const accountingSegmentResponseDataSchema = z.object({
-  segment: accountingSegmentSchema,
-});
+export const accountingSegmentResponseDataSchema = accountingSegmentSchema;
 export const accountingSegmentResponseSchema = apiSuccessSchema(accountingSegmentResponseDataSchema);
 
 export const accountingSegmentParamsSchema = z.object({
@@ -54,3 +50,24 @@ export type CreateAccountingSegmentBody = z.infer<typeof createAccountingSegment
 export type UpdateAccountingSegmentBody = z.infer<typeof updateAccountingSegmentBodySchema>;
 export type AccountingSegmentListResponseData = z.infer<typeof accountingSegmentListResponseDataSchema>;
 export type AccountingSegmentResponseData = z.infer<typeof accountingSegmentResponseDataSchema>;
+
+export type AccountingSegmentRow = {
+  active: boolean;
+  createdAt: Date;
+  id: string;
+  label: string;
+  order: number;
+  required: boolean;
+  source: `custom` | `system`;
+  updatedAt: Date;
+};
+
+export class AccountingSegmentNotFoundError extends Error {
+  public readonly id: string;
+
+  public constructor(id: string) {
+    super(`Accounting segment ${id} was not found.`);
+    this.name = `AccountingSegmentNotFoundError`;
+    this.id = id;
+  }
+}

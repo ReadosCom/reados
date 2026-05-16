@@ -27,6 +27,7 @@
 - Do not use non-descriptive suffixes in React component or file names (for example `Page`, `View`, `Screen`, `Component`, `Container`, `Wrapper`, `Manager`, `Handler`, `Util`, `Helper`, `Thing`, `Data`). Name components by domain intent instead (for example `Accounting`, `InvoiceList`, `ProfileForm`).
 - Use the correct filename for each file in a component.
 - Keep all component-level types in `*.schema.ts` files, including both Zod-inferred types and manually declared types, instead of creating separate `*.types.ts` files.
+- Keep component-level custom error classes in `*.schema.ts` files as well (for example `*NotFoundError`, `*ValidationError`) instead of declaring them in controllers, routers, or clients.
 - Do not allow backend/frontend schema drift: when a contract is shared by both sides, define it once in the component `*.schema.ts` file and import that same schema/type everywhere.
 - Do not duplicate equivalent validators across components; extract and reuse shared schema primitives when the same field contract (for example email, language, profile fields) appears in multiple flows.
 - Use `*.controller.ts` only for backend business logic and data-access orchestration; keep controllers framework-agnostic and free of Express request/response handling.

@@ -4,7 +4,7 @@ import { defineRoutes } from "@components/express/express.router.ts";
 import { ensurePool } from "@components/postgres/pool.ts";
 
 import { createAccountingSegment, deleteAccountingSegment, getAccountingSegmentById, listAccountingSegments, updateAccountingSegment } from "./accountingSegment.controller.ts";
-import { accountingSegmentParamsSchema, createAccountingSegmentBodySchema, updateAccountingSegmentBodySchema } from "./accountingSegment.schema.ts";
+import { AccountingSegmentNotFoundError, accountingSegmentParamsSchema, createAccountingSegmentBodySchema, updateAccountingSegmentBodySchema } from "./accountingSegment.schema.ts";
 
 const pool = ensurePool();
 
@@ -20,7 +20,7 @@ route({
   handler: async ({ fail, respond }) => {
     try {
       const segments = await listAccountingSegments(pool);
-      respond({ segments });
+      respond(segments);
     } catch (error) {
       fail({
         cause: error,
@@ -42,8 +42,9 @@ route({
   handler: async ({ fail, params, respond }) => {
     try {
       const segment = await getAccountingSegmentById(pool, params.id);
-
-      if (!segment) {
+      respond(segment);
+    } catch (error) {
+      if (error instanceof AccountingSegmentNotFoundError) {
         fail({
           code: `accounting_segment_not_found`,
           message: `Accounting segment was not found.`,
@@ -52,8 +53,6 @@ route({
         return;
       }
 
-      respond({ segment });
-    } catch (error) {
       fail({
         cause: error,
         code: `accounting_segment_fetch_failed`,
@@ -74,7 +73,7 @@ route({
   handler: async ({ body, fail, respond }) => {
     try {
       const segment = await createAccountingSegment(pool, body);
-      respond({ segment }, 201);
+      respond(segment, 201);
     } catch (error) {
       fail({
         cause: error,
@@ -97,8 +96,9 @@ route({
   handler: async ({ body, fail, params, respond }) => {
     try {
       const segment = await updateAccountingSegment(pool, params.id, body);
-
-      if (!segment) {
+      respond(segment);
+    } catch (error) {
+      if (error instanceof AccountingSegmentNotFoundError) {
         fail({
           code: `accounting_segment_not_found`,
           message: `Accounting segment was not found.`,
@@ -107,8 +107,6 @@ route({
         return;
       }
 
-      respond({ segment });
-    } catch (error) {
       fail({
         cause: error,
         code: `accounting_segment_update_failed`,
@@ -129,8 +127,9 @@ route({
   handler: async ({ fail, params, respond }) => {
     try {
       const segment = await deleteAccountingSegment(pool, params.id);
-
-      if (!segment) {
+      respond(segment);
+    } catch (error) {
+      if (error instanceof AccountingSegmentNotFoundError) {
         fail({
           code: `accounting_segment_not_found`,
           message: `Accounting segment was not found.`,
@@ -139,8 +138,6 @@ route({
         return;
       }
 
-      respond({ segment });
-    } catch (error) {
       fail({
         cause: error,
         code: `accounting_segment_delete_failed`,

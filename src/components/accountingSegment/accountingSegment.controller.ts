@@ -1,17 +1,6 @@
-import type { Pool } from "pg";
+import type { Pool } from 'pg';
 
-import type { AccountingSegment, CreateAccountingSegmentBody, UpdateAccountingSegmentBody } from "./accountingSegment.schema.ts";
-
-type AccountingSegmentRow = {
-  active: boolean;
-  createdAt: Date;
-  id: string;
-  label: string;
-  order: number;
-  required: boolean;
-  source: `custom` | `system`;
-  updatedAt: Date;
-};
+import { AccountingSegmentNotFoundError, type AccountingSegment, type AccountingSegmentRow, type CreateAccountingSegmentBody, type UpdateAccountingSegmentBody } from './accountingSegment.schema.ts';
 
 const asAccountingSegment = (row: AccountingSegmentRow): AccountingSegment => {
   return {
@@ -74,7 +63,7 @@ export const getAccountingSegmentById = async (pool: Pool, id: string) => {
   const row = result.rows[0];
 
   if (!row) {
-    return null;
+    throw new AccountingSegmentNotFoundError(id);
   }
 
   return asAccountingSegment(row);
@@ -114,11 +103,7 @@ export const createAccountingSegment = async (pool: Pool, body: CreateAccounting
  * Updates one accounting segment.
  */
 export const updateAccountingSegment = async (pool: Pool, id: string, body: UpdateAccountingSegmentBody) => {
-  const existing = await getAccountingSegmentById(pool, id);
-
-  if (!existing) {
-    return null;
-  }
+  await getAccountingSegmentById(pool, id);
 
   const result = await pool.query<AccountingSegmentRow>(
     `
@@ -146,7 +131,7 @@ export const updateAccountingSegment = async (pool: Pool, id: string, body: Upda
   const row = result.rows[0];
 
   if (!row) {
-    return null;
+    throw new AccountingSegmentNotFoundError(id);
   }
 
   return asAccountingSegment(row);
@@ -176,7 +161,7 @@ export const deleteAccountingSegment = async (pool: Pool, id: string) => {
   const row = result.rows[0];
 
   if (!row) {
-    return null;
+    throw new AccountingSegmentNotFoundError(id);
   }
 
   return asAccountingSegment(row);
