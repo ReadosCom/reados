@@ -13,7 +13,6 @@ const asAccountingSegment = (row: AccountingSegmentRow): AccountingSegment => {
     label: row.label,
     order: row.order,
     required: row.required,
-    source: row.source,
     updatedAt: row.updatedAt.toISOString(),
   };
 };
@@ -27,7 +26,6 @@ const selectAccountingSegments = async (pool: Pool) => {
         "order",
         "required",
         "active",
-        "source",
         "createdAt",
         "updatedAt"
       FROM "accountingSegment"
@@ -82,7 +80,6 @@ export const getAccountingSegmentById = async (pool: Pool, id: string) => {
         "order",
         "required",
         "active",
-        "source",
         "createdAt",
         "updatedAt"
       FROM "accountingSegment"
@@ -121,11 +118,10 @@ export const createAccountingSegment = async (pool: Pool, body: CreateAccounting
         "order",
         "required",
         "active",
-        "source",
         "createdAt",
         "updatedAt";
     `,
-    [body.label, body.order, body.required, body.active, body.source],
+    [body.label, body.order, body.required, body.active, `custom`],
   );
 
   return asAccountingSegment(result.rows[0]);
@@ -144,8 +140,7 @@ export const updateAccountingSegment = async (pool: Pool, id: string, body: Upda
         "label" = COALESCE($2, "label"),
         "order" = COALESCE($3, "order"),
         "required" = COALESCE($4, "required"),
-        "active" = COALESCE($5, "active"),
-        "source" = COALESCE($6, "source")
+        "active" = COALESCE($5, "active")
       WHERE "id" = $1
       RETURNING
         "id",
@@ -153,11 +148,10 @@ export const updateAccountingSegment = async (pool: Pool, id: string, body: Upda
         "order",
         "required",
         "active",
-        "source",
         "createdAt",
         "updatedAt";
     `,
-    [id, body.label ?? null, body.order ?? null, body.required ?? null, body.active ?? null, body.source ?? null],
+    [id, body.label ?? null, body.order ?? null, body.required ?? null, body.active ?? null],
   );
 
   const row = result.rows[0];
@@ -183,7 +177,6 @@ export const deleteAccountingSegment = async (pool: Pool, id: string) => {
         "order",
         "required",
         "active",
-        "source",
         "createdAt",
         "updatedAt";
     `,

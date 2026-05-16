@@ -1,8 +1,6 @@
 import { z } from "zod";
 import { apiSuccessSchema } from "@components/application/api.schema.ts";
 
-export const accountingSegmentSourceSchema = z.enum([`system`, `custom`]);
-
 export const accountingSegmentSchema = z.object({
   active: z.boolean(),
   createdAt: z.string().trim().min(1),
@@ -10,7 +8,6 @@ export const accountingSegmentSchema = z.object({
   label: z.string().trim().min(1),
   order: z.number().int().nonnegative(),
   required: z.boolean(),
-  source: accountingSegmentSourceSchema,
   updatedAt: z.string().trim().min(1),
 });
 
@@ -29,7 +26,6 @@ export const createAccountingSegmentBodySchema = z.object({
   label: z.string().trim().min(1),
   order: z.number().int().nonnegative(),
   required: z.boolean(),
-  source: accountingSegmentSourceSchema,
 });
 
 export const updateAccountingSegmentBodySchema = z
@@ -38,7 +34,6 @@ export const updateAccountingSegmentBodySchema = z
     label: z.string().trim().min(1).optional(),
     order: z.number().int().nonnegative().optional(),
     required: z.boolean().optional(),
-    source: accountingSegmentSourceSchema.optional(),
   })
   .refine((value) => Object.values(value).some((fieldValue) => fieldValue !== undefined), {
     message: `At least one field must be provided.`,
@@ -58,7 +53,6 @@ export type AccountingSegmentRow = {
   label: string;
   order: number;
   required: boolean;
-  source: `custom` | `system`;
   updatedAt: Date;
 };
 

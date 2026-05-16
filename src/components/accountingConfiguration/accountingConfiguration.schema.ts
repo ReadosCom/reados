@@ -1,25 +1,13 @@
 import { z } from "zod";
 import { apiSuccessSchema } from "@components/application/api.schema.ts";
 
-export const systemSegmentSchema = z.object({
-  active: z.literal(true),
+export const segmentSchema = z.object({
+  active: z.boolean(),
   id: z.string().trim().min(1),
   label: z.string().trim().min(1),
   order: z.number().int().nonnegative(),
-  required: z.literal(true),
-  source: z.literal(`system`),
+  required: z.boolean(),
 });
-
-export const customSegmentSchema = z.object({
-  active: z.boolean(),
-  id: z.string().trim().min(1),
-  label: z.string().trim().min(1).max(64),
-  order: z.number().int().nonnegative(),
-  required: z.literal(false),
-  source: z.literal(`custom`),
-});
-
-export const segmentSchema = z.discriminatedUnion(`source`, [systemSegmentSchema, customSegmentSchema]);
 
 export const accountingConfigurationSchema = z
   .object({
@@ -41,12 +29,11 @@ export const accountingConfigurationSchema = z
       }
     }
 
-    const activeRequiredSystemSegments = value.segments.filter((segment) => segment.source === `system` && segment.required === true && segment.active === true);
-
-    if (activeRequiredSystemSegments.length < 2) {
+    const activeRequiredSegments = value.segments.filter((segment) => segment.required === true && segment.active === true);
+    if (activeRequiredSegments.length < 2) {
       context.addIssue({
         code: `custom`,
-        message: `At least two active required system segments must exist.`,
+        message: `At least two active required segments must exist.`,
         path: [`segments`],
       });
     }
@@ -70,15 +57,16 @@ export const accountingConfigurationUpdateBodySchema = z.object({
   configuration: accountingConfigurationSchema,
 });
 
-export const accountingConfigurationOptionalSegmentFormSchema = customSegmentSchema.pick({
+export const accountingConfigurationSegmentFormSchema = segmentSchema.pick({
   active: true,
   id: true,
   label: true,
+  required: true,
 });
 
 export const accountingConfigurationFormSchema = z.object({
   finalized: z.boolean(),
-  optionalSegments: z.array(accountingConfigurationOptionalSegmentFormSchema),
+  segments: z.array(accountingConfigurationSegmentFormSchema),
 });
 
 export type AccountingConfigurationResponseData = z.infer<typeof accountingConfigurationResponseDataSchema>;
@@ -86,4 +74,4 @@ export type AccountingConfigurationResponse = z.infer<typeof accountingConfigura
 export type AccountingConfigurationUpdateBody = z.infer<typeof accountingConfigurationUpdateBodySchema>;
 export type AccountingConfiguration = z.infer<typeof accountingConfigurationSchema>;
 export type AccountingConfigurationFormValues = z.infer<typeof accountingConfigurationFormSchema>;
-export type AccountingConfigurationOptionalSegmentFormValues = z.infer<typeof accountingConfigurationOptionalSegmentFormSchema>;
+export type AccountingConfigurationSegmentFormValues = z.infer<typeof accountingConfigurationSegmentFormSchema>;

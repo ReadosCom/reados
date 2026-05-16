@@ -1,6 +1,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect, useState } from "react";
-import { useFieldArray, useForm } from "react-hook-form";
+import { useFieldArray, useForm, useWatch } from "react-hook-form";
 import { v7 as uuidv7 } from "uuid";
 
 import { useTranslation } from "@components/i18n/useTranslation.ts";
@@ -26,13 +26,13 @@ export const AccountingConfiguration = () => {
   const form = useForm<AccountingConfigurationFormValues>({
     defaultValues: {
       finalized: false,
-      optionalSegments: [],
+      segments: [],
     },
     resolver: zodResolver(accountingConfigurationFormSchema),
   });
-  const optionalSegments = useFieldArray({
+  const segments = useFieldArray({
     control: form.control,
-    name: `optionalSegments`,
+    name: `segments`,
   });
 
   useEffect(() => {
@@ -42,13 +42,13 @@ export const AccountingConfiguration = () => {
 
     form.reset({
       finalized: configurationData?.configuration.finalized === true,
-      optionalSegments: (segmentData ?? [])
-        .filter((segment) => segment.source === `custom`)
+      segments: (segmentData ?? [])
         .sort((left, right) => left.order - right.order)
         .map((segment) => ({
           active: segment.active,
           id: segment.id,
           label: segment.label,
+          required: segment.required,
         })),
     });
   }, [configurationData, form, segmentData]);
@@ -57,36 +57,41 @@ export const AccountingConfiguration = () => {
     setSaveState(`idle`);
 
     try {
-      const existingCustomSegments = (segmentData ?? []).filter((segment) => segment.source === `custom`);
-      const existingById = new Map(existingCustomSegments.map((segment) => [segment.id, segment] as const));
-      const nextIds = new Set(values.optionalSegments.map((segment) => segment.id));
+      const existingSegments = segmentData ?? [];
+      const existingById = new Map(existingSegments.map((segment) => [segment.id, segment] as const));
+      const nextIds = new Set(values.segments.map((segment) => segment.id));
 
-      for (const existingSegment of existingCustomSegments) {
-        if (!nextIds.has(existingSegment.id)) {
+      for (const existingSegment of existingSegments) {
+        if (!nextIds.has(existingSegment.id) && !existingSegment.required && !values.finalized) {
           await deleteSegmentAsync(existingSegment.id);
         }
       }
 
-      for (const [index, segment] of values.optionalSegments.entries()) {
+      for (const [index, segment] of values.segments.entries()) {
         const existingSegment = existingById.get(segment.id);
 
         if (!existingSegment) {
           await createSegmentAsync({
             active: segment.active,
             label: segment.label,
-            order: index + 2,
-            required: false,
-            source: `custom`,
+            order: index,
+            required: segment.required,
           });
           continue;
         }
 
-        if (existingSegment.active !== segment.active || existingSegment.label !== segment.label || existingSegment.order !== index + 2) {
+        if (
+          existingSegment.active !== segment.active
+          || existingSegment.label !== segment.label
+          || existingSegment.order !== index
+          || existingSegment.required !== segment.required
+        ) {
           await updateSegmentAsync({
             body: {
               active: segment.active,
               label: segment.label,
-              order: index + 2,
+              order: index,
+              required: segment.required,
             },
             id: existingSegment.id,
           });
@@ -95,32 +100,18 @@ export const AccountingConfiguration = () => {
 
       const latestSegmentQuery = await refetchSegments();
       const latestSegments = latestSegmentQuery.data ?? [];
-      const segments = latestSegments.map((segment) => {
-        if (segment.source === `system`) {
-          return {
-            active: true as const,
-            id: segment.id,
-            label: segment.label,
-            order: segment.order,
-            required: true as const,
-            source: `system` as const,
-          };
-        }
-
-        return {
-          active: segment.active,
-          id: segment.id,
-          label: segment.label,
-          order: segment.order,
-          required: false as const,
-          source: `custom` as const,
-        };
-      });
+      const payloadSegments = latestSegments.map((segment) => ({
+        active: segment.active,
+        id: segment.id,
+        label: segment.label,
+        order: segment.order,
+        required: segment.required,
+      }));
 
       await updateConfigurationAsync({
         configuration: {
           finalized: values.finalized,
-          segments,
+          segments: payloadSegments,
         },
       });
       setSaveState(`saved`);
@@ -130,8 +121,10 @@ export const AccountingConfiguration = () => {
   };
 
   const isUpdating = isConfigurationUpdating || isCreateSegmentPending || isUpdateSegmentPending || isDeleteSegmentPending;
-  const isFinalized = form.watch(`finalized`);
-  const requiredSegments = (segmentData ?? []).filter((segment) => segment.source === `system`).sort((left, right) => left.order - right.order);
+  const isFinalized = useWatch({
+    control: form.control,
+    name: `finalized`,
+  });
 
   if (isConfigurationPending || isSegmentPending) {
     return <p className="text-sm text-muted-foreground">{t(`Loading accounting configuration...`)}</p>;
@@ -175,10 +168,11 @@ export const AccountingConfiguration = () => {
                 <h3 className="text-sm font-semibold">{t(`Segments`)}</h3>
                 <Button
                   onClick={() => {
-                    optionalSegments.append({
+                    segments.append({
                       active: true,
                       id: uuidv7(),
                       label: ``,
+                      required: false,
                     });
                   }}
                   type="button"
@@ -188,23 +182,16 @@ export const AccountingConfiguration = () => {
                 </Button>
               </div>
 
-              {requiredSegments.map((segment) => (
-                <div className="rounded-md border border-border p-3 text-sm" key={segment.id}>
-                  <p className="font-medium">{segment.label}</p>
-                  <p className="text-muted-foreground">{t(`System required segment`)}</p>
-                </div>
-              ))}
-
-              {optionalSegments.fields.map((field, index) => (
+              {segments.fields.map((field, index) => (
                 <div className="space-y-3 rounded-md border border-border p-3" key={field.id}>
                   <FormField
                     control={form.control}
-                    name={`optionalSegments.${index}.label`}
-                    render={({ field: optionalLabelField }) => (
+                    name={`segments.${index}.label`}
+                    render={({ field: segmentLabelField }) => (
                       <FormItem>
                         <FormLabel>{t(`Label`)}</FormLabel>
                         <FormControl>
-                          <Input {...optionalLabelField} />
+                          <Input {...segmentLabelField} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -212,15 +199,15 @@ export const AccountingConfiguration = () => {
                   />
                   <FormField
                     control={form.control}
-                    name={`optionalSegments.${index}.active`}
-                    render={({ field: optionalActiveField }) => (
+                    name={`segments.${index}.active`}
+                    render={({ field: segmentActiveField }) => (
                       <FormItem>
                         <div className="flex items-center justify-between rounded-md border border-border p-3">
                           <div className="space-y-1">
                             <FormLabel>{t(`Active`)}</FormLabel>
                           </div>
                           <FormControl>
-                            <Switch checked={optionalActiveField.value} onCheckedChange={optionalActiveField.onChange} />
+                            <Switch checked={segmentActiveField.value} onCheckedChange={segmentActiveField.onChange} />
                           </FormControl>
                         </div>
                         <FormMessage />
@@ -229,9 +216,9 @@ export const AccountingConfiguration = () => {
                   />
                   <div className="flex justify-end">
                     <Button
-                      disabled={isFinalized}
+                      disabled={isFinalized || form.getValues(`segments.${index}.required`) === true}
                       onClick={() => {
-                        optionalSegments.remove(index);
+                        segments.remove(index);
                       }}
                       type="button"
                       variant="outline"

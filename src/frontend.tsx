@@ -8,7 +8,16 @@ import { redirectRootFqdnToAppHost, setAuthenticationEntryHost } from '@componen
 import './assets/styles/tailwind.css';
 import '@components/i18n/i18n.ts';
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 60_000,
+      refetchOnMount: false,
+      refetchOnReconnect: true,
+      refetchOnWindowFocus: true,
+    },
+  },
+});
 
 const bootstrap = async () => {
   const appConfig = await loadAppConfig();

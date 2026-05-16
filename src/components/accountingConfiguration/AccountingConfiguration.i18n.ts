@@ -1,9 +1,6 @@
 import type { Translations } from "@components/i18n/i18n.types.ts";
 
 export const translations = {
-  "Account": {
-    "tr": { translation: `Hesap`, translatedBy: `AI` },
-  },
   "Active": {
     "tr": { translation: `Aktif`, translatedBy: `AI` },
   },
@@ -22,9 +19,6 @@ export const translations = {
   "Could not save configuration right now.": {
     "tr": { translation: `Yapılandırma şu anda kaydedilemedi.`, translatedBy: `AI` },
   },
-  "Entity": {
-    "tr": { translation: `Varlık`, translatedBy: `AI` },
-  },
   "Finalized": {
     "tr": { translation: `Tamamlandı`, translatedBy: `AI` },
   },
@@ -34,11 +28,8 @@ export const translations = {
   "Loading accounting configuration...": {
     "tr": { translation: `Muhasebe yapılandırması yükleniyor...`, translatedBy: `AI` },
   },
-  "Optional segments": {
-    "tr": { translation: `İsteğe bağlı segmentler`, translatedBy: `AI` },
-  },
-  "Required segments": {
-    "tr": { translation: `Zorunlu segmentler`, translatedBy: `AI` },
+  "Segments": {
+    "tr": { translation: `Segmentler`, translatedBy: `AI` },
   },
   "Remove": {
     "tr": { translation: `Kaldır`, translatedBy: `AI` },
@@ -48,8 +39,5 @@ export const translations = {
   },
   "Configuration saved.": {
     "tr": { translation: `Yapılandırma kaydedildi.`, translatedBy: `AI` },
-  },
-  "System required segment": {
-    "tr": { translation: `Sistem tarafından zorunlu segment`, translatedBy: `AI` },
   },
 } as const satisfies Translations;
