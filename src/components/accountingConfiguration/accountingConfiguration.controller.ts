@@ -1,6 +1,6 @@
 import type { Pool } from 'pg';
 
-import { accountingConfigurationSchema, type AccountingConfiguration, type AccountingConfigurationUpdateBody } from './accountingConfiguration.schema.ts';
+import { accountingConfigurationSchema, defaultSystemSegments, type AccountingConfiguration, type AccountingConfigurationUpdateBody } from './accountingConfiguration.schema.ts';
 
 const accountingModuleName = `accounting`;
 
@@ -11,26 +11,7 @@ type SetupRow = {
 
 const defaultAccountingConfiguration: AccountingConfiguration = {
   finalized: false,
-  segments: [
-    {
-      active: true,
-      id: `segment-entity`,
-      key: `entity`,
-      label: `Entity`,
-      order: 0,
-      required: true,
-      source: `system`,
-    },
-    {
-      active: true,
-      id: `segment-account`,
-      key: `account`,
-      label: `Account`,
-      order: 1,
-      required: true,
-      source: `system`,
-    },
-  ],
+  segments: [...defaultSystemSegments],
 };
 
 /**
