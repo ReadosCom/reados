@@ -1,13 +1,11 @@
 import { Router } from "express";
-import { registerAccountingRoutes } from "@components/accounting/accounting.router.ts";
-import { registerConfigurationRoutes } from "@components/configuration/configuration.router.ts";
+import { accountingRouter } from "@components/accounting/accounting.router.ts";
+import { erpConfigurationRouter } from "@components/erpConfiguration/erpConfiguration.router.ts";
 
 /**
  * ERP route composition.
  */
 export const erpRouter = Router();
 
-registerAccountingRoutes(erpRouter, {
-    prefix: `/accounting`,
-});
-registerConfigurationRoutes(erpRouter);
+erpRouter.use(`/accounting`, accountingRouter);
+erpRouter.use(`/configuration`, erpConfigurationRouter);

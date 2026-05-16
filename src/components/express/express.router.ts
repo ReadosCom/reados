@@ -6,12 +6,7 @@ import type { ApiErrorResponse, RequestLogger, RouteFailOptions, RouteOptions, V
 const getRequestLogger = (request: express.Request): RequestLogger => {
   const logger = (request as express.Request & { log?: unknown }).log;
 
-  if (
-    !logger
-    || typeof logger !== `object`
-    || typeof (logger as RequestLogger).error !== `function`
-    || typeof (logger as RequestLogger).info !== `function`
-  ) {
+  if (!logger || typeof logger !== `object` || typeof (logger as RequestLogger).error !== `function` || typeof (logger as RequestLogger).info !== `function`) {
     throw new Error(`Request logger is not configured. Ensure defineLogging middleware is registered before route handlers.`);
   }
 
@@ -88,9 +83,7 @@ export const route = <BodySchema extends z.ZodType | undefined, QuerySchema exte
 };
 
 export const defineRoutes = (router: express.Router) => {
-  return <BodySchema extends z.ZodType | undefined, QuerySchema extends z.ZodType | undefined, ParamsSchema extends z.ZodType | undefined>(
-    options: RouteOptions<BodySchema, QuerySchema, ParamsSchema>,
-  ) => {
+  return <BodySchema extends z.ZodType | undefined, QuerySchema extends z.ZodType | undefined, ParamsSchema extends z.ZodType | undefined>(options: RouteOptions<BodySchema, QuerySchema, ParamsSchema>) => {
     route(router, options);
   };
 };
