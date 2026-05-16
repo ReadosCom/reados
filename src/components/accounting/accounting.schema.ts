@@ -9,9 +9,7 @@ export const accountingDashboardSummarySchema = z.object({
   unpaidBalance: z.number().nonnegative(),
 });
 
-export const accountingDashboardSummaryResponseDataSchema = z.object({
-  summary: accountingDashboardSummarySchema,
-});
+export const accountingDashboardSummaryResponseDataSchema = accountingDashboardSummarySchema;
 export const accountingDashboardSummaryResponseSchema = apiSuccessSchema(accountingDashboardSummaryResponseDataSchema);
 
 export type AccountingDashboardSummary = z.infer<typeof accountingDashboardSummarySchema>;

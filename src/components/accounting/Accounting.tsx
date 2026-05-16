@@ -21,8 +21,7 @@ const asCurrency = (amount: number, currency: string) => {
 export const Accounting = () => {
   const { t } = useTranslation(`./Accounting.i18n.ts`);
   const { data: accountingConfiguration, isPending: isAccountingConfigurationPending } = useAccountingConfigurationQuery();
-  const { data, isError, isPending } = useAccountingDashboardSummaryQuery();
-  const summary = data?.summary;
+  const { data: summary, isError, isPending } = useAccountingDashboardSummaryQuery();
   const isFinalized = accountingConfiguration?.configuration.finalized === true;
 
   if (isAccountingConfigurationPending) {

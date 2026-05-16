@@ -42,6 +42,9 @@
 - Do not create pass-through re-export wrappers (for example forwarding a helper unchanged from one module to another). Consumers should import the canonical helper directly from its source module.
 - Standardize on UUID v7 for identifier generation across frontend and backend.
 - Where possible, prefer PostgreSQL to generate UUID v7 values unless application-side generation is strictly necessary.
+- For API success responses, keep the transport envelope as `{ success: true, data: ... }` and pass domain payloads directly to `respond(...)`; avoid redundant wrappers like `{ segment: ... }`, `{ segments: ... }`, or `{ summary: ... }` unless additional sibling fields are required.
+- Standardize timestamp representations in schemas/contracts as ISO strings (not JavaScript `Date` objects).
+- Always use `Temporal.Instant.toString()` when converting Temporal values across DB/API boundaries so persisted/transmitted timestamps stay in a valid canonical format.
 
 ## Frontend
 

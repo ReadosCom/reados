@@ -1,5 +1,5 @@
 import type { Pool } from 'pg';
-import type { TenantDiscoveryRequest, TenantDiscoveryTenant } from './tenant.schema.ts';
+import type { DiscoveredTenant, Tenant, TenantDiscoveryRequest } from './tenant.schema.ts';
 
 /**
  * Builds the tenant-specific login URL for a discovered tenant.
@@ -18,7 +18,7 @@ export const getTenantLoginUrl = (tenantSlug: string) => {
 export const discoverTenantsByEmail = async (pool: Pool, request: TenantDiscoveryRequest) => {
   const { email } = request;
 
-  const discoveryResult = await pool.query<{ name: string; slug: string }>(
+  const discoveryResult = await pool.query<Pick<Tenant, `name` | `slug`>>(
     `
       SELECT
         "tenant"."name",
@@ -32,13 +32,11 @@ export const discoverTenantsByEmail = async (pool: Pool, request: TenantDiscover
     [email],
   );
 
-  const tenants: TenantDiscoveryTenant[] = discoveryResult.rows.map(({ name, slug }) => ({
+  const tenants: DiscoveredTenant[] = discoveryResult.rows.map(({ name, slug }) => ({
     loginUrl: getTenantLoginUrl(slug),
     name,
     slug,
   }));
 
-  return {
-    tenants,
-  };
+  return tenants;
 };

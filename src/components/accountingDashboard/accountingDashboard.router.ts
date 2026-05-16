@@ -15,9 +15,7 @@ route({
   handler: async ({ fail, respond }) => {
     try {
       const summary = await getAccountingDashboardSummary();
-      respond({
-        summary,
-      });
+      respond(summary);
     } catch (error) {
       fail({
         cause: error,

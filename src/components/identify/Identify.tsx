@@ -82,12 +82,12 @@ export const Identify = () => {
               {error ? <p className="text-sm text-destructive">{t('We could not look up your tenants right now. Please try again.')}</p> : null}
 
               {isSuccess && data ? (
-                data.tenants.length > 0 ? (
+                data.length > 0 ? (
                   <div className="space-y-4">
                     <p className="text-sm text-card-foreground">{t('Choose a tenant for {{email}}.', { email: lookupEmail })}</p>
 
                     <ul className="space-y-2">
-                      {data.tenants.map((tenant) => (
+                      {data.map((tenant) => (
                         <li key={tenant.slug}>
                           <Button asChild className="w-full justify-center" size="lg">
                             <a href={`${tenant.loginUrl}?email=${encodeURIComponent(lookupEmail)}`}>{t('Continue to {{name}}', { name: tenant.name })}</a>
