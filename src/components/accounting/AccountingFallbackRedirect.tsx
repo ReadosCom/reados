@@ -6,7 +6,7 @@ import { Navigate } from "@tanstack/react-router";
  * Redirects unknown accounting child paths according to configuration finalization state.
  */
 export const AccountingFallbackRedirect = () => {
-  const { t } = useTranslation(`./AccountingPage.i18n.ts`);
+  const { t } = useTranslation(`./Accounting.i18n.ts`);
   const { data: accountingConfiguration, isPending } = useAccountingConfigurationQuery();
   const isFinalized = accountingConfiguration?.configuration.finalized === true;
 

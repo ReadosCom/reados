@@ -19,7 +19,7 @@ const asCurrency = (amount: number, currency: string) => {
  * Renders the accounting module landing page.
  */
 export const Accounting = () => {
-  const { t } = useTranslation(`./AccountingPage.i18n.ts`);
+  const { t } = useTranslation(`./Accounting.i18n.ts`);
   const { data: accountingConfiguration, isPending: isAccountingConfigurationPending } = useAccountingConfigurationQuery();
   const { data, isError, isPending } = useAccountingDashboardSummaryQuery();
   const summary = data?.summary;

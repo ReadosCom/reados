@@ -14,7 +14,7 @@ import { useAccountingConfigurationQuery, useUpdateAccountingConfigurationMutati
 import { accountingConfigurationFormSchema, accountSystemSegment, entitySystemSegment, type AccountingConfigurationFormValues } from "./accountingConfiguration.schema.ts";
 
 export const AccountingConfiguration = () => {
-  const { t } = useTranslation(`./AccountingPage.i18n.ts`);
+  const { t } = useTranslation(`./AccountingConfiguration.i18n.ts`);
   const { data, isError, isPending } = useAccountingConfigurationQuery();
   const { mutateAsync, isPending: isUpdating } = useUpdateAccountingConfigurationMutation();
   const [saveState, setSaveState] = useState<`error` | `idle` | `saved`>(`idle`);

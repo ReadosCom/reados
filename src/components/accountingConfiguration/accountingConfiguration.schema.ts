@@ -121,16 +121,11 @@ export const accountingConfigurationUpdateBodySchema = z.object({
   configuration: accountingConfigurationSchema,
 });
 
-export const accountingConfigurationOptionalSegmentFormSchema = z.object({
-  active: z.boolean(),
-  id: z.string().trim().min(1),
-  key: z
-    .string()
-    .trim()
-    .min(1)
-    .max(32)
-    .regex(/^[a-z][a-z0-9_]*$/u),
-  label: z.string().trim().min(1).max(64),
+export const accountingConfigurationOptionalSegmentFormSchema = customSegmentSchema.pick({
+  active: true,
+  id: true,
+  key: true,
+  label: true,
 });
 
 export const accountingConfigurationFormSchema = z.object({

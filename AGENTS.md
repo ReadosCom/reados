@@ -69,6 +69,8 @@
 - Keep the frontend as one shared application even when features belong to different modules.
 - Do not introduce API mocking libraries such as `msw`; prefer real integration flows and Playwright end-to-end coverage instead.
 - When running end-to-end tests, use `npm test`.
+- Treat end-to-end tests as the only test layer for feature verification in this repository; do not add or rely on separate unit or integration test suites unless explicitly requested.
+- Coverage is generated from end-to-end test execution and should be treated as the repository coverage source of truth.
 - In tests, do not define inline API response shapes. Import and use shared `*.schema.ts` schemas/types (prefer schema `.parse(...)`) so test assertions stay aligned with runtime contracts.
 
 ## Style Guide
