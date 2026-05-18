@@ -138,10 +138,12 @@ export const NavMain = ({ items }: NavMainProps) => {
                   </Link>
                 </LinkWrapper>
               ) : (
-                <LinkWrapper className={isRoot ? undefined : 'w-full'} isActive={active} tooltip={isRoot ? t(item.title) : undefined}>
-                  {item.Icon ? <item.Icon stroke={2} /> : null}
-                  <span>{t(item.title)}</span>
-                </LinkWrapper>
+                <CollapsibleTrigger asChild>
+                  <LinkWrapper className={isRoot ? undefined : 'w-full'} isActive={active} tooltip={isRoot ? t(item.title) : undefined}>
+                    {item.Icon ? <item.Icon stroke={2} /> : null}
+                    <span>{t(item.title)}</span>
+                  </LinkWrapper>
+                </CollapsibleTrigger>
               )}
               <CollapsibleTrigger asChild>
                 <button

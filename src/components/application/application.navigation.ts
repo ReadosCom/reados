@@ -1,7 +1,6 @@
 import type { ApplicationSidebarData } from '@components/application/application.navigation.schema.ts';
 import {
   IconBook,
-  IconSettings,
   IconBuilding,
   IconChecklist,
   IconCoin,
@@ -11,6 +10,7 @@ import {
   IconNotebook,
   IconPackage,
   IconReceipt2,
+  IconSettings,
   IconShoppingCart,
   IconSparkles,
   IconUsers,
@@ -32,7 +32,6 @@ export const applicationSidebarData: ApplicationSidebarData = {
     },
     {
       title: 'ERP',
-      link: '/erp',
       Icon: IconBuilding,
       isActive: true,
       items: [
