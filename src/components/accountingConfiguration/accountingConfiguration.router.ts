@@ -1,62 +1,45 @@
-import type { Router } from "express";
+import { Router } from "express";
+import { z } from "zod";
 
-import { getCorrelationId, validate } from "@components/express/express.server.ts";
+import { defineRoutes } from "@components/express/express.router.ts";
 import { ensurePool } from "@components/postgres/pool.ts";
 
-import { getAccountingConfiguration, updateAccountingConfiguration } from "./accountingConfiguration.controller.ts";
-import { accountingConfigurationUpdateBodySchema } from "./accountingConfiguration.schema.ts";
-
-type RouteRegistrationOptions = {
-  prefix?: string;
-};
+import { getAccountingConfiguration } from "./accountingConfiguration.controller.ts";
 
 const pool = ensurePool();
 
 /**
- * Registers accounting configuration routes on the provided app.
+ * Accounting configuration routes.
  */
-export const registerAccountingConfigurationRoutes = (app: Router, options: RouteRegistrationOptions = {}) => {
-  const prefix = options.prefix ?? ``;
+export const accountingConfigurationRouter = Router();
+const route = defineRoutes(accountingConfigurationRouter);
 
-  app.get(prefix, async (request, response) => {
+route({
+  method: `get`,
+  route: `/`,
+  handler: async ({ fail, respond }) => {
     try {
       const configuration = await getAccountingConfiguration(pool);
-      response.status(200).json({
-        data: configuration,
-        success: true,
-      });
+      respond(configuration);
     } catch (error) {
-      console.error(`Failed to load accounting configuration.`, error);
-      response.status(500).json({
-        error: {
-          code: `accounting_configuration_fetch_failed`,
-          correlationId: getCorrelationId(request, response),
-          message: `We could not load accounting configuration right now.`,
-        },
-        success: false,
+      if (error instanceof z.ZodError) {
+        fail({
+          cause: error,
+          code: `invalid_accounting_configuration`,
+          details: z.flattenError(error),
+          message: `Invalid accounting configuration.`,
+          status: 400,
+        });
+        return;
+      }
+
+      fail({
+        cause: error,
+        code: `accounting_configuration_fetch_failed`,
+        logMessage: `Failed to load accounting configuration.`,
+        message: `We could not load accounting configuration right now.`,
+        status: 500,
       });
     }
-  });
-
-  app.patch(prefix, validate({ body: accountingConfigurationUpdateBodySchema }, async (_request, response) => {
-    const body = response.locals.body;
-
-    try {
-      const configuration = await updateAccountingConfiguration(pool, body);
-      response.status(200).json({
-        data: configuration,
-        success: true,
-      });
-    } catch (error) {
-      console.error(`Failed to update accounting configuration.`, error);
-      response.status(500).json({
-        error: {
-          code: `accounting_configuration_update_failed`,
-          correlationId: getCorrelationId(_request, response),
-          message: `We could not update accounting configuration right now.`,
-        },
-        success: false,
-      });
-    }
-  }));
-};
+  },
+});

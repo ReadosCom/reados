@@ -4,7 +4,7 @@ import { getBrowserProtocol } from '@components/application/application.browser.
 import { getAppConfig } from '@components/application/application.config.ts';
 import { tenantDiscoveryRequestSchema, tenantDiscoveryResponseSchema, type TenantDiscoveryRequest, type TenantDiscoveryResponseData } from './tenant.schema.ts';
 
-const getTenantServiceOrigin = () => {
+const getRoot = () => {
   const protocol = getBrowserProtocol();
 
   if (!protocol) {
@@ -19,7 +19,7 @@ const getTenantServiceOrigin = () => {
  */
 export const discoverTenants = async (body: TenantDiscoveryRequest): Promise<TenantDiscoveryResponseData> => {
   const parsedBody = tenantDiscoveryRequestSchema.parse(body);
-  const response = await fetch(`${getTenantServiceOrigin()}/discovery`, {
+  const response = await fetch(`${getRoot()}/discovery`, {
     body: JSON.stringify(parsedBody),
     headers: {
       'Content-Type': `application/json`,

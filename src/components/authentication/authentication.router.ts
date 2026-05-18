@@ -1,6 +1,6 @@
 import express from 'express';
 
-import { defineRoutes, getCorrelationId } from '@components/express/express.server.ts';
+import { defineRoutes, getCorrelationId } from '@components/express/express.router.ts';
 
 import { authenticationSessionCookieName, getLatestOtpForTesting, getSessionFromCookie, isAuthenticationTestEndpointEnabled, logoutSession, requestOtp, updateSessionProfile, verifyOtpAndCreateSession } from './authentication.controller.ts';
 import { otpRequestBodySchema, otpTestQuerySchema, otpVerifyBodySchema, profileUpdateBodySchema, type ProfileUpdateBody } from './authentication.schema.ts';

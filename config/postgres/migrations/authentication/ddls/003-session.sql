@@ -5,8 +5,8 @@ CREATE TABLE IF NOT EXISTS "session" (
   "ipAddress" text,
   "expiresAt" timestamptz NOT NULL,
   "revokedAt" timestamptz,
-  "createdAt" timestamptz NOT NULL DEFAULT statement_timestamp(),
-  "updatedAt" timestamptz NOT NULL DEFAULT statement_timestamp()
+  "createdAt" timestamptz NOT NULL DEFAULT transaction_timestamp(),
+  "updatedAt" timestamptz NOT NULL DEFAULT transaction_timestamp()
 );
 
 CREATE INDEX IF NOT EXISTS "sessionUserIndex" ON "session" ("user");

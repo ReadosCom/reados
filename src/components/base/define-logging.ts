@@ -2,7 +2,7 @@ import type { Express } from "express";
 import pino from "pino";
 import pinoHttp from "pino-http";
 
-import { getCorrelationId } from "@components/express/express.server.ts";
+import { getCorrelationId } from "@components/express/express.router.ts";
 
 const logger = pino({ level: process.env.LOG_LEVEL ?? `info` });
 

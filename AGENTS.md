@@ -13,6 +13,7 @@
 
 - Keep application source code under `src/`.
 - Keep feature code under `src/components/<componentName>/`.
+- Keep component folders 100% flat directly under `src/components/`; do not nest component directories under other components.
 - Each component folder can contain frontend, backend, and validation files for that feature.
 - Shared infrastructure helpers that belong to a component should also live under `src/components/<componentName>/`.
 - Use one folder per component and colocate related files instead of splitting by technical layer at the top level.
@@ -26,6 +27,7 @@
 - Do not use non-descriptive suffixes in React component or file names (for example `Page`, `View`, `Screen`, `Component`, `Container`, `Wrapper`, `Manager`, `Handler`, `Util`, `Helper`, `Thing`, `Data`). Name components by domain intent instead (for example `Accounting`, `InvoiceList`, `ProfileForm`).
 - Use the correct filename for each file in a component.
 - Keep all component-level types in `*.schema.ts` files, including both Zod-inferred types and manually declared types, instead of creating separate `*.types.ts` files.
+- Keep component-level custom error classes in `*.schema.ts` files as well (for example `*NotFoundError`, `*ValidationError`) instead of declaring them in controllers, routers, or clients.
 - Do not allow backend/frontend schema drift: when a contract is shared by both sides, define it once in the component `*.schema.ts` file and import that same schema/type everywhere.
 - Do not duplicate equivalent validators across components; extract and reuse shared schema primitives when the same field contract (for example email, language, profile fields) appears in multiple flows.
 - Use `*.controller.ts` only for backend business logic and data-access orchestration; keep controllers framework-agnostic and free of Express request/response handling.
@@ -40,6 +42,9 @@
 - Do not create pass-through re-export wrappers (for example forwarding a helper unchanged from one module to another). Consumers should import the canonical helper directly from its source module.
 - Standardize on UUID v7 for identifier generation across frontend and backend.
 - Where possible, prefer PostgreSQL to generate UUID v7 values unless application-side generation is strictly necessary.
+- For API success responses, keep the transport envelope as `{ success: true, data: ... }` and pass domain payloads directly to `respond(...)`; avoid redundant wrappers like `{ segment: ... }`, `{ segments: ... }`, or `{ summary: ... }` unless additional sibling fields are required.
+- Standardize timestamp representations in schemas/contracts as ISO strings (not JavaScript `Date` objects).
+- Always use `Temporal.Instant.toString()` when converting Temporal values across DB/API boundaries so persisted/transmitted timestamps stay in a valid canonical format.
 
 ## Frontend
 
@@ -69,6 +74,8 @@
 - Keep the frontend as one shared application even when features belong to different modules.
 - Do not introduce API mocking libraries such as `msw`; prefer real integration flows and Playwright end-to-end coverage instead.
 - When running end-to-end tests, use `npm test`.
+- Treat end-to-end tests as the only test layer for feature verification in this repository; do not add or rely on separate unit or integration test suites unless explicitly requested.
+- Coverage is generated from end-to-end test execution and should be treated as the repository coverage source of truth.
 - In tests, do not define inline API response shapes. Import and use shared `*.schema.ts` schemas/types (prefer schema `.parse(...)`) so test assertions stay aligned with runtime contracts.
 
 ## Style Guide

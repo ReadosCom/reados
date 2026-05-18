@@ -4,8 +4,8 @@ CREATE TABLE IF NOT EXISTS "otp" (
   "hash" text NOT NULL,
   "expiresAt" timestamptz NOT NULL,
   "remainingAttempt" integer NOT NULL DEFAULT 5,
-  "createdAt" timestamptz NOT NULL DEFAULT statement_timestamp(),
-  "updatedAt" timestamptz NOT NULL DEFAULT statement_timestamp(),
+  "createdAt" timestamptz NOT NULL DEFAULT transaction_timestamp(),
+  "updatedAt" timestamptz NOT NULL DEFAULT transaction_timestamp(),
   CONSTRAINT "otpRemainingAttemptCheck" CHECK ("remainingAttempt" >= 0)
 );
 

@@ -1,14 +1,14 @@
 import { getAuthenticationServiceOrigin } from '@components/application/application.host.ts';
 import { otpRequestBodySchema, otpRequestResponseSchema, otpTestResponseSchema, otpVerifyBodySchema, otpVerifyResponseSchema, profileUpdateBodySchema, sessionMeResponseDataSchema, sessionMeResponseSchema } from './authentication.schema.ts';
 
-const authenticationServiceOrigin = getAuthenticationServiceOrigin();
+const root = getAuthenticationServiceOrigin();
 
 /**
  * Requests an OTP code for tenant-scoped authentication.
  */
 export const requestAuthenticationOtp = async (body: unknown) => {
   const parsedBody = otpRequestBodySchema.parse(body);
-  const response = await fetch(`${authenticationServiceOrigin}/otp/request`, {
+  const response = await fetch(`${root}/otp/request`, {
     body: JSON.stringify(parsedBody),
     credentials: `include`,
     headers: {
@@ -29,7 +29,7 @@ export const requestAuthenticationOtp = async (body: unknown) => {
  */
 export const verifyAuthenticationOtp = async (body: unknown) => {
   const parsedBody = otpVerifyBodySchema.parse(body);
-  const response = await fetch(`${authenticationServiceOrigin}/otp/verify`, {
+  const response = await fetch(`${root}/otp/verify`, {
     body: JSON.stringify(parsedBody),
     credentials: `include`,
     headers: {
@@ -49,7 +49,7 @@ export const verifyAuthenticationOtp = async (body: unknown) => {
  * Retrieves the authenticated session state.
  */
 export const getAuthenticationSession = async () => {
-  const response = await fetch(`${authenticationServiceOrigin}/session/me`, {
+  const response = await fetch(`${root}/session/me`, {
     credentials: `include`,
   });
 
@@ -71,7 +71,7 @@ export const getAuthenticationSession = async () => {
  * Logs out the current authenticated session.
  */
 export const logoutAuthenticationSession = async () => {
-  await fetch(`${authenticationServiceOrigin}/session/logout`, {
+  await fetch(`${root}/session/logout`, {
     credentials: `include`,
     method: `POST`,
   });
@@ -82,7 +82,7 @@ export const logoutAuthenticationSession = async () => {
  */
 export const updateAuthenticationProfile = async (body: unknown) => {
   const parsedBody = profileUpdateBodySchema.parse(body);
-  const response = await fetch(`${authenticationServiceOrigin}/profile/me`, {
+  const response = await fetch(`${root}/profile/me`, {
     body: JSON.stringify(parsedBody),
     credentials: `include`,
     headers: {
@@ -102,7 +102,7 @@ export const updateAuthenticationProfile = async (body: unknown) => {
  * Reads the latest OTP for e2e tests from the test-only transport endpoint.
  */
 export const getLatestOtpForTesting = async ({ email }: { email: string }) => {
-  const response = await fetch(`${authenticationServiceOrigin}/test/otp/latest?email=${encodeURIComponent(email)}`, {
+  const response = await fetch(`${root}/test/otp/latest?email=${encodeURIComponent(email)}`, {
     credentials: `include`,
   });
 

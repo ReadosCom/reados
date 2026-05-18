@@ -1,40 +1,13 @@
-import type { Router } from "express";
-import { getCorrelationId } from "@components/express/express.server.ts";
-
-import { getAccountingDashboardSummary } from "./accounting.controller.ts";
-
-type RouteRegistrationOptions = {
-  prefix?: string;
-};
+import { Router } from "express";
+import { accountingConfigurationRouter } from "@components/accountingConfiguration/accountingConfiguration.router.ts";
+import { accountingDashboardRouter } from "@components/accountingDashboard/accountingDashboard.router.ts";
+import { accountingSegmentRouter } from "@components/accountingSegment/accountingSegment.router.ts";
 
 /**
- * Registers accounting routes on the provided module app.
+ * Accounting module routes.
  */
-export const registerAccountingRoutes = (
-  app: Router,
-  options: RouteRegistrationOptions = {},
-) => {
-  const prefix = options.prefix ?? ``;
+export const accountingRouter = Router();
 
-  app.get(`${prefix}/dashboard/summary`, async (request, response) => {
-    try {
-      const summary = await getAccountingDashboardSummary();
-      response.status(200).json({
-        data: {
-          summary,
-        },
-        success: true,
-      });
-    } catch (error) {
-      console.error(`Failed to load accounting summary.`, error);
-      response.status(500).json({
-        error: {
-          code: `accounting_summary_failed`,
-          correlationId: getCorrelationId(request, response),
-          message: `We could not load the accounting summary right now.`,
-        },
-        success: false,
-      });
-    }
-  });
-};
+accountingRouter.use(`/configuration`, accountingConfigurationRouter);
+accountingRouter.use(`/dashboard`, accountingDashboardRouter);
+accountingRouter.use(`/segment`, accountingSegmentRouter);

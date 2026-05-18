@@ -1,6 +1,6 @@
 import { Temporal } from "@js-temporal/polyfill";
 
-import type { AccountingDashboardSummary } from "./accounting.schema.ts";
+import type { AccountingDashboardSummary } from "@components/accounting/accounting.schema.ts";
 
 /**
  * Returns the accounting dashboard summary for the active tenant.

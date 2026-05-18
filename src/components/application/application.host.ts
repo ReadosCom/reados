@@ -56,6 +56,18 @@ export const isAuthenticationEntryHost = () => {
   return hostname === authenticationEntryHost;
 };
 
+/**
+ * Returns authentication service origin using the current browser protocol and hostname.
+ * Example: from `http://tenant.reados.localhost`, returns `http://authentication.tenant.reados.localhost`.
+ */
 export const getAuthenticationServiceOrigin = () => getServiceOrigin(`authentication`);
+/**
+ * Returns core service origin using the current browser protocol and hostname.
+ * Example: from `http://tenant.reados.localhost`, returns `http://core.tenant.reados.localhost`.
+ */
 export const getCoreServiceOrigin = () => getServiceOrigin(`core`);
+/**
+ * Returns ERP service origin using the current browser protocol and hostname.
+ * Example: from `http://tenant.reados.localhost`, returns `http://erp.tenant.reados.localhost`.
+ */
 export const getErpServiceOrigin = () => getServiceOrigin(`erp`);

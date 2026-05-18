@@ -45,7 +45,7 @@ const accountingRoute = createRoute({
 
 const accountingConfigurationRoute = createRoute({
   getParentRoute: () => rootRoute,
-  path: `erp/accounting/configuration`,
+  path: `erp/accounting/configure`,
   component: AccountingConfigurationPage,
 });
 

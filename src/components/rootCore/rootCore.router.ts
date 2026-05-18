@@ -1,15 +1,18 @@
 import express from "express";
+import { defineRoutes } from "@components/express/express.router.ts";
 
 /**
  * Defines root core routes.
  */
 export const rootCoreRouter = express.Router();
+const route = defineRoutes(rootCoreRouter);
 
-rootCoreRouter.get(`/whoami`, (_request, response) => {
-  response.status(200).json({
-    data: {
+route({
+  method: `get`,
+  route: `/whoami`,
+  handler: async ({ respond }) => {
+    respond({
       whoami: `root`,
-    },
-    success: true,
+    });
+  },
   });
-});
