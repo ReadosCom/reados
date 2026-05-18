@@ -11,7 +11,6 @@ type SetupRow = {
 
 const defaultAccountingConfiguration: AccountingConfiguration = {
   finalized: false,
-  segments: [],
 };
 
 /**

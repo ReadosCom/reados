@@ -1,9 +1,11 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect, useState } from "react";
 import { useFieldArray, useForm, useWatch } from "react-hook-form";
+import { z } from "zod";
 import { v7 as uuidv7 } from "uuid";
 
 import { useTranslation } from "@components/i18n/useTranslation.ts";
+import { accountingSegmentSchema } from "@components/accountingSegment/accountingSegment.schema.ts";
 import { Button } from "@components/uiframework/Button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@components/uiframework/Card";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@components/uiframework/Form";
@@ -12,23 +14,37 @@ import { Switch } from "@components/uiframework/Switch";
 import { useAccountingSegmentsQuery, useCreateAccountingSegmentMutation, useDeleteAccountingSegmentMutation, useUpdateAccountingSegmentMutation } from "@components/accountingSegment/accountingSegment.query.ts";
 
 import { useAccountingConfigurationQuery, useUpdateAccountingConfigurationMutation } from "./accountingConfiguration.query.ts";
-import { accountingConfigurationFormSchema, type AccountingConfigurationFormValues } from "./accountingConfiguration.schema.ts";
+import { accountingConfigurationSchema } from "./accountingConfiguration.schema.ts";
+
+const accountingConfigurationScreenSegmentSchema = accountingSegmentSchema.pick({
+  active: true,
+  id: true,
+  label: true,
+  required: true,
+});
+
+const accountingConfigurationScreenFormSchema = z.object({
+  finalized: accountingConfigurationSchema.shape.finalized,
+  segments: z.array(accountingConfigurationScreenSegmentSchema),
+});
+
+type AccountingConfigurationScreenFormValues = z.infer<typeof accountingConfigurationScreenFormSchema>;
 
 export const AccountingConfiguration = () => {
   const { t } = useTranslation(`./AccountingConfiguration.i18n.ts`);
   const { data: configurationData, isError: isConfigurationError, isPending: isConfigurationPending } = useAccountingConfigurationQuery();
-  const { data: segmentData, isError: isSegmentError, isPending: isSegmentPending, refetch: refetchSegments } = useAccountingSegmentsQuery();
+  const { data: segmentData, isError: isSegmentError, isPending: isSegmentPending } = useAccountingSegmentsQuery();
   const { mutateAsync: updateConfigurationAsync, isPending: isConfigurationUpdating } = useUpdateAccountingConfigurationMutation();
   const { mutateAsync: createSegmentAsync, isPending: isCreateSegmentPending } = useCreateAccountingSegmentMutation();
   const { mutateAsync: updateSegmentAsync, isPending: isUpdateSegmentPending } = useUpdateAccountingSegmentMutation();
   const { mutateAsync: deleteSegmentAsync, isPending: isDeleteSegmentPending } = useDeleteAccountingSegmentMutation();
   const [saveState, setSaveState] = useState<`error` | `idle` | `saved`>(`idle`);
-  const form = useForm<AccountingConfigurationFormValues>({
+  const form = useForm<AccountingConfigurationScreenFormValues>({
     defaultValues: {
       finalized: false,
       segments: [],
     },
-    resolver: zodResolver(accountingConfigurationFormSchema),
+    resolver: zodResolver(accountingConfigurationScreenFormSchema),
   });
   const segments = useFieldArray({
     control: form.control,
@@ -53,7 +69,7 @@ export const AccountingConfiguration = () => {
     });
   }, [configurationData, form, segmentData]);
 
-  const onSubmit = async (values: AccountingConfigurationFormValues) => {
+  const onSubmit = async (values: AccountingConfigurationScreenFormValues) => {
     setSaveState(`idle`);
 
     try {
@@ -98,20 +114,9 @@ export const AccountingConfiguration = () => {
         }
       }
 
-      const latestSegmentQuery = await refetchSegments();
-      const latestSegments = latestSegmentQuery.data ?? [];
-      const payloadSegments = latestSegments.map((segment) => ({
-        active: segment.active,
-        id: segment.id,
-        label: segment.label,
-        order: segment.order,
-        required: segment.required,
-      }));
-
       await updateConfigurationAsync({
         configuration: {
           finalized: values.finalized,
-          segments: payloadSegments,
         },
       });
       setSaveState(`saved`);
