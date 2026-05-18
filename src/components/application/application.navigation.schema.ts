@@ -5,11 +5,11 @@ export type NavigationTarget = {
   url?: string;
   link?: string;
   Icon?: ApplicationIcon;
+  items?: NavigationTarget[];
 };
 
 export type NavMainItem = NavigationTarget & {
   isActive?: boolean;
-  items?: NavigationTarget[];
 };
 
 export type ProjectItem = {

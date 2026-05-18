@@ -33,7 +33,7 @@ export const Accounting = () => {
   }
 
   if (!isFinalized) {
-    return <Navigate replace to="/erp/accounting/configuration" />;
+    return <Navigate replace to="/erp/accounting/configure" />;
   }
 
   return (

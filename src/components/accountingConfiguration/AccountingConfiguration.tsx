@@ -1,6 +1,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect, useState } from "react";
-import { useFieldArray, useForm, useWatch } from "react-hook-form";
+import { useFieldArray, useForm } from "react-hook-form";
 import { z } from "zod";
 import { v7 as uuidv7 } from "uuid";
 
@@ -8,13 +8,12 @@ import { useTranslation } from "@components/i18n/useTranslation.ts";
 import { accountingSegmentSchema } from "@components/accountingSegment/accountingSegment.schema.ts";
 import { Button } from "@components/uiframework/Button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@components/uiframework/Card";
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@components/uiframework/Form";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@components/uiframework/Form";
 import { Input } from "@components/uiframework/Input";
 import { Switch } from "@components/uiframework/Switch";
 import { useAccountingSegmentsQuery, useCreateAccountingSegmentMutation, useDeleteAccountingSegmentMutation, useUpdateAccountingSegmentMutation } from "@components/accountingSegment/accountingSegment.query.ts";
 
-import { useAccountingConfigurationQuery, useUpdateAccountingConfigurationMutation } from "./accountingConfiguration.query.ts";
-import { accountingConfigurationSchema } from "./accountingConfiguration.schema.ts";
+import { useAccountingConfigurationQuery } from "./accountingConfiguration.query.ts";
 
 const accountingConfigurationScreenSegmentSchema = accountingSegmentSchema.pick({
   active: true,
@@ -24,7 +23,6 @@ const accountingConfigurationScreenSegmentSchema = accountingSegmentSchema.pick(
 });
 
 const accountingConfigurationScreenFormSchema = z.object({
-  finalized: accountingConfigurationSchema.shape.finalized,
   segments: z.array(accountingConfigurationScreenSegmentSchema),
 });
 
@@ -34,14 +32,12 @@ export const AccountingConfiguration = () => {
   const { t } = useTranslation(`./AccountingConfiguration.i18n.ts`);
   const { data: configurationData, isError: isConfigurationError, isPending: isConfigurationPending } = useAccountingConfigurationQuery();
   const { data: segmentData, isError: isSegmentError, isPending: isSegmentPending } = useAccountingSegmentsQuery();
-  const { mutateAsync: updateConfigurationAsync, isPending: isConfigurationUpdating } = useUpdateAccountingConfigurationMutation();
   const { mutateAsync: createSegmentAsync, isPending: isCreateSegmentPending } = useCreateAccountingSegmentMutation();
   const { mutateAsync: updateSegmentAsync, isPending: isUpdateSegmentPending } = useUpdateAccountingSegmentMutation();
   const { mutateAsync: deleteSegmentAsync, isPending: isDeleteSegmentPending } = useDeleteAccountingSegmentMutation();
   const [saveState, setSaveState] = useState<`error` | `idle` | `saved`>(`idle`);
   const form = useForm<AccountingConfigurationScreenFormValues>({
     defaultValues: {
-      finalized: false,
       segments: [],
     },
     resolver: zodResolver(accountingConfigurationScreenFormSchema),
@@ -57,7 +53,6 @@ export const AccountingConfiguration = () => {
     }
 
     form.reset({
-      finalized: configurationData?.configuration.finalized === true,
       segments: (segmentData ?? [])
         .sort((left, right) => left.order - right.order)
         .map((segment) => ({
@@ -76,9 +71,10 @@ export const AccountingConfiguration = () => {
       const existingSegments = segmentData ?? [];
       const existingById = new Map(existingSegments.map((segment) => [segment.id, segment] as const));
       const nextIds = new Set(values.segments.map((segment) => segment.id));
+      const isFinalized = configurationData?.configuration.finalized === true;
 
       for (const existingSegment of existingSegments) {
-        if (!nextIds.has(existingSegment.id) && !existingSegment.required && !values.finalized) {
+        if (!nextIds.has(existingSegment.id) && !existingSegment.required && !isFinalized) {
           await deleteSegmentAsync(existingSegment.id);
         }
       }
@@ -114,22 +110,14 @@ export const AccountingConfiguration = () => {
         }
       }
 
-      await updateConfigurationAsync({
-        configuration: {
-          finalized: values.finalized,
-        },
-      });
       setSaveState(`saved`);
     } catch {
       setSaveState(`error`);
     }
   };
 
-  const isUpdating = isConfigurationUpdating || isCreateSegmentPending || isUpdateSegmentPending || isDeleteSegmentPending;
-  const isFinalized = useWatch({
-    control: form.control,
-    name: `finalized`,
-  });
+  const isUpdating = isCreateSegmentPending || isUpdateSegmentPending || isDeleteSegmentPending;
+  const isFinalized = configurationData?.configuration.finalized === true;
 
   if (isConfigurationPending || isSegmentPending) {
     return <p className="text-sm text-muted-foreground">{t(`Loading accounting configuration...`)}</p>;
@@ -149,25 +137,6 @@ export const AccountingConfiguration = () => {
               void form.handleSubmit(onSubmit)(event);
             }}
           >
-            <FormField
-              control={form.control}
-              name="finalized"
-              render={({ field }) => (
-                <FormItem>
-                  <div className="flex items-center justify-between rounded-md border border-border p-3">
-                    <div className="space-y-1">
-                      <FormLabel>{t(`Finalized`)}</FormLabel>
-                      <FormDescription>{t(`Allow users to continue from configuration to accounting workflows.`)}</FormDescription>
-                    </div>
-                    <FormControl>
-                      <Switch checked={field.value} onCheckedChange={field.onChange} />
-                    </FormControl>
-                  </div>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
             <section className="space-y-3" aria-label={t(`Segments`)}>
               <div className="flex items-center justify-between">
                 <h3 className="text-sm font-semibold">{t(`Segments`)}</h3>
@@ -236,6 +205,7 @@ export const AccountingConfiguration = () => {
             </section>
 
             {isConfigurationError || isSegmentError ? <p className="text-sm text-destructive">{t(`Could not load accounting configuration right now.`)}</p> : null}
+            {isFinalized ? <p className="text-sm text-muted-foreground">{t(`Configuration is finalized. Segment deletion is disabled.`)}</p> : null}
             {saveState === `saved` ? <p className="text-sm text-muted-foreground">{t(`Configuration saved.`)}</p> : null}
             {saveState === `error` ? <p className="text-sm text-destructive">{t(`Could not save configuration right now.`)}</p> : null}
 

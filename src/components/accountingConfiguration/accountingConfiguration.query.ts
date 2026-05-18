@@ -1,6 +1,6 @@
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 
-import { getAccountingConfiguration, updateAccountingConfiguration } from "./accountingConfiguration.client.ts";
+import { getAccountingConfiguration } from "./accountingConfiguration.client.ts";
 
 const accountingConfigurationQueryKey = [`accounting`, `configuration`] as const;
 
@@ -11,21 +11,5 @@ export const useAccountingConfigurationQuery = () => {
   return useQuery({
     queryFn: getAccountingConfiguration,
     queryKey: accountingConfigurationQueryKey,
-  });
-};
-
-/**
- * Mutates accounting configuration.
- */
-export const useUpdateAccountingConfigurationMutation = () => {
-  const queryClient = useQueryClient();
-
-  return useMutation({
-    mutationFn: updateAccountingConfiguration,
-    onSuccess: async () => {
-      await queryClient.invalidateQueries({
-        queryKey: accountingConfigurationQueryKey,
-      });
-    },
   });
 };

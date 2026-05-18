@@ -15,7 +15,7 @@ export const AccountingFallbackRedirect = () => {
   }
 
   if (!isFinalized) {
-    return <Navigate replace to="/erp/accounting/configuration" />;
+    return <Navigate replace to="/erp/accounting/configure" />;
   }
 
   return <Navigate replace to="/erp/accounting" />;
