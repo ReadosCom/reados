@@ -1,5 +1,5 @@
 import { isAuthenticationEntryHost } from '@components/application/application.host.ts';
-import { AppShell } from '@components/application/AppShell';
+import { ApplicationLayout } from '@components/application/ApplicationLayout';
 import { Dashboard } from '@components/dashboard/Dashboard';
 import { Home } from '@components/home/Home';
 
@@ -9,8 +9,8 @@ export const RootIndex = () => {
   }
 
   return (
-    <AppShell>
+    <ApplicationLayout>
       <Dashboard />
-    </AppShell>
+    </ApplicationLayout>
   );
 };

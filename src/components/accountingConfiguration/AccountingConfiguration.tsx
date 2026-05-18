@@ -1,19 +1,20 @@
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useEffect, useState } from "react";
-import { useFieldArray, useForm } from "react-hook-form";
-import { z } from "zod";
-import { v7 as uuidv7 } from "uuid";
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useEffect, useState } from 'react';
+import { useFieldArray, useForm } from 'react-hook-form';
+import { v7 as uuidv7 } from 'uuid';
+import { z } from 'zod';
 
-import { useTranslation } from "@components/i18n/useTranslation.ts";
-import { accountingSegmentSchema } from "@components/accountingSegment/accountingSegment.schema.ts";
-import { Button } from "@components/uiframework/Button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@components/uiframework/Card";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@components/uiframework/Form";
-import { Input } from "@components/uiframework/Input";
-import { Switch } from "@components/uiframework/Switch";
-import { useAccountingSegmentsQuery, useCreateAccountingSegmentMutation, useDeleteAccountingSegmentMutation, useUpdateAccountingSegmentMutation } from "@components/accountingSegment/accountingSegment.query.ts";
+import { useAccountingSegmentsQuery, useCreateAccountingSegmentMutation, useDeleteAccountingSegmentMutation, useUpdateAccountingSegmentMutation } from '@components/accountingSegment/accountingSegment.query.ts';
+import { accountingSegmentSchema } from '@components/accountingSegment/accountingSegment.schema.ts';
+import { useTranslation } from '@components/i18n/useTranslation.ts';
+import { Button } from '@components/uiframework/Button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@components/uiframework/Card';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@components/uiframework/Form';
+import { Input } from '@components/uiframework/Input';
+import { Skeleton } from '@components/uiframework/Skeleton';
+import { Switch } from '@components/uiframework/Switch';
 
-import { useAccountingConfigurationQuery } from "./accountingConfiguration.query.ts";
+import { useAccountingConfigurationQuery } from './accountingConfiguration.query.ts';
 
 const accountingConfigurationScreenSegmentSchema = accountingSegmentSchema.pick({
   active: true,
@@ -92,12 +93,7 @@ export const AccountingConfiguration = () => {
           continue;
         }
 
-        if (
-          existingSegment.active !== segment.active
-          || existingSegment.label !== segment.label
-          || existingSegment.order !== index
-          || existingSegment.required !== segment.required
-        ) {
+        if (existingSegment.active !== segment.active || existingSegment.label !== segment.label || existingSegment.order !== index || existingSegment.required !== segment.required) {
           await updateSegmentAsync({
             body: {
               active: segment.active,
@@ -120,16 +116,22 @@ export const AccountingConfiguration = () => {
   const isFinalized = configurationData?.configuration.finalized === true;
 
   if (isConfigurationPending || isSegmentPending) {
-    return <p className="text-sm text-muted-foreground">{t(`Loading accounting configuration...`)}</p>;
+    return (
+      <>
+        <p className="text-sm text-muted-foreground">{t(`Loading accounting configuration...`)}</p>
+        <Skeleton className="h-96 rounded-xl" />
+      </>
+    );
   }
 
   return (
-    <Card className="mt-4">
-      <CardHeader>
-        <CardTitle>{t(`Accounting configuration`)}</CardTitle>
-        <CardDescription>{t(`Configure accounting module readiness and defaults.`)}</CardDescription>
-      </CardHeader>
-      <CardContent>
+    <>
+      <Card>
+        <CardHeader>
+          <CardTitle>{t(`Segments`)}</CardTitle>
+          <CardDescription>{t(`Configure chart segment labels and activation states.`)}</CardDescription>
+        </CardHeader>
+        <CardContent>
         <Form {...form}>
           <form
             className="space-y-5"
@@ -216,7 +218,8 @@ export const AccountingConfiguration = () => {
             </div>
           </form>
         </Form>
-      </CardContent>
-    </Card>
+        </CardContent>
+      </Card>
+    </>
   );
 };
