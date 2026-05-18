@@ -1,5 +1,6 @@
 import { useAccountingConfigurationQuery } from "@components/accountingConfiguration/accountingConfiguration.query.ts";
 import { useTranslation } from "@components/i18n/useTranslation.ts";
+import { Skeleton } from "@components/uiframework/Skeleton";
 import { Navigate } from "@tanstack/react-router";
 
 /**
@@ -11,7 +12,12 @@ export const AccountingFallbackRedirect = () => {
   const isFinalized = accountingConfiguration?.configuration.finalized === true;
 
   if (isPending) {
-    return <p className="text-sm text-muted-foreground">{t(`Loading accounting configuration...`)}</p>;
+    return (
+      <>
+        <p className="text-sm text-muted-foreground">{t(`Loading accounting configuration...`)}</p>
+        <Skeleton className="mt-4 h-28 rounded-xl" />
+      </>
+    );
   }
 
   if (!isFinalized) {

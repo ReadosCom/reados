@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import type { NavMainItem, NavigationTarget } from '@components/application/application.navigation.schema.ts';
 import { IconChevronRight } from '@tabler/icons-react';
 import { Link, useRouterState } from '@tanstack/react-router';
@@ -20,6 +21,7 @@ type NavMainProps = {
 
 export const NavMain = ({ items }: NavMainProps) => {
   const { t } = useTranslation(`./NavMain.i18n.ts`);
+  const [manualOpenState, setManualOpenState] = useState<Record<string, boolean>>({});
   const pathname = useRouterState({
     select: (state) => state.location.pathname,
   });
@@ -89,35 +91,70 @@ export const NavMain = ({ items }: NavMainProps) => {
   const renderItem = (item: NavigationTarget, level: number) => {
     const hasChildren = Boolean(item.items?.length);
     const active = isItemActive(item);
-    const open = isItemOpen(item);
+    const routeOpen = isItemOpen(item);
+    const itemKey = `${level}-${item.title}-${item.link ?? item.url ?? `none`}`;
+    const open = routeOpen || manualOpenState[itemKey] === true;
     const isRoot = level === 0;
 
     const leaf = renderNavigationTarget(item);
-    const branchLabel = (
-      <>
-        {item.Icon ? <item.Icon stroke={2} /> : null}
-        <span>{t(item.title)}</span>
-        <IconChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" stroke={2} />
-      </>
-    );
 
     if (hasChildren) {
       const ItemWrapper = isRoot ? SidebarMenuItem : SidebarMenuSubItem;
+      const LinkWrapper = isRoot ? SidebarMenuButton : SidebarMenuSubButton;
 
       return (
-        <Collapsible className="group/collapsible" key={`${item.title}-${open ? `open` : `closed`}`} defaultOpen={open} asChild>
+        <Collapsible
+          className="group/collapsible"
+          key={itemKey}
+          onOpenChange={(nextOpen) => {
+            setManualOpenState((previousState) => ({
+              ...previousState,
+              [itemKey]: nextOpen,
+            }));
+          }}
+          open={open}
+          asChild
+        >
           <ItemWrapper>
-            <CollapsibleTrigger asChild>
-              {isRoot ? (
-                <SidebarMenuButton isActive={active} tooltip={t(item.title)}>
-                  {branchLabel}
-                </SidebarMenuButton>
+            <div className="flex items-center gap-1">
+              {item.link ? (
+                <LinkWrapper
+                  asChild
+                  className={isRoot ? undefined : 'w-full'}
+                  isActive={active}
+                  tooltip={isRoot ? t(item.title) : undefined}
+                >
+                  <Link
+                    onClick={() => {
+                      setManualOpenState((previousState) => ({
+                        ...previousState,
+                        [itemKey]: true,
+                      }));
+                    }}
+                    to={item.link as never}
+                  >
+                    {item.Icon ? <item.Icon stroke={2} /> : null}
+                    <span>{t(item.title)}</span>
+                  </Link>
+                </LinkWrapper>
               ) : (
-                <SidebarMenuSubButton asChild className="w-full" isActive={active}>
-                  <button type="button">{branchLabel}</button>
-                </SidebarMenuSubButton>
+                <CollapsibleTrigger asChild>
+                  <LinkWrapper className={isRoot ? undefined : 'w-full'} isActive={active} tooltip={isRoot ? t(item.title) : undefined}>
+                    {item.Icon ? <item.Icon stroke={2} /> : null}
+                    <span>{t(item.title)}</span>
+                  </LinkWrapper>
+                </CollapsibleTrigger>
               )}
-            </CollapsibleTrigger>
+              <CollapsibleTrigger asChild>
+                <button
+                  aria-label={open ? t(`Collapse`) : t(`Expand`)}
+                  className="inline-flex h-8 w-8 items-center justify-center rounded-md hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
+                  type="button"
+                >
+                  <IconChevronRight className="transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" stroke={2} />
+                </button>
+              </CollapsibleTrigger>
+            </div>
             <CollapsibleContent>
               <SidebarMenuSub className="mr-0 pr-0">
                 {item.items?.map((childItem) => renderItem(childItem, level + 1))}

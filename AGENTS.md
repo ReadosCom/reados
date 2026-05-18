@@ -57,6 +57,7 @@
 - Do not use `vanilla-framework` in this repository.
 - Do not introduce `sass`/`scss` for application styling.
 - Use `TanStack Router` as the frontend router for this project.
+- Never create wrapper-only React components that only render another component unchanged. Consumers must import the canonical component directly.
 - Use the built-in `fetch` API for frontend HTTP requests instead of adding a wrapper such as Axios or Ky by default.
 - Use TanStack Query for shared async and server-backed data.
 - Do not use TanStack Query as a blanket replacement for purely local UI interaction state such as modal visibility, drag-and-drop state, or short-lived transient interaction state.
@@ -71,6 +72,9 @@
 - For form validation and form state, standardize on `react-hook-form` + `zod` + `@hookform/resolvers/zod` as documented in shadcn React Hook Form guides.
 - For form UI primitives, use shadcn components and patterns (`Form`, `FormField`, `FormItem`, `FormLabel`, `FormControl`, `FormDescription`, `FormMessage`) with repository wrappers under `src/components/uiframework/`.
 - Install and use form-related shadcn primitives in `src/components/uiframework/` as needed (`Field`, `Label`, `Input`, `Textarea`, `Select`, `NativeSelect`, `Checkbox`, `RadioGroup`, `Switch`, `InputOTP`), and compose them with React Hook Form + Zod.
+- Standardize page structure for application routes with a single clear heading pattern per page. Avoid duplicate top-level headers when a `CardHeader` already serves as the page heading.
+- Keep route-level layout spacing in `ApplicationLayout`; do not duplicate outer frame wrappers or top-level padding/margin scaffolding inside feature components.
+- Standardize async loading UX with `Skeleton` placeholders for route-level and card-level loading states instead of plain text-only loaders when layout space is known.
 - Keep the frontend as one shared application even when features belong to different modules.
 - Do not introduce API mocking libraries such as `msw`; prefer real integration flows and Playwright end-to-end coverage instead.
 - When running end-to-end tests, use `npm test`.
