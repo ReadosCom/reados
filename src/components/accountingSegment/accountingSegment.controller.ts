@@ -1,6 +1,13 @@
 import type { Pool } from 'pg';
 
-import { AccountingSegmentNotFoundError, type AccountingSegment, type AccountingSegmentRow, type CreateAccountingSegmentBody, type UpdateAccountingSegmentBody } from './accountingSegment.schema.ts';
+import {
+  AccountingSegmentNotFoundError,
+  AccountingSegmentRequiredDeleteError,
+  type AccountingSegment,
+  type AccountingSegmentRow,
+  type CreateAccountingSegmentBody,
+  type UpdateAccountingSegmentBody,
+} from './accountingSegment.schema.ts';
 
 const entitySystemSegmentId = `00000000-0000-7000-8000-000000000001`;
 const accountSystemSegmentId = `00000000-0000-7000-8000-000000000002`;
@@ -167,6 +174,12 @@ export const updateAccountingSegment = async (pool: Pool, id: string, body: Upda
  * Deletes one accounting segment.
  */
 export const deleteAccountingSegment = async (pool: Pool, id: string) => {
+  const existingSegment = await getAccountingSegmentById(pool, id);
+
+  if (existingSegment.required) {
+    throw new AccountingSegmentRequiredDeleteError(id);
+  }
+
   const result = await pool.query<AccountingSegmentRow>(
     `
       DELETE FROM "accountingSegment"

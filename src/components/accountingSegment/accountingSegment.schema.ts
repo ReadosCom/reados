@@ -65,3 +65,13 @@ export class AccountingSegmentNotFoundError extends Error {
     this.id = id;
   }
 }
+
+export class AccountingSegmentRequiredDeleteError extends Error {
+  public readonly id: string;
+
+  public constructor(id: string) {
+    super(`Accounting segment ${id} is required and cannot be deleted.`);
+    this.name = `AccountingSegmentRequiredDeleteError`;
+    this.id = id;
+  }
+}

@@ -4,7 +4,13 @@ import { defineRoutes } from "@components/express/express.router.ts";
 import { ensurePool } from "@components/postgres/pool.ts";
 
 import { createAccountingSegment, deleteAccountingSegment, getAccountingSegmentById, listAccountingSegments, updateAccountingSegment } from "./accountingSegment.controller.ts";
-import { AccountingSegmentNotFoundError, accountingSegmentParamsSchema, createAccountingSegmentBodySchema, updateAccountingSegmentBodySchema } from "./accountingSegment.schema.ts";
+import {
+  AccountingSegmentNotFoundError,
+  AccountingSegmentRequiredDeleteError,
+  accountingSegmentParamsSchema,
+  createAccountingSegmentBodySchema,
+  updateAccountingSegmentBodySchema,
+} from "./accountingSegment.schema.ts";
 
 const pool = ensurePool();
 
@@ -129,6 +135,15 @@ route({
       const segment = await deleteAccountingSegment(pool, params.id);
       respond(segment);
     } catch (error) {
+      if (error instanceof AccountingSegmentRequiredDeleteError) {
+        fail({
+          code: `accounting_segment_required_delete_forbidden`,
+          message: `Required accounting segments cannot be deleted.`,
+          status: 400,
+        });
+        return;
+      }
+
       if (error instanceof AccountingSegmentNotFoundError) {
         fail({
           code: `accounting_segment_not_found`,
