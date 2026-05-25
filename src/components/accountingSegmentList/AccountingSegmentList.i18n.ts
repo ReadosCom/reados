@@ -13,11 +13,17 @@ export const translations = {
   "Could not reorder segments right now.": {
     "tr": { translation: `Segment sırası şu anda değiştirilemedi.`, translatedBy: `AI` },
   },
+  "Are you sure, segment deletion will re-shape whole General Ledger?": {
+    "tr": { translation: `Emin misiniz, segment silme işlemi tüm Genel Muhasebe Defteri yapısını yeniden şekillendirecek?`, translatedBy: `AI` },
+  },
   "Label": {
     "tr": { translation: `Etiket`, translatedBy: `AI` },
   },
   "Delete segment": {
     "tr": { translation: `Segmenti sil`, translatedBy: `AI` },
+  },
+  "Delete": {
+    "tr": { translation: `Sil`, translatedBy: `AI` },
   },
   "Loading segment list...": {
     "tr": { translation: `Segment listesi yükleniyor...`, translatedBy: `AI` },

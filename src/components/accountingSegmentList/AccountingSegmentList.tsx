@@ -1,4 +1,5 @@
 import { useTranslation } from '@components/i18n/useTranslation.ts';
+import { useAwaitedPrompt } from '@components/prompt/prompt.context.ts';
 import { useDeleteSegmentMutation, useReorderSegmentMutation, useSegmentsQuery } from '@components/segment/segment.query.ts';
 import { Button } from '@components/uiframework/Button';
 import { Skeleton } from '@components/uiframework/Skeleton';
@@ -11,6 +12,7 @@ import { useState } from 'react';
  */
 export const AccountingSegmentList = () => {
   const { t } = useTranslation(`./AccountingSegmentList.i18n.ts`);
+  const { confirm } = useAwaitedPrompt();
   const navigate = useNavigate();
   const { data: segmentData, isError, isPending } = useSegmentsQuery();
   const { mutateAsync: reorderSegmentAsync, isPending: isReorderSegmentPending } = useReorderSegmentMutation();
@@ -40,6 +42,17 @@ export const AccountingSegmentList = () => {
   };
 
   const deleteSegment = async (id: string) => {
+    const shouldDelete = await confirm({
+      confirmLabel: t(`Delete`),
+      description: t(`Are you sure, segment deletion will re-shape whole General Ledger?`),
+      title: t(`Delete segment`),
+      variant: `destructive`,
+    });
+
+    if (!shouldDelete) {
+      return;
+    }
+
     setDeleteState(`idle`);
 
     try {
