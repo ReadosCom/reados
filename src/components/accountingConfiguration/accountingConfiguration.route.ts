@@ -3,8 +3,15 @@ import { createRoute, redirect, type AnyRoute } from '@tanstack/react-router';
 import { AccountingConfiguration } from '@components/accountingConfiguration/AccountingConfiguration.tsx';
 import { AccountingSegments } from '@components/accountingSegment/AccountingSegments.tsx';
 
-const redirectToSegments = () => {
-  throw redirect({ to: "/erp/accounting/configuration/segments" as never });
+const accountingConfigurationSegmentsPath = `/erp/accounting/configuration/segments` as never;
+
+const redirectToSegments = (context?: { location?: { pathname?: string } }) => {
+  console.log(`[reados routing] accounting configuration index redirect to segments`, {
+    from: context?.location?.pathname,
+    to: accountingConfigurationSegmentsPath,
+  });
+
+  throw redirect({ to: accountingConfigurationSegmentsPath });
 };
 
 export const createAccountingConfigurationRouteTree = (accountingRoute: AnyRoute) => {
@@ -32,9 +39,5 @@ export const createAccountingConfigurationRouteTree = (accountingRoute: AnyRoute
     component: AccountingSegments,
   });
 
-  return accountingConfigurationRoute.addChildren([
-    accountingConfigurationIndexRoute,
-    accountingConfigurationSegmentsRoute,
-    accountingConfigurationSegmentRoute,
-  ]);
+  return accountingConfigurationRoute.addChildren([accountingConfigurationIndexRoute, accountingConfigurationSegmentsRoute, accountingConfigurationSegmentRoute]);
 };

@@ -1,10 +1,10 @@
-import { useAccountingConfigurationQuery } from "@components/accountingConfiguration/accountingConfiguration.query.ts";
-import { useTranslation } from "@components/i18n/useTranslation.ts";
-import { Card, CardContent, CardHeader, CardTitle } from "@components/uiframework/Card";
-import { Skeleton } from "@components/uiframework/Skeleton";
-import { Navigate, useRouterState } from "@tanstack/react-router";
+import { useAccountingConfigurationQuery } from '@components/accountingConfiguration/accountingConfiguration.query.ts';
+import { useTranslation } from '@components/i18n/useTranslation.ts';
+import { Card, CardContent, CardHeader, CardTitle } from '@components/uiframework/Card';
+import { Skeleton } from '@components/uiframework/Skeleton';
+import { Navigate, useRouterState } from '@tanstack/react-router';
 
-import { useAccountingDashboardSummaryQuery } from "./accounting.query.ts";
+import { useAccountingDashboardSummaryQuery } from './accounting.query.ts';
 
 const asCurrency = (amount: number, currency: string) => {
   return new Intl.NumberFormat(undefined, {
@@ -26,7 +26,7 @@ export const Accounting = () => {
   const { data: accountingConfiguration, isPending: isAccountingConfigurationPending } = useAccountingConfigurationQuery();
   const { data: summary, isError, isPending } = useAccountingDashboardSummaryQuery();
   const isFinalized = accountingConfiguration?.configuration.finalized === true;
-  const isAccountingLandingRoute = pathname.startsWith(`/erp/accounting`);
+  const isAccountingLandingRoute = pathname === `/erp/accounting` || pathname === `/erp/accounting/`;
 
   if (isAccountingConfigurationPending) {
     return (
@@ -42,7 +42,14 @@ export const Accounting = () => {
   }
 
   if (!isFinalized && isAccountingLandingRoute) {
-    return <Navigate replace to={"/erp/accounting/configuration/segments" as never} />;
+    console.log(`[reados routing] accounting landing redirect to configuration segments`, {
+      from: pathname,
+      isAccountingLandingRoute,
+      isFinalized,
+      to: `/erp/accounting/configuration/segments`,
+    });
+
+    return <Navigate replace to={'/erp/accounting/configuration/segments' as never} />;
   }
 
   return (

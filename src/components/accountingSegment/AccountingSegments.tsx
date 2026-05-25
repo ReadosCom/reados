@@ -27,6 +27,7 @@ const accountingConfigurationScreenFormSchema = z.object({
 });
 
 type AccountingConfigurationScreenFormValues = z.infer<typeof accountingConfigurationScreenFormSchema>;
+const accountingSegmentsPath = `/erp/accounting/configuration/segments`;
 const newSegmentTabValue = `new-segment`;
 
 export const AccountingSegments = () => {
@@ -72,6 +73,12 @@ export const AccountingSegments = () => {
   const activeTabValue = routeSegmentId;
 
   useEffect(() => {
+    const isAccountingSegmentsRoute = location.pathname === accountingSegmentsPath || location.pathname.startsWith(`${accountingSegmentsPath}/`);
+
+    if (!isAccountingSegmentsRoute) {
+      return;
+    }
+
     if (isSegmentPending) {
       return;
     }
@@ -84,11 +91,19 @@ export const AccountingSegments = () => {
     }
 
     const fallbackSegmentId = segments.fields.at(0)?.id ?? newSegmentTabValue;
-    void navigate(({
+    console.log(`[reados routing] accounting segment fallback redirect`, {
+      from: location.pathname,
+      hasRouteSegment,
+      isNewRoute,
+      routeSegmentId,
+      to: `/erp/accounting/configuration/segments/${fallbackSegmentId}`,
+    });
+
+    void navigate({
       replace: true,
       to: `/erp/accounting/configuration/segments/${fallbackSegmentId}` as never,
-    } as never));
-  }, [isSegmentPending, navigate, routeSegmentId, segments.fields]);
+    } as never);
+  }, [isSegmentPending, location.pathname, navigate, routeSegmentId, segments.fields]);
 
   const onSubmit = async (values: AccountingConfigurationScreenFormValues) => {
     setSaveState(`idle`);
@@ -176,9 +191,9 @@ export const AccountingSegments = () => {
         <section className="space-y-3" aria-label={t(`Segments`)}>
           <Tabs
             onValueChange={(value) => {
-              void navigate(({
+              void navigate({
                 to: `/erp/accounting/configuration/segments/${value}` as never,
-              } as never));
+              } as never);
             }}
             orientation="vertical"
             value={activeTabValue}
@@ -221,9 +236,9 @@ export const AccountingSegments = () => {
                         label: ``,
                         required: false,
                       });
-                      void navigate(({
+                      void navigate({
                         to: `/erp/accounting/configuration/segments/${segmentId}` as never,
-                      } as never));
+                      } as never);
                     }}
                     type="button"
                     variant="outline"

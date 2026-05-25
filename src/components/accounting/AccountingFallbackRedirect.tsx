@@ -1,7 +1,7 @@
-import { useAccountingConfigurationQuery } from "@components/accountingConfiguration/accountingConfiguration.query.ts";
-import { useTranslation } from "@components/i18n/useTranslation.ts";
-import { Skeleton } from "@components/uiframework/Skeleton";
-import { Navigate, useRouterState } from "@tanstack/react-router";
+import { useAccountingConfigurationQuery } from '@components/accountingConfiguration/accountingConfiguration.query.ts';
+import { useTranslation } from '@components/i18n/useTranslation.ts';
+import { Skeleton } from '@components/uiframework/Skeleton';
+import { Navigate, useRouterState } from '@tanstack/react-router';
 
 /**
  * Redirects unknown accounting child paths according to configuration finalization state.
@@ -13,9 +13,16 @@ export const AccountingFallbackRedirect = () => {
   });
   const { data: accountingConfiguration, isPending } = useAccountingConfigurationQuery();
   const isFinalized = accountingConfiguration?.configuration.finalized === true;
-  const isAccountingRoute = pathname.startsWith(`/erp/accounting`);
+  const isAccountingRoute = pathname === `/erp/accounting` || pathname.startsWith(`/erp/accounting/`);
 
   if (!isAccountingRoute) {
+    console.log(`[reados routing] accounting fallback redirect outside accounting route`, {
+      from: pathname,
+      isAccountingRoute,
+      isFinalized,
+      to: `/`,
+    });
+
     return <Navigate replace to="/" />;
   }
 
@@ -28,9 +35,23 @@ export const AccountingFallbackRedirect = () => {
     );
   }
 
-  if (!isFinalized && isAccountingRoute) {
-    return <Navigate replace to={"/erp/accounting/configuration/segments" as never} />;
+  if (!isFinalized) {
+    console.log(`[reados routing] accounting fallback redirect to configuration segments`, {
+      from: pathname,
+      isAccountingRoute,
+      isFinalized,
+      to: `/erp/accounting/configuration/segments`,
+    });
+
+    return <Navigate replace to={'/erp/accounting/configuration/segments' as never} />;
   }
 
-  return <Navigate replace to={"/erp/accounting" as never} />;
+  console.log(`[reados routing] accounting fallback redirect to accounting landing`, {
+    from: pathname,
+    isAccountingRoute,
+    isFinalized,
+    to: `/erp/accounting`,
+  });
+
+  return <Navigate replace to={'/erp/accounting' as never} />;
 };

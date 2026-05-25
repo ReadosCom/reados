@@ -6,7 +6,12 @@ import { createAccountingConfigurationRouteTree } from '@components/accountingCo
 
 const accountingConfigurationSegmentsPath = `/erp/accounting/configuration/segments` as never;
 
-const redirectToSegments = () => {
+const redirectToSegments = (context?: { location?: { pathname?: string } }) => {
+  console.log(`[reados routing] accounting legacy redirect to configuration segments`, {
+    from: context?.location?.pathname,
+    to: accountingConfigurationSegmentsPath,
+  });
+
   throw redirect({ to: accountingConfigurationSegmentsPath });
 };
 
@@ -38,15 +43,9 @@ export const createAccountingRouteTree = (erpRoute: AnyRoute) => {
 
   const accountingFallbackRoute = createRoute({
     getParentRoute: getParentAccountingRoute,
-    path: `$accountingPath`,
+    path: `$`,
     component: AccountingFallbackRedirect,
   });
 
-  return accountingRoute.addChildren([
-    accountingIndexRoute,
-    createAccountingConfigurationRouteTree(accountingRoute),
-    configureLegacyRoute,
-    configurationTypoLegacyRoute,
-    accountingFallbackRoute,
-  ]);
+  return accountingRoute.addChildren([accountingIndexRoute, createAccountingConfigurationRouteTree(accountingRoute), configureLegacyRoute, configurationTypoLegacyRoute, accountingFallbackRoute]);
 };
