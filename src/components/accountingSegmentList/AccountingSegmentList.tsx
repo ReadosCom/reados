@@ -1,10 +1,10 @@
-import { useState } from 'react';
-import { IconChevronDown, IconChevronUp } from '@tabler/icons-react';
-import { useNavigate } from '@tanstack/react-router';
 import { useTranslation } from '@components/i18n/useTranslation.ts';
-import { useReorderSegmentMutation, useSegmentsQuery } from '@components/segment/segment.query.ts';
+import { useDeleteSegmentMutation, useReorderSegmentMutation, useSegmentsQuery } from '@components/segment/segment.query.ts';
 import { Button } from '@components/uiframework/Button';
 import { Skeleton } from '@components/uiframework/Skeleton';
+import { IconChevronDown, IconChevronUp, IconTrash } from '@tabler/icons-react';
+import { useNavigate } from '@tanstack/react-router';
+import { useState } from 'react';
 
 /**
  * Renders a read-only table of accounting segments.
@@ -14,6 +14,8 @@ export const AccountingSegmentList = () => {
   const navigate = useNavigate();
   const { data: segmentData, isError, isPending } = useSegmentsQuery();
   const { mutateAsync: reorderSegmentAsync, isPending: isReorderSegmentPending } = useReorderSegmentMutation();
+  const { mutateAsync: deleteSegmentAsync, isPending: isDeleteSegmentPending } = useDeleteSegmentMutation();
+  const [deleteState, setDeleteState] = useState<`error` | `idle`>(`idle`);
   const [reorderState, setReorderState] = useState<`error` | `idle`>(`idle`);
   const segments = [...(segmentData ?? [])].sort((left, right) => left.order - right.order);
 
@@ -34,6 +36,16 @@ export const AccountingSegmentList = () => {
       });
     } catch {
       setReorderState(`error`);
+    }
+  };
+
+  const deleteSegment = async (id: string) => {
+    setDeleteState(`idle`);
+
+    try {
+      await deleteSegmentAsync(id);
+    } catch {
+      setDeleteState(`error`);
     }
   };
 
@@ -59,6 +71,7 @@ export const AccountingSegmentList = () => {
         </Button>
       </div>
       {isError ? <p className="text-sm text-destructive">{t(`Could not load segment list right now.`)}</p> : null}
+      {deleteState === `error` ? <p className="text-sm text-destructive">{t(`Could not delete segment right now.`)}</p> : null}
       {reorderState === `error` ? <p className="text-sm text-destructive">{t(`Could not reorder segments right now.`)}</p> : null}
       {!isError && segments.length === 0 ? <p className="text-sm text-muted-foreground">{t(`No segments yet.`)}</p> : null}
       {!isError && segments.length > 0 ? (
@@ -81,7 +94,7 @@ export const AccountingSegmentList = () => {
                       <Button
                         aria-label={t(`Move segment up`)}
                         className="h-7 w-7 p-0"
-                        disabled={isReorderSegmentPending || index === 0}
+                        disabled={isReorderSegmentPending || isDeleteSegmentPending || index === 0}
                         onClick={() => {
                           void onMoveSegment(segment.id, -1);
                         }}
@@ -94,7 +107,7 @@ export const AccountingSegmentList = () => {
                       <Button
                         aria-label={t(`Move segment down`)}
                         className="h-7 w-7 p-0"
-                        disabled={isReorderSegmentPending || index === segments.length - 1}
+                        disabled={isReorderSegmentPending || isDeleteSegmentPending || index === segments.length - 1}
                         onClick={() => {
                           void onMoveSegment(segment.id, 1);
                         }}
@@ -103,6 +116,19 @@ export const AccountingSegmentList = () => {
                         variant="outline"
                       >
                         <IconChevronDown aria-hidden stroke={2} />
+                      </Button>
+                      <Button
+                        aria-label={t(`Delete segment`)}
+                        className="h-7 w-7 p-0"
+                        disabled={segment.required || isReorderSegmentPending || isDeleteSegmentPending}
+                        onClick={() => {
+                          void deleteSegment(segment.id);
+                        }}
+                        size="sm"
+                        type="button"
+                        variant="outline"
+                      >
+                        <IconTrash aria-hidden stroke={2} />
                       </Button>
                     </div>
                   </td>

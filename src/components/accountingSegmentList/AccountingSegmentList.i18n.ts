@@ -7,11 +7,17 @@ export const translations = {
   "Could not load segment list right now.": {
     "tr": { translation: `Segment listesi şu anda yüklenemedi.`, translatedBy: `AI` },
   },
+  "Could not delete segment right now.": {
+    "tr": { translation: `Segment şu anda silinemedi.`, translatedBy: `AI` },
+  },
   "Could not reorder segments right now.": {
     "tr": { translation: `Segment sırası şu anda değiştirilemedi.`, translatedBy: `AI` },
   },
   "Label": {
     "tr": { translation: `Etiket`, translatedBy: `AI` },
+  },
+  "Delete segment": {
+    "tr": { translation: `Segmenti sil`, translatedBy: `AI` },
   },
   "Loading segment list...": {
     "tr": { translation: `Segment listesi yükleniyor...`, translatedBy: `AI` },
