@@ -6,12 +6,7 @@ import { createAccountingConfigurationRouteTree } from '@components/accountingCo
 
 const accountingConfigurationSegmentsPath = `/erp/accounting/configuration/segments` as never;
 
-const redirectToSegments = (context?: { location?: { pathname?: string } }) => {
-  console.log(`[reados routing] accounting legacy redirect to configuration segments`, {
-    from: context?.location?.pathname,
-    to: accountingConfigurationSegmentsPath,
-  });
-
+const redirectToSegments = () => {
   throw redirect({ to: accountingConfigurationSegmentsPath });
 };
 

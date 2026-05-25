@@ -42,13 +42,6 @@ export const Accounting = () => {
   }
 
   if (!isFinalized && isAccountingLandingRoute) {
-    console.log(`[reados routing] accounting landing redirect to configuration segments`, {
-      from: pathname,
-      isAccountingLandingRoute,
-      isFinalized,
-      to: `/erp/accounting/configuration/segments`,
-    });
-
     return <Navigate replace to={'/erp/accounting/configuration/segments' as never} />;
   }
 

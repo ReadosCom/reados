@@ -16,13 +16,6 @@ export const AccountingFallbackRedirect = () => {
   const isAccountingRoute = pathname === `/erp/accounting` || pathname.startsWith(`/erp/accounting/`);
 
   if (!isAccountingRoute) {
-    console.log(`[reados routing] accounting fallback redirect outside accounting route`, {
-      from: pathname,
-      isAccountingRoute,
-      isFinalized,
-      to: `/`,
-    });
-
     return <Navigate replace to="/" />;
   }
 
@@ -36,22 +29,8 @@ export const AccountingFallbackRedirect = () => {
   }
 
   if (!isFinalized) {
-    console.log(`[reados routing] accounting fallback redirect to configuration segments`, {
-      from: pathname,
-      isAccountingRoute,
-      isFinalized,
-      to: `/erp/accounting/configuration/segments`,
-    });
-
     return <Navigate replace to={'/erp/accounting/configuration/segments' as never} />;
   }
-
-  console.log(`[reados routing] accounting fallback redirect to accounting landing`, {
-    from: pathname,
-    isAccountingRoute,
-    isFinalized,
-    to: `/erp/accounting`,
-  });
 
   return <Navigate replace to={'/erp/accounting' as never} />;
 };

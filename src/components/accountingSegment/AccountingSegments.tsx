@@ -1,6 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useEffect, useState } from 'react';
-import { useFieldArray, useForm } from 'react-hook-form';
+import { useFieldArray, useForm, useWatch } from 'react-hook-form';
 import { useLocation, useNavigate } from '@tanstack/react-router';
 import { v7 as uuidv7 } from 'uuid';
 import { z } from 'zod';
@@ -50,6 +50,11 @@ export const AccountingSegments = () => {
   });
   const segments = useFieldArray({
     control: form.control,
+    keyName: `fieldKey`,
+    name: `segments`,
+  });
+  const watchedSegments = useWatch({
+    control: form.control,
     name: `segments`,
   });
 
@@ -90,15 +95,7 @@ export const AccountingSegments = () => {
       return;
     }
 
-    const fallbackSegmentId = segmentData.toSorted((left, right) => left.order - right.order).at(0)?.id ?? newSegmentTabValue;
-    console.log(`[reados routing] accounting segment fallback redirect`, {
-      from: location.pathname,
-      hasRouteSegment,
-      isNewRoute,
-      routeSegmentId,
-      to: `/erp/accounting/configuration/segments/${fallbackSegmentId}`,
-    });
-
+    const fallbackSegmentId = [...segmentData].sort((left, right) => left.order - right.order).at(0)?.id ?? newSegmentTabValue;
     void navigate({
       replace: true,
       to: `/erp/accounting/configuration/segments/${fallbackSegmentId}` as never,
@@ -200,11 +197,11 @@ export const AccountingSegments = () => {
           >
             <TabsList variant="default">
               {segments.fields.map((field, index) => {
-                const segmentLabel = form.watch(`segments.${index}.label`);
+                const segmentLabel = watchedSegments?.[index]?.label ?? ``;
                 const tabLabel = segmentLabel.trim().length > 0 ? segmentLabel : `${t(`Segment`)} ${index + 1}`;
 
                 return (
-                  <TabsTrigger key={field.id} value={field.id}>
+                  <TabsTrigger key={field.fieldKey} value={field.id}>
                     {tabLabel}
                   </TabsTrigger>
                 );
@@ -217,7 +214,7 @@ export const AccountingSegments = () => {
                 getValues={form.getValues}
                 index={index}
                 isFinalized={isFinalized}
-                key={field.id}
+                key={field.fieldKey}
                 onRemove={(segmentIndex) => {
                   segments.remove(segmentIndex);
                 }}
