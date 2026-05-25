@@ -1,12 +1,8 @@
-import { createRootRoute, createRoute, createRouter, lazyRouteComponent, Outlet } from '@tanstack/react-router';
+import { Outlet, createRootRoute, createRoute, createRouter, lazyRouteComponent } from '@tanstack/react-router';
 
+import { createApplicationRouteTree } from '@components/application/application.route.ts';
 import { RootIndex } from '@components/application/RootIndex.tsx';
-import { ApplicationLayout } from '@components/application/ApplicationLayout.tsx';
-import { AccountingFallbackRedirect } from '@components/accounting/AccountingFallbackRedirect.tsx';
-import { Accounting } from '@components/accounting/Accounting.tsx';
-import { AccountingConfiguration } from '@components/accountingConfiguration/AccountingConfiguration.tsx';
 import { Identify } from '@components/identify/Identify';
-import { Profile } from '@components/profile/Profile';
 
 const Authentication = lazyRouteComponent(() => import('@components/authentication/Authentication'), `Authentication`);
 
@@ -32,42 +28,12 @@ const authenticationRoute = createRoute({
   component: Authentication,
 });
 
-const applicationLayoutRoute = createRoute({
-  getParentRoute: () => rootRoute,
-  id: `application`,
-  component: ApplicationLayout,
-});
-
-const profileRoute = createRoute({
-  getParentRoute: () => applicationLayoutRoute,
-  path: `profile`,
-  component: Profile,
-});
-
-const accountingRoute = createRoute({
-  getParentRoute: () => applicationLayoutRoute,
-  path: `erp/accounting`,
-  component: Accounting,
-});
-
-const accountingConfigurationRoute = createRoute({
-  getParentRoute: () => applicationLayoutRoute,
-  path: `erp/accounting/configure`,
-  component: AccountingConfiguration,
-});
-
-const accountingFallbackRoute = createRoute({
-  getParentRoute: () => applicationLayoutRoute,
-  path: `erp/accounting/$accountingPath`,
-  component: AccountingFallbackRedirect,
-});
-
 export const router = createRouter({
   routeTree: rootRoute.addChildren([
     indexRoute,
     identifyRoute,
     authenticationRoute,
-    applicationLayoutRoute.addChildren([profileRoute, accountingRoute, accountingConfigurationRoute, accountingFallbackRoute]),
+    createApplicationRouteTree(rootRoute),
   ]),
 });
 

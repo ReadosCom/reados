@@ -1,19 +1,10 @@
-import { useState } from 'react';
 import type { NavMainItem, NavigationTarget } from '@components/application/application.navigation.schema.ts';
-import { IconChevronRight } from '@tabler/icons-react';
-import { Link, useRouterState } from '@tanstack/react-router';
 import { useTranslation } from '@components/i18n/useTranslation.ts';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@components/uiframework/Collapsible';
-import {
-  SidebarGroup,
-  SidebarGroupContent,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
-  SidebarMenuSub,
-  SidebarMenuSubButton,
-  SidebarMenuSubItem,
-} from '@components/uiframework/Sidebar';
+import { SidebarGroup, SidebarGroupContent, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarMenuSub, SidebarMenuSubButton, SidebarMenuSubItem } from '@components/uiframework/Sidebar';
+import { IconChevronRight } from '@tabler/icons-react';
+import { Link, useRouterState } from '@tanstack/react-router';
+import { useState } from 'react';
 
 type NavMainProps = {
   items: NavMainItem[];
@@ -73,7 +64,7 @@ export const NavMain = ({ items }: NavMainProps) => {
 
     if (link) {
       return (
-        <Link to={link as never}>
+        <Link from="/" to={link as never}>
           {Icon ? <Icon stroke={2} /> : null}
           <span>{t(title)}</span>
         </Link>
@@ -118,12 +109,7 @@ export const NavMain = ({ items }: NavMainProps) => {
           <ItemWrapper>
             <div className="flex items-center gap-1">
               {item.link ? (
-                <LinkWrapper
-                  asChild
-                  className={isRoot ? undefined : 'w-full'}
-                  isActive={active}
-                  tooltip={isRoot ? t(item.title) : undefined}
-                >
+                <LinkWrapper asChild className={isRoot ? undefined : 'w-full'} isActive={active} tooltip={isRoot ? t(item.title) : undefined}>
                   <Link
                     onClick={() => {
                       setManualOpenState((previousState) => ({
@@ -131,6 +117,7 @@ export const NavMain = ({ items }: NavMainProps) => {
                         [itemKey]: true,
                       }));
                     }}
+                    from="/"
                     to={item.link as never}
                   >
                     {item.Icon ? <item.Icon stroke={2} /> : null}
@@ -146,19 +133,13 @@ export const NavMain = ({ items }: NavMainProps) => {
                 </CollapsibleTrigger>
               )}
               <CollapsibleTrigger asChild>
-                <button
-                  aria-label={open ? t(`Collapse`) : t(`Expand`)}
-                  className="inline-flex h-8 w-8 items-center justify-center rounded-md hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
-                  type="button"
-                >
+                <button aria-label={open ? t(`Collapse`) : t(`Expand`)} className="inline-flex h-8 w-8 items-center justify-center rounded-md hover:bg-sidebar-accent hover:text-sidebar-accent-foreground" type="button">
                   <IconChevronRight className="transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" stroke={2} />
                 </button>
               </CollapsibleTrigger>
             </div>
             <CollapsibleContent>
-              <SidebarMenuSub className="mr-0 pr-0">
-                {item.items?.map((childItem) => renderItem(childItem, level + 1))}
-              </SidebarMenuSub>
+              <SidebarMenuSub className="mr-0 pr-0">{item.items?.map((childItem) => renderItem(childItem, level + 1))}</SidebarMenuSub>
             </CollapsibleContent>
           </ItemWrapper>
         </Collapsible>
@@ -187,9 +168,7 @@ export const NavMain = ({ items }: NavMainProps) => {
   return (
     <SidebarGroup>
       <SidebarGroupContent>
-        <SidebarMenu>
-          {items.map((item) => renderItem(item, 0))}
-        </SidebarMenu>
+        <SidebarMenu>{items.map((item) => renderItem(item, 0))}</SidebarMenu>
       </SidebarGroupContent>
     </SidebarGroup>
   );

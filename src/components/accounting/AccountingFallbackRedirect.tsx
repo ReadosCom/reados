@@ -1,15 +1,23 @@
 import { useAccountingConfigurationQuery } from "@components/accountingConfiguration/accountingConfiguration.query.ts";
 import { useTranslation } from "@components/i18n/useTranslation.ts";
 import { Skeleton } from "@components/uiframework/Skeleton";
-import { Navigate } from "@tanstack/react-router";
+import { Navigate, useRouterState } from "@tanstack/react-router";
 
 /**
  * Redirects unknown accounting child paths according to configuration finalization state.
  */
 export const AccountingFallbackRedirect = () => {
   const { t } = useTranslation(`./Accounting.i18n.ts`);
+  const pathname = useRouterState({
+    select: (state) => state.location.pathname,
+  });
   const { data: accountingConfiguration, isPending } = useAccountingConfigurationQuery();
   const isFinalized = accountingConfiguration?.configuration.finalized === true;
+  const isAccountingRoute = pathname.startsWith(`/erp/accounting`);
+
+  if (!isAccountingRoute) {
+    return <Navigate replace to="/" />;
+  }
 
   if (isPending) {
     return (
@@ -20,9 +28,9 @@ export const AccountingFallbackRedirect = () => {
     );
   }
 
-  if (!isFinalized) {
-    return <Navigate replace to="/erp/accounting/configure" />;
+  if (!isFinalized && isAccountingRoute) {
+    return <Navigate replace to={"/erp/accounting/configuration/segments" as never} />;
   }
 
-  return <Navigate replace to="/erp/accounting" />;
+  return <Navigate replace to={"/erp/accounting" as never} />;
 };

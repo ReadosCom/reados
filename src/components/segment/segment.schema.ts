@@ -2,7 +2,6 @@ import { z } from "zod";
 import { apiSuccessSchema } from "@components/application/api.schema.ts";
 
 export const segmentSchema = z.object({
-  active: z.boolean(),
   createdAt: z.string().trim().min(1),
   id: z.uuid({ version: `v7` }),
   label: z.string().trim().min(1),
@@ -22,7 +21,6 @@ export const segmentParamsSchema = z.object({
 });
 
 export const createSegmentBodySchema = z.object({
-  active: z.boolean(),
   label: z.string().trim().min(1),
   order: z.number().int().nonnegative(),
   required: z.boolean(),
@@ -30,7 +28,6 @@ export const createSegmentBodySchema = z.object({
 
 export const updateSegmentBodySchema = z
   .object({
-    active: z.boolean().optional(),
     label: z.string().trim().min(1).optional(),
     order: z.number().int().nonnegative().optional(),
     required: z.boolean().optional(),
@@ -47,7 +44,6 @@ export type SegmentListResponseData = z.infer<typeof segmentListResponseDataSche
 export type SegmentResponseData = z.infer<typeof segmentResponseDataSchema>;
 
 export type SegmentRow = {
-  active: boolean;
   createdAt: Date;
   id: string;
   label: string;

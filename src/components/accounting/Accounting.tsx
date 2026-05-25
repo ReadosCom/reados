@@ -2,7 +2,7 @@ import { useAccountingConfigurationQuery } from "@components/accountingConfigura
 import { useTranslation } from "@components/i18n/useTranslation.ts";
 import { Card, CardContent, CardHeader, CardTitle } from "@components/uiframework/Card";
 import { Skeleton } from "@components/uiframework/Skeleton";
-import { Navigate } from "@tanstack/react-router";
+import { Navigate, useRouterState } from "@tanstack/react-router";
 
 import { useAccountingDashboardSummaryQuery } from "./accounting.query.ts";
 
@@ -20,9 +20,13 @@ const asCurrency = (amount: number, currency: string) => {
  */
 export const Accounting = () => {
   const { t } = useTranslation(`./Accounting.i18n.ts`);
+  const pathname = useRouterState({
+    select: (state) => state.location.pathname,
+  });
   const { data: accountingConfiguration, isPending: isAccountingConfigurationPending } = useAccountingConfigurationQuery();
   const { data: summary, isError, isPending } = useAccountingDashboardSummaryQuery();
   const isFinalized = accountingConfiguration?.configuration.finalized === true;
+  const isAccountingLandingRoute = pathname.startsWith(`/erp/accounting`);
 
   if (isAccountingConfigurationPending) {
     return (
@@ -37,8 +41,8 @@ export const Accounting = () => {
     );
   }
 
-  if (!isFinalized) {
-    return <Navigate replace to="/erp/accounting/configure" />;
+  if (!isFinalized && isAccountingLandingRoute) {
+    return <Navigate replace to={"/erp/accounting/configuration/segments" as never} />;
   }
 
   return (

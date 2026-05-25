@@ -14,7 +14,6 @@ const accountSystemSegmentId = `00000000-0000-7000-8000-000000000002`;
 
 const asSegment = (row: SegmentRow): Segment => {
   return {
-    active: row.active,
     createdAt: row.createdAt.toISOString(),
     id: row.id,
     label: row.label,
@@ -32,7 +31,6 @@ const selectSegments = async (pool: Pool) => {
         "label",
         "order",
         "required",
-        "active",
         "createdAt",
         "updatedAt"
       FROM "segment"
@@ -49,12 +47,11 @@ const ensureDefaultSegments = async (pool: Pool) => {
         "label",
         "order",
         "required",
-        "active",
         "source"
       )
       VALUES
-        ($1, 'Entity', 0, true, true, 'system'),
-        ($2, 'Account', 1, true, true, 'system')
+        ($1, 'Entity', 0, true, 'system'),
+        ($2, 'Account', 1, true, 'system')
       ON CONFLICT ("id") DO NOTHING;
     `,
     [entitySystemSegmentId, accountSystemSegmentId],
@@ -86,7 +83,6 @@ export const getSegmentById = async (pool: Pool, id: string) => {
         "label",
         "order",
         "required",
-        "active",
         "createdAt",
         "updatedAt"
       FROM "segment"
@@ -115,20 +111,18 @@ export const createSegment = async (pool: Pool, body: CreateSegmentBody) => {
         "label",
         "order",
         "required",
-        "active",
         "source"
       )
-      VALUES ($1, $2, $3, $4, $5)
+      VALUES ($1, $2, $3, $4)
       RETURNING
         "id",
         "label",
         "order",
         "required",
-        "active",
         "createdAt",
         "updatedAt";
     `,
-    [body.label, body.order, body.required, body.active, `custom`],
+    [body.label, body.order, body.required, `custom`],
   );
 
   return asSegment(result.rows[0]);
@@ -146,19 +140,17 @@ export const updateSegment = async (pool: Pool, id: string, body: UpdateSegmentB
       SET
         "label" = COALESCE($2, "label"),
         "order" = COALESCE($3, "order"),
-        "required" = COALESCE($4, "required"),
-        "active" = COALESCE($5, "active")
+        "required" = COALESCE($4, "required")
       WHERE "id" = $1
       RETURNING
         "id",
         "label",
         "order",
         "required",
-        "active",
         "createdAt",
         "updatedAt";
     `,
-    [id, body.label ?? null, body.order ?? null, body.required ?? null, body.active ?? null],
+    [id, body.label ?? null, body.order ?? null, body.required ?? null],
   );
 
   const row = result.rows[0];
@@ -189,7 +181,6 @@ export const deleteSegment = async (pool: Pool, id: string) => {
         "label",
         "order",
         "required",
-        "active",
         "createdAt",
         "updatedAt";
     `,
