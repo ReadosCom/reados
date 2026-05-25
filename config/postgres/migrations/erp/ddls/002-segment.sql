@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS "accountingSegment" (
+CREATE TABLE IF NOT EXISTS "segment" (
   "id" uuid PRIMARY KEY DEFAULT uuidv7(),
   "label" text NOT NULL,
   "order" integer NOT NULL,
@@ -7,8 +7,8 @@ CREATE TABLE IF NOT EXISTS "accountingSegment" (
   "source" text NOT NULL,
   "createdAt" timestamptz NOT NULL DEFAULT transaction_timestamp(),
   "updatedAt" timestamptz NOT NULL DEFAULT transaction_timestamp(),
-  CONSTRAINT "accountingSegmentOrderUnique" UNIQUE ("order"),
-  CONSTRAINT "accountingSegmentSourceValid" CHECK ("source" IN ('system', 'custom'))
+  CONSTRAINT "segmentOrderUnique" UNIQUE ("order"),
+  CONSTRAINT "segmentSourceValid" CHECK ("source" IN ('system', 'custom'))
 );
 
-SELECT "ensureSetUpdatedAtTrigger"('accountingSegment');
+SELECT "ensureSetUpdatedAtTrigger"('segment');

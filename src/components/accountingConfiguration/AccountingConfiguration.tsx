@@ -4,8 +4,8 @@ import { useFieldArray, useForm } from 'react-hook-form';
 import { v7 as uuidv7 } from 'uuid';
 import { z } from 'zod';
 
-import { useAccountingSegmentsQuery, useCreateAccountingSegmentMutation, useDeleteAccountingSegmentMutation, useUpdateAccountingSegmentMutation } from '@components/accountingSegment/accountingSegment.query.ts';
-import { accountingSegmentSchema } from '@components/accountingSegment/accountingSegment.schema.ts';
+import { useSegmentsQuery, useCreateSegmentMutation, useDeleteSegmentMutation, useUpdateSegmentMutation } from '@components/segment/segment.query.ts';
+import { segmentSchema } from '@components/segment/segment.schema.ts';
 import { useTranslation } from '@components/i18n/useTranslation.ts';
 import { Button } from '@components/uiframework/Button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@components/uiframework/Card';
@@ -14,9 +14,9 @@ import { Input } from '@components/uiframework/Input';
 import { Skeleton } from '@components/uiframework/Skeleton';
 import { Switch } from '@components/uiframework/Switch';
 
-import { useAccountingConfigurationQuery } from './accountingConfiguration.query.ts';
+import { useAccountingConfigurationQuery, useFinalizeAccountingConfigurationMutation } from './accountingConfiguration.query.ts';
 
-const accountingConfigurationScreenSegmentSchema = accountingSegmentSchema.pick({
+const accountingConfigurationScreenSegmentSchema = segmentSchema.pick({
   active: true,
   id: true,
   label: true,
@@ -32,10 +32,12 @@ type AccountingConfigurationScreenFormValues = z.infer<typeof accountingConfigur
 export const AccountingConfiguration = () => {
   const { t } = useTranslation(`./AccountingConfiguration.i18n.ts`);
   const { data: configurationData, isError: isConfigurationError, isPending: isConfigurationPending } = useAccountingConfigurationQuery();
-  const { data: segmentData, isError: isSegmentError, isPending: isSegmentPending } = useAccountingSegmentsQuery();
-  const { mutateAsync: createSegmentAsync, isPending: isCreateSegmentPending } = useCreateAccountingSegmentMutation();
-  const { mutateAsync: updateSegmentAsync, isPending: isUpdateSegmentPending } = useUpdateAccountingSegmentMutation();
-  const { mutateAsync: deleteSegmentAsync, isPending: isDeleteSegmentPending } = useDeleteAccountingSegmentMutation();
+  const { data: segmentData, isError: isSegmentError, isPending: isSegmentPending } = useSegmentsQuery();
+  const { mutateAsync: createSegmentAsync, isPending: isCreateSegmentPending } = useCreateSegmentMutation();
+  const { mutateAsync: updateSegmentAsync, isPending: isUpdateSegmentPending } = useUpdateSegmentMutation();
+  const { mutateAsync: deleteSegmentAsync, isPending: isDeleteSegmentPending } = useDeleteSegmentMutation();
+  const { mutateAsync: finalizeConfigurationAsync, isPending: isFinalizePending } = useFinalizeAccountingConfigurationMutation();
+  const [finalizeState, setFinalizeState] = useState<`error` | `idle` | `success`>(`idle`);
   const [saveState, setSaveState] = useState<`error` | `idle` | `saved`>(`idle`);
   const form = useForm<AccountingConfigurationScreenFormValues>({
     defaultValues: {
@@ -112,7 +114,26 @@ export const AccountingConfiguration = () => {
     }
   };
 
-  const isUpdating = isCreateSegmentPending || isUpdateSegmentPending || isDeleteSegmentPending;
+  const onFinalize = async () => {
+    const shouldFinalize = window.confirm(
+      t(`This is a critical operation. After finalization, future changes may require downtime due to database operations. Do you want to continue?`),
+    );
+
+    if (!shouldFinalize) {
+      return;
+    }
+
+    setFinalizeState(`idle`);
+
+    try {
+      await finalizeConfigurationAsync();
+      setFinalizeState(`success`);
+    } catch {
+      setFinalizeState(`error`);
+    }
+  };
+
+  const isUpdating = isCreateSegmentPending || isUpdateSegmentPending || isDeleteSegmentPending || isFinalizePending;
   const isFinalized = configurationData?.configuration.finalized === true;
 
   if (isConfigurationPending || isSegmentPending) {
@@ -210,8 +231,20 @@ export const AccountingConfiguration = () => {
             {isFinalized ? <p className="text-sm text-muted-foreground">{t(`Configuration is finalized. Segment deletion is disabled.`)}</p> : null}
             {saveState === `saved` ? <p className="text-sm text-muted-foreground">{t(`Configuration saved.`)}</p> : null}
             {saveState === `error` ? <p className="text-sm text-destructive">{t(`Could not save configuration right now.`)}</p> : null}
+            {finalizeState === `success` ? <p className="text-sm text-muted-foreground">{t(`Configuration finalized.`)}</p> : null}
+            {finalizeState === `error` ? <p className="text-sm text-destructive">{t(`Could not finalize accounting configuration right now.`)}</p> : null}
 
-            <div className="flex justify-end">
+            <div className="flex justify-end gap-2">
+              <Button
+                disabled={isFinalized || isUpdating}
+                onClick={() => {
+                  void onFinalize();
+                }}
+                type="button"
+                variant="outline"
+              >
+                {isFinalizePending ? t(`Finalizing...`) : t(`Finalize Configuration`)}
+              </Button>
               <Button disabled={isUpdating} type="submit">
                 {isUpdating ? t(`Saving...`) : t(`Save configuration`)}
               </Button>

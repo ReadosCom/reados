@@ -4,7 +4,7 @@ import { z } from "zod";
 import { defineRoutes } from "@components/express/express.router.ts";
 import { ensurePool } from "@components/postgres/pool.ts";
 
-import { getAccountingConfiguration } from "./accountingConfiguration.controller.ts";
+import { finalizeAccountingConfiguration, getAccountingConfiguration } from "./accountingConfiguration.controller.ts";
 
 const pool = ensurePool();
 
@@ -38,6 +38,36 @@ route({
         code: `accounting_configuration_fetch_failed`,
         logMessage: `Failed to load accounting configuration.`,
         message: `We could not load accounting configuration right now.`,
+        status: 500,
+      });
+    }
+  },
+});
+
+route({
+  method: `post`,
+  route: `/finalize`,
+  handler: async ({ fail, respond }) => {
+    try {
+      const configuration = await finalizeAccountingConfiguration(pool);
+      respond(configuration);
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        fail({
+          cause: error,
+          code: `invalid_accounting_configuration`,
+          details: z.flattenError(error),
+          message: `Invalid accounting configuration.`,
+          status: 400,
+        });
+        return;
+      }
+
+      fail({
+        cause: error,
+        code: `accounting_configuration_finalize_failed`,
+        logMessage: `Failed to finalize accounting configuration.`,
+        message: `We could not finalize accounting configuration right now.`,
         status: 500,
       });
     }

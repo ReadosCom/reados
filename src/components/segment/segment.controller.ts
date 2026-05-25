@@ -1,18 +1,18 @@
 import type { Pool } from 'pg';
 
 import {
-  AccountingSegmentNotFoundError,
-  AccountingSegmentRequiredDeleteError,
-  type AccountingSegment,
-  type AccountingSegmentRow,
-  type CreateAccountingSegmentBody,
-  type UpdateAccountingSegmentBody,
-} from './accountingSegment.schema.ts';
+  SegmentNotFoundError,
+  SegmentRequiredDeleteError,
+  type Segment,
+  type SegmentRow,
+  type CreateSegmentBody,
+  type UpdateSegmentBody,
+} from './segment.schema.ts';
 
 const entitySystemSegmentId = `00000000-0000-7000-8000-000000000001`;
 const accountSystemSegmentId = `00000000-0000-7000-8000-000000000002`;
 
-const asAccountingSegment = (row: AccountingSegmentRow): AccountingSegment => {
+const asSegment = (row: SegmentRow): Segment => {
   return {
     active: row.active,
     createdAt: row.createdAt.toISOString(),
@@ -24,8 +24,8 @@ const asAccountingSegment = (row: AccountingSegmentRow): AccountingSegment => {
   };
 };
 
-const selectAccountingSegments = async (pool: Pool) => {
-  return pool.query<AccountingSegmentRow>(
+const selectSegments = async (pool: Pool) => {
+  return pool.query<SegmentRow>(
     `
       SELECT
         "id",
@@ -35,16 +35,16 @@ const selectAccountingSegments = async (pool: Pool) => {
         "active",
         "createdAt",
         "updatedAt"
-      FROM "accountingSegment"
+      FROM "segment"
       ORDER BY "order" ASC;
     `,
   );
 };
 
-const ensureDefaultAccountingSegments = async (pool: Pool) => {
+const ensureDefaultSegments = async (pool: Pool) => {
   await pool.query(
     `
-      INSERT INTO "accountingSegment" (
+      INSERT INTO "segment" (
         "id",
         "label",
         "order",
@@ -64,22 +64,22 @@ const ensureDefaultAccountingSegments = async (pool: Pool) => {
 /**
  * Returns all accounting segments ordered for presentation/processing.
  */
-export const listAccountingSegments = async (pool: Pool) => {
-  let result = await selectAccountingSegments(pool);
+export const listSegments = async (pool: Pool) => {
+  let result = await selectSegments(pool);
 
   if (result.rowCount === 0) {
-    await ensureDefaultAccountingSegments(pool);
-    result = await selectAccountingSegments(pool);
+    await ensureDefaultSegments(pool);
+    result = await selectSegments(pool);
   }
 
-  return result.rows.map(asAccountingSegment);
+  return result.rows.map(asSegment);
 };
 
 /**
  * Returns one accounting segment by id.
  */
-export const getAccountingSegmentById = async (pool: Pool, id: string) => {
-  const result = await pool.query<AccountingSegmentRow>(
+export const getSegmentById = async (pool: Pool, id: string) => {
+  const result = await pool.query<SegmentRow>(
     `
       SELECT
         "id",
@@ -89,7 +89,7 @@ export const getAccountingSegmentById = async (pool: Pool, id: string) => {
         "active",
         "createdAt",
         "updatedAt"
-      FROM "accountingSegment"
+      FROM "segment"
       WHERE "id" = $1
       LIMIT 1;
     `,
@@ -99,19 +99,19 @@ export const getAccountingSegmentById = async (pool: Pool, id: string) => {
   const row = result.rows[0];
 
   if (!row) {
-    throw new AccountingSegmentNotFoundError(id);
+    throw new SegmentNotFoundError(id);
   }
 
-  return asAccountingSegment(row);
+  return asSegment(row);
 };
 
 /**
  * Creates one accounting segment.
  */
-export const createAccountingSegment = async (pool: Pool, body: CreateAccountingSegmentBody) => {
-  const result = await pool.query<AccountingSegmentRow>(
+export const createSegment = async (pool: Pool, body: CreateSegmentBody) => {
+  const result = await pool.query<SegmentRow>(
     `
-      INSERT INTO "accountingSegment" (
+      INSERT INTO "segment" (
         "label",
         "order",
         "required",
@@ -131,18 +131,18 @@ export const createAccountingSegment = async (pool: Pool, body: CreateAccounting
     [body.label, body.order, body.required, body.active, `custom`],
   );
 
-  return asAccountingSegment(result.rows[0]);
+  return asSegment(result.rows[0]);
 };
 
 /**
  * Updates one accounting segment.
  */
-export const updateAccountingSegment = async (pool: Pool, id: string, body: UpdateAccountingSegmentBody) => {
-  await getAccountingSegmentById(pool, id);
+export const updateSegment = async (pool: Pool, id: string, body: UpdateSegmentBody) => {
+  await getSegmentById(pool, id);
 
-  const result = await pool.query<AccountingSegmentRow>(
+  const result = await pool.query<SegmentRow>(
     `
-      UPDATE "accountingSegment"
+      UPDATE "segment"
       SET
         "label" = COALESCE($2, "label"),
         "order" = COALESCE($3, "order"),
@@ -164,25 +164,25 @@ export const updateAccountingSegment = async (pool: Pool, id: string, body: Upda
   const row = result.rows[0];
 
   if (!row) {
-    throw new AccountingSegmentNotFoundError(id);
+    throw new SegmentNotFoundError(id);
   }
 
-  return asAccountingSegment(row);
+  return asSegment(row);
 };
 
 /**
  * Deletes one accounting segment.
  */
-export const deleteAccountingSegment = async (pool: Pool, id: string) => {
-  const existingSegment = await getAccountingSegmentById(pool, id);
+export const deleteSegment = async (pool: Pool, id: string) => {
+  const existingSegment = await getSegmentById(pool, id);
 
   if (existingSegment.required) {
-    throw new AccountingSegmentRequiredDeleteError(id);
+    throw new SegmentRequiredDeleteError(id);
   }
 
-  const result = await pool.query<AccountingSegmentRow>(
+  const result = await pool.query<SegmentRow>(
     `
-      DELETE FROM "accountingSegment"
+      DELETE FROM "segment"
       WHERE "id" = $1
       RETURNING
         "id",
@@ -199,8 +199,8 @@ export const deleteAccountingSegment = async (pool: Pool, id: string) => {
   const row = result.rows[0];
 
   if (!row) {
-    throw new AccountingSegmentNotFoundError(id);
+    throw new SegmentNotFoundError(id);
   }
 
-  return asAccountingSegment(row);
+  return asSegment(row);
 };

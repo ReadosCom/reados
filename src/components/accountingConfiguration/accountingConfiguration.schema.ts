@@ -10,7 +10,11 @@ export const accountingConfigurationResponseDataSchema = z.object({
   module: z.literal(`accounting`),
 });
 export const accountingConfigurationResponseSchema = apiSuccessSchema(accountingConfigurationResponseDataSchema);
+export const finalizeAccountingConfigurationResponseDataSchema = accountingConfigurationResponseDataSchema;
+export const finalizeAccountingConfigurationResponseSchema = accountingConfigurationResponseSchema;
 
 export type AccountingConfigurationResponseData = z.infer<typeof accountingConfigurationResponseDataSchema>;
 export type AccountingConfigurationResponse = z.infer<typeof accountingConfigurationResponseSchema>;
+export type FinalizeAccountingConfigurationResponseData = z.infer<typeof finalizeAccountingConfigurationResponseDataSchema>;
+export type FinalizeAccountingConfigurationResponse = z.infer<typeof finalizeAccountingConfigurationResponseSchema>;
 export type AccountingConfiguration = z.infer<typeof accountingConfigurationSchema>;

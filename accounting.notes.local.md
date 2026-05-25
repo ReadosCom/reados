@@ -37,7 +37,6 @@ Planned fields (baseline):
 - `type` (for example: `manualJournal`, `sale`, `receipt`, `pettyCash`)
 - `date` (`date`)
 - `createdAt`
-- `updatedAt`
 
 
 ### `gl` (general ledger lines / journal items)
@@ -53,7 +52,6 @@ Planned fields (baseline):
 - `debit`
 - `credit`
 - `createdAt`
-- `updatedAt`
 
 Open item:
 - Additional optional line-level text fields may be added later if needed.
@@ -76,6 +74,22 @@ Direction:
 - We will not use a single `reference` column in `gl` as a direct FK to multiple tables.
 - Cross-process reference is handled through `gl.journal -> journal.id`.
 - Process-specific unique IDs remain in their own process tables and are connected through `journal`.
+
+## Immutability After Posting To GL
+
+Decision:
+- If a transaction is posted to `gl`, it becomes immutable.
+- This is enforced by PostgreSQL (not application-only checks).
+
+Enforcement plan:
+- Add `postedAt` to `journal` (null before posting, set when GL rows are created/finalized).
+- Add `BEFORE DELETE` triggers on `journal`, `gl`, and process tables (`sale`, `manualJournal`, `receipt`, `pettyCash`, etc.).
+- Triggers will `RAISE EXCEPTION` when the related journal is posted (or has GL rows), preventing deletion.
+- Add `BEFORE UPDATE` triggers for protected fields after posting (to prevent destructive edits on posted records).
+
+Notes:
+- No soft delete path for posted accounting data.
+- Correction flow should be done through reversal/counter entries in future process PRs.
 
 ## Future PR Scope (separate PRs)
 

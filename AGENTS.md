@@ -123,6 +123,7 @@
 - Use `PgAdmin` behind Traefik at `pgadmin.localhost` for local database access, connecting directly to PostgreSQL.
 - Generate local secret files with `./scripts/start-here.sh` and use the default `.env` file for Compose. Use `--no-questions` in CI/CD so the script can run non-interactively with defaults.
 - Keep PostgreSQL migrations under `config/postgres/migrations/`; migrations are database configuration, not Compose configuration.
+- Use exactly one migration DDL file per table. Do not combine multiple table creations in a single migration file.
 - Use the shared internal port `3000` for backend module containers behind Traefik.
 - The frontend uses `frontend.dockerfile`.
 - Backend modules use dedicated service Dockerfiles under `config/compose/` (for example `accounting.dockerfile`, `authentication.dockerfile`, `core.dockerfile`, `tenant.dockerfile`).
