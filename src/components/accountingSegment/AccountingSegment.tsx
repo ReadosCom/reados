@@ -19,7 +19,6 @@ const accountingSegmentFormSchema = segmentSchema.pick({
 type AccountingSegmentFormValues = z.infer<typeof accountingSegmentFormSchema>;
 
 type AccountingSegmentProps = {
-  isFinalized: boolean;
   nextOrder: number;
   onCreated: (segmentId: string) => void;
   onDeleted: (segmentId: string) => void;
@@ -27,7 +26,7 @@ type AccountingSegmentProps = {
   tabValue: string;
 };
 
-export const AccountingSegment = ({ isFinalized, nextOrder, onCreated, onDeleted, segment, tabValue }: AccountingSegmentProps) => {
+export const AccountingSegment = ({ nextOrder, onCreated, onDeleted, segment, tabValue }: AccountingSegmentProps) => {
   const { t } = useTranslation(`./AccountingSegment.i18n.ts`);
   const { mutateAsync: createSegmentAsync, isPending: isCreateSegmentPending } = useCreateSegmentMutation();
   const { mutateAsync: deleteSegmentAsync, isPending: isDeleteSegmentPending } = useDeleteSegmentMutation();
@@ -47,7 +46,7 @@ export const AccountingSegment = ({ isFinalized, nextOrder, onCreated, onDeleted
   }, [form, segment]);
 
   const isRequired = segment?.required === true;
-  const canRemove = Boolean(segment) && !isFinalized && !isRequired;
+  const canRemove = Boolean(segment) && !isRequired;
   const isUpdating = isCreateSegmentPending || isDeleteSegmentPending || isUpdateSegmentPending;
 
   const onSubmit = async (values: AccountingSegmentFormValues) => {

@@ -1,9 +1,7 @@
 import { getErpServiceOrigin } from "@components/application/application.host.ts";
 import {
   accountingConfigurationResponseSchema,
-  finalizeAccountingConfigurationResponseSchema,
   type AccountingConfigurationResponseData,
-  type FinalizeAccountingConfigurationResponseData,
 } from "./accountingConfiguration.schema.ts";
 
 const root = getErpServiceOrigin();
@@ -21,20 +19,4 @@ export const getAccountingConfiguration = async (): Promise<AccountingConfigurat
   }
 
   return accountingConfigurationResponseSchema.parse(await response.json()).data;
-};
-
-/**
- * Finalizes accounting configuration.
- */
-export const finalizeAccountingConfiguration = async (): Promise<FinalizeAccountingConfigurationResponseData> => {
-  const response = await fetch(`${root}/accounting/configuration/finalize`, {
-    credentials: `include`,
-    method: `POST`,
-  });
-
-  if (!response.ok) {
-    throw new Error(`Failed to finalize accounting configuration.`);
-  }
-
-  return finalizeAccountingConfigurationResponseSchema.parse(await response.json()).data;
 };

@@ -1,8 +1,6 @@
-import { useAccountingConfigurationQuery } from '@components/accountingConfiguration/accountingConfiguration.query.ts';
 import { useTranslation } from '@components/i18n/useTranslation.ts';
 import { Card, CardContent, CardHeader, CardTitle } from '@components/uiframework/Card';
 import { Skeleton } from '@components/uiframework/Skeleton';
-import { Navigate, useRouterState } from '@tanstack/react-router';
 
 import { useAccountingDashboardSummaryQuery } from './accounting.query.ts';
 
@@ -20,30 +18,7 @@ const asCurrency = (amount: number, currency: string) => {
  */
 export const Accounting = () => {
   const { t } = useTranslation(`./Accounting.i18n.ts`);
-  const pathname = useRouterState({
-    select: (state) => state.location.pathname,
-  });
-  const { data: accountingConfiguration, isPending: isAccountingConfigurationPending } = useAccountingConfigurationQuery();
   const { data: summary, isError, isPending } = useAccountingDashboardSummaryQuery();
-  const isFinalized = accountingConfiguration?.configuration.finalized === true;
-  const isAccountingLandingRoute = pathname === `/erp/accounting` || pathname === `/erp/accounting/`;
-
-  if (isAccountingConfigurationPending) {
-    return (
-      <>
-        <p className="text-sm text-muted-foreground">{t(`Loading accounting configuration...`)}</p>
-        <section aria-label={t(`Accounting summary`)} className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          <Skeleton className="h-28 rounded-xl" />
-          <Skeleton className="h-28 rounded-xl" />
-          <Skeleton className="h-28 rounded-xl" />
-        </section>
-      </>
-    );
-  }
-
-  if (!isFinalized && isAccountingLandingRoute) {
-    return <Navigate replace to={'/erp/accounting/configuration/segments' as never} />;
-  }
 
   return (
     <>
@@ -67,7 +42,13 @@ export const Accounting = () => {
           <CardContent className="text-3xl font-semibold">{summary ? asCurrency(summary.unpaidBalance, summary.currency) : `--`}</CardContent>
         </Card>
       </section>
-      {isPending ? <p className="mt-4 text-sm text-muted-foreground">{t(`Loading accounting summary...`)}</p> : null}
+      {isPending ? (
+        <section aria-label={t(`Accounting summary`)} className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <Skeleton className="h-28 rounded-xl" />
+          <Skeleton className="h-28 rounded-xl" />
+          <Skeleton className="h-28 rounded-xl" />
+        </section>
+      ) : null}
       {isError ? <p className="mt-4 text-sm text-destructive">{t(`Could not load accounting summary right now.`)}</p> : null}
     </>
   );
