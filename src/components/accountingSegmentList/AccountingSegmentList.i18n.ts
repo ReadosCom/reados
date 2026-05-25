@@ -5,46 +5,46 @@ export const translations = {
     "tr": { translation: `İşlemler`, translatedBy: `AI` },
   },
   "Could not load segment list right now.": {
-    "tr": { translation: `Segment listesi şu anda yüklenemedi.`, translatedBy: `AI` },
+    "tr": { translation: `Kırılım listesi şu anda yüklenemedi.`, translatedBy: `AI` },
   },
   "Could not delete segment right now.": {
-    "tr": { translation: `Segment şu anda silinemedi.`, translatedBy: `AI` },
+    "tr": { translation: `Kırılım şu anda silinemedi.`, translatedBy: `AI` },
   },
   "Could not reorder segments right now.": {
-    "tr": { translation: `Segment sırası şu anda değiştirilemedi.`, translatedBy: `AI` },
+    "tr": { translation: `Kırılım sırası şu anda değiştirilemedi.`, translatedBy: `AI` },
   },
   "Are you sure, segment deletion will re-shape whole General Ledger?": {
-    "tr": { translation: `Emin misiniz, segment silme işlemi tüm Genel Muhasebe Defteri yapısını yeniden şekillendirecek?`, translatedBy: `AI` },
+    "tr": { translation: `Emin misiniz, kırılım silme işlemi tüm Genel Muhasebe Defteri yapısını yeniden şekillendirecek?`, translatedBy: `AI` },
   },
   "Label": {
     "tr": { translation: `Etiket`, translatedBy: `AI` },
   },
   "Delete segment": {
-    "tr": { translation: `Segmenti sil`, translatedBy: `AI` },
+    "tr": { translation: `Kırılımı sil`, translatedBy: `AI` },
   },
   "Delete": {
     "tr": { translation: `Sil`, translatedBy: `AI` },
   },
   "Loading segment list...": {
-    "tr": { translation: `Segment listesi yükleniyor...`, translatedBy: `AI` },
+    "tr": { translation: `Kırılım listesi yükleniyor...`, translatedBy: `AI` },
   },
   "No segments yet.": {
-    "tr": { translation: `Henüz segment yok.`, translatedBy: `AI` },
+    "tr": { translation: `Henüz kırılım yok.`, translatedBy: `AI` },
   },
   "Required": {
     "tr": { translation: `Zorunlu`, translatedBy: `AI` },
   },
   "Segment List": {
-    "tr": { translation: `Segment Listesi`, translatedBy: `AI` },
+    "tr": { translation: `Kırılım Listesi`, translatedBy: `AI` },
   },
   "Move segment down": {
-    "tr": { translation: `Segmenti aşağı taşı`, translatedBy: `AI` },
+    "tr": { translation: `Kırılımı aşağı taşı`, translatedBy: `AI` },
   },
   "Move segment up": {
-    "tr": { translation: `Segmenti yukarı taşı`, translatedBy: `AI` },
+    "tr": { translation: `Kırılımı yukarı taşı`, translatedBy: `AI` },
   },
   "New Segment": {
-    "tr": { translation: `Yeni Segment`, translatedBy: `AI` },
+    "tr": { translation: `Yeni Kırılım`, translatedBy: `AI` },
   },
   "Yes": {
     "tr": { translation: `Evet`, translatedBy: `AI` },

@@ -2,7 +2,7 @@ import type { Translations } from "@components/i18n/i18n.types.ts";
 
 export const translations = {
   "Add segment": {
-    "tr": { translation: `Segment ekle`, translatedBy: `AI` },
+    "tr": { translation: `Kırılım ekle`, translatedBy: `AI` },
   },
   "Accounting configuration": {
     "tr": { translation: `Muhasebe yapılandırması`, translatedBy: `AI` },
@@ -26,7 +26,7 @@ export const translations = {
     "tr": { translation: `Muhasebe yapılandırması yükleniyor...`, translatedBy: `AI` },
   },
   "Segments": {
-    "tr": { translation: `Segmentler`, translatedBy: `AI` },
+    "tr": { translation: `Kırılımlar`, translatedBy: `AI` },
   },
   "Remove": {
     "tr": { translation: `Kaldır`, translatedBy: `AI` },
@@ -38,19 +38,19 @@ export const translations = {
     "tr": { translation: `Yapılandırma kaydedildi.`, translatedBy: `AI` },
   },
   "Segment": {
-    "tr": { translation: `Segment`, translatedBy: `AI` },
+    "tr": { translation: `Kırılım`, translatedBy: `AI` },
   },
   "New Segment": {
-    "tr": { translation: `Yeni Segment`, translatedBy: `AI` },
+    "tr": { translation: `Yeni Kırılım`, translatedBy: `AI` },
   },
   "Select this tab to create and open a new segment.": {
-    "tr": { translation: `Yeni bir segment oluşturup açmak için bu sekmeyi seçin.`, translatedBy: `AI` },
+    "tr": { translation: `Yeni bir kırılım oluşturup açmak için bu sekmeyi seçin.`, translatedBy: `AI` },
   },
   "Select New Segment to create your first segment.": {
-    "tr": { translation: `İlk segmentinizi oluşturmak için Yeni Segment'i seçin.`, translatedBy: `AI` },
+    "tr": { translation: `İlk kırılımınızı oluşturmak için Yeni Kırılım'ı seçin.`, translatedBy: `AI` },
   },
   "Configuration is finalized. Segment deletion is disabled.": {
-    "tr": { translation: `Yapılandırma tamamlandı. Segment silme devre dışı bırakıldı.`, translatedBy: `AI` },
+    "tr": { translation: `Yapılandırma tamamlandı. Kırılım silme devre dışı bırakıldı.`, translatedBy: `AI` },
   },
   "Configuration finalized.": {
     "tr": { translation: `Yapılandırma tamamlandı.`, translatedBy: `AI` },

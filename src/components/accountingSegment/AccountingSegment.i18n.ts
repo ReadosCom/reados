@@ -11,18 +11,18 @@ export const translations = {
     tr: { translation: `Kaldırılıyor...`, translatedBy: `AI` },
   },
   "Required segments can't be deleted": {
-    tr: { translation: `Zorunlu segmentler silinemez`, translatedBy: `AI` },
+    tr: { translation: `Zorunlu kırılımlar silinemez`, translatedBy: `AI` },
   },
   'Save segment': {
-    tr: { translation: `Segmenti kaydet`, translatedBy: `AI` },
+    tr: { translation: `Kırılımı kaydet`, translatedBy: `AI` },
   },
   'Saving...': {
     tr: { translation: `Kaydediliyor...`, translatedBy: `AI` },
   },
   'Segment saved.': {
-    tr: { translation: `Segment kaydedildi.`, translatedBy: `AI` },
+    tr: { translation: `Kırılım kaydedildi.`, translatedBy: `AI` },
   },
   'Could not save segment right now.': {
-    tr: { translation: `Segment şu anda kaydedilemedi.`, translatedBy: `AI` },
+    tr: { translation: `Kırılım şu anda kaydedilemedi.`, translatedBy: `AI` },
   },
 } as const satisfies Translations;
