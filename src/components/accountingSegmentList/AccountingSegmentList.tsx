@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { IconChevronDown, IconChevronUp } from '@tabler/icons-react';
+import { useNavigate } from '@tanstack/react-router';
 import { useTranslation } from '@components/i18n/useTranslation.ts';
-import { useSegmentsQuery, useUpdateSegmentMutation } from '@components/segment/segment.query.ts';
+import { useReorderSegmentMutation, useSegmentsQuery } from '@components/segment/segment.query.ts';
 import { Button } from '@components/uiframework/Button';
 import { Skeleton } from '@components/uiframework/Skeleton';
 
@@ -10,8 +11,9 @@ import { Skeleton } from '@components/uiframework/Skeleton';
  */
 export const AccountingSegmentList = () => {
   const { t } = useTranslation(`./AccountingSegmentList.i18n.ts`);
+  const navigate = useNavigate();
   const { data: segmentData, isError, isPending } = useSegmentsQuery();
-  const { mutateAsync: updateSegmentAsync, isPending: isUpdateSegmentPending } = useUpdateSegmentMutation();
+  const { mutateAsync: reorderSegmentAsync, isPending: isReorderSegmentPending } = useReorderSegmentMutation();
   const [reorderState, setReorderState] = useState<`error` | `idle`>(`idle`);
   const segments = [...(segmentData ?? [])].sort((left, right) => left.order - right.order);
 
@@ -25,29 +27,11 @@ export const AccountingSegmentList = () => {
 
     setReorderState(`idle`);
 
-    const reorderedSegments = [...segments];
-    const [movedSegment] = reorderedSegments.splice(sourceIndex, 1);
-    reorderedSegments.splice(targetIndex, 0, movedSegment);
-
-    const orderUpdates = reorderedSegments
-      .map((segment, index) => ({ id: segment.id, order: index }))
-      .filter(({ id, order }) => {
-        return segments.find((segment) => segment.id === id)?.order !== order;
-      });
-
-    if (orderUpdates.length === 0) {
-      return;
-    }
-
     try {
-      await Promise.all(
-        orderUpdates.map(({ id, order }) => {
-          return updateSegmentAsync({
-            body: { order },
-            id,
-          });
-        }),
-      );
+      await reorderSegmentAsync({
+        body: { direction: direction === -1 ? `up` : `down` },
+        id: segmentId,
+      });
     } catch {
       setReorderState(`error`);
     }
@@ -64,6 +48,16 @@ export const AccountingSegmentList = () => {
 
   return (
     <section className="space-y-3" aria-label={t(`Segment List`)}>
+      <div className="flex justify-end">
+        <Button
+          onClick={() => {
+            void navigate({ to: `/erp/accounting/configuration/segments/new-segment` as never } as never);
+          }}
+          type="button"
+        >
+          {t(`New Segment`)}
+        </Button>
+      </div>
       {isError ? <p className="text-sm text-destructive">{t(`Could not load segment list right now.`)}</p> : null}
       {reorderState === `error` ? <p className="text-sm text-destructive">{t(`Could not reorder segments right now.`)}</p> : null}
       {!isError && segments.length === 0 ? <p className="text-sm text-muted-foreground">{t(`No segments yet.`)}</p> : null}
@@ -87,7 +81,7 @@ export const AccountingSegmentList = () => {
                       <Button
                         aria-label={t(`Move segment up`)}
                         className="h-7 w-7 p-0"
-                        disabled={isUpdateSegmentPending || index === 0}
+                        disabled={isReorderSegmentPending || index === 0}
                         onClick={() => {
                           void onMoveSegment(segment.id, -1);
                         }}
@@ -100,7 +94,7 @@ export const AccountingSegmentList = () => {
                       <Button
                         aria-label={t(`Move segment down`)}
                         className="h-7 w-7 p-0"
-                        disabled={isUpdateSegmentPending || index === segments.length - 1}
+                        disabled={isReorderSegmentPending || index === segments.length - 1}
                         onClick={() => {
                           void onMoveSegment(segment.id, 1);
                         }}

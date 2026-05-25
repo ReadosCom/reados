@@ -3,12 +3,13 @@ import { Router } from "express";
 import { defineRoutes } from "@components/express/express.router.ts";
 import { ensurePool } from "@components/postgres/pool.ts";
 
-import { createSegment, deleteSegment, getSegmentById, listSegments, updateSegment } from "./segment.controller.ts";
+import { createSegment, deleteSegment, getSegmentById, listSegments, reorderSegment, updateSegment } from "./segment.controller.ts";
 import {
   SegmentNotFoundError,
   SegmentRequiredDeleteError,
   segmentParamsSchema,
   createSegmentBodySchema,
+  reorderSegmentBodySchema,
   updateSegmentBodySchema,
 } from "./segment.schema.ts";
 
@@ -118,6 +119,38 @@ route({
         code: `segment_update_failed`,
         logMessage: `Failed to update accounting segment ${params.id}.`,
         message: `We could not update the accounting segment right now.`,
+        status: 500,
+      });
+    }
+  },
+});
+
+route({
+  method: `post`,
+  route: `/:id/reorder`,
+  validators: {
+    body: reorderSegmentBodySchema,
+    params: segmentParamsSchema,
+  },
+  handler: async ({ body, fail, params, respond }) => {
+    try {
+      const segment = await reorderSegment(pool, params.id, body);
+      respond(segment);
+    } catch (error) {
+      if (error instanceof SegmentNotFoundError) {
+        fail({
+          code: `segment_not_found`,
+          message: `Accounting segment was not found.`,
+          status: 404,
+        });
+        return;
+      }
+
+      fail({
+        cause: error,
+        code: `segment_reorder_failed`,
+        logMessage: `Failed to reorder accounting segment ${params.id}.`,
+        message: `We could not reorder the accounting segment right now.`,
         status: 500,
       });
     }

@@ -105,7 +105,6 @@ export const AccountingSegments = () => {
               </TabsTrigger>
             );
           })}
-          <TabsTrigger value={newSegmentTabValue}>{t(`New Segment`)}</TabsTrigger>
         </TabsList>
         {segments.map((segment) => (
           <AccountingSegment

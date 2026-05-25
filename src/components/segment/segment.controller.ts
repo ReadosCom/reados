@@ -6,6 +6,7 @@ import {
   type Segment,
   type SegmentRow,
   type CreateSegmentBody,
+  type ReorderSegmentBody,
   type UpdateSegmentBody,
 } from './segment.schema.ts';
 
@@ -194,4 +195,63 @@ export const deleteSegment = async (pool: Pool, id: string) => {
   }
 
   return asSegment(row);
+};
+
+/**
+ * Reorders one accounting segment by swapping order with its adjacent segment.
+ */
+export const reorderSegment = async (pool: Pool, id: string, body: ReorderSegmentBody) => {
+  const client = await pool.connect();
+
+  try {
+    await client.query(`BEGIN`);
+
+    await client.query(`LOCK TABLE "segment" IN SHARE ROW EXCLUSIVE MODE;`);
+
+    await client.query(
+      `
+        UPDATE "segment"
+        SET "order" = "order" * 100;
+      `,
+    );
+
+    await client.query(
+      `
+        UPDATE "segment"
+        SET "order" = "order" + $2
+        WHERE "id" = $1;
+      `,
+      [id, body.direction === `up` ? -150 : 150],
+    );
+
+    await client.query(
+      `
+        UPDATE "segment" AS "segmentToUpdate"
+        SET "order" = -("orderedSegment"."normalizedOrder" + 1)
+        FROM (
+          SELECT
+            "id",
+            ROW_NUMBER() OVER (ORDER BY "order" ASC) - 1 AS "normalizedOrder"
+          FROM "segment"
+        ) AS "orderedSegment"
+        WHERE "segmentToUpdate"."id" = "orderedSegment"."id";
+      `,
+    );
+
+    await client.query(
+      `
+        UPDATE "segment"
+        SET "order" = (-"order") - 1;
+      `,
+    );
+
+    await client.query(`COMMIT`);
+
+    return getSegmentById(pool, id);
+  } catch (error) {
+    await client.query(`ROLLBACK`);
+    throw error;
+  } finally {
+    client.release();
+  }
 };

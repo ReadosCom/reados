@@ -6,7 +6,9 @@ import {
   createSegmentBodySchema,
   type Segment,
   type CreateSegmentBody,
+  type ReorderSegmentBody,
   type UpdateSegmentBody,
+  reorderSegmentBodySchema,
   updateSegmentBodySchema,
 } from "./segment.schema.ts";
 
@@ -64,6 +66,27 @@ export const updateSegment = async (id: string, body: UpdateSegmentBody): Promis
 
   if (!response.ok) {
     throw new Error(`Failed to update accounting segment.`);
+  }
+
+  return segmentResponseSchema.parse(await response.json()).data;
+};
+
+/**
+ * Reorders one accounting segment by direction.
+ */
+export const reorderSegment = async (id: string, body: ReorderSegmentBody): Promise<Segment> => {
+  const parsedBody = reorderSegmentBodySchema.parse(body);
+  const response = await fetch(`${root}/accounting/segment/${encodeURIComponent(id)}/reorder`, {
+    body: JSON.stringify(parsedBody),
+    credentials: `include`,
+    headers: {
+      "Content-Type": `application/json`,
+    },
+    method: `POST`,
+  });
+
+  if (!response.ok) {
+    throw new Error(`Failed to reorder accounting segment.`);
   }
 
   return segmentResponseSchema.parse(await response.json()).data;

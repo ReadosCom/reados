@@ -31,6 +31,9 @@ export const translations = {
   "Move segment up": {
     "tr": { translation: `Segmenti yukarı taşı`, translatedBy: `AI` },
   },
+  "New Segment": {
+    "tr": { translation: `Yeni Segment`, translatedBy: `AI` },
+  },
   "Yes": {
     "tr": { translation: `Evet`, translatedBy: `AI` },
   },

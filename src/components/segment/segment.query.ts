@@ -1,7 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
-import { createSegment, deleteSegment, getSegments, updateSegment } from "./segment.client.ts";
-import type { CreateSegmentBody, UpdateSegmentBody } from "./segment.schema.ts";
+import { createSegment, deleteSegment, getSegments, reorderSegment, updateSegment } from "./segment.client.ts";
+import type { CreateSegmentBody, ReorderSegmentBody, UpdateSegmentBody } from "./segment.schema.ts";
 
 const segmentQueryKey = [`accounting`, `segment`] as const;
 
@@ -51,6 +51,20 @@ export const useDeleteSegmentMutation = () => {
 
   return useMutation({
     mutationFn: (id: string) => deleteSegment(id),
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({ queryKey: segmentQueryKey });
+    },
+  });
+};
+
+/**
+ * Mutates reorder accounting segment.
+ */
+export const useReorderSegmentMutation = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: ({ body, id }: { body: ReorderSegmentBody; id: string }) => reorderSegment(id, body),
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: segmentQueryKey });
     },

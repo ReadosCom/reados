@@ -36,10 +36,15 @@ export const updateSegmentBodySchema = z
     message: `At least one field must be provided.`,
   });
 
+export const reorderSegmentBodySchema = z.object({
+  direction: z.enum([`up`, `down`]),
+});
+
 export type Segment = z.infer<typeof segmentSchema>;
 export type SegmentParams = z.infer<typeof segmentParamsSchema>;
 export type CreateSegmentBody = z.infer<typeof createSegmentBodySchema>;
 export type UpdateSegmentBody = z.infer<typeof updateSegmentBodySchema>;
+export type ReorderSegmentBody = z.infer<typeof reorderSegmentBodySchema>;
 export type SegmentListResponseData = z.infer<typeof segmentListResponseDataSchema>;
 export type SegmentResponseData = z.infer<typeof segmentResponseDataSchema>;
 
