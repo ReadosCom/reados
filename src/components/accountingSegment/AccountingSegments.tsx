@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from '@tanstack/react-router';
+import { useEffect, useState } from 'react';
 
 import { useTranslation } from '@components/i18n/useTranslation.ts';
 import { useSegmentsQuery } from '@components/segment/segment.query.ts';
@@ -92,10 +92,10 @@ export const AccountingSegments = () => {
             to: `/erp/accounting/configuration/segments/${value}` as never,
           } as never);
         }}
-        orientation="vertical"
+        // orientation="vertical"
         value={activeTabValue}
       >
-        <TabsList variant="default">
+        <TabsList variant="line">
           {segments.map((segment, index) => {
             const segmentLabel = segment.label.trim().length > 0 ? segment.label : `${t(`Segment`)} ${index + 1}`;
 

@@ -31,6 +31,9 @@ export const translations = {
   "Segments": {
     "tr": { translation: `Segmentler`, translatedBy: `AI` },
   },
+  "Segment List": {
+    "tr": { translation: `Segment Listesi`, translatedBy: `AI` },
+  },
   "Remove": {
     "tr": { translation: `Kaldır`, translatedBy: `AI` },
   },

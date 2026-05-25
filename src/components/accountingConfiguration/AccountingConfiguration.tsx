@@ -9,16 +9,17 @@ export const AccountingConfiguration = () => {
   const { t } = useTranslation(`./AccountingConfiguration.i18n.ts`);
   const location = useLocation();
 
-  const activeTab = location.pathname.includes(`/segments`) ? `segments` : `segments`;
+  const activeTab = location.pathname.includes(`/segments`) ? `segments` : `segmentList`;
 
   return (
     <section className="space-y-4" aria-label={t(`Accounting configuration`)}>
       <Tabs value={activeTab}>
-        <TabsList>
+        <TabsList variant="line">
+          <TabsTrigger asChild value="segmentList">
+            <Link to={'/erp/accounting/configuration/segment-list' as never}>{t(`Segment List`)}</Link>
+          </TabsTrigger>
           <TabsTrigger asChild value="segments">
-            <Link to={"/erp/accounting/configuration/segments" as never}>
-              {t(`Segments`)}
-            </Link>
+            <Link to={'/erp/accounting/configuration/segments' as never}>{t(`Segments`)}</Link>
           </TabsTrigger>
         </TabsList>
       </Tabs>
