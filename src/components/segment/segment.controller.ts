@@ -1,4 +1,4 @@
-import type { Pool } from 'pg';
+import { escapeIdentifier, type Pool } from 'pg';
 
 import {
   SegmentNotFoundError,
@@ -13,6 +13,10 @@ import {
 const entitySystemSegmentId = `00000000-0000-7000-8000-000000000001`;
 const accountSystemSegmentId = `00000000-0000-7000-8000-000000000002`;
 
+const getGlSegmentIndexName = (segmentId: string) => {
+  return `glSegment_${segmentId.replaceAll(`-`, `_`)}_idx`;
+};
+
 const asSegment = (row: SegmentRow): Segment => {
   return {
     createdAt: row.createdAt.toISOString(),
@@ -20,6 +24,7 @@ const asSegment = (row: SegmentRow): Segment => {
     label: row.label,
     order: row.order,
     required: row.required,
+    type: row.type,
     updatedAt: row.updatedAt.toISOString(),
   };
 };
@@ -32,6 +37,7 @@ const selectSegments = async (pool: Pool) => {
         "label",
         "order",
         "required",
+        "type",
         "createdAt",
         "updatedAt"
       FROM "segment"
@@ -41,22 +47,38 @@ const selectSegments = async (pool: Pool) => {
 };
 
 const ensureDefaultSegments = async (pool: Pool) => {
-  await pool.query(
-    `
-      INSERT INTO "segment" (
-        "id",
-        "label",
-        "order",
-        "required",
-        "source"
-      )
-      VALUES
-        ($1, 'Entity', 0, true, 'system'),
-        ($2, 'Account', 1, true, 'system')
-      ON CONFLICT ("id") DO NOTHING;
-    `,
-    [entitySystemSegmentId, accountSystemSegmentId],
-  );
+  const client = await pool.connect();
+
+  try {
+    await client.query(`BEGIN;`);
+    await client.query(
+      `
+        INSERT INTO "segment" (
+          "id",
+          "label",
+          "order",
+          "required",
+          "type"
+        )
+        VALUES
+          ($1, 'Entity', 0, true, 'entity'),
+          ($2, 'Account', 1, true, 'account')
+        ON CONFLICT ("id") DO NOTHING;
+      `,
+      [entitySystemSegmentId, accountSystemSegmentId],
+    );
+
+    await client.query(`ALTER TABLE "gl" ADD COLUMN IF NOT EXISTS ${escapeIdentifier(entitySystemSegmentId)} text;`);
+    await client.query(`ALTER TABLE "gl" ADD COLUMN IF NOT EXISTS ${escapeIdentifier(accountSystemSegmentId)} text;`);
+    await client.query(`CREATE INDEX IF NOT EXISTS ${escapeIdentifier(getGlSegmentIndexName(entitySystemSegmentId))} ON "gl" (${escapeIdentifier(entitySystemSegmentId)});`);
+    await client.query(`CREATE INDEX IF NOT EXISTS ${escapeIdentifier(getGlSegmentIndexName(accountSystemSegmentId))} ON "gl" (${escapeIdentifier(accountSystemSegmentId)});`);
+    await client.query(`COMMIT;`);
+  } catch (error) {
+    await client.query(`ROLLBACK;`);
+    throw error;
+  } finally {
+    client.release();
+  }
 };
 
 /**
@@ -84,6 +106,7 @@ export const getSegmentById = async (pool: Pool, id: string) => {
         "label",
         "order",
         "required",
+        "type",
         "createdAt",
         "updatedAt"
       FROM "segment"
@@ -112,7 +135,7 @@ export const createSegment = async (pool: Pool, body: CreateSegmentBody) => {
         "label",
         "order",
         "required",
-        "source"
+        "type"
       )
       VALUES ($1, $2, $3, $4)
       RETURNING
@@ -120,10 +143,11 @@ export const createSegment = async (pool: Pool, body: CreateSegmentBody) => {
         "label",
         "order",
         "required",
+        "type",
         "createdAt",
         "updatedAt";
     `,
-    [body.label, body.order, body.required, `custom`],
+    [body.label, body.order, body.required, `generic`],
   );
 
   return asSegment(result.rows[0]);
@@ -148,6 +172,7 @@ export const updateSegment = async (pool: Pool, id: string, body: UpdateSegmentB
         "label",
         "order",
         "required",
+        "type",
         "createdAt",
         "updatedAt";
     `,
@@ -167,34 +192,70 @@ export const updateSegment = async (pool: Pool, id: string, body: UpdateSegmentB
  * Deletes one accounting segment.
  */
 export const deleteSegment = async (pool: Pool, id: string) => {
-  const existingSegment = await getSegmentById(pool, id);
+  const client = await pool.connect();
 
-  if (existingSegment.required) {
-    throw new SegmentRequiredDeleteError(id);
+  try {
+    await client.query(`BEGIN;`);
+
+    const existingResult = await client.query<SegmentRow>(
+      `
+        SELECT
+          "id",
+          "label",
+          "order",
+          "required",
+          "type",
+          "createdAt",
+          "updatedAt"
+        FROM "segment"
+        WHERE "id" = $1
+        LIMIT 1
+        FOR UPDATE;
+      `,
+      [id],
+    );
+
+    const existingRow = existingResult.rows[0];
+
+    if (!existingRow) {
+      throw new SegmentNotFoundError(id);
+    }
+
+    if (existingRow.required) {
+      throw new SegmentRequiredDeleteError(id);
+    }
+
+    const result = await client.query<SegmentRow>(
+      `
+        DELETE FROM "segment"
+        WHERE "id" = $1
+        RETURNING
+          "id",
+          "label",
+          "order",
+          "required",
+          "type",
+          "createdAt",
+          "updatedAt";
+      `,
+      [id],
+    );
+
+    const row = result.rows[0];
+
+    if (!row) {
+      throw new SegmentNotFoundError(id);
+    }
+
+    await client.query(`ALTER TABLE "gl" DROP COLUMN IF EXISTS ${escapeIdentifier(id)};`);
+    await client.query(`COMMIT;`);
+    return asSegment(row);
+  } catch (error) {
+    await client.query(`ROLLBACK;`);
+    throw error;
+  } finally {
+    client.release();
   }
-
-  const result = await pool.query<SegmentRow>(
-    `
-      DELETE FROM "segment"
-      WHERE "id" = $1
-      RETURNING
-        "id",
-        "label",
-        "order",
-        "required",
-        "createdAt",
-        "updatedAt";
-    `,
-    [id],
-  );
-
-  const row = result.rows[0];
-
-  if (!row) {
-    throw new SegmentNotFoundError(id);
-  }
-
-  return asSegment(row);
 };
 
 /**

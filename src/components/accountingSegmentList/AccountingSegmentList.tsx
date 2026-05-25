@@ -93,6 +93,7 @@ export const AccountingSegmentList = () => {
             <thead className="[&_tr]:border-b">
               <tr className="border-b border-border">
                 <th className="h-10 px-3 text-left align-middle font-medium">{t(`Label`)}</th>
+                <th className="h-10 px-3 text-left align-middle font-medium">{t(`Type`)}</th>
                 <th className="h-10 px-3 text-left align-middle font-medium">{t(`Required`)}</th>
                 <th className="h-10 px-3 text-right align-middle font-medium">{t(`Actions`)}</th>
               </tr>
@@ -101,6 +102,9 @@ export const AccountingSegmentList = () => {
               {segments.map((segment, index) => (
                 <tr className="border-b border-border" key={segment.id}>
                   <td className="p-3 align-middle">{segment.label}</td>
+                  <td className="p-3 align-middle">
+                    {segment.type === `entity` ? t(`Entity`) : segment.type === `account` ? t(`Account`) : t(`Generic`)}
+                  </td>
                   <td className="p-3 align-middle">{segment.required ? t(`Yes`) : t(`No`)}</td>
                   <td className="p-3 align-middle">
                     <div className="flex justify-end gap-1">

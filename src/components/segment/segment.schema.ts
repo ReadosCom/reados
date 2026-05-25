@@ -1,12 +1,15 @@
 import { z } from "zod";
 import { apiSuccessSchema } from "@components/application/api.schema.ts";
 
+export const segmentTypeSchema = z.enum([`entity`, `account`, `generic`]);
+
 export const segmentSchema = z.object({
   createdAt: z.string().trim().min(1),
   id: z.uuid({ version: `v7` }),
   label: z.string().trim().min(1),
   order: z.number().int().nonnegative(),
   required: z.boolean(),
+  type: segmentTypeSchema,
   updatedAt: z.string().trim().min(1),
 });
 
@@ -41,6 +44,7 @@ export const reorderSegmentBodySchema = z.object({
 });
 
 export type Segment = z.infer<typeof segmentSchema>;
+export type SegmentType = z.infer<typeof segmentTypeSchema>;
 export type SegmentParams = z.infer<typeof segmentParamsSchema>;
 export type CreateSegmentBody = z.infer<typeof createSegmentBodySchema>;
 export type UpdateSegmentBody = z.infer<typeof updateSegmentBodySchema>;
@@ -54,6 +58,7 @@ export type SegmentRow = {
   label: string;
   order: number;
   required: boolean;
+  type: SegmentType;
   updatedAt: Date;
 };
 

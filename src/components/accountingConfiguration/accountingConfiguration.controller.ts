@@ -4,6 +4,10 @@ import { accountingConfigurationSchema, type AccountingConfiguration } from './a
 
 const accountingModuleName = `accounting`;
 
+const getGlSegmentIndexName = (segmentId: string) => {
+  return `glSegment_${segmentId.replaceAll(`-`, `_`)}_idx`;
+};
+
 type SetupRow = {
   configuration: Record<string, unknown>;
   module: string;
@@ -97,6 +101,7 @@ export const finalizeAccountingConfiguration = async (pool: Pool) => {
 
     for (const segmentColumn of segmentColumns) {
       await client.query(`ALTER TABLE "gl" ADD COLUMN IF NOT EXISTS ${escapeIdentifier(segmentColumn)} text;`);
+      await client.query(`CREATE INDEX IF NOT EXISTS ${escapeIdentifier(getGlSegmentIndexName(segmentColumn))} ON "gl" (${escapeIdentifier(segmentColumn)});`);
     }
 
     const finalizedConfiguration: AccountingConfiguration = {

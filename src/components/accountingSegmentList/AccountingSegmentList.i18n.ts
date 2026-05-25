@@ -4,6 +4,9 @@ export const translations = {
   "Actions": {
     "tr": { translation: `İşlemler`, translatedBy: `AI` },
   },
+  "Account": {
+    "tr": { translation: `Hesap`, translatedBy: `AI` },
+  },
   "Could not load segment list right now.": {
     "tr": { translation: `Kırılım listesi şu anda yüklenemedi.`, translatedBy: `AI` },
   },
@@ -25,6 +28,12 @@ export const translations = {
   "Delete": {
     "tr": { translation: `Sil`, translatedBy: `AI` },
   },
+  "Entity": {
+    "tr": { translation: `Kurum`, translatedBy: `AI` },
+  },
+  "Generic": {
+    "tr": { translation: `Genel`, translatedBy: `AI` },
+  },
   "Loading segment list...": {
     "tr": { translation: `Kırılım listesi yükleniyor...`, translatedBy: `AI` },
   },
@@ -33,6 +42,9 @@ export const translations = {
   },
   "Required": {
     "tr": { translation: `Zorunlu`, translatedBy: `AI` },
+  },
+  "Type": {
+    "tr": { translation: `Tip`, translatedBy: `AI` },
   },
   "Segment List": {
     "tr": { translation: `Kırılım Listesi`, translatedBy: `AI` },
