@@ -2,6 +2,7 @@ import { useLocation, useNavigate } from '@tanstack/react-router';
 import { useEffect, useState } from 'react';
 
 import { useTranslation } from '@components/i18n/useTranslation.ts';
+import { useAwaitedPrompt } from '@components/prompt/prompt.context.ts';
 import { useSegmentsQuery } from '@components/segment/segment.query.ts';
 import type { Segment } from '@components/segment/segment.schema.ts';
 import { Skeleton } from '@components/uiframework/Skeleton';
@@ -20,6 +21,7 @@ const sortSegments = (segments: Segment[]) => {
 
 export const AccountingSegments = () => {
   const { t } = useTranslation(`./AccountingSegments.i18n.ts`);
+  const { confirm } = useAwaitedPrompt();
   const location = useLocation();
   const navigate = useNavigate();
   const { data: configurationData, isError: isConfigurationError, isPending: isConfigurationPending } = useAccountingConfigurationQuery();
@@ -56,7 +58,12 @@ export const AccountingSegments = () => {
   }, [isSegmentPending, location.pathname, navigate, routeSegmentId, segmentData]);
 
   const onFinalize = async () => {
-    const shouldFinalize = window.confirm(t(`This is a critical operation. After finalization, future changes may require downtime due to database operations. Do you want to continue?`));
+    const shouldFinalize = await confirm({
+      confirmLabel: t(`Finalize Configuration`),
+      description: t(`This is a critical operation. After finalization, future changes may require downtime due to database operations. Do you want to continue?`),
+      title: t(`Finalize Configuration`),
+      variant: `destructive`,
+    });
 
     if (!shouldFinalize) {
       return;
