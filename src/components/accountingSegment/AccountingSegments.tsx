@@ -79,18 +79,18 @@ export const AccountingSegments = () => {
       return;
     }
 
-    if (isSegmentPending) {
+    if (isSegmentPending || !segmentData) {
       return;
     }
 
     const isNewRoute = routeSegmentId === newSegmentTabValue;
-    const hasRouteSegment = segments.fields.some((field) => field.id === routeSegmentId);
+    const hasRouteSegment = segmentData.some((segment) => segment.id === routeSegmentId);
 
     if (isNewRoute || hasRouteSegment) {
       return;
     }
 
-    const fallbackSegmentId = segments.fields.at(0)?.id ?? newSegmentTabValue;
+    const fallbackSegmentId = segmentData.toSorted((left, right) => left.order - right.order).at(0)?.id ?? newSegmentTabValue;
     console.log(`[reados routing] accounting segment fallback redirect`, {
       from: location.pathname,
       hasRouteSegment,
@@ -103,7 +103,7 @@ export const AccountingSegments = () => {
       replace: true,
       to: `/erp/accounting/configuration/segments/${fallbackSegmentId}` as never,
     } as never);
-  }, [isSegmentPending, location.pathname, navigate, routeSegmentId, segments.fields]);
+  }, [isSegmentPending, location.pathname, navigate, routeSegmentId, segmentData]);
 
   const onSubmit = async (values: AccountingConfigurationScreenFormValues) => {
     setSaveState(`idle`);
