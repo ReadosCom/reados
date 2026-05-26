@@ -1,14 +1,12 @@
-import { getErpServiceOrigin } from "@components/application/application.host.ts";
+import { erpServiceGet } from "@components/application/application.client.ts";
 import { accountingDashboardSummaryResponseSchema, type AccountingDashboardSummaryResponseData } from "./accounting.schema.ts";
-
-const root = getErpServiceOrigin();
 
 /**
  * Fetches accounting dashboard summary metrics from the accounting module API.
  */
 export const getAccountingDashboardSummary = async (): Promise<AccountingDashboardSummaryResponseData> => {
-  const response = await fetch(`${root}/accounting/dashboard/summary`, {
-    credentials: `include`,
+  const response = await erpServiceGet({
+    path: `/accounting/dashboard/summary`,
   });
 
   if (!response.ok) {

@@ -1,3 +1,4 @@
+import { applicationFetch } from "@components/application/application.client.ts";
 import type { AppConfig } from '@components/application/application.schema.ts';
 
 const defaultAppConfig: AppConfig = {
@@ -46,8 +47,10 @@ const parseAppConfig = (value: unknown): AppConfig => {
 export const loadAppConfig = async (): Promise<AppConfig> => {
   const loadConfigFromUrl = async (url: string): Promise<AppConfig | null> => {
     try {
-      const response = await fetch(url, {
+      const response = await applicationFetch({
         cache: `no-store`,
+        credentials: `same-origin`,
+        path: url,
       });
 
       if (!response.ok) {

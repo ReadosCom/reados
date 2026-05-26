@@ -1,4 +1,4 @@
-import { getErpServiceOrigin } from "@components/application/application.host.ts";
+import { erpServiceDelete, erpServiceGet, erpServicePatch, erpServicePost } from "@components/application/application.client.ts";
 
 import {
   segmentListResponseSchema,
@@ -12,14 +12,12 @@ import {
   updateSegmentBodySchema,
 } from "./segment.schema.ts";
 
-const root = getErpServiceOrigin();
-
 /**
  * Fetches all accounting segments.
  */
 export const getSegments = async (): Promise<Segment[]> => {
-  const response = await fetch(`${root}/accounting/segment`, {
-    credentials: `include`,
+  const response = await erpServiceGet({
+    path: `/accounting/segment`,
   });
 
   if (!response.ok) {
@@ -34,13 +32,9 @@ export const getSegments = async (): Promise<Segment[]> => {
  */
 export const createSegment = async (body: CreateSegmentBody): Promise<Segment> => {
   const parsedBody = createSegmentBodySchema.parse(body);
-  const response = await fetch(`${root}/accounting/segment`, {
-    body: JSON.stringify(parsedBody),
-    credentials: `include`,
-    headers: {
-      "Content-Type": `application/json`,
-    },
-    method: `POST`,
+  const response = await erpServicePost({
+    body: parsedBody,
+    path: `/accounting/segment`,
   });
 
   if (!response.ok) {
@@ -55,13 +49,9 @@ export const createSegment = async (body: CreateSegmentBody): Promise<Segment> =
  */
 export const updateSegment = async (id: string, body: UpdateSegmentBody): Promise<Segment> => {
   const parsedBody = updateSegmentBodySchema.parse(body);
-  const response = await fetch(`${root}/accounting/segment/${encodeURIComponent(id)}`, {
-    body: JSON.stringify(parsedBody),
-    credentials: `include`,
-    headers: {
-      "Content-Type": `application/json`,
-    },
-    method: `PATCH`,
+  const response = await erpServicePatch({
+    body: parsedBody,
+    path: `/accounting/segment/${encodeURIComponent(id)}`,
   });
 
   if (!response.ok) {
@@ -76,13 +66,9 @@ export const updateSegment = async (id: string, body: UpdateSegmentBody): Promis
  */
 export const reorderSegment = async (id: string, body: ReorderSegmentBody): Promise<Segment> => {
   const parsedBody = reorderSegmentBodySchema.parse(body);
-  const response = await fetch(`${root}/accounting/segment/${encodeURIComponent(id)}/reorder`, {
-    body: JSON.stringify(parsedBody),
-    credentials: `include`,
-    headers: {
-      "Content-Type": `application/json`,
-    },
-    method: `POST`,
+  const response = await erpServicePost({
+    body: parsedBody,
+    path: `/accounting/segment/${encodeURIComponent(id)}/reorder`,
   });
 
   if (!response.ok) {
@@ -96,9 +82,8 @@ export const reorderSegment = async (id: string, body: ReorderSegmentBody): Prom
  * Deletes one accounting segment.
  */
 export const deleteSegment = async (id: string): Promise<Segment> => {
-  const response = await fetch(`${root}/accounting/segment/${encodeURIComponent(id)}`, {
-    credentials: `include`,
-    method: `DELETE`,
+  const response = await erpServiceDelete({
+    path: `/accounting/segment/${encodeURIComponent(id)}`,
   });
 
   if (!response.ok) {
