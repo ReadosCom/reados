@@ -1,17 +1,15 @@
-import { getErpServiceOrigin } from "@components/application/application.host.ts";
+import { erpServiceGet } from "@components/application/application.client.ts";
 import {
   accountingConfigurationResponseSchema,
   type AccountingConfigurationResponseData,
 } from "./accountingConfiguration.schema.ts";
 
-const root = getErpServiceOrigin();
-
 /**
  * Fetches accounting configuration.
  */
 export const getAccountingConfiguration = async (): Promise<AccountingConfigurationResponseData> => {
-  const response = await fetch(`${root}/accounting/configuration`, {
-    credentials: `include`,
+  const response = await erpServiceGet({
+    path: `/accounting/configuration`,
   });
 
   if (!response.ok) {
