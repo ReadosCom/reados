@@ -2,15 +2,16 @@ import { useQuery } from '@tanstack/react-query';
 import { z } from 'zod';
 
 import { apiSuccessSchema } from '@components/application/api.schema.ts';
-import { getCoreServiceOrigin } from '@components/application/application.host.ts';
+import { coreServiceGet } from "@components/application/application.client.ts";
 
 /**
  * Probes whether the browser is running on the root Reados application host.
  */
 export const probeRootApplication = async () => {
   try {
-    const coreServiceOrigin = getCoreServiceOrigin();
-    const response = await fetch(`${coreServiceOrigin}/whoami`);
+    const response = await coreServiceGet({
+      path: `/whoami`,
+    });
 
     if (!response.ok) {
       return false;
