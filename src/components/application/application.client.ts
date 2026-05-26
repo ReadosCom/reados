@@ -2,7 +2,7 @@ import { getAuthenticationServiceOrigin, getCoreServiceOrigin, getErpServiceOrig
 
 type ApplicationMethod = "DELETE" | "GET" | "PATCH" | "POST" | "PUT";
 
-type ApplicationRequestOptions = Omit<RequestInit, "body" | "method"> & {
+type ApplicationRequestOptions = Omit<RequestInit, "body"> & {
   origin?: string;
   path: string;
 };
