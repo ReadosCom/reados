@@ -5,7 +5,7 @@ export const translations = {
     "tr": { translation: `Aktif`, translatedBy: `AI` },
   },
   "Add segment": {
-    "tr": { translation: `Segment ekle`, translatedBy: `AI` },
+    "tr": { translation: `Kırılım ekle`, translatedBy: `AI` },
   },
   "Accounting configuration": {
     "tr": { translation: `Muhasebe yapılandırması`, translatedBy: `AI` },
@@ -29,7 +29,10 @@ export const translations = {
     "tr": { translation: `Muhasebe yapılandırması yükleniyor...`, translatedBy: `AI` },
   },
   "Segments": {
-    "tr": { translation: `Segmentler`, translatedBy: `AI` },
+    "tr": { translation: `Kırılımlar`, translatedBy: `AI` },
+  },
+  "Segment List": {
+    "tr": { translation: `Kırılım Listesi`, translatedBy: `AI` },
   },
   "Remove": {
     "tr": { translation: `Kaldır`, translatedBy: `AI` },

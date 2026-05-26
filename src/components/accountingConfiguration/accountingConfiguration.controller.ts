@@ -4,44 +4,14 @@ import { accountingConfigurationSchema, type AccountingConfiguration } from './a
 
 const accountingModuleName = `accounting`;
 
-type SetupRow = {
-  configuration: Record<string, unknown>;
-  module: string;
-};
-
-const defaultAccountingConfiguration: AccountingConfiguration = {
-  finalized: false,
-};
+const defaultAccountingConfiguration: AccountingConfiguration = accountingConfigurationSchema.parse({});
 
 /**
  * Returns persisted configuration for the accounting module.
  */
-export const getAccountingConfiguration = async (pool: Pool) => {
-  const result = await pool.query<SetupRow>(
-    `
-      SELECT
-        "module",
-        "configuration"
-      FROM "setup"
-      WHERE "module" = $1
-      LIMIT 1;
-    `,
-    [accountingModuleName],
-  );
-
-  const row = result.rows[0];
-
-  if (!row) {
-    return {
-      configuration: defaultAccountingConfiguration,
-      module: accountingModuleName,
-    } as const;
-  }
-
-  const configuration = accountingConfigurationSchema.parse(row.configuration);
-
+export const getAccountingConfiguration = async (_pool: Pool) => {
   return {
-    configuration,
+    configuration: defaultAccountingConfiguration,
     module: accountingModuleName,
   } as const;
 };

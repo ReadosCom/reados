@@ -1,5 +1,8 @@
 import { getErpServiceOrigin } from "@components/application/application.host.ts";
-import { accountingConfigurationResponseSchema, type AccountingConfigurationResponseData } from "./accountingConfiguration.schema.ts";
+import {
+  accountingConfigurationResponseSchema,
+  type AccountingConfigurationResponseData,
+} from "./accountingConfiguration.schema.ts";
 
 const root = getErpServiceOrigin();
 

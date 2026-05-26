@@ -2,9 +2,7 @@ import { z } from "zod";
 import { apiSuccessSchema } from "@components/application/api.schema.ts";
 
 export const accountingConfigurationSchema = z.object({
-  finalized: z.boolean(),
 });
-
 export const accountingConfigurationResponseDataSchema = z.object({
   configuration: accountingConfigurationSchema,
   module: z.literal(`accounting`),
