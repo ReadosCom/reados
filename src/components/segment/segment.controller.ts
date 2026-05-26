@@ -1,17 +1,11 @@
-import { escapeIdentifier, type Pool } from 'pg';
+import { ensurePool } from '@components/postgres/pool.ts';
+import { escapeIdentifier } from 'pg';
 
-import {
-  SegmentNotFoundError,
-  SegmentRequiredDeleteError,
-  type Segment,
-  type SegmentRow,
-  type CreateSegmentBody,
-  type ReorderSegmentBody,
-  type UpdateSegmentBody,
-} from './segment.schema.ts';
+import { SegmentNotFoundError, SegmentRequiredDeleteError, type CreateSegmentBody, type ReorderSegmentBody, type Segment, type SegmentRow, type UpdateSegmentBody } from './segment.schema.ts';
 
 const entitySystemSegmentId = `00000000-0000-7000-8000-000000000001`;
 const accountSystemSegmentId = `00000000-0000-7000-8000-000000000002`;
+const pool = ensurePool();
 
 const getGlSegmentIndexName = (segmentId: string) => {
   return `glSegment_${segmentId.replaceAll(`-`, `_`)}_idx`;
@@ -29,7 +23,7 @@ const asSegment = (row: SegmentRow): Segment => {
   };
 };
 
-const selectSegments = async (pool: Pool) => {
+const selectSegments = async () => {
   return pool.query<SegmentRow>(
     `
       SELECT
@@ -46,7 +40,7 @@ const selectSegments = async (pool: Pool) => {
   );
 };
 
-const ensureDefaultSegments = async (pool: Pool) => {
+const ensureDefaultSegments = async () => {
   const client = await pool.connect();
 
   try {
@@ -81,24 +75,75 @@ const ensureDefaultSegments = async (pool: Pool) => {
   }
 };
 
+const ensureOrder = async (rows: SegmentRow[]) => {
+  const hasOrderDrift = rows.some((row, index) => row.order !== index);
+
+  if (!hasOrderDrift) {
+    return rows;
+  }
+
+  const client = await pool.connect();
+
+  try {
+    await client.query(`BEGIN;`);
+    await client.query(`LOCK TABLE "segment" IN SHARE ROW EXCLUSIVE MODE;`);
+    await client.query(
+      `
+        UPDATE "segment" AS "segmentToUpdate"
+        SET "order" = "orderedSegment"."normalizedOrder"
+        FROM (
+          SELECT
+            "id",
+            ROW_NUMBER() OVER (ORDER BY "order" ASC, "id" ASC) - 1 AS "normalizedOrder"
+          FROM "segment"
+        ) AS "orderedSegment"
+        WHERE "segmentToUpdate"."id" = "orderedSegment"."id";
+      `,
+    );
+    const normalizedResult = await client.query<SegmentRow>(
+      `
+        SELECT
+          "id",
+          "label",
+          "order",
+          "required",
+          "type",
+          "createdAt",
+          "updatedAt"
+        FROM "segment"
+        ORDER BY "order" ASC;
+      `,
+    );
+    await client.query(`COMMIT;`);
+    return normalizedResult.rows;
+  } catch (error) {
+    await client.query(`ROLLBACK;`);
+    throw error;
+  } finally {
+    client.release();
+  }
+};
+
 /**
  * Returns all accounting segments ordered for presentation/processing.
  */
-export const listSegments = async (pool: Pool) => {
-  let result = await selectSegments(pool);
+export const listSegments = async () => {
+  let result = await selectSegments();
 
   if (result.rowCount === 0) {
-    await ensureDefaultSegments(pool);
-    result = await selectSegments(pool);
+    await ensureDefaultSegments();
+    result = await selectSegments();
   }
 
-  return result.rows.map(asSegment);
+  const orderedRows = await ensureOrder(result.rows);
+
+  return orderedRows.map(asSegment);
 };
 
 /**
  * Returns one accounting segment by id.
  */
-export const getSegmentById = async (pool: Pool, id: string) => {
+export const getSegmentById = async (id: string) => {
   const result = await pool.query<SegmentRow>(
     `
       SELECT
@@ -128,7 +173,7 @@ export const getSegmentById = async (pool: Pool, id: string) => {
 /**
  * Creates one accounting segment.
  */
-export const createSegment = async (pool: Pool, body: CreateSegmentBody) => {
+export const createSegment = async (body: CreateSegmentBody) => {
   const result = await pool.query<SegmentRow>(
     `
       INSERT INTO "segment" (
@@ -156,8 +201,8 @@ export const createSegment = async (pool: Pool, body: CreateSegmentBody) => {
 /**
  * Updates one accounting segment.
  */
-export const updateSegment = async (pool: Pool, id: string, body: UpdateSegmentBody) => {
-  await getSegmentById(pool, id);
+export const updateSegment = async (id: string, body: UpdateSegmentBody) => {
+  await getSegmentById(id);
 
   const result = await pool.query<SegmentRow>(
     `
@@ -191,7 +236,7 @@ export const updateSegment = async (pool: Pool, id: string, body: UpdateSegmentB
 /**
  * Deletes one accounting segment.
  */
-export const deleteSegment = async (pool: Pool, id: string) => {
+export const deleteSegment = async (id: string) => {
   const client = await pool.connect();
 
   try {
@@ -261,7 +306,7 @@ export const deleteSegment = async (pool: Pool, id: string) => {
 /**
  * Reorders one accounting segment by swapping order with its adjacent segment.
  */
-export const reorderSegment = async (pool: Pool, id: string, body: ReorderSegmentBody) => {
+export const reorderSegment = async (id: string, body: ReorderSegmentBody) => {
   const client = await pool.connect();
 
   try {
@@ -308,7 +353,7 @@ export const reorderSegment = async (pool: Pool, id: string, body: ReorderSegmen
 
     await client.query(`COMMIT`);
 
-    return getSegmentById(pool, id);
+    return getSegmentById(id);
   } catch (error) {
     await client.query(`ROLLBACK`);
     throw error;

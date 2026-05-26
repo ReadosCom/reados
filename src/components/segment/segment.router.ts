@@ -1,7 +1,6 @@
 import { Router } from "express";
 
 import { defineRoutes } from "@components/express/express.router.ts";
-import { ensurePool } from "@components/postgres/pool.ts";
 
 import { createSegment, deleteSegment, getSegmentById, listSegments, reorderSegment, updateSegment } from "./segment.controller.ts";
 import {
@@ -12,8 +11,6 @@ import {
   reorderSegmentBodySchema,
   updateSegmentBodySchema,
 } from "./segment.schema.ts";
-
-const pool = ensurePool();
 
 /**
  * Accounting segment routes.
@@ -26,7 +23,7 @@ route({
   route: `/`,
   handler: async ({ fail, respond }) => {
     try {
-      const segments = await listSegments(pool);
+      const segments = await listSegments();
       respond(segments);
     } catch (error) {
       fail({
@@ -48,7 +45,7 @@ route({
   },
   handler: async ({ fail, params, respond }) => {
     try {
-      const segment = await getSegmentById(pool, params.id);
+      const segment = await getSegmentById(params.id);
       respond(segment);
     } catch (error) {
       if (error instanceof SegmentNotFoundError) {
@@ -79,7 +76,7 @@ route({
   },
   handler: async ({ body, fail, respond }) => {
     try {
-      const segment = await createSegment(pool, body);
+      const segment = await createSegment(body);
       respond(segment, 201);
     } catch (error) {
       fail({
@@ -102,7 +99,7 @@ route({
   },
   handler: async ({ body, fail, params, respond }) => {
     try {
-      const segment = await updateSegment(pool, params.id, body);
+      const segment = await updateSegment(params.id, body);
       respond(segment);
     } catch (error) {
       if (error instanceof SegmentNotFoundError) {
@@ -134,7 +131,7 @@ route({
   },
   handler: async ({ body, fail, params, respond }) => {
     try {
-      const segment = await reorderSegment(pool, params.id, body);
+      const segment = await reorderSegment(params.id, body);
       respond(segment);
     } catch (error) {
       if (error instanceof SegmentNotFoundError) {
@@ -165,7 +162,7 @@ route({
   },
   handler: async ({ fail, params, respond }) => {
     try {
-      const segment = await deleteSegment(pool, params.id);
+      const segment = await deleteSegment(params.id);
       respond(segment);
     } catch (error) {
       if (error instanceof SegmentRequiredDeleteError) {
