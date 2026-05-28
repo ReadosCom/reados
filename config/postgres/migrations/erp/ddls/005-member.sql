@@ -1,0 +1,50 @@
+CREATE TABLE IF NOT EXISTS "member" (
+  "id" uuid PRIMARY KEY DEFAULT uuidv7(),
+  "segment" uuid NOT NULL REFERENCES "segment" ("id") ON DELETE CASCADE,
+  "code" text NOT NULL,
+  "name" text NOT NULL,
+  "description" text NOT NULL,
+  "parent" uuid REFERENCES "member" ("id") ON DELETE SET NULL,
+  "type" text,
+  "createdAt" timestamptz NOT NULL DEFAULT transaction_timestamp(),
+  "updatedAt" timestamptz NOT NULL DEFAULT transaction_timestamp(),
+  CONSTRAINT "memberTypeValid" CHECK ("type" IS NULL OR "type" IN ('expense', 'revenue', 'asset', 'liability')),
+  CONSTRAINT "memberUniqueCodeInSegment" UNIQUE ("segment", "code")
+);
+
+CREATE INDEX IF NOT EXISTS "memberSegmentIdx" ON "member" ("segment");
+CREATE INDEX IF NOT EXISTS "memberParentIdx" ON "member" ("parent");
+
+CREATE OR REPLACE FUNCTION "validateMemberTypeForSegment"()
+RETURNS trigger
+LANGUAGE plpgsql
+AS $$
+DECLARE
+  "segmentType" text;
+BEGIN
+  SELECT "type"
+  INTO "segmentType"
+  FROM "segment"
+  WHERE "id" = NEW."segment"
+  LIMIT 1;
+
+  IF "segmentType" = 'account' AND NEW."type" IS NULL THEN
+    RAISE EXCEPTION 'Member type is required for account segments.';
+  END IF;
+
+  IF "segmentType" IN ('entity', 'generic') AND NEW."type" IS NOT NULL THEN
+    RAISE EXCEPTION 'Member type is only allowed for account segments.';
+  END IF;
+
+  RETURN NEW;
+END;
+$$;
+
+DROP TRIGGER IF EXISTS "memberTypeBySegmentTrigger" ON "member";
+
+CREATE TRIGGER "memberTypeBySegmentTrigger"
+BEFORE INSERT OR UPDATE ON "member"
+FOR EACH ROW
+EXECUTE FUNCTION "validateMemberTypeForSegment"();
+
+SELECT "ensureSetUpdatedAtTrigger"('member');

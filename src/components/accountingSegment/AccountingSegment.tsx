@@ -11,6 +11,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 import { Input } from '@components/uiframework/Input';
 import { TabsContent } from '@components/uiframework/Tabs';
 import { z } from 'zod';
+import { AccountingMember } from '@components/member/AccountingMember.tsx';
 
 const accountingSegmentFormSchema = segmentSchema.pick({
   label: true,
@@ -131,6 +132,7 @@ export const AccountingSegment = ({ nextOrder, onCreated, onDeleted, segment, ta
           </div>
         </form>
       </Form>
+      {segment ? <AccountingMember segmentId={segment.id} segmentType={segment.type} /> : null}
     </TabsContent>
   );
 };

@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { memberRouter } from "@components/member/member.router.ts";
 
 import { defineRoutes } from "@components/express/express.router.ts";
 
@@ -193,3 +194,6 @@ route({
     }
   },
 });
+
+segmentRouter.use(`/:segmentId/members`, memberRouter);
+
