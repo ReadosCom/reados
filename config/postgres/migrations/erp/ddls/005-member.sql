@@ -6,9 +6,11 @@ CREATE TABLE IF NOT EXISTS "member" (
   "description" text NOT NULL,
   "parent" uuid REFERENCES "member" ("id") ON DELETE SET NULL,
   "type" text,
+  "reporting" text,
   "createdAt" timestamptz NOT NULL DEFAULT transaction_timestamp(),
   "updatedAt" timestamptz NOT NULL DEFAULT transaction_timestamp(),
   CONSTRAINT "memberTypeValid" CHECK ("type" IS NULL OR "type" IN ('expense', 'revenue', 'asset', 'liability')),
+  CONSTRAINT "memberReportingValid" CHECK ("reporting" IS NULL OR "reporting" IN ('debit', 'credit')),
   CONSTRAINT "memberUniqueCodeInSegment" UNIQUE ("segment", "code")
 );
 
@@ -32,8 +34,16 @@ BEGIN
     RAISE EXCEPTION 'Member type is required for account segments.';
   END IF;
 
+  IF "segmentType" = 'account' AND NEW."reporting" IS NULL THEN
+    RAISE EXCEPTION 'Member reporting is required for account segments.';
+  END IF;
+
   IF "segmentType" IN ('entity', 'generic') AND NEW."type" IS NOT NULL THEN
     RAISE EXCEPTION 'Member type is only allowed for account segments.';
+  END IF;
+
+  IF "segmentType" IN ('entity', 'generic') AND NEW."reporting" IS NOT NULL THEN
+    RAISE EXCEPTION 'Member reporting is only allowed for account segments.';
   END IF;
 
   RETURN NEW;

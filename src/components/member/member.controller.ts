@@ -1,6 +1,6 @@
 import { ensurePool } from "@components/postgres/pool.ts";
 import type { SegmentType } from "@components/segment/segment.schema.ts";
-import type { AccountTemplate, CreateMemberBody, Member, MemberType } from "./member.schema.ts";
+import type { AccountTemplate, CreateMemberBody, Member, MemberReporting, MemberType } from "./member.schema.ts";
 
 const pool = ensurePool();
 
@@ -12,6 +12,7 @@ type MemberRow = {
   description: string;
   parent: string | null;
   type: MemberType | null;
+  reporting: MemberReporting | null;
   createdAt: Date;
   updatedAt: Date;
 };
@@ -32,6 +33,7 @@ export const createMember = async (segmentId: string, body: CreateMemberBody) =>
   const segmentType = await getSegmentType(segmentId);
   if (!segmentType) throw new Error(`Segment not found.`);
   if (segmentType === `account` && !body.type) throw new Error(`type is required for account segment members.`);
+  if (segmentType === `account` && !body.reporting) throw new Error(`reporting is required for account segment members.`);
 
   if (body.parent) {
     const parentResult = await pool.query<{ id: string; type: Member["type"] }>(
@@ -44,8 +46,8 @@ export const createMember = async (segmentId: string, body: CreateMemberBody) =>
   }
 
   const result = await pool.query<MemberRow>(
-    `INSERT INTO "member" ("segment", "code", "name", "description", "parent", "type") VALUES ($1, $2, $3, $4, $5, $6) RETURNING *;`,
-    [segmentId, body.code, body.name, body.description, body.parent, segmentType === `account` ? body.type ?? null : null],
+    `INSERT INTO "member" ("segment", "code", "name", "description", "parent", "type", "reporting") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *;`,
+    [segmentId, body.code, body.name, body.description, body.parent, segmentType === `account` ? body.type ?? null : null, segmentType === `account` ? body.reporting ?? null : null],
   );
 
   return asMember(result.rows[0]);

@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useTranslation } from "@components/i18n/useTranslation.ts";
 import { useAccountTemplatesQuery, useApplyAccountTemplateMutation, useCreateMemberMutation, useMembersQuery } from "@components/member/member.query.ts";
-import { accountMemberTypeSchema, createMemberBodySchema } from "@components/member/member.schema.ts";
+import { accountMemberReportingSchema, accountMemberTypeSchema, createMemberBodySchema } from "@components/member/member.schema.ts";
 import type { SegmentType } from "@components/segment/segment.schema.ts";
 import { Button } from "@components/uiframework/Button";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@components/uiframework/Dialog";
@@ -21,7 +21,7 @@ export const AccountingMember = ({ segmentId, segmentType }: { segmentId: string
   const templatesQuery = useAccountTemplatesQuery(segmentId);
   const createMutation = useCreateMemberMutation(segmentId);
   const applyTemplateMutation = useApplyAccountTemplateMutation(segmentId);
-  const form = useForm<z.infer<typeof formSchema>>({ defaultValues: { code: ``, description: ``, name: ``, parent: null, type: undefined }, resolver: zodResolver(formSchema) });
+  const form = useForm<z.infer<typeof formSchema>>({ defaultValues: { code: ``, description: ``, name: ``, parent: null, reporting: undefined, type: undefined }, resolver: zodResolver(formSchema) });
 
   const members = membersQuery.data ?? [];
   const showTemplateApply = segmentType === `account` && members.length === 0;
@@ -55,8 +55,8 @@ export const AccountingMember = ({ segmentId, segmentType }: { segmentId: string
           </DialogHeader>
           <Form {...form}>
             <form className="space-y-3" onSubmit={(event) => void form.handleSubmit(async (values) => {
-              await createMutation.mutateAsync({ ...values, parent: values.parent && values.parent.length > 0 ? values.parent : null, type: segmentType === `account` ? values.type : undefined });
-              form.reset({ code: ``, description: ``, name: ``, parent: null, type: undefined });
+              await createMutation.mutateAsync({ ...values, parent: values.parent && values.parent.length > 0 ? values.parent : null, type: segmentType === `account` ? values.type : undefined, reporting: segmentType === `account` ? values.reporting : undefined });
+              form.reset({ code: ``, description: ``, name: ``, parent: null, reporting: undefined, type: undefined });
               setIsCreateModalOpen(false);
             })(event)}>
               <div className="grid gap-3 md:grid-cols-2">
@@ -66,7 +66,7 @@ export const AccountingMember = ({ segmentId, segmentType }: { segmentId: string
               <FormField control={form.control} name="description" render={({ field }) => <FormItem><FormLabel>{t(`Description`)}</FormLabel><FormControl><Input {...field} /></FormControl><FormMessage /></FormItem>} />
               <div className="grid gap-3 md:grid-cols-2">
                 <FormField control={form.control} name="parent" render={({ field }) => <FormItem><FormLabel>{t(`Parent`)}</FormLabel><FormControl><Select onValueChange={(value) => field.onChange(value === `none` ? null : value)} value={field.value ?? `none`}><SelectTrigger><SelectValue placeholder={t(`No parent`)} /></SelectTrigger><SelectContent><SelectItem value="none">{t(`No parent`)}</SelectItem>{members.map((member) => <SelectItem key={member.id} value={member.id}>{member.code} - {member.name}</SelectItem>)}</SelectContent></Select></FormControl><FormMessage /></FormItem>} />
-                {segmentType === `account` ? <FormField control={form.control} name="type" render={({ field }) => <FormItem><FormLabel>{t(`Type`)}</FormLabel><FormControl><Select onValueChange={field.onChange} value={field.value}><SelectTrigger><SelectValue placeholder={t(`Select type`)} /></SelectTrigger><SelectContent>{accountMemberTypeSchema.options.map((option) => <SelectItem key={option} value={option}>{option}</SelectItem>)}</SelectContent></Select></FormControl><FormMessage /></FormItem>} /> : null}
+                {segmentType === `account` ? <><FormField control={form.control} name="type" render={({ field }) => <FormItem><FormLabel>{t(`Type`)}</FormLabel><FormControl><Select onValueChange={field.onChange} value={field.value}><SelectTrigger><SelectValue placeholder={t(`Select type`)} /></SelectTrigger><SelectContent>{accountMemberTypeSchema.options.map((option) => <SelectItem key={option} value={option}>{option}</SelectItem>)}</SelectContent></Select></FormControl><FormMessage /></FormItem>} /><FormField control={form.control} name="reporting" render={({ field }) => <FormItem><FormLabel>{t(`Reporting`)}</FormLabel><FormControl><Select onValueChange={field.onChange} value={field.value}><SelectTrigger><SelectValue placeholder={t(`Select reporting`)} /></SelectTrigger><SelectContent>{accountMemberReportingSchema.options.map((option) => <SelectItem key={option} value={option}>{option}</SelectItem>)}</SelectContent></Select></FormControl><FormMessage /></FormItem>} /></> : null}
               </div>
               {createMutation.isError ? <p className="text-sm text-destructive">{t(`Could not create member right now.`)}</p> : null}
               <div className="flex justify-end"><Button type="submit">{t(`Create member`)}</Button></div>
@@ -76,8 +76,8 @@ export const AccountingMember = ({ segmentId, segmentType }: { segmentId: string
       </Dialog>
 
       <div className="overflow-x-auto rounded-md border border-border">
-        <table className="w-full text-sm"><thead><tr className="border-b"><th className="p-2 text-left">{t(`Code`)}</th><th className="p-2 text-left">{t(`Name`)}</th><th className="p-2 text-left">{t(`Type`)}</th><th className="p-2 text-left">{t(`Parent`)}</th></tr></thead><tbody>
-          {members.map((member) => <tr className="border-b" key={member.id}><td className="p-2">{member.code}</td><td className="p-2">{member.name}</td><td className="p-2">{member.type ?? `-`}</td><td className="p-2">{members.find((entry) => entry.id === member.parent)?.name ?? `-`}</td></tr>)}
+        <table className="w-full text-sm"><thead><tr className="border-b"><th className="p-2 text-left">{t(`Code`)}</th><th className="p-2 text-left">{t(`Name`)}</th><th className="p-2 text-left">{t(`Type`)}</th><th className="p-2 text-left">{t(`Reporting`)}</th><th className="p-2 text-left">{t(`Parent`)}</th></tr></thead><tbody>
+          {members.map((member) => <tr className="border-b" key={member.id}><td className="p-2">{member.code}</td><td className="p-2">{member.name}</td><td className="p-2">{member.type ?? `-`}</td><td className="p-2">{member.reporting ?? `-`}</td><td className="p-2">{members.find((entry) => entry.id === member.parent)?.name ?? `-`}</td></tr>)}
         </tbody></table>
       </div>
     </section>

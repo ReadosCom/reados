@@ -2,6 +2,7 @@ import { z } from "zod";
 import { apiSuccessSchema } from "@components/application/api.schema.ts";
 
 export const accountMemberTypeSchema = z.enum([`expense`, `revenue`, `asset`, `liability`]);
+export const accountMemberReportingSchema = z.enum([`debit`, `credit`]);
 
 export const memberSchema = z.object({
   id: z.uuid({ version: `v7` }),
@@ -11,6 +12,7 @@ export const memberSchema = z.object({
   description: z.string().trim().min(1),
   parent: z.uuid({ version: `v7` }).nullable(),
   type: accountMemberTypeSchema.nullable(),
+  reporting: accountMemberReportingSchema.nullable(),
   createdAt: z.string().trim().min(1),
   updatedAt: z.string().trim().min(1),
 });
@@ -25,6 +27,7 @@ export const createMemberBodySchema = z.object({
   description: z.string().trim().min(1),
   parent: z.uuid({ version: `v7` }).nullable(),
   type: accountMemberTypeSchema.optional(),
+  reporting: accountMemberReportingSchema.optional(),
 });
 
 export const accountTemplateSchema = z.object({
@@ -52,6 +55,7 @@ export const accountTemplateDocumentSchema = accountTemplateSchema.extend({
 export class MemberValidationError extends Error {}
 
 export type MemberType = z.infer<typeof accountMemberTypeSchema>;
+export type MemberReporting = z.infer<typeof accountMemberReportingSchema>;
 export type Member = z.infer<typeof memberSchema>;
 export type CreateMemberBody = z.infer<typeof createMemberBodySchema>;
 export type AccountTemplate = z.infer<typeof accountTemplateSchema>;
