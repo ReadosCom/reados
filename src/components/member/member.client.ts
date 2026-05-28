@@ -1,7 +1,7 @@
-import { erpServiceGet, erpServicePost } from "@components/application/application.client.ts";
+import { erpServiceGet, erpServicePost, erpServicePut } from "@components/application/application.client.ts";
 import { parseApiSuccess } from "@components/application/api.client.ts";
 import { z } from "zod";
-import { accountTemplateSchema, createMemberBodySchema, memberSchema, type AccountTemplate, type CreateMemberBody, type Member } from "./member.schema.ts";
+import { accountTemplateSchema, createMemberBodySchema, memberSchema, updateMemberBodySchema, type AccountTemplate, type CreateMemberBody, type Member, type UpdateMemberBody } from "./member.schema.ts";
 
 export const getMembers = async (segmentId: string): Promise<Member[]> => {
   const response = await erpServiceGet({ path: `/accounting/segment/${encodeURIComponent(segmentId)}/members` });
@@ -13,6 +13,13 @@ export const createMember = async (segmentId: string, body: CreateMemberBody): P
   const parsedBody = createMemberBodySchema.parse(body);
   const response = await erpServicePost({ body: parsedBody, path: `/accounting/segment/${encodeURIComponent(segmentId)}/members` });
   if (!response.ok) throw new Error(`Failed to create segment member.`);
+  return parseApiSuccess(await response.json(), memberSchema);
+};
+
+export const updateMember = async (segmentId: string, id: string, body: UpdateMemberBody): Promise<Member> => {
+  const parsedBody = updateMemberBodySchema.parse(body);
+  const response = await erpServicePut({ body: parsedBody, path: `/accounting/segment/${encodeURIComponent(segmentId)}/members/${encodeURIComponent(id)}` });
+  if (!response.ok) throw new Error(`Failed to update segment member.`);
   return parseApiSuccess(await response.json(), memberSchema);
 };
 

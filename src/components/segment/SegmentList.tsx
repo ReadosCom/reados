@@ -10,8 +10,8 @@ import { useState } from 'react';
 /**
  * Renders a read-only table of accounting segments.
  */
-export const AccountingSegmentList = () => {
-  const { t } = useTranslation(`./AccountingSegmentList.i18n.ts`);
+export const SegmentList = () => {
+  const { t } = useTranslation(`./SegmentList.i18n.ts`);
   const { confirm } = useAwaitedPrompt();
   const navigate = useNavigate();
   const { data: segmentData, isError, isPending } = useSegmentsQuery();

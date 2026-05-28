@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { defineRoutes } from "@components/express/express.router.ts";
-import { applyAccountTemplate, createMember, listAccountTemplates, listMembers } from "./member.controller.ts";
-import { createMemberBodySchema, memberSegmentParamsSchema } from "./member.schema.ts";
+import { applyAccountTemplate, createMember, listAccountTemplates, listMembers, updateMember } from "./member.controller.ts";
+import { createMemberBodySchema, memberParamsSchema, memberSegmentParamsSchema, updateMemberBodySchema } from "./member.schema.ts";
 
 export const memberRouter = Router({ mergeParams: true });
 const route = defineRoutes(memberRouter);
@@ -28,6 +28,19 @@ route({
       respond(await createMember(params.segmentId, body), 201);
     } catch (error) {
       fail({ cause: error, status: 400, code: `segment_member_create_failed`, message: `We could not create segment member.` });
+    }
+  },
+});
+
+route({
+  method: `put`,
+  route: `/:id`,
+  validators: { params: memberParamsSchema, body: updateMemberBodySchema },
+  handler: async ({ params, body, respond, fail }) => {
+    try {
+      respond(await updateMember(params.segmentId, params.id, body));
+    } catch (error) {
+      fail({ cause: error, status: 400, code: `segment_member_update_failed`, message: `We could not update segment member.` });
     }
   },
 });

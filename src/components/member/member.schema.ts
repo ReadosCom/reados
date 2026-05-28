@@ -29,6 +29,7 @@ export const createMemberBodySchema = z.object({
   type: accountMemberTypeSchema.optional(),
   reporting: accountMemberReportingSchema.optional(),
 });
+export const updateMemberBodySchema = createMemberBodySchema;
 
 export const accountTemplateSchema = z.object({
   id: z.string().trim().min(1),
@@ -58,4 +59,5 @@ export type MemberType = z.infer<typeof accountMemberTypeSchema>;
 export type MemberReporting = z.infer<typeof accountMemberReportingSchema>;
 export type Member = z.infer<typeof memberSchema>;
 export type CreateMemberBody = z.infer<typeof createMemberBodySchema>;
+export type UpdateMemberBody = z.infer<typeof updateMemberBodySchema>;
 export type AccountTemplate = z.infer<typeof accountTemplateSchema>;
