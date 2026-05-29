@@ -1,3 +1,4 @@
+import type { ColumnDef } from '@tanstack/react-table';
 import { useTranslation } from '@components/i18n/useTranslation.ts';
 import { useAwaitedPrompt } from '@components/prompt/prompt.context.ts';
 import { SegmentEditorDialog } from '@components/segment/SegmentEditorDialog.tsx';
@@ -5,9 +6,10 @@ import { useDeleteSegmentMutation, useReorderSegmentMutation, useSegmentsQuery }
 import type { Segment as SegmentRecord } from '@components/segment/segment.schema.ts';
 import { Button } from '@components/uiframework/Button';
 import { ButtonGroup } from '@components/uiframework/ButtonGroup';
+import { DataTable } from '@components/uiframework/DataTable.tsx';
 import { Skeleton } from '@components/uiframework/Skeleton';
 import { IconChevronDown, IconChevronUp, IconPencil, IconTrash } from '@tabler/icons-react';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 
 /**
  * Renders a read-only table of accounting segments.
@@ -65,6 +67,96 @@ export const SegmentList = () => {
     }
   };
 
+  const columns = useMemo<ColumnDef<SegmentRecord>[]>(
+    () => [
+      {
+        id: `actions`,
+        header: () => <span className="w-1 whitespace-nowrap">{t(`Actions`)}</span>,
+        cell: ({ row }) => {
+          const segment = row.original;
+          const index = row.index;
+
+          return (
+            <div className="w-1 whitespace-nowrap">
+              <ButtonGroup>
+                <Button
+                  aria-label={t(`Move segment up`)}
+                  className="h-7 w-7 p-0"
+                  disabled={isReorderSegmentPending || isDeleteSegmentPending || index === 0}
+                  onClick={() => {
+                    void onMoveSegment(segment.id, -1);
+                  }}
+                  size="sm"
+                  type="button"
+                  variant="outline"
+                >
+                  <IconChevronUp aria-hidden stroke={2} />
+                </Button>
+                <Button
+                  aria-label={t(`Move segment down`)}
+                  className="h-7 w-7 p-0"
+                  disabled={isReorderSegmentPending || isDeleteSegmentPending || index === segments.length - 1}
+                  onClick={() => {
+                    void onMoveSegment(segment.id, 1);
+                  }}
+                  size="sm"
+                  type="button"
+                  variant="outline"
+                >
+                  <IconChevronDown aria-hidden stroke={2} />
+                </Button>
+                <Button
+                  aria-label={t(`Edit segment`)}
+                  className="h-7 w-7 p-0"
+                  disabled={isReorderSegmentPending || isDeleteSegmentPending}
+                  onClick={() => {
+                    setSelectedSegment(segment);
+                    setIsEditorOpen(true);
+                  }}
+                  size="sm"
+                  type="button"
+                  variant="outline"
+                >
+                  <IconPencil aria-hidden stroke={2} />
+                </Button>
+                <Button
+                  aria-label={t(`Delete segment`)}
+                  className="h-7 w-7 p-0"
+                  disabled={segment.required || isReorderSegmentPending || isDeleteSegmentPending}
+                  onClick={() => {
+                    void deleteSegment(segment.id);
+                  }}
+                  size="sm"
+                  type="button"
+                  variant="outline"
+                >
+                  <IconTrash aria-hidden stroke={2} />
+                </Button>
+              </ButtonGroup>
+            </div>
+          );
+        },
+      },
+      {
+        accessorKey: `label`,
+        header: t(`Label`),
+      },
+      {
+        accessorKey: `type`,
+        header: t(`Type`),
+        cell: ({ row }) => (
+          <>{row.original.type === `entity` ? t(`Entity`) : row.original.type === `account` ? t(`Account`) : t(`Generic`)}</>
+        ),
+      },
+      {
+        accessorKey: `required`,
+        header: t(`Required`),
+        cell: ({ row }) => <>{row.original.required ? t(`Yes`) : t(`No`)}</>,
+      },
+    ],
+    [deleteSegment, isDeleteSegmentPending, isReorderSegmentPending, segments.length, t],
+  );
+
   if (isPending) {
     return (
       <section className="space-y-3" aria-label={t(`Segment List`)}>
@@ -90,89 +182,14 @@ export const SegmentList = () => {
       {isError ? <p className="text-sm text-destructive">{t(`Could not load segment list right now.`)}</p> : null}
       {deleteState === `error` ? <p className="text-sm text-destructive">{t(`Could not delete segment right now.`)}</p> : null}
       {reorderState === `error` ? <p className="text-sm text-destructive">{t(`Could not reorder segments right now.`)}</p> : null}
-      {!isError && segments.length === 0 ? <p className="text-sm text-muted-foreground">{t(`No segments yet.`)}</p> : null}
-      {!isError && segments.length > 0 ? (
-        <div className="overflow-x-auto rounded-md border border-border">
-          <table className="w-full caption-bottom text-sm">
-            <thead className="[&_tr]:border-b">
-              <tr className="border-b border-border">
-                <th className="h-10 w-1 whitespace-nowrap px-3 text-left align-middle font-medium">{t(`Actions`)}</th>
-                <th className="h-10 px-3 text-left align-middle font-medium">{t(`Label`)}</th>
-                <th className="h-10 px-3 text-left align-middle font-medium">{t(`Type`)}</th>
-                <th className="h-10 px-3 text-left align-middle font-medium">{t(`Required`)}</th>
-              </tr>
-            </thead>
-            <tbody className="[&_tr:last-child]:border-0">
-              {segments.map((segment, index) => (
-                <tr className="border-b border-border" key={segment.id}>
-                  <td className="w-1 whitespace-nowrap p-3 align-middle">
-                    <ButtonGroup>
-                      <Button
-                        aria-label={t(`Move segment up`)}
-                        className="h-7 w-7 p-0"
-                        disabled={isReorderSegmentPending || isDeleteSegmentPending || index === 0}
-                        onClick={() => {
-                          void onMoveSegment(segment.id, -1);
-                        }}
-                        size="sm"
-                        type="button"
-                        variant="outline"
-                      >
-                        <IconChevronUp aria-hidden stroke={2} />
-                      </Button>
-                      <Button
-                        aria-label={t(`Move segment down`)}
-                        className="h-7 w-7 p-0"
-                        disabled={isReorderSegmentPending || isDeleteSegmentPending || index === segments.length - 1}
-                        onClick={() => {
-                          void onMoveSegment(segment.id, 1);
-                        }}
-                        size="sm"
-                        type="button"
-                        variant="outline"
-                      >
-                        <IconChevronDown aria-hidden stroke={2} />
-                      </Button>
-                      <Button
-                        aria-label={t(`Edit segment`)}
-                        className="h-7 w-7 p-0"
-                        disabled={isReorderSegmentPending || isDeleteSegmentPending}
-                        onClick={() => {
-                          setSelectedSegment(segment);
-                          setIsEditorOpen(true);
-                        }}
-                        size="sm"
-                        type="button"
-                        variant="outline"
-                      >
-                        <IconPencil aria-hidden stroke={2} />
-                      </Button>
-                      <Button
-                        aria-label={t(`Delete segment`)}
-                        className="h-7 w-7 p-0"
-                        disabled={segment.required || isReorderSegmentPending || isDeleteSegmentPending}
-                        onClick={() => {
-                          void deleteSegment(segment.id);
-                        }}
-                        size="sm"
-                        type="button"
-                        variant="outline"
-                      >
-                        <IconTrash aria-hidden stroke={2} />
-                      </Button>
-                    </ButtonGroup>
-                  </td>
-                  <td className="p-3 align-middle">{segment.label}</td>
-                  <td className="p-3 align-middle">
-                    {segment.type === `entity` ? t(`Entity`) : segment.type === `account` ? t(`Account`) : t(`Generic`)}
-                  </td>
-                  <td className="p-3 align-middle">{segment.required ? t(`Yes`) : t(`No`)}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      ) : null}
+      <DataTable
+        columns={columns}
+        data={segments}
+        emptyMessage={t(`No segments yet.`)}
+        errorMessage={t(`Could not load segment list right now.`)}
+        isError={isError}
+        isLoading={false}
+      />
       {selectedSegment ? (
         <SegmentEditorDialog mode="edit" onOpenChange={setIsEditorOpen} open={isEditorOpen} segment={selectedSegment} />
       ) : (

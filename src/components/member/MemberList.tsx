@@ -1,3 +1,4 @@
+import type { ColumnDef } from "@tanstack/react-table";
 import { useState } from "react";
 import { useTranslation } from "@components/i18n/useTranslation.ts";
 import { Member } from "@components/member/Member.tsx";
@@ -6,8 +7,10 @@ import type { Member as MemberRecord } from "@components/member/member.schema.ts
 import type { SegmentType } from "@components/segment/segment.schema.ts";
 import { Button } from "@components/uiframework/Button";
 import { ButtonGroup } from "@components/uiframework/ButtonGroup";
+import { DataTable } from "@components/uiframework/DataTable.tsx";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@components/uiframework/Dialog";
 import { IconPencil, IconTrash } from "@tabler/icons-react";
+import { useMemo } from "react";
 
 export const MemberList = ({ segmentId, segmentType }: { segmentId: string; segmentType: SegmentType }) => {
   const { t } = useTranslation(`./Segment.i18n.ts`);
@@ -23,6 +26,58 @@ export const MemberList = ({ segmentId, segmentType }: { segmentId: string; segm
 
   const members = membersQuery.data ?? [];
   const showTemplateApply = segmentType === `account` && members.length === 0;
+  const columns = useMemo<ColumnDef<MemberRecord>[]>(
+    () => [
+      {
+        id: `actions`,
+        header: () => <span className="w-1 whitespace-nowrap">{t(`Actions`)}</span>,
+        cell: ({ row }) => {
+          const member = row.original;
+
+          return (
+            <div className="w-1 whitespace-nowrap">
+              <ButtonGroup>
+                <Button aria-label={t(`Edit member`)} className="h-7 w-7 p-0" onClick={() => setEditingMember(member)} size="sm" type="button" variant="outline">
+                  <IconPencil aria-hidden stroke={2} />
+                </Button>
+                <Button aria-label={t(`Delete member`)} className="h-7 w-7 p-0" onClick={() => setDeletingMember(member)} size="sm" type="button" variant="outline">
+                  <IconTrash aria-hidden stroke={2} />
+                </Button>
+              </ButtonGroup>
+            </div>
+          );
+        },
+      },
+      {
+        accessorKey: `code`,
+        header: t(`Code`),
+      },
+      {
+        accessorKey: `name`,
+        header: t(`Name`),
+      },
+      {
+        accessorKey: `description`,
+        header: t(`Description`),
+      },
+      {
+        accessorKey: `type`,
+        header: t(`Type`),
+        cell: ({ row }) => <>{row.original.type ?? `-`}</>,
+      },
+      {
+        accessorKey: `reporting`,
+        header: t(`Reporting`),
+        cell: ({ row }) => <>{row.original.reporting ?? `-`}</>,
+      },
+      {
+        accessorKey: `parent`,
+        header: t(`Parent`),
+        cell: ({ row }) => <>{members.find((entry) => entry.id === row.original.parent)?.name ?? `-`}</>,
+      },
+    ],
+    [members, t],
+  );
 
   return (
     <section className="space-y-3 rounded-md border border-border p-3">
@@ -118,14 +173,15 @@ export const MemberList = ({ segmentId, segmentType }: { segmentId: string; segm
         </DialogContent>
       </Dialog>
 
-      <div className="overflow-x-auto rounded-md border border-border">
-        <table className="w-full text-sm"><thead><tr className="border-b"><th className="w-1 whitespace-nowrap p-2 text-left">{t(`Actions`)}</th><th className="p-2 text-left">{t(`Code`)}</th><th className="p-2 text-left">{t(`Name`)}</th><th className="p-2 text-left">{t(`Description`)}</th><th className="p-2 text-left">{t(`Type`)}</th><th className="p-2 text-left">{t(`Reporting`)}</th><th className="p-2 text-left">{t(`Parent`)}</th></tr></thead><tbody>
-          {membersQuery.isPending ? <tr><td className="p-2 text-muted-foreground" colSpan={7}>{t(`Loading members...`)}</td></tr> : null}
-          {membersQuery.isError ? <tr><td className="p-2 text-destructive" colSpan={7}>{t(`Could not load members right now.`)}</td></tr> : null}
-          {!membersQuery.isPending && !membersQuery.isError && members.length === 0 ? <tr><td className="p-2 text-muted-foreground" colSpan={7}>{t(`No members yet.`)}</td></tr> : null}
-          {members.map((member) => <tr className="border-b" key={member.id}><td className="w-1 whitespace-nowrap p-2 text-left"><ButtonGroup><Button aria-label={t(`Edit member`)} className="h-7 w-7 p-0" onClick={() => setEditingMember(member)} size="sm" type="button" variant="outline"><IconPencil aria-hidden stroke={2} /></Button><Button aria-label={t(`Delete member`)} className="h-7 w-7 p-0" onClick={() => setDeletingMember(member)} size="sm" type="button" variant="outline"><IconTrash aria-hidden stroke={2} /></Button></ButtonGroup></td><td className="p-2">{member.code}</td><td className="p-2">{member.name}</td><td className="p-2">{member.description}</td><td className="p-2">{member.type ?? `-`}</td><td className="p-2">{member.reporting ?? `-`}</td><td className="p-2">{members.find((entry) => entry.id === member.parent)?.name ?? `-`}</td></tr>)}
-        </tbody></table>
-      </div>
+      <DataTable
+        columns={columns}
+        data={members}
+        emptyMessage={t(`No members yet.`)}
+        errorMessage={t(`Could not load members right now.`)}
+        isError={membersQuery.isError}
+        isLoading={membersQuery.isPending}
+        loadingMessage={t(`Loading members...`)}
+      />
     </section>
   );
 };
