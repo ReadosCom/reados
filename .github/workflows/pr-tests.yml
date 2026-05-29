@@ -34,28 +34,9 @@ jobs:
       - name: Initialize local env files
         run: bash ./scripts/start-here.sh --no-questions
 
-      - name: Cache Playwright browsers
-        uses: actions/cache@v4
-        with:
-          path: ~/.cache/ms-playwright
-          key: ${{ runner.os }}-playwright-${{ hashFiles('package-lock.json') }}
-
-      - name: Install Playwright Chrome
+      - name: Verify Chrome availability
         run: |
-          for attempt in 1 2 3; do
-            echo "Playwright install attempt ${attempt}"
-            if timeout 15m npx playwright install --with-deps chrome; then
-              exit 0
-            fi
-
-            if [ "$attempt" -lt 3 ]; then
-              echo "Install attempt ${attempt} failed or timed out, retrying..."
-              sleep 15
-            fi
-          done
-
-          echo "Playwright browser install failed after 3 attempts."
-          exit 1
+          google-chrome --version
 
       - name: Run tests
         env:
