@@ -7,7 +7,6 @@ export const useMembersQuery = (segmentId: string) =>
   useQuery({
     queryFn: async () => getMembers(segmentId),
     queryKey: [`members`, segmentId],
-    throwOnError: true,
   });
 
 export const useCreateMemberMutation = (segmentId: string) => {
