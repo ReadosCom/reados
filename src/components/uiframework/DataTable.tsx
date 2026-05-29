@@ -1,6 +1,7 @@
-import { flexRender, getCoreRowModel, type ColumnDef, useReactTable } from "@tanstack/react-table";
+import { flexRender, getCoreRowModel, getExpandedRowModel, type ColumnDef, type ExpandedState, useReactTable } from "@tanstack/react-table";
 import { cn } from "@components/lib/utils";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@components/uiframework/Table.tsx";
+import { useState } from "react";
 
 type DataTableColumnMeta = {
   cellClassName?: string;
@@ -15,14 +16,22 @@ type DataTableProps<TData, TValue> = {
   isLoading?: boolean;
   loadingMessage?: string;
   errorMessage?: string;
+  getSubRows?: (row: TData) => TData[] | undefined;
 };
 
-export const DataTable = <TData, TValue>({ columns, data, emptyMessage, errorMessage = `Could not load data right now.`, isError = false, isLoading = false, loadingMessage = `Loading...` }: DataTableProps<TData, TValue>) => {
+export const DataTable = <TData, TValue>({ columns, data, emptyMessage, errorMessage = `Could not load data right now.`, getSubRows, isError = false, isLoading = false, loadingMessage = `Loading...` }: DataTableProps<TData, TValue>) => {
+  const [expanded, setExpanded] = useState<ExpandedState>(true);
   // eslint-disable-next-line react-hooks/incompatible-library -- TanStack Table is intentionally used as the table engine for shared listing UX.
   const table = useReactTable({
     data,
     columns,
+    getExpandedRowModel: getExpandedRowModel(),
     getCoreRowModel: getCoreRowModel(),
+    getSubRows,
+    onExpandedChange: setExpanded,
+    state: {
+      expanded,
+    },
   });
 
   return (

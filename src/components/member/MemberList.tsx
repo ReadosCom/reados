@@ -7,9 +7,11 @@ import { Button } from "@components/uiframework/Button";
 import { ButtonGroup } from "@components/uiframework/ButtonGroup";
 import { DataTable } from "@components/uiframework/DataTable.tsx";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@components/uiframework/Dialog";
-import { IconPencil, IconPlus, IconTrash } from "@tabler/icons-react";
+import { IconChevronDown, IconChevronRight, IconPencil, IconPlus, IconTrash } from "@tabler/icons-react";
 import type { ColumnDef } from "@tanstack/react-table";
 import { useMemo, useState } from "react";
+
+type MemberTreeRow = MemberRecord & { subRows?: MemberTreeRow[] };
 
 export const MemberList = ({ segmentId, segmentType }: { segmentId: string; segmentType: SegmentType }) => {
   const { t } = useTranslation(`./Segment.i18n.ts`);
@@ -25,6 +27,37 @@ export const MemberList = ({ segmentId, segmentType }: { segmentId: string; segm
   const applyTemplateMutation = useApplyAccountTemplateMutation(segmentId);
 
   const members = useMemo(() => membersQuery.data ?? [], [membersQuery.data]);
+  const membersById = useMemo(() => new Map(members.map((member) => [member.id, member])), [members]);
+  const memberTree = useMemo<MemberTreeRow[]>(() => {
+    const sortedMembers = [...members].sort((left, right) => left.code.localeCompare(right.code));
+    const nodesById = new Map<string, MemberTreeRow>();
+    for (const member of sortedMembers) {
+      nodesById.set(member.id, { ...member, subRows: [] });
+    }
+
+    const rootNodes: MemberTreeRow[] = [];
+    for (const member of sortedMembers) {
+      const node = nodesById.get(member.id);
+      if (!node) {
+        continue;
+      }
+
+      if (!member.parent) {
+        rootNodes.push(node);
+        continue;
+      }
+
+      const parentNode = nodesById.get(member.parent);
+      if (!parentNode) {
+        rootNodes.push(node);
+        continue;
+      }
+
+      parentNode.subRows?.push(node);
+    }
+
+    return rootNodes;
+  }, [members]);
   const createInitialValues = useMemo(
     () =>
       childParentMember
@@ -37,7 +70,7 @@ export const MemberList = ({ segmentId, segmentType }: { segmentId: string; segm
     [childParentMember],
   );
   const showTemplateApply = segmentType === `account` && members.length === 0;
-  const columns = useMemo<ColumnDef<MemberRecord>[]>(
+  const columns = useMemo<ColumnDef<MemberTreeRow>[]>(
     () => [
       {
         id: `actions`,
@@ -79,6 +112,22 @@ export const MemberList = ({ segmentId, segmentType }: { segmentId: string; segm
       {
         accessorKey: `code`,
         header: t(`Code`),
+        cell: ({ row }) => {
+          const canExpand = row.getCanExpand();
+
+          return (
+            <div className="flex items-center gap-1" style={{ paddingInlineStart: `${row.depth * 1}rem` }}>
+              {canExpand ? (
+                <Button aria-label={row.getIsExpanded() ? t(`Collapse`) : t(`Expand`)} className="h-5 w-5 p-0" onClick={row.getToggleExpandedHandler()} size="sm" type="button" variant="ghost">
+                  {row.getIsExpanded() ? <IconChevronDown aria-hidden stroke={2} /> : <IconChevronRight aria-hidden stroke={2} />}
+                </Button>
+              ) : (
+                <span className="inline-block h-5 w-5" />
+              )}
+              <span>{row.original.code}</span>
+            </div>
+          );
+        },
       },
       {
         accessorKey: `name`,
@@ -101,10 +150,10 @@ export const MemberList = ({ segmentId, segmentType }: { segmentId: string; segm
       {
         accessorKey: `parent`,
         header: t(`Parent`),
-        cell: ({ row }) => <>{members.find((entry) => entry.id === row.original.parent)?.name ?? `-`}</>,
+        cell: ({ row }) => <>{row.original.parent ? (membersById.get(row.original.parent)?.name ?? `-`) : `-`}</>,
       },
     ],
-    [members, t],
+    [membersById, t],
   );
 
   return (
@@ -230,9 +279,10 @@ export const MemberList = ({ segmentId, segmentType }: { segmentId: string; segm
 
       <DataTable
         columns={columns}
-        data={members}
+        data={memberTree}
         emptyMessage={t(`No members yet.`)}
         errorMessage={t(`Could not load members right now.`)}
+        getSubRows={(row) => row.subRows}
         isError={membersQuery.isError}
         isLoading={membersQuery.isPending}
         loadingMessage={t(`Loading members...`)}

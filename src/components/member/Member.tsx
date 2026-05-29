@@ -1,5 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { useTranslation } from "@components/i18n/useTranslation.ts";
@@ -46,6 +46,37 @@ export const Member = ({
 }) => {
   const { t } = useTranslation(`./Segment.i18n.ts`);
   const form = useForm<MemberFormValues>({ defaultValues: getDefaultValues(member, initialValues), resolver: zodResolver(formSchema) });
+  const disallowedParentIds = useMemo(() => {
+    if (!excludedMemberId) {
+      return new Set<string>();
+    }
+
+    const blockedIds = new Set<string>([excludedMemberId]);
+    const childrenByParent = new Map<string, string[]>();
+
+    for (const candidate of members) {
+      if (!candidate.parent) {
+        continue;
+      }
+
+      const currentChildren = childrenByParent.get(candidate.parent) ?? [];
+      currentChildren.push(candidate.id);
+      childrenByParent.set(candidate.parent, currentChildren);
+    }
+
+    const queue = [...(childrenByParent.get(excludedMemberId) ?? [])];
+    while (queue.length > 0) {
+      const nextId = queue.shift();
+      if (!nextId || blockedIds.has(nextId)) {
+        continue;
+      }
+
+      blockedIds.add(nextId);
+      queue.push(...(childrenByParent.get(nextId) ?? []));
+    }
+
+    return blockedIds;
+  }, [excludedMemberId, members]);
 
   useEffect(() => {
     form.reset(getDefaultValues(member, initialValues));
@@ -122,7 +153,7 @@ export const Member = ({
                     <SelectContent>
                       <SelectItem value="none">{t(`No parent`)}</SelectItem>
                       {members
-                        .filter((candidate) => candidate.id !== excludedMemberId)
+                        .filter((candidate) => !disallowedParentIds.has(candidate.id))
                         .map((candidate) => (
                           <SelectItem key={candidate.id} value={candidate.id}>
                             {candidate.code} - {candidate.name}
