@@ -1,6 +1,4 @@
 import { Router } from "express";
-import { memberRouter } from "@components/member/member.router.ts";
-
 import { defineRoutes } from "@components/express/express.router.ts";
 
 import { createSegment, deleteSegment, getSegmentById, listSegments, reorderSegment, updateSegment } from "./segment.controller.ts";
@@ -194,6 +192,4 @@ route({
     }
   },
 });
-
-segmentRouter.use(`/:segmentId/members`, memberRouter);
 

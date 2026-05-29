@@ -17,6 +17,12 @@ CREATE TABLE IF NOT EXISTS "member" (
 CREATE INDEX IF NOT EXISTS "memberSegmentIdx" ON "member" ("segment");
 CREATE INDEX IF NOT EXISTS "memberParentIdx" ON "member" ("parent");
 
+ALTER TABLE "member"
+DROP CONSTRAINT IF EXISTS "memberTypeValid";
+
+ALTER TABLE "member"
+ADD CONSTRAINT "memberTypeValid" CHECK ("type" IS NULL OR "type" IN ('expense', 'revenue', 'asset', 'liability', 'equity'));
+
 CREATE OR REPLACE FUNCTION "validateMemberTypeForSegment"()
 RETURNS trigger
 LANGUAGE plpgsql

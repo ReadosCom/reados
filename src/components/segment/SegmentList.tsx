@@ -1,10 +1,12 @@
 import { useTranslation } from '@components/i18n/useTranslation.ts';
 import { useAwaitedPrompt } from '@components/prompt/prompt.context.ts';
+import { SegmentEditorDialog } from '@components/segment/SegmentEditorDialog.tsx';
 import { useDeleteSegmentMutation, useReorderSegmentMutation, useSegmentsQuery } from '@components/segment/segment.query.ts';
+import type { Segment as SegmentRecord } from '@components/segment/segment.schema.ts';
 import { Button } from '@components/uiframework/Button';
+import { ButtonGroup } from '@components/uiframework/ButtonGroup';
 import { Skeleton } from '@components/uiframework/Skeleton';
-import { IconChevronDown, IconChevronUp, IconTrash } from '@tabler/icons-react';
-import { useNavigate } from '@tanstack/react-router';
+import { IconChevronDown, IconChevronUp, IconPencil, IconTrash } from '@tabler/icons-react';
 import { useState } from 'react';
 
 /**
@@ -13,12 +15,13 @@ import { useState } from 'react';
 export const SegmentList = () => {
   const { t } = useTranslation(`./SegmentList.i18n.ts`);
   const { confirm } = useAwaitedPrompt();
-  const navigate = useNavigate();
   const { data: segmentData, isError, isPending } = useSegmentsQuery();
   const { mutateAsync: reorderSegmentAsync, isPending: isReorderSegmentPending } = useReorderSegmentMutation();
   const { mutateAsync: deleteSegmentAsync, isPending: isDeleteSegmentPending } = useDeleteSegmentMutation();
   const [deleteState, setDeleteState] = useState<`error` | `idle`>(`idle`);
   const [reorderState, setReorderState] = useState<`error` | `idle`>(`idle`);
+  const [isEditorOpen, setIsEditorOpen] = useState(false);
+  const [selectedSegment, setSelectedSegment] = useState<SegmentRecord | undefined>(undefined);
   const segments = [...(segmentData ?? [])].sort((left, right) => left.order - right.order);
 
   const onMoveSegment = async (segmentId: string, direction: -1 | 1) => {
@@ -76,7 +79,8 @@ export const SegmentList = () => {
       <div className="flex justify-end">
         <Button
           onClick={() => {
-            void navigate({ to: `/erp/accounting/configuration/segments/new-segment` as never } as never);
+            setSelectedSegment(undefined);
+            setIsEditorOpen(true);
           }}
           type="button"
         >
@@ -92,22 +96,17 @@ export const SegmentList = () => {
           <table className="w-full caption-bottom text-sm">
             <thead className="[&_tr]:border-b">
               <tr className="border-b border-border">
+                <th className="h-10 w-1 whitespace-nowrap px-3 text-left align-middle font-medium">{t(`Actions`)}</th>
                 <th className="h-10 px-3 text-left align-middle font-medium">{t(`Label`)}</th>
                 <th className="h-10 px-3 text-left align-middle font-medium">{t(`Type`)}</th>
                 <th className="h-10 px-3 text-left align-middle font-medium">{t(`Required`)}</th>
-                <th className="h-10 px-3 text-right align-middle font-medium">{t(`Actions`)}</th>
               </tr>
             </thead>
             <tbody className="[&_tr:last-child]:border-0">
               {segments.map((segment, index) => (
                 <tr className="border-b border-border" key={segment.id}>
-                  <td className="p-3 align-middle">{segment.label}</td>
-                  <td className="p-3 align-middle">
-                    {segment.type === `entity` ? t(`Entity`) : segment.type === `account` ? t(`Account`) : t(`Generic`)}
-                  </td>
-                  <td className="p-3 align-middle">{segment.required ? t(`Yes`) : t(`No`)}</td>
-                  <td className="p-3 align-middle">
-                    <div className="flex justify-end gap-1">
+                  <td className="w-1 whitespace-nowrap p-3 align-middle">
+                    <ButtonGroup>
                       <Button
                         aria-label={t(`Move segment up`)}
                         className="h-7 w-7 p-0"
@@ -135,6 +134,20 @@ export const SegmentList = () => {
                         <IconChevronDown aria-hidden stroke={2} />
                       </Button>
                       <Button
+                        aria-label={t(`Edit segment`)}
+                        className="h-7 w-7 p-0"
+                        disabled={isReorderSegmentPending || isDeleteSegmentPending}
+                        onClick={() => {
+                          setSelectedSegment(segment);
+                          setIsEditorOpen(true);
+                        }}
+                        size="sm"
+                        type="button"
+                        variant="outline"
+                      >
+                        <IconPencil aria-hidden stroke={2} />
+                      </Button>
+                      <Button
                         aria-label={t(`Delete segment`)}
                         className="h-7 w-7 p-0"
                         disabled={segment.required || isReorderSegmentPending || isDeleteSegmentPending}
@@ -147,14 +160,24 @@ export const SegmentList = () => {
                       >
                         <IconTrash aria-hidden stroke={2} />
                       </Button>
-                    </div>
+                    </ButtonGroup>
                   </td>
+                  <td className="p-3 align-middle">{segment.label}</td>
+                  <td className="p-3 align-middle">
+                    {segment.type === `entity` ? t(`Entity`) : segment.type === `account` ? t(`Account`) : t(`Generic`)}
+                  </td>
+                  <td className="p-3 align-middle">{segment.required ? t(`Yes`) : t(`No`)}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
       ) : null}
+      {selectedSegment ? (
+        <SegmentEditorDialog mode="edit" onOpenChange={setIsEditorOpen} open={isEditorOpen} segment={selectedSegment} />
+      ) : (
+        <SegmentEditorDialog mode="create" nextOrder={segments.length} onOpenChange={setIsEditorOpen} open={isEditorOpen} />
+      )}
     </section>
   );
 };

@@ -86,6 +86,7 @@
 
 - Prefer right aligned buttons unless there is a solid reason not to. 
 - When right aligned, primary button should be right most button.
+- In table layouts, when an `Actions` column exists, it must be the first column.
 
 ## Backend
 

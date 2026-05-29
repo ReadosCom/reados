@@ -42,7 +42,7 @@ export const applicationSidebarData: ApplicationSidebarData = {
           items: [
             {
               title: 'Configure',
-              link: '/erp/accounting/configuration/segments',
+              link: '/erp/accounting/configuration/segment-list',
               Icon: IconSettings,
             },
           ],
