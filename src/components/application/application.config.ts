@@ -1,5 +1,5 @@
 import { applicationFetch } from "@components/application/application.client.ts";
-import type { AppConfig } from '@components/application/application.schema.ts';
+import type { AppConfig } from "@components/application/application.schema.ts";
 
 const defaultAppConfig: AppConfig = {
   rootFqdn: `reados.localhost`,

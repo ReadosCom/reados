@@ -1,9 +1,9 @@
-import type { TenantItem } from '@components/application/application.navigation.schema.ts';
-import { useTranslation } from '@components/i18n/useTranslation.ts';
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@components/uiframework/DropdownMenu';
-import { SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@components/uiframework/Sidebar';
-import { IconSelector } from '@tabler/icons-react';
-import { Link } from '@tanstack/react-router';
+import type { TenantItem } from "@components/application/application.navigation.schema.ts";
+import { useTranslation } from "@components/i18n/useTranslation.ts";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@components/uiframework/DropdownMenu";
+import { SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "@components/uiframework/Sidebar";
+import { IconSelector } from "@tabler/icons-react";
+import { Link } from "@tanstack/react-router";
 
 type TenantSwitcherProps = {
   tenants: TenantItem[];

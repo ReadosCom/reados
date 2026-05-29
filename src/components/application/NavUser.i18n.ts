@@ -1,6 +1,6 @@
-import type { Translations } from '@components/i18n/i18n.types.ts';
+import type { Translations } from "@components/i18n/i18n.types.ts";
 export const translations = {
-  'Signing out...': {
+  "Signing out...": {
     tr: { translation: `Çıkış yapılıyor...`, translatedBy: `AI` },
     de: { translation: `Abmeldung...`, translatedBy: `AI` },
     es: { translation: `Cerrando sesión...`, translatedBy: `AI` },
@@ -10,7 +10,7 @@ export const translations = {
     nl: { translation: `Afmelden...`, translatedBy: `AI` },
     pl: { translation: `Wylogowywanie...`, translatedBy: `AI` },
   },
-  'Sign out': {
+  "Sign out": {
     tr: { translation: `Çıkış yap`, translatedBy: `AI` },
     de: { translation: `Abmelden`, translatedBy: `AI` },
     es: { translation: `Cerrar sesión`, translatedBy: `AI` },

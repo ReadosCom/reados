@@ -24,7 +24,7 @@ export const MemberList = ({ segmentId, segmentType }: { segmentId: string; segm
   const deleteMutation = useDeleteMemberMutation(segmentId);
   const applyTemplateMutation = useApplyAccountTemplateMutation(segmentId);
 
-  const members = membersQuery.data ?? [];
+  const members = useMemo(() => membersQuery.data ?? [], [membersQuery.data]);
   const showTemplateApply = segmentType === `account` && members.length === 0;
   const columns = useMemo<ColumnDef<MemberRecord>[]>(
     () => [
@@ -83,7 +83,9 @@ export const MemberList = ({ segmentId, segmentType }: { segmentId: string; segm
     <section className="space-y-3 rounded-md border border-border p-3">
       <div className="flex items-center justify-between">
         <h3 className="text-sm font-medium">{t(`Members`)}</h3>
-        <Button onClick={() => setIsCreateModalOpen(true)} type="button">{t(`Create member`)}</Button>
+        <Button onClick={() => setIsCreateModalOpen(true)} type="button">
+          {t(`Create member`)}
+        </Button>
       </div>
 
       {showTemplateApply ? (
@@ -149,11 +151,15 @@ export const MemberList = ({ segmentId, segmentType }: { segmentId: string; segm
         <DialogContent>
           <DialogHeader>
             <DialogTitle>{t(`Delete member`)}</DialogTitle>
-            <DialogDescription>{t(`Are you sure you want to delete this member?`)} {deletingMember ? `${deletingMember.code} - ${deletingMember.name}` : ``}</DialogDescription>
+            <DialogDescription>
+              {t(`Are you sure you want to delete this member?`)} {deletingMember ? `${deletingMember.code} - ${deletingMember.name}` : ``}
+            </DialogDescription>
           </DialogHeader>
           {deleteMutation.isError ? <p className="text-sm text-destructive">{t(`Could not delete member right now.`)}</p> : null}
           <div className="flex justify-end gap-2">
-            <Button onClick={() => setDeletingMember(null)} type="button" variant="outline">{t(`Cancel`)}</Button>
+            <Button onClick={() => setDeletingMember(null)} type="button" variant="outline">
+              {t(`Cancel`)}
+            </Button>
             <Button
               disabled={deleteMutation.isPending}
               onClick={() => {

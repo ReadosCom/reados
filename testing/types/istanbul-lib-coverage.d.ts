@@ -1,4 +1,4 @@
-declare module 'istanbul-lib-coverage' {
+declare module "istanbul-lib-coverage" {
   type FileCoverage = {
     path?: string;
     statementMap?: unknown;

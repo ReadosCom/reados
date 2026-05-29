@@ -1,7 +1,7 @@
-import express from 'express';
-import { v7 as uuidv7 } from 'uuid';
-import { z } from 'zod';
-import type { ApiErrorResponse, RequestLogger, RouteFailOptions, RouteOptions, ValidateOptions, ValidatedHandler, ValidatedResponseLocals } from './express.schema.ts';
+import express from "express";
+import { v7 as uuidv7 } from "uuid";
+import { z } from "zod";
+import type { ApiErrorResponse, RequestLogger, RouteFailOptions, RouteOptions, ValidateOptions, ValidatedHandler, ValidatedResponseLocals } from "./express.schema.ts";
 
 const getRequestLogger = (request: express.Request): RequestLogger => {
   const logger = (request as express.Request & { log?: unknown }).log;

@@ -1,8 +1,8 @@
-import { createRoute, redirect, type AnyRoute } from '@tanstack/react-router';
+import { createRoute, redirect, type AnyRoute } from "@tanstack/react-router";
 
-import { AccountingConfiguration } from '@components/accountingConfiguration/AccountingConfiguration.tsx';
-import { SegmentList } from '@components/segment/SegmentList.tsx';
-import { Segments } from '@components/segment/Segments.tsx';
+import { AccountingConfiguration } from "@components/accountingConfiguration/AccountingConfiguration.tsx";
+import { SegmentList } from "@components/segment/SegmentList.tsx";
+import { Segments } from "@components/segment/Segments.tsx";
 
 const accountingConfigurationSegmentListPath = `/erp/accounting/configuration/segment-list` as never;
 
@@ -41,10 +41,5 @@ export const createAccountingConfigurationRouteTree = (accountingRoute: AnyRoute
     component: Segments,
   });
 
-  return accountingConfigurationRoute.addChildren([
-    accountingConfigurationIndexRoute,
-    accountingConfigurationSegmentListRoute,
-    accountingConfigurationSegmentsRoute,
-    accountingConfigurationSegmentRoute,
-  ]);
+  return accountingConfigurationRoute.addChildren([accountingConfigurationIndexRoute, accountingConfigurationSegmentListRoute, accountingConfigurationSegmentsRoute, accountingConfigurationSegmentRoute]);
 };

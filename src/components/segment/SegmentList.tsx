@@ -1,15 +1,15 @@
-import type { ColumnDef } from '@tanstack/react-table';
-import { useTranslation } from '@components/i18n/useTranslation.ts';
-import { useAwaitedPrompt } from '@components/prompt/prompt.context.ts';
-import { SegmentEditorDialog } from '@components/segment/SegmentEditorDialog.tsx';
-import { useDeleteSegmentMutation, useReorderSegmentMutation, useSegmentsQuery } from '@components/segment/segment.query.ts';
-import type { Segment as SegmentRecord } from '@components/segment/segment.schema.ts';
-import { Button } from '@components/uiframework/Button';
-import { ButtonGroup } from '@components/uiframework/ButtonGroup';
-import { DataTable } from '@components/uiframework/DataTable.tsx';
-import { Skeleton } from '@components/uiframework/Skeleton';
-import { IconChevronDown, IconChevronUp, IconPencil, IconTrash } from '@tabler/icons-react';
-import { useMemo, useState } from 'react';
+import type { ColumnDef } from "@tanstack/react-table";
+import { useTranslation } from "@components/i18n/useTranslation.ts";
+import { useAwaitedPrompt } from "@components/prompt/prompt.context.ts";
+import { SegmentEditorDialog } from "@components/segment/SegmentEditorDialog.tsx";
+import { useDeleteSegmentMutation, useReorderSegmentMutation, useSegmentsQuery } from "@components/segment/segment.query.ts";
+import type { Segment as SegmentRecord } from "@components/segment/segment.schema.ts";
+import { Button } from "@components/uiframework/Button";
+import { ButtonGroup } from "@components/uiframework/ButtonGroup";
+import { DataTable } from "@components/uiframework/DataTable.tsx";
+import { Skeleton } from "@components/uiframework/Skeleton";
+import { IconChevronDown, IconChevronUp, IconPencil, IconTrash } from "@tabler/icons-react";
+import { useCallback, useMemo, useState } from "react";
 
 /**
  * Renders a read-only table of accounting segments.
@@ -26,46 +26,52 @@ export const SegmentList = () => {
   const [selectedSegment, setSelectedSegment] = useState<SegmentRecord | undefined>(undefined);
   const segments = [...(segmentData ?? [])].sort((left, right) => left.order - right.order);
 
-  const onMoveSegment = async (segmentId: string, direction: -1 | 1) => {
-    const sourceIndex = segments.findIndex((segment) => segment.id === segmentId);
-    const targetIndex = sourceIndex + direction;
+  const onMoveSegment = useCallback(
+    async (segmentId: string, direction: -1 | 1) => {
+      const sourceIndex = segments.findIndex((segment) => segment.id === segmentId);
+      const targetIndex = sourceIndex + direction;
 
-    if (sourceIndex < 0 || targetIndex < 0 || targetIndex >= segments.length) {
-      return;
-    }
+      if (sourceIndex < 0 || targetIndex < 0 || targetIndex >= segments.length) {
+        return;
+      }
 
-    setReorderState(`idle`);
+      setReorderState(`idle`);
 
-    try {
-      await reorderSegmentAsync({
-        body: { direction: direction === -1 ? `up` : `down` },
-        id: segmentId,
+      try {
+        await reorderSegmentAsync({
+          body: { direction: direction === -1 ? `up` : `down` },
+          id: segmentId,
+        });
+      } catch {
+        setReorderState(`error`);
+      }
+    },
+    [reorderSegmentAsync, segments],
+  );
+
+  const deleteSegment = useCallback(
+    async (id: string) => {
+      const shouldDelete = await confirm({
+        confirmLabel: t(`Delete`),
+        description: t(`Are you sure, segment deletion will re-shape whole General Ledger?`),
+        title: t(`Delete segment`),
+        variant: `destructive`,
       });
-    } catch {
-      setReorderState(`error`);
-    }
-  };
 
-  const deleteSegment = async (id: string) => {
-    const shouldDelete = await confirm({
-      confirmLabel: t(`Delete`),
-      description: t(`Are you sure, segment deletion will re-shape whole General Ledger?`),
-      title: t(`Delete segment`),
-      variant: `destructive`,
-    });
+      if (!shouldDelete) {
+        return;
+      }
 
-    if (!shouldDelete) {
-      return;
-    }
+      setDeleteState(`idle`);
 
-    setDeleteState(`idle`);
-
-    try {
-      await deleteSegmentAsync(id);
-    } catch {
-      setDeleteState(`error`);
-    }
-  };
+      try {
+        await deleteSegmentAsync(id);
+      } catch {
+        setDeleteState(`error`);
+      }
+    },
+    [confirm, deleteSegmentAsync, t],
+  );
 
   const columns = useMemo<ColumnDef<SegmentRecord>[]>(
     () => [
@@ -144,9 +150,7 @@ export const SegmentList = () => {
       {
         accessorKey: `type`,
         header: t(`Type`),
-        cell: ({ row }) => (
-          <>{row.original.type === `entity` ? t(`Entity`) : row.original.type === `account` ? t(`Account`) : t(`Generic`)}</>
-        ),
+        cell: ({ row }) => <>{row.original.type === `entity` ? t(`Entity`) : row.original.type === `account` ? t(`Account`) : t(`Generic`)}</>,
       },
       {
         accessorKey: `required`,
@@ -154,7 +158,7 @@ export const SegmentList = () => {
         cell: ({ row }) => <>{row.original.required ? t(`Yes`) : t(`No`)}</>,
       },
     ],
-    [deleteSegment, isDeleteSegmentPending, isReorderSegmentPending, segments.length, t],
+    [deleteSegment, isDeleteSegmentPending, isReorderSegmentPending, onMoveSegment, segments.length, t],
   );
 
   if (isPending) {
@@ -182,14 +186,7 @@ export const SegmentList = () => {
       {isError ? <p className="text-sm text-destructive">{t(`Could not load segment list right now.`)}</p> : null}
       {deleteState === `error` ? <p className="text-sm text-destructive">{t(`Could not delete segment right now.`)}</p> : null}
       {reorderState === `error` ? <p className="text-sm text-destructive">{t(`Could not reorder segments right now.`)}</p> : null}
-      <DataTable
-        columns={columns}
-        data={segments}
-        emptyMessage={t(`No segments yet.`)}
-        errorMessage={t(`Could not load segment list right now.`)}
-        isError={isError}
-        isLoading={false}
-      />
+      <DataTable columns={columns} data={segments} emptyMessage={t(`No segments yet.`)} errorMessage={t(`Could not load segment list right now.`)} isError={isError} isLoading={false} />
       {selectedSegment ? (
         <SegmentEditorDialog mode="edit" onOpenChange={setIsEditorOpen} open={isEditorOpen} segment={selectedSegment} />
       ) : (

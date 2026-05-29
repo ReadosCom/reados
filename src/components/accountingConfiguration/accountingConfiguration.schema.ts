@@ -1,8 +1,7 @@
 import { z } from "zod";
 import { apiSuccessSchema } from "@components/application/api.schema.ts";
 
-export const accountingConfigurationSchema = z.object({
-});
+export const accountingConfigurationSchema = z.object({});
 export const accountingConfigurationResponseDataSchema = z.object({
   configuration: accountingConfigurationSchema,
   module: z.literal(`accounting`),

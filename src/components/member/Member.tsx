@@ -64,10 +64,46 @@ export const Member = ({
         }
       >
         <div className="grid gap-3 md:grid-cols-2">
-          <FormField control={form.control} name="code" render={({ field }) => <FormItem><FormLabel>{t(`Code`)}</FormLabel><FormControl><Input {...field} /></FormControl><FormMessage /></FormItem>} />
-          <FormField control={form.control} name="name" render={({ field }) => <FormItem><FormLabel>{t(`Name`)}</FormLabel><FormControl><Input {...field} /></FormControl><FormMessage /></FormItem>} />
+          <FormField
+            control={form.control}
+            name="code"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>{t(`Code`)}</FormLabel>
+                <FormControl>
+                  <Input {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="name"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>{t(`Name`)}</FormLabel>
+                <FormControl>
+                  <Input {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
         </div>
-        <FormField control={form.control} name="description" render={({ field }) => <FormItem><FormLabel>{t(`Description`)}</FormLabel><FormControl><Input {...field} /></FormControl><FormMessage /></FormItem>} />
+        <FormField
+          control={form.control}
+          name="description"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>{t(`Description`)}</FormLabel>
+              <FormControl>
+                <Input {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
         <div className="grid gap-3 md:grid-cols-2">
           <FormField
             control={form.control}
@@ -77,10 +113,18 @@ export const Member = ({
                 <FormLabel>{t(`Parent`)}</FormLabel>
                 <FormControl>
                   <Select onValueChange={(value) => field.onChange(value === `none` ? null : value)} value={field.value ?? `none`}>
-                    <SelectTrigger><SelectValue placeholder={t(`No parent`)} /></SelectTrigger>
+                    <SelectTrigger>
+                      <SelectValue placeholder={t(`No parent`)} />
+                    </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="none">{t(`No parent`)}</SelectItem>
-                      {members.filter((candidate) => candidate.id !== excludedMemberId).map((candidate) => <SelectItem key={candidate.id} value={candidate.id}>{candidate.code} - {candidate.name}</SelectItem>)}
+                      {members
+                        .filter((candidate) => candidate.id !== excludedMemberId)
+                        .map((candidate) => (
+                          <SelectItem key={candidate.id} value={candidate.id}>
+                            {candidate.code} - {candidate.name}
+                          </SelectItem>
+                        ))}
                     </SelectContent>
                   </Select>
                 </FormControl>
@@ -88,11 +132,68 @@ export const Member = ({
               </FormItem>
             )}
           />
-          {segmentType === `account` ? <><FormField control={form.control} name="type" render={({ field }) => <FormItem><FormLabel>{t(`Type`)}</FormLabel><FormControl><Select onValueChange={field.onChange} value={field.value ?? undefined}><SelectTrigger><SelectValue placeholder={t(`Select type`)} /></SelectTrigger><SelectContent>{accountMemberTypeSchema.options.map((option) => <SelectItem key={option} value={option}>{option}</SelectItem>)}</SelectContent></Select></FormControl><FormMessage /></FormItem>} /><FormField control={form.control} name="reporting" render={({ field }) => <FormItem><FormLabel>{t(`Reporting`)}</FormLabel><FormControl><Select onValueChange={field.onChange} value={field.value ?? undefined}><SelectTrigger><SelectValue placeholder={t(`Select reporting`)} /></SelectTrigger><SelectContent>{accountMemberReportingSchema.options.map((option) => <SelectItem key={option} value={option}>{option}</SelectItem>)}</SelectContent></Select></FormControl><FormMessage /></FormItem>} /></> : null}
+          {segmentType === `account` ? (
+            <>
+              <FormField
+                control={form.control}
+                name="type"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>{t(`Type`)}</FormLabel>
+                    <FormControl>
+                      <Select onValueChange={field.onChange} value={field.value ?? undefined}>
+                        <SelectTrigger>
+                          <SelectValue placeholder={t(`Select type`)} />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {accountMemberTypeSchema.options.map((option) => (
+                            <SelectItem key={option} value={option}>
+                              {option}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="reporting"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>{t(`Reporting`)}</FormLabel>
+                    <FormControl>
+                      <Select onValueChange={field.onChange} value={field.value ?? undefined}>
+                        <SelectTrigger>
+                          <SelectValue placeholder={t(`Select reporting`)} />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {accountMemberReportingSchema.options.map((option) => (
+                            <SelectItem key={option} value={option}>
+                              {option}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </>
+          ) : null}
         </div>
         <div className="flex justify-end gap-2">
-          {onCancel ? <Button onClick={onCancel} type="button" variant="outline">{t(`Cancel`)}</Button> : null}
-          <Button disabled={isSaving} type="submit">{submitLabel}</Button>
+          {onCancel ? (
+            <Button onClick={onCancel} type="button" variant="outline">
+              {t(`Cancel`)}
+            </Button>
+          ) : null}
+          <Button disabled={isSaving} type="submit">
+            {submitLabel}
+          </Button>
         </div>
       </form>
     </Form>

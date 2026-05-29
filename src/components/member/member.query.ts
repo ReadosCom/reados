@@ -31,7 +31,7 @@ export const useCreateMemberMutation = (segmentId: string) => {
 export const useUpdateMemberMutation = (segmentId: string) => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: async ({ body, id }: { id: string; body: UpdateMemberBody }) => updateMember(segmentId, id, body),
+    mutationFn: async ({ body, id }: { id: string; body: UpdateMemberBody }) => updateMember(id, body),
     onSuccess: async (updatedMember) => {
       queryClient.setQueryData([`members`, segmentId], (current: Member[] | undefined) => {
         if (!current) {
@@ -49,7 +49,7 @@ export const useUpdateMemberMutation = (segmentId: string) => {
 export const useDeleteMemberMutation = (segmentId: string) => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: async (id: string) => deleteMember(segmentId, id),
+    mutationFn: async (id: string) => deleteMember(id),
     onSuccess: async (_, deletedId) => {
       queryClient.setQueryData([`members`, segmentId], (current: Member[] | undefined) => {
         if (!current) {
@@ -63,7 +63,7 @@ export const useDeleteMemberMutation = (segmentId: string) => {
   });
 };
 
-export const useAccountTemplatesQuery = (segmentId: string) => useQuery({ queryFn: async () => getAccountTemplates(segmentId), queryKey: [`account-templates`, segmentId] });
+export const useAccountTemplatesQuery = (segmentId: string) => useQuery({ queryFn: async () => getAccountTemplates(), queryKey: [`account-templates`, segmentId] });
 
 export const useApplyAccountTemplateMutation = (segmentId: string) => {
   const queryClient = useQueryClient();

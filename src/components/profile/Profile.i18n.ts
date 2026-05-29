@@ -1,4 +1,4 @@
-import type { Translations } from '@components/i18n/i18n.types.ts';
+import type { Translations } from "@components/i18n/i18n.types.ts";
 
 export const translations = {
   Profile: {
@@ -11,7 +11,7 @@ export const translations = {
     nl: { translation: `Profiel`, translatedBy: `AI` },
     pl: { translation: `Profil`, translatedBy: `AI` },
   },
-  'Manage your account preferences here.': {
+  "Manage your account preferences here.": {
     tr: { translation: `Hesap tercihlerinizi buradan yönetin.`, translatedBy: `AI` },
     de: { translation: `Verwalten Sie hier Ihre Kontoeinstellungen.`, translatedBy: `AI` },
     es: { translation: `Administra aquí las preferencias de tu cuenta.`, translatedBy: `AI` },
@@ -21,7 +21,7 @@ export const translations = {
     nl: { translation: `Beheer hier je accountvoorkeuren.`, translatedBy: `AI` },
     pl: { translation: `Zarządzaj tutaj ustawieniami konta.`, translatedBy: `AI` },
   },
-  'Display name': {
+  "Display name": {
     tr: { translation: `Görünen ad`, translatedBy: `AI` },
     de: { translation: `Anzeigename`, translatedBy: `AI` },
     es: { translation: `Nombre para mostrar`, translatedBy: `AI` },
@@ -31,7 +31,7 @@ export const translations = {
     nl: { translation: `Weergavenaam`, translatedBy: `AI` },
     pl: { translation: `Nazwa wyświetlana`, translatedBy: `AI` },
   },
-  'First name': {
+  "First name": {
     tr: { translation: `Ad`, translatedBy: `AI` },
     de: { translation: `Vorname`, translatedBy: `AI` },
     es: { translation: `Nombre`, translatedBy: `AI` },
@@ -41,7 +41,7 @@ export const translations = {
     nl: { translation: `Voornaam`, translatedBy: `AI` },
     pl: { translation: `Imię`, translatedBy: `AI` },
   },
-  'Middle name': {
+  "Middle name": {
     tr: { translation: `İkinci ad`, translatedBy: `AI` },
     de: { translation: `Zweiter Vorname`, translatedBy: `AI` },
     es: { translation: `Segundo nombre`, translatedBy: `AI` },
@@ -51,7 +51,7 @@ export const translations = {
     nl: { translation: `Tweede naam`, translatedBy: `AI` },
     pl: { translation: `Drugie imię`, translatedBy: `AI` },
   },
-  'Last name': {
+  "Last name": {
     tr: { translation: `Soyad`, translatedBy: `AI` },
     de: { translation: `Nachname`, translatedBy: `AI` },
     es: { translation: `Apellido`, translatedBy: `AI` },
@@ -171,7 +171,7 @@ export const translations = {
     nl: { translation: `Pools`, translatedBy: `AI` },
     pl: { translation: `Polski`, translatedBy: `AI` },
   },
-  'Preferences saved.': {
+  "Preferences saved.": {
     tr: { translation: `Tercihler kaydedildi.`, translatedBy: `AI` },
     de: { translation: `Einstellungen gespeichert.`, translatedBy: `AI` },
     es: { translation: `Preferencias guardadas.`, translatedBy: `AI` },
@@ -181,7 +181,7 @@ export const translations = {
     nl: { translation: `Voorkeuren opgeslagen.`, translatedBy: `AI` },
     pl: { translation: `Preferencje zapisane.`, translatedBy: `AI` },
   },
-  'Could not save preferences right now.': {
+  "Could not save preferences right now.": {
     tr: { translation: `Tercihler şu anda kaydedilemedi.`, translatedBy: `AI` },
     de: { translation: `Einstellungen konnten derzeit nicht gespeichert werden.`, translatedBy: `AI` },
     es: { translation: `No se pudieron guardar las preferencias en este momento.`, translatedBy: `AI` },
@@ -191,7 +191,7 @@ export const translations = {
     nl: { translation: `Voorkeuren konden nu niet worden opgeslagen.`, translatedBy: `AI` },
     pl: { translation: `Nie udało się teraz zapisać preferencji.`, translatedBy: `AI` },
   },
-  'Saving...': {
+  "Saving...": {
     tr: { translation: `Kaydediliyor...`, translatedBy: `AI` },
     de: { translation: `Wird gespeichert...`, translatedBy: `AI` },
     es: { translation: `Guardando...`, translatedBy: `AI` },
@@ -201,7 +201,7 @@ export const translations = {
     nl: { translation: `Opslaan...`, translatedBy: `AI` },
     pl: { translation: `Zapisywanie...`, translatedBy: `AI` },
   },
-  'Save changes': {
+  "Save changes": {
     tr: { translation: `Değişiklikleri kaydet`, translatedBy: `AI` },
     de: { translation: `Änderungen speichern`, translatedBy: `AI` },
     es: { translation: `Guardar cambios`, translatedBy: `AI` },

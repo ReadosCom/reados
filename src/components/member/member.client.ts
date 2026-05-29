@@ -1,7 +1,7 @@
-import { parseApiSuccess } from '@components/application/api.client.ts';
-import { erpServiceDelete, erpServiceGet, erpServicePost, erpServicePut } from '@components/application/application.client.ts';
-import { z } from 'zod';
-import { accountTemplateSchema, createMemberBodySchema, listMembersResponseSchema, memberSchema, updateMemberBodySchema, type AccountTemplate, type CreateMemberBody, type Member, type UpdateMemberBody } from './member.schema.ts';
+import { parseApiSuccess } from "@components/application/api.client.ts";
+import { erpServiceDelete, erpServiceGet, erpServicePost, erpServicePut } from "@components/application/application.client.ts";
+import { z } from "zod";
+import { accountTemplateSchema, createMemberBodySchema, listMembersResponseSchema, memberSchema, updateMemberBodySchema, type AccountTemplate, type CreateMemberBody, type Member, type UpdateMemberBody } from "./member.schema.ts";
 type CreateMemberInput = Omit<CreateMemberBody, `segmentId`>;
 
 export const getMembers = async (segmentId: string): Promise<Member[]> => {
@@ -27,20 +27,20 @@ export const createMember = async (segmentId: string, body: CreateMemberInput): 
   return parseApiSuccess(await response.json(), memberSchema);
 };
 
-export const updateMember = async (_segmentId: string, id: string, body: UpdateMemberBody): Promise<Member> => {
+export const updateMember = async (id: string, body: UpdateMemberBody): Promise<Member> => {
   const parsedBody = updateMemberBodySchema.parse(body);
   const response = await erpServicePut({ body: parsedBody, path: `/accounting/member/${encodeURIComponent(id)}` });
   if (!response.ok) throw new Error(`Failed to update segment member.`);
   return parseApiSuccess(await response.json(), memberSchema);
 };
 
-export const deleteMember = async (_segmentId: string, id: string): Promise<{ deleted: boolean }> => {
+export const deleteMember = async (id: string): Promise<{ deleted: boolean }> => {
   const response = await erpServiceDelete({ path: `/accounting/member/${encodeURIComponent(id)}` });
   if (!response.ok) throw new Error(`Failed to delete segment member.`);
   return parseApiSuccess(await response.json(), z.object({ deleted: z.boolean() }));
 };
 
-export const getAccountTemplates = async (_segmentId: string): Promise<AccountTemplate[]> => {
+export const getAccountTemplates = async (): Promise<AccountTemplate[]> => {
   const response = await erpServiceGet({ path: `/accounting/member/templates` });
   if (!response.ok) throw new Error(`Failed to load account templates.`);
   return parseApiSuccess(await response.json(), z.array(accountTemplateSchema));

@@ -50,7 +50,6 @@ export const applyMemberTemplateBodySchema = z.object({
   templateId: z.string().trim().min(1),
 });
 
-
 export const accountTemplateMemberSchema = z.object({
   code: z.string().trim().min(1),
   name: z.string().trim().min(1),

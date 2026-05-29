@@ -23,28 +23,27 @@ export const createMember = async (body: CreateMemberBody) => {
   if (segmentType === `account` && !body.reporting) throw new Error(`reporting is required for account segment members.`);
 
   if (body.parent) {
-    const parentResult = await pool.query<Pick<MemberOwnershipRow, "id" | "type">>(
-      `SELECT "id", "type" FROM "member" WHERE "id" = $1 AND "segment" = $2 LIMIT 1;`,
-      [body.parent, body.segmentId],
-    );
+    const parentResult = await pool.query<Pick<MemberOwnershipRow, "id" | "type">>(`SELECT "id", "type" FROM "member" WHERE "id" = $1 AND "segment" = $2 LIMIT 1;`, [body.parent, body.segmentId]);
     const parent = parentResult.rows[0];
     if (!parent) throw new Error(`Parent member does not exist in segment.`);
     if (segmentType === `account` && parent.type !== body.type) throw new Error(`Parent-child type mismatch is not allowed.`);
   }
 
-  const result = await pool.query<MemberRow>(
-    `INSERT INTO "member" ("segment", "code", "name", "description", "parent", "type", "reporting") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *;`,
-    [body.segmentId, body.code, body.name, body.description, body.parent, segmentType === `account` ? body.type ?? null : null, segmentType === `account` ? body.reporting ?? null : null],
-  );
+  const result = await pool.query<MemberRow>(`INSERT INTO "member" ("segment", "code", "name", "description", "parent", "type", "reporting") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *;`, [
+    body.segmentId,
+    body.code,
+    body.name,
+    body.description,
+    body.parent,
+    segmentType === `account` ? (body.type ?? null) : null,
+    segmentType === `account` ? (body.reporting ?? null) : null,
+  ]);
 
   return asMember(result.rows[0]);
 };
 
 export const updateMember = async (id: string, body: UpdateMemberBody) => {
-  const existingResult = await pool.query<MemberOwnershipRow>(
-    `SELECT "id", "segment", "type" FROM "member" WHERE "id" = $1 LIMIT 1;`,
-    [id],
-  );
+  const existingResult = await pool.query<MemberOwnershipRow>(`SELECT "id", "segment", "type" FROM "member" WHERE "id" = $1 LIMIT 1;`, [id]);
   const existing = existingResult.rows[0];
   if (!existing) throw new Error(`Member not found in segment.`);
   const segmentType = await getSegmentType(existing.segment);
@@ -55,28 +54,28 @@ export const updateMember = async (id: string, body: UpdateMemberBody) => {
   if (body.parent) {
     if (body.parent === id) throw new Error(`Member cannot be parent of itself.`);
 
-    const parentResult = await pool.query<Pick<MemberOwnershipRow, "id" | "type">>(
-      `SELECT "id", "type" FROM "member" WHERE "id" = $1 AND "segment" = $2 LIMIT 1;`,
-      [body.parent, existing.segment],
-    );
+    const parentResult = await pool.query<Pick<MemberOwnershipRow, "id" | "type">>(`SELECT "id", "type" FROM "member" WHERE "id" = $1 AND "segment" = $2 LIMIT 1;`, [body.parent, existing.segment]);
     const parent = parentResult.rows[0];
     if (!parent) throw new Error(`Parent member does not exist in segment.`);
     if (segmentType === `account` && parent.type !== body.type) throw new Error(`Parent-child type mismatch is not allowed.`);
   }
 
-  const result = await pool.query<MemberRow>(
-    `UPDATE "member" SET "code" = $1, "name" = $2, "description" = $3, "parent" = $4, "type" = $5, "reporting" = $6 WHERE "id" = $7 AND "segment" = $8 RETURNING *;`,
-    [body.code, body.name, body.description, body.parent, segmentType === `account` ? body.type ?? null : null, segmentType === `account` ? body.reporting ?? null : null, id, existing.segment],
-  );
+  const result = await pool.query<MemberRow>(`UPDATE "member" SET "code" = $1, "name" = $2, "description" = $3, "parent" = $4, "type" = $5, "reporting" = $6 WHERE "id" = $7 AND "segment" = $8 RETURNING *;`, [
+    body.code,
+    body.name,
+    body.description,
+    body.parent,
+    segmentType === `account` ? (body.type ?? null) : null,
+    segmentType === `account` ? (body.reporting ?? null) : null,
+    id,
+    existing.segment,
+  ]);
 
   return asMember(result.rows[0]);
 };
 
 export const deleteMember = async (id: string) => {
-  const result = await pool.query<{ id: string }>(
-    `DELETE FROM "member" WHERE "id" = $1 RETURNING "id";`,
-    [id],
-  );
+  const result = await pool.query<{ id: string }>(`DELETE FROM "member" WHERE "id" = $1 RETURNING "id";`, [id]);
 
   if (!result.rows[0]) {
     throw new Error(`Member not found in segment.`);
@@ -91,6 +90,6 @@ export const listAccountTemplates = async (): Promise<AccountTemplate[]> => {
   ];
 };
 
-export const applyAccountTemplate = async (_segmentId: string, _templateId: string) => {
-  throw new Error(`Embedded account templates were removed. Create template JSON files manually using docs/accounting/account-template-sources.md guidance.`);
+export const applyAccountTemplate = async (segmentId: string, templateId: string) => {
+  throw new Error(`Embedded account templates were removed for segment "${segmentId}" and template "${templateId}". Create template JSON files manually using docs/accounting/account-template-sources.md guidance.`);
 };

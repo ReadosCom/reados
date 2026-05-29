@@ -1,9 +1,9 @@
-import { useMutation } from '@tanstack/react-query';
+import { useMutation } from "@tanstack/react-query";
 
-import { getBrowserProtocol } from '@components/application/application.browser.ts';
+import { getBrowserProtocol } from "@components/application/application.browser.ts";
 import { applicationFetch } from "@components/application/application.client.ts";
-import { getAppConfig } from '@components/application/application.config.ts';
-import { tenantDiscoveryRequestSchema, tenantDiscoveryResponseSchema, type TenantDiscoveryRequest, type TenantDiscoveryResponseData } from './tenant.schema.ts';
+import { getAppConfig } from "@components/application/application.config.ts";
+import { tenantDiscoveryRequestSchema, tenantDiscoveryResponseSchema, type TenantDiscoveryRequest, type TenantDiscoveryResponseData } from "./tenant.schema.ts";
 
 const getRoot = () => {
   const protocol = getBrowserProtocol();

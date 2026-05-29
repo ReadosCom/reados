@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import { applicationSidebarData } from '@components/application/application.navigation.ts';
-import { useAuthenticationSessionQuery } from '@components/authentication/authentication.query.ts';
-import { NavMain } from '@components/application/NavMain';
-import { NavUser } from '@components/application/NavUser';
-import { TenantSwitcher } from '@components/application/TenantSwitcher';
-import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarRail } from '@components/uiframework/Sidebar';
+import { applicationSidebarData } from "@components/application/application.navigation.ts";
+import { useAuthenticationSessionQuery } from "@components/authentication/authentication.query.ts";
+import { NavMain } from "@components/application/NavMain";
+import { NavUser } from "@components/application/NavUser";
+import { TenantSwitcher } from "@components/application/TenantSwitcher";
+import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarRail } from "@components/uiframework/Sidebar";
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const { data: authenticationSession } = useAuthenticationSessionQuery();

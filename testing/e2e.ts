@@ -1,6 +1,6 @@
-import { test as base, expect } from '@playwright/test';
-import { mkdir, writeFile } from 'node:fs/promises';
-import path from 'node:path';
+import { test as base, expect } from "@playwright/test";
+import { mkdir, writeFile } from "node:fs/promises";
+import path from "node:path";
 
 type IstanbulCoverage = Record<string, unknown>;
 type IstanbulFileCoverage = {
@@ -16,16 +16,16 @@ declare global {
   }
 }
 
-const coverageDirectory = path.join(process.cwd(), 'testing/output/.nyc_frontend');
+const coverageDirectory = path.join(process.cwd(), "testing/output/.nyc_frontend");
 
 const createCoverageFileName = (titlePath: string[]) => {
   const readableName = titlePath
-    .join(' ')
-    .replaceAll(/[^a-zA-Z0-9]+/g, '-')
-    .replaceAll(/^-|-$/g, '')
+    .join(" ")
+    .replaceAll(/[^a-zA-Z0-9]+/g, "-")
+    .replaceAll(/^-|-$/g, "")
     .toLowerCase();
 
-  return `${readableName || 'e2e-coverage'}-${process.pid}.json`;
+  return `${readableName || "e2e-coverage"}-${process.pid}.json`;
 };
 
 const remapContainerCoveragePaths = (coverage: IstanbulCoverage) => {
@@ -64,7 +64,7 @@ export const test = base.extend({
     }
 
     await mkdir(coverageDirectory, { recursive: true });
-    await writeFile(path.join(coverageDirectory, createCoverageFileName(testInfo.titlePath)), JSON.stringify(remapContainerCoveragePaths(coverage)), 'utf8');
+    await writeFile(path.join(coverageDirectory, createCoverageFileName(testInfo.titlePath)), JSON.stringify(remapContainerCoveragePaths(coverage)), "utf8");
   },
 });
 

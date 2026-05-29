@@ -1,13 +1,13 @@
-import { useState } from 'react';
+import { useState } from "react";
 
-import { useTranslation } from '@components/i18n/useTranslation.ts';
+import { useTranslation } from "@components/i18n/useTranslation.ts";
 import { MemberList } from "@components/member/MemberList.tsx";
-import { SegmentEditorDialog } from '@components/segment/SegmentEditorDialog.tsx';
-import { useDeleteSegmentMutation } from '@components/segment/segment.query.ts';
-import { type Segment as SegmentRecord } from '@components/segment/segment.schema.ts';
-import { Badge } from '@components/uiframework/Badge';
-import { Button } from '@components/uiframework/Button';
-import { TabsContent } from '@components/uiframework/Tabs';
+import { SegmentEditorDialog } from "@components/segment/SegmentEditorDialog.tsx";
+import { useDeleteSegmentMutation } from "@components/segment/segment.query.ts";
+import { type Segment as SegmentRecord } from "@components/segment/segment.schema.ts";
+import { Badge } from "@components/uiframework/Badge";
+import { Button } from "@components/uiframework/Button";
+import { TabsContent } from "@components/uiframework/Tabs";
 
 type SegmentProps = {
   onDeleted: (segmentId: string) => void;
@@ -51,7 +51,11 @@ export const Segment = ({ onDeleted, segment, tabValue }: SegmentProps) => {
           </Button>
         </div>
       </div>
-      {!canRemove ? <div className="flex justify-end"><Badge variant="secondary">{t(`Required segments can't be deleted`)}</Badge></div> : null}
+      {!canRemove ? (
+        <div className="flex justify-end">
+          <Badge variant="secondary">{t(`Required segments can't be deleted`)}</Badge>
+        </div>
+      ) : null}
       {saveState === `error` ? <p className="text-sm text-destructive">{t(`Could not save segment right now.`)}</p> : null}
       <SegmentEditorDialog mode="edit" onOpenChange={setIsModalOpen} open={isModalOpen} segment={segment} />
       <MemberList segmentId={segment.id} segmentType={segment.type} />

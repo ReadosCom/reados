@@ -1,10 +1,10 @@
-import type { NavMainItem, NavigationTarget } from '@components/application/application.navigation.schema.ts';
-import { useTranslation } from '@components/i18n/useTranslation.ts';
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@components/uiframework/Collapsible';
-import { SidebarGroup, SidebarGroupContent, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarMenuSub, SidebarMenuSubButton, SidebarMenuSubItem } from '@components/uiframework/Sidebar';
-import { IconChevronRight } from '@tabler/icons-react';
-import { Link, useRouterState } from '@tanstack/react-router';
-import { useState } from 'react';
+import type { NavMainItem, NavigationTarget } from "@components/application/application.navigation.schema.ts";
+import { useTranslation } from "@components/i18n/useTranslation.ts";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@components/uiframework/Collapsible";
+import { SidebarGroup, SidebarGroupContent, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarMenuSub, SidebarMenuSubButton, SidebarMenuSubItem } from "@components/uiframework/Sidebar";
+import { IconChevronRight } from "@tabler/icons-react";
+import { Link, useRouterState } from "@tanstack/react-router";
+import { useState } from "react";
 
 type NavMainProps = {
   items: NavMainItem[];
@@ -109,7 +109,7 @@ export const NavMain = ({ items }: NavMainProps) => {
           <ItemWrapper>
             <div className="flex items-center gap-1">
               {item.link ? (
-                <LinkWrapper asChild className={isRoot ? undefined : 'w-full'} isActive={active} tooltip={isRoot ? t(item.title) : undefined}>
+                <LinkWrapper asChild className={isRoot ? undefined : "w-full"} isActive={active} tooltip={isRoot ? t(item.title) : undefined}>
                   <Link
                     onClick={() => {
                       setManualOpenState((previousState) => ({
@@ -126,7 +126,7 @@ export const NavMain = ({ items }: NavMainProps) => {
                 </LinkWrapper>
               ) : (
                 <CollapsibleTrigger asChild>
-                  <LinkWrapper className={isRoot ? undefined : 'w-full'} isActive={active} tooltip={isRoot ? t(item.title) : undefined}>
+                  <LinkWrapper className={isRoot ? undefined : "w-full"} isActive={active} tooltip={isRoot ? t(item.title) : undefined}>
                     {item.Icon ? <item.Icon stroke={2} /> : null}
                     <span>{t(item.title)}</span>
                   </LinkWrapper>

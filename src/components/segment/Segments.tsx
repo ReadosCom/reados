@@ -1,11 +1,11 @@
-import { useLocation, useNavigate } from '@tanstack/react-router';
-import { useEffect } from 'react';
+import { useLocation, useNavigate } from "@tanstack/react-router";
+import { useEffect } from "react";
 
-import { useTranslation } from '@components/i18n/useTranslation.ts';
-import { useSegmentsQuery } from '@components/segment/segment.query.ts';
-import type { Segment as SegmentRecord } from '@components/segment/segment.schema.ts';
-import { Skeleton } from '@components/uiframework/Skeleton';
-import { Tabs, TabsList, TabsTrigger } from '@components/uiframework/Tabs';
+import { useTranslation } from "@components/i18n/useTranslation.ts";
+import { useSegmentsQuery } from "@components/segment/segment.query.ts";
+import type { Segment as SegmentRecord } from "@components/segment/segment.schema.ts";
+import { Skeleton } from "@components/uiframework/Skeleton";
+import { Tabs, TabsList, TabsTrigger } from "@components/uiframework/Tabs";
 
 import { Segment } from "./Segment.tsx";
 

@@ -1,6 +1,6 @@
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
-import { getAuthenticationSession, logoutAuthenticationSession, requestAuthenticationOtp, updateAuthenticationProfile, verifyAuthenticationOtp } from './authentication.client.ts';
+import { getAuthenticationSession, logoutAuthenticationSession, requestAuthenticationOtp, updateAuthenticationProfile, verifyAuthenticationOtp } from "./authentication.client.ts";
 
 /**
  * Returns the current authentication session.

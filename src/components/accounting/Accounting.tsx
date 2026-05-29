@@ -1,8 +1,8 @@
-import { useTranslation } from '@components/i18n/useTranslation.ts';
-import { Card, CardContent, CardHeader, CardTitle } from '@components/uiframework/Card';
-import { Skeleton } from '@components/uiframework/Skeleton';
+import { useTranslation } from "@components/i18n/useTranslation.ts";
+import { Card, CardContent, CardHeader, CardTitle } from "@components/uiframework/Card";
+import { Skeleton } from "@components/uiframework/Skeleton";
 
-import { useAccountingDashboardSummaryQuery } from './accounting.query.ts';
+import { useAccountingDashboardSummaryQuery } from "./accounting.query.ts";
 
 const asCurrency = (amount: number, currency: string) => {
   return new Intl.NumberFormat(undefined, {

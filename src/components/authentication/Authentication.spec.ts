@@ -1,6 +1,6 @@
-import { expect, test } from '../../../testing/e2e';
-import { getAppOrigin, getAuthenticationOrigin, getTenantOrigin } from '../../../testing/hosts';
-import { otpTestResponseSchema, sessionMeResponseSchema } from './authentication.schema.ts';
+import { expect, test } from "../../../testing/e2e";
+import { getAppOrigin, getAuthenticationOrigin, getTenantOrigin } from "../../../testing/hosts";
+import { otpTestResponseSchema, sessionMeResponseSchema } from "./authentication.schema.ts";
 
 const sleep = (milliseconds: number) => new Promise((resolve) => setTimeout(resolve, milliseconds));
 const accountingHeadingPattern = /^(Accounting|Muhasebe)$/u;
@@ -103,20 +103,22 @@ test(`authentication profile language preference is applied in tenant app`, asyn
   await expect(page).toHaveURL(`${tenantOrigin}/`);
   await expect(page.getByRole(`heading`, { name: accountingHeadingPattern })).toBeVisible();
 
-  const updatedProfile = sessionMeResponseSchema.parse(await page.evaluate(async (origin) => {
-    const response = await fetch(`${origin}/profile/me`, {
-      body: JSON.stringify({
-        language: `tr`,
-      }),
-      credentials: `include`,
-      headers: {
-        'Content-Type': `application/json`,
-      },
-      method: `PATCH`,
-    });
+  const updatedProfile = sessionMeResponseSchema.parse(
+    await page.evaluate(async (origin) => {
+      const response = await fetch(`${origin}/profile/me`, {
+        body: JSON.stringify({
+          language: `tr`,
+        }),
+        credentials: `include`,
+        headers: {
+          "Content-Type": `application/json`,
+        },
+        method: `PATCH`,
+      });
 
-    return response.json();
-  }, authenticationOrigin));
+      return response.json();
+    }, authenticationOrigin),
+  );
 
   expect(updatedProfile.data.authenticated).toBeTruthy();
   expect(updatedProfile.data.session).not.toBeNull();

@@ -1,7 +1,7 @@
-import { useQuery } from '@tanstack/react-query';
-import { z } from 'zod';
+import { useQuery } from "@tanstack/react-query";
+import { z } from "zod";
 
-import { apiSuccessSchema } from '@components/application/api.schema.ts';
+import { apiSuccessSchema } from "@components/application/api.schema.ts";
 import { coreServiceGet } from "@components/application/application.client.ts";
 
 /**
@@ -17,9 +17,11 @@ export const probeRootApplication = async () => {
       return false;
     }
 
-    const parsedBody = apiSuccessSchema(z.object({
-      whoami: z.string().optional(),
-    })).parse(await response.json());
+    const parsedBody = apiSuccessSchema(
+      z.object({
+        whoami: z.string().optional(),
+      }),
+    ).parse(await response.json());
 
     return parsedBody.data.whoami === `root`;
   } catch {

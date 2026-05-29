@@ -1,10 +1,10 @@
-import 'dotenv/config';
+import "dotenv/config";
 
-import { stdin as input, stdout as output } from 'node:process';
-import { createInterface } from 'node:readline/promises';
+import { stdin as input, stdout as output } from "node:process";
+import { createInterface } from "node:readline/promises";
 
-import { Client } from 'pg';
-import { z } from 'zod';
+import { Client } from "pg";
+import { z } from "zod";
 
 const tenantSeedSchema = z.object({
   billingAccountAddress: z.string().trim().min(1),
@@ -16,7 +16,7 @@ const tenantSeedSchema = z.object({
     .trim()
     .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/u, `Use lowercase letters, numbers, and single hyphens between words.`),
   userDisplayName: z.string().trim().min(1),
-  userEmail: z.string().trim().email(),
+  userEmail: z.email().trim(),
   userFirstName: z.string().trim().min(1),
   userLastName: z.string().trim().min(1),
   userMiddleName: z

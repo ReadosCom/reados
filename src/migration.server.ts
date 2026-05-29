@@ -1,12 +1,12 @@
-import 'dotenv/config';
+import "dotenv/config";
 
-import { readdir, readFile } from 'node:fs/promises';
-import path from 'node:path';
+import { readdir, readFile } from "node:fs/promises";
+import path from "node:path";
 
-import { Client } from 'pg';
+import { Client } from "pg";
 
-const migrationRootDirectoryPath = path.resolve(process.cwd(), 'config/postgres/migrations');
-const orderedMigrationDirectoryNames = ['fncs', 'ddls', 'fncs', 'seed'] as const;
+const migrationRootDirectoryPath = path.resolve(process.cwd(), "config/postgres/migrations");
+const orderedMigrationDirectoryNames = ["fncs", "ddls", "fncs", "seed"] as const;
 
 type MigrationDirectory = {
   directoryPath: string;
@@ -27,7 +27,7 @@ const getServiceNames = async (requestedServiceName: string | undefined) => {
   const directoryEntries = await readdir(migrationRootDirectoryPath, { withFileTypes: true });
 
   return directoryEntries
-    .filter((directoryEntry) => directoryEntry.isDirectory() && directoryEntry.name !== 'fncs')
+    .filter((directoryEntry) => directoryEntry.isDirectory() && directoryEntry.name !== "fncs")
     .map((directoryEntry) => directoryEntry.name)
     .sort((leftServiceName, rightServiceName) => leftServiceName.localeCompare(rightServiceName));
 };
@@ -43,7 +43,7 @@ const getDatabaseUrl = (serviceName: string) => {
   const postgresHost = process.env.POSTGRES_HOST ?? `localhost`;
 
   if (!postgresPassword) {
-    throw new Error('Expected DATABASE_URL to be defined for the migration runner, or POSTGRES_PASSWORD for the local Docker Compose PostgreSQL fallback.');
+    throw new Error("Expected DATABASE_URL to be defined for the migration runner, or POSTGRES_PASSWORD for the local Docker Compose PostgreSQL fallback.");
   }
 
   return `postgres://postgres:${postgresPassword}@${postgresHost}:5432/${serviceName}`;
@@ -72,14 +72,14 @@ const getSqlFilePaths = async ({ directoryPath, label }: MigrationDirectory) => 
     const directoryEntries = await readdir(directoryPath, { withFileTypes: true });
 
     return directoryEntries
-      .filter((directoryEntry) => directoryEntry.isFile() && directoryEntry.name.endsWith('.sql'))
+      .filter((directoryEntry) => directoryEntry.isFile() && directoryEntry.name.endsWith(".sql"))
       .sort((leftDirectoryEntry, rightDirectoryEntry) => leftDirectoryEntry.name.localeCompare(rightDirectoryEntry.name))
       .map((directoryEntry) => ({
         filePath: path.join(directoryPath, directoryEntry.name),
         label: `${label}/${directoryEntry.name}`,
       }));
   } catch (error) {
-    if (error instanceof Error && 'code' in error && error.code === 'ENOENT') {
+    if (error instanceof Error && "code" in error && error.code === "ENOENT") {
       return [];
     }
 
@@ -105,7 +105,7 @@ const runServiceMigrations = async (serviceName: string) => {
 
   try {
     for (const migrationFile of migrationFiles) {
-      const sql = await readFile(migrationFile.filePath, 'utf8');
+      const sql = await readFile(migrationFile.filePath, "utf8");
 
       if (!sql.trim()) {
         continue;
@@ -113,15 +113,15 @@ const runServiceMigrations = async (serviceName: string) => {
 
       console.log(`Applying ${migrationFile.label}`);
 
-      await client.query('BEGIN;');
+      await client.query("BEGIN;");
       isTransactionOpen = true;
       await client.query(sql);
-      await client.query('COMMIT;');
+      await client.query("COMMIT;");
       isTransactionOpen = false;
     }
   } catch (error) {
     if (isTransactionOpen) {
-      await client.query('ROLLBACK;');
+      await client.query("ROLLBACK;");
     }
 
     throw error;

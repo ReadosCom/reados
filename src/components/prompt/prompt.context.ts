@@ -1,11 +1,11 @@
-import { createContext, useContext } from 'react';
+import { createContext, useContext } from "react";
 
 export type PromptOptions = {
   cancelLabel?: string;
   confirmLabel?: string;
   description?: string;
   title: string;
-  variant?: 'default' | 'destructive';
+  variant?: "default" | "destructive";
 };
 
 export type PromptRequest = {

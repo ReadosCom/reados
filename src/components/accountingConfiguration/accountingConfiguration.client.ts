@@ -1,8 +1,5 @@
 import { erpServiceGet } from "@components/application/application.client.ts";
-import {
-  accountingConfigurationResponseSchema,
-  type AccountingConfigurationResponseData,
-} from "./accountingConfiguration.schema.ts";
+import { accountingConfigurationResponseSchema, type AccountingConfigurationResponseData } from "./accountingConfiguration.schema.ts";
 
 /**
  * Fetches accounting configuration.

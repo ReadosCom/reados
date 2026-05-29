@@ -1,12 +1,12 @@
-import i18n from 'i18next';
-import { initReactI18next } from 'react-i18next';
+import i18n from "i18next";
+import { initReactI18next } from "react-i18next";
 
 const defaultLanguage = `en`;
 
 const normalizeLanguage = (language: string) => language.trim().toLowerCase().split(`-`)[0] ?? defaultLanguage;
 
 void i18n.use(initReactI18next).init({
-  fallbackLng: 'en',
+  fallbackLng: "en",
   interpolation: {
     escapeValue: false,
   },

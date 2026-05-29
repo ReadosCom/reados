@@ -1,6 +1,6 @@
-import 'zod-openapi';
-import { z } from 'zod';
-import { apiSuccessSchema } from '@components/application/api.schema.ts';
+import "zod-openapi";
+import { z } from "zod";
+import { apiSuccessSchema } from "@components/application/api.schema.ts";
 
 export const authenticationEmailSchema = z.string().check(z.trim(), z.email(`Enter a valid email address.`), z.toLowerCase()).meta({
   description: `User email address used for OTP authentication.`,
