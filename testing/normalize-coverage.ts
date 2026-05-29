@@ -1,6 +1,6 @@
-import { mkdir, readFile, readdir, stat, writeFile } from 'node:fs/promises';
-import coverageLib, { type CoverageMapData } from 'istanbul-lib-coverage';
-import path from 'node:path';
+import { mkdir, readFile, readdir, stat, writeFile } from "node:fs/promises";
+import coverageLib, { type CoverageMapData } from "istanbul-lib-coverage";
+import path from "node:path";
 
 type CoverageMap = CoverageMapData;
 type CoverageFile = {
@@ -10,18 +10,18 @@ type CoverageFile = {
   path?: string;
 };
 
-const coverageDirectories = [path.join(process.cwd(), 'testing/output/.nyc_frontend'), path.join(process.cwd(), 'testing/output/.nyc_backend')];
-const mergedCoverageDirectory = path.join(process.cwd(), 'testing/output/.nyc_merged');
+const coverageDirectories = [path.join(process.cwd(), "testing/output/.nyc_frontend"), path.join(process.cwd(), "testing/output/.nyc_backend")];
+const mergedCoverageDirectory = path.join(process.cwd(), "testing/output/.nyc_merged");
 
 const remapPath = (filePath: string) => filePath.replace(/^\/app\//, `${process.cwd()}/`);
 
 const isCoverageMap = (value: unknown): value is CoverageMap => {
-  if (!value || typeof value !== 'object' || Array.isArray(value)) {
+  if (!value || typeof value !== "object" || Array.isArray(value)) {
     return false;
   }
 
   return Object.values(value).some((entry) => {
-    if (!entry || typeof entry !== 'object' || Array.isArray(entry)) {
+    if (!entry || typeof entry !== "object" || Array.isArray(entry)) {
       return false;
     }
 
@@ -52,7 +52,7 @@ const remapCoverageMap = (coverageMap: CoverageMap) => {
 };
 
 const readCoverageFile = async (filePath: string) => {
-  const fileContents = await readFile(filePath, 'utf8');
+  const fileContents = await readFile(filePath, "utf8");
   const parsedContents = JSON.parse(fileContents) as unknown;
 
   if (!isCoverageMap(parsedContents)) {
@@ -72,7 +72,7 @@ const walk = async (directoryPath: string): Promise<string[]> => {
         return walk(entryPath);
       }
 
-      if (directoryEntry.isFile() && entryPath.endsWith('.json')) {
+      if (directoryEntry.isFile() && entryPath.endsWith(".json")) {
         return [entryPath];
       }
 
@@ -113,4 +113,4 @@ for (const coverageMap of coverageMaps) {
 }
 
 await mkdir(mergedCoverageDirectory, { recursive: true });
-await writeFile(path.join(mergedCoverageDirectory, 'coverage.json'), JSON.stringify(mergedCoverageMap.toJSON()), 'utf8');
+await writeFile(path.join(mergedCoverageDirectory, "coverage.json"), JSON.stringify(mergedCoverageMap.toJSON()), "utf8");

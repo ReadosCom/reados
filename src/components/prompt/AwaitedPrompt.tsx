@@ -1,8 +1,8 @@
-import { useMemo, useState, type ReactNode } from 'react';
+import { useMemo, useState, type ReactNode } from "react";
 
-import { PromptContext, type PromptContextValue, type PromptRequest } from '@components/prompt/prompt.context.ts';
-import { Button } from '@components/uiframework/Button';
-import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@components/uiframework/Dialog';
+import { PromptContext, type PromptContextValue, type PromptRequest } from "@components/prompt/prompt.context.ts";
+import { Button } from "@components/uiframework/Button";
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@components/uiframework/Dialog";
 
 export const AwaitedPrompt = ({ children }: { children: ReactNode }) => {
   const [request, setRequest] = useState<PromptRequest | null>(null);
@@ -49,11 +49,11 @@ export const AwaitedPrompt = ({ children }: { children: ReactNode }) => {
             {request?.options.description ? <DialogDescription>{request.options.description}</DialogDescription> : null}
           </DialogHeader>
           <DialogFooter>
-              <Button
-                onClick={() => {
-                  complete(false);
-                }}
-                type="button"
+            <Button
+              onClick={() => {
+                complete(false);
+              }}
+              type="button"
               variant="outline"
             >
               {request?.options.cancelLabel ?? `Cancel`}
@@ -63,10 +63,10 @@ export const AwaitedPrompt = ({ children }: { children: ReactNode }) => {
                 complete(true);
               }}
               type="button"
-                variant={request?.options.variant === `destructive` ? `destructive` : `default`}
-              >
-                {request?.options.confirmLabel ?? `Confirm`}
-              </Button>
+              variant={request?.options.variant === `destructive` ? `destructive` : `default`}
+            >
+              {request?.options.confirmLabel ?? `Confirm`}
+            </Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>

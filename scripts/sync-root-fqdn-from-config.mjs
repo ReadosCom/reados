@@ -1,28 +1,28 @@
 #!/usr/bin/env node
 
-import { readFileSync, writeFileSync } from 'node:fs';
-import { fileURLToPath } from 'node:url';
-import { resolve } from 'node:path';
+import { readFileSync, writeFileSync } from "node:fs";
+import { fileURLToPath } from "node:url";
+import { resolve } from "node:path";
 
-const scriptDirectory = resolve(fileURLToPath(new URL('.', import.meta.url)));
-const repoRoot = resolve(scriptDirectory, '..');
-const envFile = resolve(repoRoot, '.env');
-const runtimeConfigFile = resolve(repoRoot, 'public', 'config.json');
-const defaultConfigFile = resolve(repoRoot, 'public', 'default.config.json');
+const scriptDirectory = resolve(fileURLToPath(new URL(".", import.meta.url)));
+const repoRoot = resolve(scriptDirectory, "..");
+const envFile = resolve(repoRoot, ".env");
+const runtimeConfigFile = resolve(repoRoot, "public", "config.json");
+const defaultConfigFile = resolve(repoRoot, "public", "default.config.json");
 
 const readJson = (filePath) => {
-  const raw = readFileSync(filePath, 'utf8');
+  const raw = readFileSync(filePath, "utf8");
   return JSON.parse(raw);
 };
 
 const parseRootFqdn = (payload) => {
-  if (!payload || typeof payload !== 'object') {
+  if (!payload || typeof payload !== "object") {
     return null;
   }
 
   const rootFqdn = payload.rootFqdn;
 
-  if (typeof rootFqdn !== 'string') {
+  if (typeof rootFqdn !== "string") {
     return null;
   }
 
@@ -53,5 +53,5 @@ const loadRootFqdn = () => {
 };
 
 const rootFqdn = loadRootFqdn();
-writeFileSync(envFile, `ROOT_FQDN=${rootFqdn}\n`, { encoding: 'utf8' });
+writeFileSync(envFile, `ROOT_FQDN=${rootFqdn}\n`, { encoding: "utf8" });
 console.log(`Wrote .env with ROOT_FQDN=${rootFqdn}`);

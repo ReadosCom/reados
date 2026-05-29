@@ -1,19 +1,19 @@
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { useTranslation } from '@components/i18n/useTranslation.ts';
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { useTranslation } from "@components/i18n/useTranslation.ts";
 
-import { getBrowserOrigin, getBrowserSearch, setBrowserLocation } from '@components/application/application.browser.ts';
-import { Button } from '@components/uiframework/Button';
-import { Input } from '@components/uiframework/Input';
-import { otpRequestBodySchema, otpVerifyBodySchema, type OtpRequestBody, type OtpVerifyBody } from './authentication.schema.ts';
-import { useRequestAuthenticationOtpMutation, useVerifyAuthenticationOtpMutation } from './authentication.query.ts';
+import { getBrowserOrigin, getBrowserSearch, setBrowserLocation } from "@components/application/application.browser.ts";
+import { Button } from "@components/uiframework/Button";
+import { Input } from "@components/uiframework/Input";
+import { otpRequestBodySchema, otpVerifyBodySchema, type OtpRequestBody, type OtpVerifyBody } from "./authentication.schema.ts";
+import { useRequestAuthenticationOtpMutation, useVerifyAuthenticationOtpMutation } from "./authentication.query.ts";
 
 const getCurrentTenantRootPath = () => {
   const browserOrigin = getBrowserOrigin();
 
   if (!browserOrigin) {
-    return '/';
+    return "/";
   }
 
   return `${browserOrigin}/`;
@@ -23,19 +23,19 @@ const getEmailFromQueryString = () => {
   const search = getBrowserSearch();
 
   if (!search) {
-    return '';
+    return "";
   }
 
-  const queryEmail = new URLSearchParams(search).get('email');
+  const queryEmail = new URLSearchParams(search).get("email");
 
   if (!queryEmail) {
-    return '';
+    return "";
   }
 
   const parsedEmail = otpRequestBodySchema.shape.email.safeParse(queryEmail);
 
   if (!parsedEmail.success) {
-    return '';
+    return "";
   }
 
   return parsedEmail.data;
@@ -67,9 +67,9 @@ export const Authentication = () => {
     formState: { errors: verifyErrors, isSubmitting: isSubmittingVerify },
     handleSubmit: handleVerifySubmit,
     register: registerVerify,
-  } = useForm<Pick<OtpVerifyBody, 'code'>>({
+  } = useForm<Pick<OtpVerifyBody, "code">>({
     defaultValues: {
-      code: '',
+      code: "",
     },
     resolver: zodResolver(
       otpVerifyBodySchema.pick({
@@ -85,11 +85,11 @@ export const Authentication = () => {
       const result = await requestOtpMutation.mutateAsync({ email });
       setRequestMessage(result.message);
     } catch {
-      setRequestMessage(t('If this account is eligible, we sent a verification code.'));
+      setRequestMessage(t("If this account is eligible, we sent a verification code."));
     }
   };
 
-  const onVerifyOtp = async ({ code }: Pick<OtpVerifyBody, 'code'>) => {
+  const onVerifyOtp = async ({ code }: Pick<OtpVerifyBody, "code">) => {
     if (!requestedEmail) {
       return;
     }
@@ -112,9 +112,9 @@ export const Authentication = () => {
             <img alt="Reados" className="h-16 w-auto shrink-0" src="/assets/images/reados.png" />
             <div>
               <h1 className="text-balance text-3xl font-semibold tracking-tight text-card-foreground" id="authentication-page-title">
-                {t('Sign in with a one-time code')}
+                {t("Sign in with a one-time code")}
               </h1>
-              <p className="mt-0 text-sm leading-6 text-muted-foreground sm:text-base">{t('Enter your work email to receive a one-time verification code.')}</p>
+              <p className="mt-0 text-sm leading-6 text-muted-foreground sm:text-base">{t("Enter your work email to receive a one-time verification code.")}</p>
             </div>
           </div>
 
@@ -126,15 +126,15 @@ export const Authentication = () => {
           >
             <div className="space-y-2">
               <label className="block text-sm font-medium text-card-foreground" htmlFor="authentication-email">
-                {t('Email address')}
+                {t("Email address")}
               </label>
-              <Input {...registerRequest('email')} autoComplete="email" disabled={isSubmittingRequest || Boolean(requestedEmail)} id="authentication-email" placeholder={t('name@example.com')} type="email" />
+              <Input {...registerRequest("email")} autoComplete="email" disabled={isSubmittingRequest || Boolean(requestedEmail)} id="authentication-email" placeholder={t("name@example.com")} type="email" />
               {requestErrors.email?.message ? <p className="text-sm text-destructive">{t(requestErrors.email.message)}</p> : null}
             </div>
 
             <div className="flex justify-end">
               <Button disabled={isSubmittingRequest || Boolean(requestedEmail)} size="lg" type="submit">
-                {t('Send verification code')}
+                {t("Send verification code")}
               </Button>
             </div>
           </form>
@@ -145,7 +145,7 @@ export const Authentication = () => {
             </p>
           ) : null}
 
-          {requestOtpMutation.error ? <p className="mt-4 text-sm text-destructive">{t('We could not request a verification code right now. Please try again.')}</p> : null}
+          {requestOtpMutation.error ? <p className="mt-4 text-sm text-destructive">{t("We could not request a verification code right now. Please try again.")}</p> : null}
 
           {requestedEmail ? (
             <form
@@ -156,24 +156,24 @@ export const Authentication = () => {
             >
               <div className="space-y-2">
                 <label className="block text-sm font-medium text-card-foreground" htmlFor="authentication-otp-code">
-                  {t('Verification code')}
+                  {t("Verification code")}
                 </label>
-                <Input {...registerVerify('code')} id="authentication-otp-code" maxLength={6} placeholder={t('123456')} type="text" />
+                <Input {...registerVerify("code")} id="authentication-otp-code" maxLength={6} placeholder={t("123456")} type="text" />
                 {verifyErrors.code?.message ? <p className="text-sm text-destructive">{t(verifyErrors.code.message)}</p> : null}
               </div>
 
               <div className="flex justify-end gap-3">
                 <Button asChild variant="outline">
-                  <a href="/">{t('Back to home')}</a>
+                  <a href="/">{t("Back to home")}</a>
                 </Button>
                 <Button disabled={isSubmittingVerify} type="submit">
-                  {t('Verify and continue')}
+                  {t("Verify and continue")}
                 </Button>
               </div>
             </form>
           ) : null}
 
-          {verifyOtpMutation.error ? <p className="mt-4 text-sm text-destructive">{t('The verification code is invalid or expired.')}</p> : null}
+          {verifyOtpMutation.error ? <p className="mt-4 text-sm text-destructive">{t("The verification code is invalid or expired.")}</p> : null}
         </div>
       </section>
     </main>

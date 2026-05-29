@@ -1,34 +1,33 @@
-import { useLocation, useNavigate } from '@tanstack/react-router';
-import { useEffect } from 'react';
+import { useLocation, useNavigate } from "@tanstack/react-router";
+import { useEffect } from "react";
 
-import { useTranslation } from '@components/i18n/useTranslation.ts';
-import { useSegmentsQuery } from '@components/segment/segment.query.ts';
-import type { Segment } from '@components/segment/segment.schema.ts';
-import { Skeleton } from '@components/uiframework/Skeleton';
-import { Tabs, TabsList, TabsTrigger } from '@components/uiframework/Tabs';
+import { useTranslation } from "@components/i18n/useTranslation.ts";
+import { useSegmentsQuery } from "@components/segment/segment.query.ts";
+import type { Segment as SegmentRecord } from "@components/segment/segment.schema.ts";
+import { Skeleton } from "@components/uiframework/Skeleton";
+import { Tabs, TabsList, TabsTrigger } from "@components/uiframework/Tabs";
 
-import { AccountingSegment } from './AccountingSegment.tsx';
+import { Segment } from "./Segment.tsx";
 
 const accountingSegmentsPath = `/erp/accounting/configuration/segments`;
-const newSegmentTabValue = `new-segment`;
 
-const sortSegments = (segments: Segment[]) => {
+const sortSegments = (segments: SegmentRecord[]) => {
   return [...segments].sort((left, right) => left.order - right.order);
 };
 
-export const AccountingSegments = () => {
-  const { t } = useTranslation(`./AccountingSegments.i18n.ts`);
+export const Segments = () => {
+  const { t } = useTranslation(`./Segments.i18n.ts`);
   const location = useLocation();
   const navigate = useNavigate();
   const { data: segmentData, isError: isSegmentError, isPending: isSegmentPending } = useSegmentsQuery();
-  const routeSegmentId = location.pathname.split(`/`).at(-1) ?? newSegmentTabValue;
+  const routeSegmentId = location.pathname.split(`/`).at(-1) ?? ``;
   const activeTabValue = routeSegmentId;
   const segments = sortSegments(segmentData ?? []);
 
   useEffect(() => {
-    const isAccountingSegmentsRoute = location.pathname === accountingSegmentsPath || location.pathname.startsWith(`${accountingSegmentsPath}/`);
+    const isSegmentsRoute = location.pathname === accountingSegmentsPath || location.pathname.startsWith(`${accountingSegmentsPath}/`);
 
-    if (!isAccountingSegmentsRoute) {
+    if (!isSegmentsRoute) {
       return;
     }
 
@@ -36,14 +35,16 @@ export const AccountingSegments = () => {
       return;
     }
 
-    const isNewRoute = routeSegmentId === newSegmentTabValue;
     const hasRouteSegment = segmentData.some((segment) => segment.id === routeSegmentId);
 
-    if (isNewRoute || hasRouteSegment) {
+    if (hasRouteSegment) {
       return;
     }
 
-    const fallbackSegmentId = sortSegments(segmentData).at(0)?.id ?? newSegmentTabValue;
+    const fallbackSegmentId = sortSegments(segmentData).at(0)?.id;
+    if (!fallbackSegmentId) {
+      return;
+    }
     void navigate({
       replace: true,
       to: `/erp/accounting/configuration/segments/${fallbackSegmentId}` as never,
@@ -83,16 +84,13 @@ export const AccountingSegments = () => {
           })}
         </TabsList>
         {segments.map((segment) => (
-          <AccountingSegment
+          <Segment
             key={segment.id}
-            nextOrder={segments.length}
-            onCreated={(segmentId) => {
-              void navigate({
-                to: `/erp/accounting/configuration/segments/${segmentId}` as never,
-              } as never);
-            }}
             onDeleted={(segmentId) => {
-              const fallbackSegmentId = segments.find((nextSegment) => nextSegment.id !== segmentId)?.id ?? newSegmentTabValue;
+              const fallbackSegmentId = segments.find((nextSegment) => nextSegment.id !== segmentId)?.id;
+              if (!fallbackSegmentId) {
+                return;
+              }
               void navigate({
                 replace: true,
                 to: `/erp/accounting/configuration/segments/${fallbackSegmentId}` as never,
@@ -102,18 +100,8 @@ export const AccountingSegments = () => {
             tabValue={segment.id}
           />
         ))}
-        <AccountingSegment
-          nextOrder={segments.length}
-          onCreated={(segmentId) => {
-            void navigate({
-              to: `/erp/accounting/configuration/segments/${segmentId}` as never,
-            } as never);
-          }}
-          onDeleted={() => {}}
-          tabValue={newSegmentTabValue}
-        />
       </Tabs>
-      {segments.length === 0 && activeSegmentIndex === -1 ? <p className="text-sm text-muted-foreground">{t(`Select New Segment to create your first segment.`)}</p> : null}
+      {segments.length === 0 && activeSegmentIndex === -1 ? <p className="text-sm text-muted-foreground">{t(`No segments yet. Create one from Segment List.`)}</p> : null}
       {isSegmentError ? <p className="text-sm text-destructive">{t(`Could not load accounting configuration right now.`)}</p> : null}
     </section>
   );

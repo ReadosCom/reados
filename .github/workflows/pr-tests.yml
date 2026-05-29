@@ -9,7 +9,7 @@ concurrency:
 
 jobs:
   test:
-    name: End-to-End Tests
+    name: PR Checks and E2E Tests
     runs-on: ubuntu-latest
     timeout-minutes: 45
 
@@ -26,11 +26,17 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Run code checks
+        env:
+          CI: true
+        run: npm run check
+
       - name: Initialize local env files
         run: bash ./scripts/start-here.sh --no-questions
 
-      - name: Install Playwright Chrome
-        run: npx playwright install --with-deps chrome
+      - name: Verify Chrome availability
+        run: |
+          google-chrome --version
 
       - name: Run tests
         env:

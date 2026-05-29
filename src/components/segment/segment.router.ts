@@ -1,16 +1,8 @@
 import { Router } from "express";
-
 import { defineRoutes } from "@components/express/express.router.ts";
 
 import { createSegment, deleteSegment, getSegmentById, listSegments, reorderSegment, updateSegment } from "./segment.controller.ts";
-import {
-  SegmentNotFoundError,
-  SegmentRequiredDeleteError,
-  segmentParamsSchema,
-  createSegmentBodySchema,
-  reorderSegmentBodySchema,
-  updateSegmentBodySchema,
-} from "./segment.schema.ts";
+import { SegmentNotFoundError, SegmentRequiredDeleteError, segmentParamsSchema, createSegmentBodySchema, reorderSegmentBodySchema, updateSegmentBodySchema } from "./segment.schema.ts";
 
 /**
  * Accounting segment routes.

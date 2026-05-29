@@ -1,4 +1,4 @@
-import { Navigate, useRouterState } from '@tanstack/react-router';
+import { Navigate, useRouterState } from "@tanstack/react-router";
 
 /**
  * Redirects unknown accounting child paths.
@@ -13,5 +13,5 @@ export const AccountingFallbackRedirect = () => {
     return <Navigate replace to="/" />;
   }
 
-  return <Navigate replace to={'/erp/accounting' as never} />;
+  return <Navigate replace to={"/erp/accounting" as never} />;
 };

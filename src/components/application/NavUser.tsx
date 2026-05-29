@@ -1,16 +1,11 @@
-import { setBrowserLocation } from '@components/application/application.browser.ts';
-import { useLogoutAuthenticationSessionMutation } from '@components/authentication/authentication.query.ts';
-import { IconSelector } from '@tabler/icons-react';
-import { Link } from '@tanstack/react-router';
-import { Avatar, AvatarFallback } from '@components/uiframework/Avatar';
-import { useTranslation } from '@components/i18n/useTranslation.ts';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from '@components/uiframework/DropdownMenu';
-import { SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@components/uiframework/Sidebar';
+import { setBrowserLocation } from "@components/application/application.browser.ts";
+import { useLogoutAuthenticationSessionMutation } from "@components/authentication/authentication.query.ts";
+import { IconSelector } from "@tabler/icons-react";
+import { Link } from "@tanstack/react-router";
+import { Avatar, AvatarFallback } from "@components/uiframework/Avatar";
+import { useTranslation } from "@components/i18n/useTranslation.ts";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@components/uiframework/DropdownMenu";
+import { SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "@components/uiframework/Sidebar";
 
 type UserItem = {
   name: string;
@@ -24,11 +19,11 @@ type NavUserProps = {
 
 const toInitials = (name: string) => {
   return name
-    .split(' ')
+    .split(" ")
     .filter(Boolean)
     .slice(0, 2)
-    .map((segment) => segment[0]?.toUpperCase() ?? '')
-    .join('');
+    .map((segment) => segment[0]?.toUpperCase() ?? "")
+    .join("");
 };
 
 export const NavUser = ({ user }: NavUserProps) => {
@@ -45,20 +40,20 @@ export const NavUser = ({ user }: NavUserProps) => {
     try {
       await mutateAsync();
     } finally {
-      setBrowserLocation('/authentication');
+      setBrowserLocation("/authentication");
     }
   };
 
   const renderProfileNavigationTarget = () => {
     if (profileItem.url) {
-      return <a href={profileItem.url}>{t('Profile')}</a>;
+      return <a href={profileItem.url}>{t("Profile")}</a>;
     }
 
     if (profileItem.link) {
-      return <Link to={profileItem.link}>{t('Profile')}</Link>;
+      return <Link to={profileItem.link}>{t("Profile")}</Link>;
     }
 
-    return <span>{t('Profile')}</span>;
+    return <span>{t("Profile")}</span>;
   };
 
   return (
@@ -78,9 +73,7 @@ export const NavUser = ({ user }: NavUserProps) => {
             </SidebarMenuButton>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className="w-56">
-            <DropdownMenuItem asChild={Boolean(profileItem.url || profileItem.link)}>
-              {renderProfileNavigationTarget()}
-            </DropdownMenuItem>
+            <DropdownMenuItem asChild={Boolean(profileItem.url || profileItem.link)}>{renderProfileNavigationTarget()}</DropdownMenuItem>
             <DropdownMenuItem
               disabled={isPending}
               onSelect={(event) => {
@@ -88,7 +81,7 @@ export const NavUser = ({ user }: NavUserProps) => {
                 void onSignOut();
               }}
             >
-              {isPending ? t('Signing out...') : t('Sign out')}
+              {isPending ? t("Signing out...") : t("Sign out")}
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

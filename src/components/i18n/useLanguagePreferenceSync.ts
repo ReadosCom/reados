@@ -1,8 +1,8 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
-import { getBrowserPathname, setBrowserLocation } from '@components/application/application.browser.ts';
-import { isAuthenticationEntryHost } from '@components/application/application.host.ts';
-import { useAuthenticationSessionQuery, useUpdateAuthenticationProfileMutation } from '@components/authentication/authentication.query.ts';
-import i18n, { applyPreferredLanguage, languagePreference } from '@components/i18n/i18n.ts';
+import { useEffect, useMemo, useRef, useState } from "react";
+import { getBrowserPathname, setBrowserLocation } from "@components/application/application.browser.ts";
+import { isAuthenticationEntryHost } from "@components/application/application.host.ts";
+import { useAuthenticationSessionQuery, useUpdateAuthenticationProfileMutation } from "@components/authentication/authentication.query.ts";
+import i18n, { applyPreferredLanguage, languagePreference } from "@components/i18n/i18n.ts";
 
 const normalizeLanguage = (language: string) => language.trim().toLowerCase().split(`-`)[0] ?? languagePreference.defaultLanguage;
 

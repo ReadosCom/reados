@@ -1,7 +1,7 @@
-import { ensurePool } from '@components/postgres/pool.ts';
-import { escapeIdentifier } from 'pg';
+import { ensurePool } from "@components/postgres/pool.ts";
+import { escapeIdentifier } from "pg";
 
-import { SegmentNotFoundError, SegmentRequiredDeleteError, type CreateSegmentBody, type ReorderSegmentBody, type Segment, type SegmentRow, type UpdateSegmentBody } from './segment.schema.ts';
+import { SegmentNotFoundError, SegmentRequiredDeleteError, type CreateSegmentBody, type ReorderSegmentBody, type Segment, type SegmentRow, type UpdateSegmentBody } from "./segment.schema.ts";
 
 const entitySystemSegmentId = `00000000-0000-7000-8000-000000000001`;
 const accountSystemSegmentId = `00000000-0000-7000-8000-000000000002`;

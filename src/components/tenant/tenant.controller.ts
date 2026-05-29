@@ -1,5 +1,5 @@
-import type { Pool } from 'pg';
-import type { DiscoveredTenant, Tenant, TenantDiscoveryRequest } from './tenant.schema.ts';
+import type { Pool } from "pg";
+import type { DiscoveredTenant, Tenant, TenantDiscoveryRequest } from "./tenant.schema.ts";
 
 /**
  * Builds the tenant-specific login URL for a discovered tenant.

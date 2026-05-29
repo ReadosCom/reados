@@ -8,6 +8,7 @@
     "build": "tsc -b && vite build",
     "format": "biome format --write .",
     "format:check": "biome format .",
+    "check": "npm run check:biome && npm run check:ts && npm run lint",
     "check:biome": "biome check .",
     "check:ts": "tsc -b --pretty false",
     "test": "sh -c 'testing/run.sh'",

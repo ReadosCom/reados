@@ -1,8 +1,8 @@
-import { Outlet, createRoute, redirect, type AnyRoute } from '@tanstack/react-router';
+import { Outlet, createRoute, redirect, type AnyRoute } from "@tanstack/react-router";
 
-import { Accounting } from '@components/accounting/Accounting.tsx';
-import { AccountingFallbackRedirect } from '@components/accounting/AccountingFallbackRedirect.tsx';
-import { createAccountingConfigurationRouteTree } from '@components/accountingConfiguration/accountingConfiguration.route.ts';
+import { Accounting } from "@components/accounting/Accounting.tsx";
+import { AccountingFallbackRedirect } from "@components/accounting/AccountingFallbackRedirect.tsx";
+import { createAccountingConfigurationRouteTree } from "@components/accountingConfiguration/accountingConfiguration.route.ts";
 
 const accountingConfigurationSegmentsPath = `/erp/accounting/configuration/segments` as never;
 

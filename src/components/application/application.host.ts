@@ -1,4 +1,4 @@
-import { getBrowserHash, getBrowserHostname, getBrowserPathname, getBrowserPort, getBrowserProtocol, getBrowserSearch, setBrowserLocation } from '@components/application/application.browser.ts';
+import { getBrowserHash, getBrowserHostname, getBrowserPathname, getBrowserPort, getBrowserProtocol, getBrowserSearch, setBrowserLocation } from "@components/application/application.browser.ts";
 
 let authenticationEntryHost = `app.reados.localhost`;
 

@@ -22,9 +22,7 @@ export const ApplicationLayout = ({ children }: ApplicationLayoutProps) => {
             </header>
             <div className="flex h-full flex-1 flex-col">
               <main className="relative min-h-[100vh] overflow-auto rounded-xl bg-background md:min-h-min">
-                <div className="relative h-full w-full p-4">
-                  {children ?? <Outlet />}
-                </div>
+                <div className="relative h-full w-full p-4">{children ?? <Outlet />}</div>
               </main>
             </div>
           </SidebarInset>

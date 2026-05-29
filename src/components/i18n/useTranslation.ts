@@ -1,13 +1,13 @@
 /// <reference types="vite/client" />
-import type { TranslationEntry, TranslationLanguage, Translations } from '@components/i18n/i18n.types.ts';
-import { useEffect, useState } from 'react';
-import { useTranslation as useI18NextTranslation } from 'react-i18next';
+import type { TranslationEntry, TranslationLanguage, Translations } from "@components/i18n/i18n.types.ts";
+import { useEffect, useState } from "react";
+import { useTranslation as useI18NextTranslation } from "react-i18next";
 
 type TranslationModule = {
   translations?: Translations;
 };
 
-const translationImporters = import.meta.glob('../*/*.i18n.ts');
+const translationImporters = import.meta.glob("../*/*.i18n.ts");
 const translationImportersByPath: Record<string, () => Promise<TranslationModule>> = {};
 const loadedBundles = new Set<string>();
 const inFlightBundleLoads = new Map<string, Promise<void>>();
@@ -113,7 +113,7 @@ export const useTranslation = (componentPath: string) => {
         return;
       }
 
-      const activeLanguage = i18next.resolvedLanguage ?? i18next.language ?? 'en';
+      const activeLanguage = i18next.resolvedLanguage ?? i18next.language ?? "en";
       const normalizedLanguage = normalizeLanguage(activeLanguage);
       const loadKey = buildLoadKey(normalizedLanguage, namespace);
 

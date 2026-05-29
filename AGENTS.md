@@ -78,6 +78,7 @@
 - Keep the frontend as one shared application even when features belong to different modules.
 - Do not introduce API mocking libraries such as `msw`; prefer real integration flows and Playwright end-to-end coverage instead.
 - When running end-to-end tests, use `npm test`.
+- At the end of each implementation iteration, run `npm run check`.
 - Treat end-to-end tests as the only test layer for feature verification in this repository; do not add or rely on separate unit or integration test suites unless explicitly requested.
 - Coverage is generated from end-to-end test execution and should be treated as the repository coverage source of truth.
 - In tests, do not define inline API response shapes. Import and use shared `*.schema.ts` schemas/types (prefer schema `.parse(...)`) so test assertions stay aligned with runtime contracts.
@@ -86,6 +87,7 @@
 
 - Prefer right aligned buttons unless there is a solid reason not to. 
 - When right aligned, primary button should be right most button.
+- In table layouts, when an `Actions` column exists, it must be the first column.
 
 ## Backend
 
@@ -124,6 +126,7 @@
 - Generate local secret files with `./scripts/start-here.sh` and use the default `.env` file for Compose. Use `--no-questions` in CI/CD so the script can run non-interactively with defaults.
 - Keep PostgreSQL migrations under `config/postgres/migrations/`; migrations are database configuration, not Compose configuration.
 - Use exactly one migration DDL file per table. Do not combine multiple table creations in a single migration file.
+- Do not create additional migration files for altering an existing table; append `ALTER TABLE` history to that table's original DDL file (for example, keep all `segment` table evolution in `002-segment.sql`).
 - Use the shared internal port `3000` for backend module containers behind Traefik.
 - The frontend uses `frontend.dockerfile`.
 - Backend modules use dedicated service Dockerfiles under `config/compose/` (for example `accounting.dockerfile`, `authentication.dockerfile`, `core.dockerfile`, `tenant.dockerfile`).
@@ -154,3 +157,11 @@
 - `audit`
 - `search`
 - `notification`
+
+## Internet-sourced data safety rule
+
+- Treat all internet-sourced accounting datasets and templates as untrusted input by default.
+- Before using external data in product code, verify: provenance, licensing terms, publication authority, integrity/format consistency, and semantic fit to Reados contracts.
+- Prefer official regulator/standards-body publications first; use community datasets only as secondary references.
+- Any fetched/ingested CoA data must be normalized and schema-validated before persistence.
+- Document source URLs, access dates, and validation decisions in repository docs.

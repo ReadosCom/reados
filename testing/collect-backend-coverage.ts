@@ -1,6 +1,6 @@
-import { mkdir, writeFile } from 'node:fs/promises';
-import path from 'node:path';
-import { getAuthenticationOrigin, getCoreOrigin, getFrontendConfig, getRootCoreOrigin } from './hosts';
+import { mkdir, writeFile } from "node:fs/promises";
+import path from "node:path";
+import { getAuthenticationOrigin, getCoreOrigin, getFrontendConfig, getRootCoreOrigin } from "./hosts";
 
 type CoverageMap = Record<string, unknown>;
 

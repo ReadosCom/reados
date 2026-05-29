@@ -1,5 +1,5 @@
 import { authenticationServiceGet, authenticationServicePatch, authenticationServicePost } from "@components/application/application.client.ts";
-import { otpRequestBodySchema, otpRequestResponseSchema, otpTestResponseSchema, otpVerifyBodySchema, otpVerifyResponseSchema, profileUpdateBodySchema, sessionMeResponseDataSchema, sessionMeResponseSchema } from './authentication.schema.ts';
+import { otpRequestBodySchema, otpRequestResponseSchema, otpTestResponseSchema, otpVerifyBodySchema, otpVerifyResponseSchema, profileUpdateBodySchema, sessionMeResponseDataSchema, sessionMeResponseSchema } from "./authentication.schema.ts";
 
 /**
  * Requests an OTP code for tenant-scoped authentication.

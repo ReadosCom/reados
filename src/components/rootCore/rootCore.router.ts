@@ -15,4 +15,4 @@ route({
       whoami: `root`,
     });
   },
-  });
+});

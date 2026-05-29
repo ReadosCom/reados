@@ -1,9 +1,9 @@
-import { createHmac, randomInt } from 'node:crypto';
+import { createHmac, randomInt } from "node:crypto";
 
-import nodemailer from 'nodemailer';
+import nodemailer from "nodemailer";
 
-import { ensurePool } from '@components/postgres/pool.ts';
-import type { CreateSessionParams, OtpChallengeRow, OtpEmailPayload, OtpTestCapture, OtpVerifyBody, ProfileUpdateBody, RequestOtpParams, SessionIdentity, SessionRow, VerifyOtpParams, VerifyOtpResult } from './authentication.schema.ts';
+import { ensurePool } from "@components/postgres/pool.ts";
+import type { CreateSessionParams, OtpChallengeRow, OtpEmailPayload, OtpTestCapture, OtpVerifyBody, ProfileUpdateBody, RequestOtpParams, SessionIdentity, SessionRow, VerifyOtpParams, VerifyOtpResult } from "./authentication.schema.ts";
 
 const genericOtpRequestMessage = `If this account is eligible, we sent a verification code.`;
 const otpTimeToLiveMinutes = 10;
@@ -77,7 +77,7 @@ const sendOtpEmail = async ({ code, correlationId, recipientEmail }: OtpEmailPay
   await transporter.sendMail({
     from,
     headers: {
-      'x-correlation-id': correlationId,
+      "x-correlation-id": correlationId,
     },
     html: `<p>Your Reados verification code is <strong>${code}</strong>. It expires in ${otpTimeToLiveMinutes} minutes.</p>`,
     subject: `Your Reados verification code`,

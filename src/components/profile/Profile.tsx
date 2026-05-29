@@ -1,15 +1,15 @@
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { type ProfileEditable, profileEditableSchema } from '@components/authentication/authentication.schema.ts';
-import { useAuthenticationSessionQuery, useUpdateAuthenticationProfileMutation } from '@components/authentication/authentication.query.ts';
-import { applyPreferredLanguage } from '@components/i18n/i18n.ts';
-import { useTranslation } from '@components/i18n/useTranslation.ts';
-import { Button } from '@components/uiframework/Button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@components/uiframework/Card';
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@components/uiframework/Form';
-import { Input } from '@components/uiframework/Input';
-import { NativeSelect, NativeSelectOption } from '@components/uiframework/NativeSelect';
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import { type ProfileEditable, profileEditableSchema } from "@components/authentication/authentication.schema.ts";
+import { useAuthenticationSessionQuery, useUpdateAuthenticationProfileMutation } from "@components/authentication/authentication.query.ts";
+import { applyPreferredLanguage } from "@components/i18n/i18n.ts";
+import { useTranslation } from "@components/i18n/useTranslation.ts";
+import { Button } from "@components/uiframework/Button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@components/uiframework/Card";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@components/uiframework/Form";
+import { Input } from "@components/uiframework/Input";
+import { NativeSelect, NativeSelectOption } from "@components/uiframework/NativeSelect";
 
 export const Profile = () => {
   const { t } = useTranslation(`./Profile.i18n.ts`);
@@ -64,8 +64,8 @@ export const Profile = () => {
     <>
       <Card>
         <CardHeader>
-          <CardTitle>{t('Profile')}</CardTitle>
-          <CardDescription>{t('Manage your account preferences here.')}</CardDescription>
+          <CardTitle>{t("Profile")}</CardTitle>
+          <CardDescription>{t("Manage your account preferences here.")}</CardDescription>
         </CardHeader>
         <CardContent>
           <Form {...form}>
@@ -80,7 +80,7 @@ export const Profile = () => {
                 name="displayName"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>{t('Display name')}</FormLabel>
+                    <FormLabel>{t("Display name")}</FormLabel>
                     <FormControl>
                       <Input {...field} disabled={isPending || form.formState.isSubmitting || !sessionIdentity} />
                     </FormControl>
@@ -94,7 +94,7 @@ export const Profile = () => {
                 name="firstName"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>{t('First name')}</FormLabel>
+                    <FormLabel>{t("First name")}</FormLabel>
                     <FormControl>
                       <Input {...field} disabled={isPending || form.formState.isSubmitting || !sessionIdentity} />
                     </FormControl>
@@ -108,7 +108,7 @@ export const Profile = () => {
                 name="middleName"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>{t('Middle name')}</FormLabel>
+                    <FormLabel>{t("Middle name")}</FormLabel>
                     <FormControl>
                       <Input {...field} disabled={isPending || form.formState.isSubmitting || !sessionIdentity} />
                     </FormControl>
@@ -122,7 +122,7 @@ export const Profile = () => {
                 name="lastName"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>{t('Last name')}</FormLabel>
+                    <FormLabel>{t("Last name")}</FormLabel>
                     <FormControl>
                       <Input {...field} disabled={isPending || form.formState.isSubmitting || !sessionIdentity} />
                     </FormControl>
@@ -132,7 +132,7 @@ export const Profile = () => {
               />
 
               <FormItem>
-                <FormLabel>{t('Email')}</FormLabel>
+                <FormLabel>{t("Email")}</FormLabel>
                 <FormControl>
                   <Input disabled value={sessionIdentity?.email ?? ``} />
                 </FormControl>
@@ -143,18 +143,18 @@ export const Profile = () => {
                 name="language"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>{t('Language')}</FormLabel>
+                    <FormLabel>{t("Language")}</FormLabel>
                     <FormControl>
                       <NativeSelect {...field} disabled={isPending || form.formState.isSubmitting || !sessionIdentity} value={field.value}>
-                        <NativeSelectOption value="en">{t('English')}</NativeSelectOption>
-                        <NativeSelectOption value="tr">{t('Turkish')}</NativeSelectOption>
-                        <NativeSelectOption value="de">{t('German')}</NativeSelectOption>
-                        <NativeSelectOption value="es">{t('Spanish')}</NativeSelectOption>
-                        <NativeSelectOption value="fr">{t('French')}</NativeSelectOption>
-                        <NativeSelectOption value="it">{t('Italian')}</NativeSelectOption>
-                        <NativeSelectOption value="pt">{t('Portuguese')}</NativeSelectOption>
-                        <NativeSelectOption value="nl">{t('Dutch')}</NativeSelectOption>
-                        <NativeSelectOption value="pl">{t('Polish')}</NativeSelectOption>
+                        <NativeSelectOption value="en">{t("English")}</NativeSelectOption>
+                        <NativeSelectOption value="tr">{t("Turkish")}</NativeSelectOption>
+                        <NativeSelectOption value="de">{t("German")}</NativeSelectOption>
+                        <NativeSelectOption value="es">{t("Spanish")}</NativeSelectOption>
+                        <NativeSelectOption value="fr">{t("French")}</NativeSelectOption>
+                        <NativeSelectOption value="it">{t("Italian")}</NativeSelectOption>
+                        <NativeSelectOption value="pt">{t("Portuguese")}</NativeSelectOption>
+                        <NativeSelectOption value="nl">{t("Dutch")}</NativeSelectOption>
+                        <NativeSelectOption value="pl">{t("Polish")}</NativeSelectOption>
                       </NativeSelect>
                     </FormControl>
                     <FormMessage />
@@ -162,12 +162,12 @@ export const Profile = () => {
                 )}
               />
 
-              {saveState === `saved` ? <p className="text-sm text-muted-foreground">{t('Preferences saved.')}</p> : null}
-              {saveState === `error` ? <p className="text-sm text-destructive">{t('Could not save preferences right now.')}</p> : null}
+              {saveState === `saved` ? <p className="text-sm text-muted-foreground">{t("Preferences saved.")}</p> : null}
+              {saveState === `error` ? <p className="text-sm text-destructive">{t("Could not save preferences right now.")}</p> : null}
 
               <div className="flex justify-end">
                 <Button disabled={isPending || form.formState.isSubmitting || !sessionIdentity} type="submit">
-                  {isPending || form.formState.isSubmitting ? t('Saving...') : t('Save changes')}
+                  {isPending || form.formState.isSubmitting ? t("Saving...") : t("Save changes")}
                 </Button>
               </div>
             </form>
