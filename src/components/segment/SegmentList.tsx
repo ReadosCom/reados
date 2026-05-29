@@ -1,4 +1,3 @@
-import type { ColumnDef } from "@tanstack/react-table";
 import { useTranslation } from "@components/i18n/useTranslation.ts";
 import { useAwaitedPrompt } from "@components/prompt/prompt.context.ts";
 import { SegmentEditorDialog } from "@components/segment/SegmentEditorDialog.tsx";
@@ -9,6 +8,7 @@ import { ButtonGroup } from "@components/uiframework/ButtonGroup";
 import { DataTable } from "@components/uiframework/DataTable.tsx";
 import { Skeleton } from "@components/uiframework/Skeleton";
 import { IconChevronDown, IconChevronUp, IconPencil, IconTrash } from "@tabler/icons-react";
+import type { ColumnDef } from "@tanstack/react-table";
 import { useCallback, useMemo, useState } from "react";
 
 /**
@@ -77,7 +77,11 @@ export const SegmentList = () => {
     () => [
       {
         id: `actions`,
-        header: () => <span className="w-1 whitespace-nowrap">{t(`Actions`)}</span>,
+        meta: {
+          cellClassName: `w-[8rem] whitespace-nowrap px-1`,
+          headerClassName: `w-[8rem] whitespace-nowrap px-1`,
+        },
+        header: () => <span className="whitespace-nowrap">{t(`Actions`)}</span>,
         cell: ({ row }) => {
           const segment = row.original;
           const index = row.index;
@@ -127,7 +131,7 @@ export const SegmentList = () => {
                 </Button>
                 <Button
                   aria-label={t(`Delete segment`)}
-                  className="h-7 w-7 p-0"
+                  className="h-7 w-7 p-0 text-destructive hover:bg-destructive/10 hover:text-destructive"
                   disabled={segment.required || isReorderSegmentPending || isDeleteSegmentPending}
                   onClick={() => {
                     void deleteSegment(segment.id);

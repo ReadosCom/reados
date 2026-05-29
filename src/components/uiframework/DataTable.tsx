@@ -1,5 +1,11 @@
 import { flexRender, getCoreRowModel, type ColumnDef, useReactTable } from "@tanstack/react-table";
+import { cn } from "@components/lib/utils";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@components/uiframework/Table.tsx";
+
+type DataTableColumnMeta = {
+  cellClassName?: string;
+  headerClassName?: string;
+};
 
 type DataTableProps<TData, TValue> = {
   columns: ColumnDef<TData, TValue>[];
@@ -12,6 +18,7 @@ type DataTableProps<TData, TValue> = {
 };
 
 export const DataTable = <TData, TValue>({ columns, data, emptyMessage, errorMessage = `Could not load data right now.`, isError = false, isLoading = false, loadingMessage = `Loading...` }: DataTableProps<TData, TValue>) => {
+  // eslint-disable-next-line react-hooks/incompatible-library -- TanStack Table is intentionally used as the table engine for shared listing UX.
   const table = useReactTable({
     data,
     columns,
@@ -25,7 +32,9 @@ export const DataTable = <TData, TValue>({ columns, data, emptyMessage, errorMes
           {table.getHeaderGroups().map((headerGroup) => (
             <TableRow key={headerGroup.id}>
               {headerGroup.headers.map((header) => (
-                <TableHead key={header.id}>{header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}</TableHead>
+                <TableHead className={cn((header.column.columnDef.meta as DataTableColumnMeta | undefined)?.headerClassName)} key={header.id}>
+                  {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
+                </TableHead>
               ))}
             </TableRow>
           ))}
@@ -56,7 +65,9 @@ export const DataTable = <TData, TValue>({ columns, data, emptyMessage, errorMes
             ? table.getRowModel().rows.map((row) => (
                 <TableRow key={row.id}>
                   {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</TableCell>
+                    <TableCell className={cn((cell.column.columnDef.meta as DataTableColumnMeta | undefined)?.cellClassName)} key={cell.id}>
+                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                    </TableCell>
                   ))}
                 </TableRow>
               ))

@@ -1,5 +1,3 @@
-import type { ColumnDef } from "@tanstack/react-table";
-import { useState } from "react";
 import { useTranslation } from "@components/i18n/useTranslation.ts";
 import { Member } from "@components/member/Member.tsx";
 import { useAccountTemplatesQuery, useApplyAccountTemplateMutation, useCreateMemberMutation, useDeleteMemberMutation, useMembersQuery, useUpdateMemberMutation } from "@components/member/member.query.ts";
@@ -9,12 +7,14 @@ import { Button } from "@components/uiframework/Button";
 import { ButtonGroup } from "@components/uiframework/ButtonGroup";
 import { DataTable } from "@components/uiframework/DataTable.tsx";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@components/uiframework/Dialog";
-import { IconPencil, IconTrash } from "@tabler/icons-react";
-import { useMemo } from "react";
+import { IconPencil, IconPlus, IconTrash } from "@tabler/icons-react";
+import type { ColumnDef } from "@tanstack/react-table";
+import { useMemo, useState } from "react";
 
 export const MemberList = ({ segmentId, segmentType }: { segmentId: string; segmentType: SegmentType }) => {
   const { t } = useTranslation(`./Segment.i18n.ts`);
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
+  const [childParentMember, setChildParentMember] = useState<MemberRecord | null>(null);
   const [editingMember, setEditingMember] = useState<MemberRecord | null>(null);
   const [deletingMember, setDeletingMember] = useState<MemberRecord | null>(null);
   const membersQuery = useMembersQuery(segmentId);
@@ -25,22 +25,50 @@ export const MemberList = ({ segmentId, segmentType }: { segmentId: string; segm
   const applyTemplateMutation = useApplyAccountTemplateMutation(segmentId);
 
   const members = useMemo(() => membersQuery.data ?? [], [membersQuery.data]);
+  const createInitialValues = useMemo(
+    () =>
+      childParentMember
+        ? {
+            parent: childParentMember.id,
+            reporting: childParentMember.reporting ?? undefined,
+            type: childParentMember.type ?? undefined,
+          }
+        : undefined,
+    [childParentMember],
+  );
   const showTemplateApply = segmentType === `account` && members.length === 0;
   const columns = useMemo<ColumnDef<MemberRecord>[]>(
     () => [
       {
         id: `actions`,
-        header: () => <span className="w-1 whitespace-nowrap">{t(`Actions`)}</span>,
+        meta: {
+          cellClassName: `w-[6rem] px-1`,
+          headerClassName: `w-[6rem] px-1`,
+        },
+        header: () => <span className="whitespace-nowrap">{t(`Actions`)}</span>,
         cell: ({ row }) => {
           const member = row.original;
 
           return (
-            <div className="w-1 whitespace-nowrap">
+            <div className="whitespace-nowrap">
               <ButtonGroup>
                 <Button aria-label={t(`Edit member`)} className="h-7 w-7 p-0" onClick={() => setEditingMember(member)} size="sm" type="button" variant="outline">
                   <IconPencil aria-hidden stroke={2} />
                 </Button>
-                <Button aria-label={t(`Delete member`)} className="h-7 w-7 p-0" onClick={() => setDeletingMember(member)} size="sm" type="button" variant="outline">
+                <Button
+                  aria-label={t(`Create child member`)}
+                  className="h-7 w-7 p-0"
+                  onClick={() => {
+                    setChildParentMember(member);
+                    setIsCreateModalOpen(true);
+                  }}
+                  size="sm"
+                  type="button"
+                  variant="outline"
+                >
+                  <IconPlus aria-hidden stroke={2} />
+                </Button>
+                <Button aria-label={t(`Delete member`)} className="h-7 w-7 p-0 text-destructive hover:bg-destructive/10 hover:text-destructive" onClick={() => setDeletingMember(member)} size="sm" type="button" variant="outline">
                   <IconTrash aria-hidden stroke={2} />
                 </Button>
               </ButtonGroup>
@@ -83,7 +111,13 @@ export const MemberList = ({ segmentId, segmentType }: { segmentId: string; segm
     <section className="space-y-3 rounded-md border border-border p-3">
       <div className="flex items-center justify-between">
         <h3 className="text-sm font-medium">{t(`Members`)}</h3>
-        <Button onClick={() => setIsCreateModalOpen(true)} type="button">
+        <Button
+          onClick={() => {
+            setChildParentMember(null);
+            setIsCreateModalOpen(true);
+          }}
+          type="button"
+        >
           {t(`Create member`)}
         </Button>
       </div>
@@ -102,21 +136,35 @@ export const MemberList = ({ segmentId, segmentType }: { segmentId: string; segm
         </div>
       ) : null}
 
-      <Dialog onOpenChange={setIsCreateModalOpen} open={isCreateModalOpen}>
+      <Dialog
+        onOpenChange={(open) => {
+          setIsCreateModalOpen(open);
+          if (!open) {
+            setChildParentMember(null);
+          }
+        }}
+        open={isCreateModalOpen}
+      >
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>{t(`Create member`)}</DialogTitle>
-            <DialogDescription>{t(`Create a new segment member with code, hierarchy, and type rules.`)}</DialogDescription>
+            <DialogTitle>{childParentMember ? t(`Create child member`) : t(`Create member`)}</DialogTitle>
+            <DialogDescription>{childParentMember ? t(`Create a child member under the selected parent with inherited hierarchy defaults.`) : t(`Create a new segment member with code, hierarchy, and type rules.`)}</DialogDescription>
           </DialogHeader>
           <Member
+            initialValues={createInitialValues}
             isSaving={createMutation.isPending}
             members={members}
+            onCancel={() => {
+              setIsCreateModalOpen(false);
+              setChildParentMember(null);
+            }}
             onSubmit={async (values) => {
               await createMutation.mutateAsync(values);
               setIsCreateModalOpen(false);
+              setChildParentMember(null);
             }}
             segmentType={segmentType}
-            submitLabel={t(`Create member`)}
+            submitLabel={childParentMember ? t(`Create child member`) : t(`Create member`)}
           />
           {createMutation.isError ? <p className="text-sm text-destructive">{t(`Could not create member right now.`)}</p> : null}
         </DialogContent>
@@ -172,6 +220,7 @@ export const MemberList = ({ segmentId, segmentType }: { segmentId: string; segm
                 });
               }}
               type="button"
+              variant="destructive"
             >
               {deleteMutation.isPending ? t(`Deleting...`) : t(`Delete`)}
             </Button>

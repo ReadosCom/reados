@@ -13,18 +13,20 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 const formSchema = memberEditorSchema.extend({ parent: z.string().nullable() });
 type MemberFormValues = z.infer<typeof formSchema>;
 
-const getDefaultValues = (member?: MemberRecord): MemberFormValues => ({
+const getDefaultValues = (member?: MemberRecord, initialValues?: Partial<MemberFormValues>): MemberFormValues => ({
   code: member?.code ?? ``,
   name: member?.name ?? ``,
   description: member?.description ?? ``,
   parent: member?.parent ?? null,
   type: member?.type ?? undefined,
   reporting: member?.reporting ?? undefined,
+  ...initialValues,
 });
 
 export const Member = ({
   excludedMemberId,
   isSaving,
+  initialValues,
   member,
   members,
   onCancel,
@@ -34,6 +36,7 @@ export const Member = ({
 }: {
   excludedMemberId?: string;
   isSaving: boolean;
+  initialValues?: Partial<MemberFormValues>;
   member?: MemberRecord;
   members: MemberRecord[];
   onCancel?: () => void;
@@ -42,11 +45,11 @@ export const Member = ({
   submitLabel: string;
 }) => {
   const { t } = useTranslation(`./Segment.i18n.ts`);
-  const form = useForm<MemberFormValues>({ defaultValues: getDefaultValues(member), resolver: zodResolver(formSchema) });
+  const form = useForm<MemberFormValues>({ defaultValues: getDefaultValues(member, initialValues), resolver: zodResolver(formSchema) });
 
   useEffect(() => {
-    form.reset(getDefaultValues(member));
-  }, [form, member]);
+    form.reset(getDefaultValues(member, initialValues));
+  }, [form, initialValues, member]);
 
   return (
     <Form {...form}>

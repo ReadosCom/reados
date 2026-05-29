@@ -123,7 +123,17 @@ export const SegmentEditorDialog = (props: SegmentEditorDialogProps) => {
               )}
             />
             {saveState === `error` ? <p className="text-sm text-destructive">{t(`Could not save segment right now.`)}</p> : null}
-            <div className="flex justify-end">
+            <div className="flex justify-end gap-2">
+              <Button
+                disabled={isSaving}
+                onClick={() => {
+                  onOpenChange(false);
+                }}
+                type="button"
+                variant="outline"
+              >
+                {t(`Cancel`)}
+              </Button>
               <Button disabled={isSaving} type="submit">
                 {isSaving ? t(`Saving...`) : t(`Save segment`)}
               </Button>

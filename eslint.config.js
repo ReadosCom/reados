@@ -35,10 +35,4 @@ export default defineConfig([
       "react-refresh/only-export-components": "off",
     },
   },
-  {
-    files: ["src/components/uiframework/DataTable.tsx"],
-    rules: {
-      "react-hooks/incompatible-library": "off",
-    },
-  },
 ]);
