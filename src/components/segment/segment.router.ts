@@ -2,7 +2,7 @@ import { Router } from "express";
 import { defineRoutes } from "@components/express/express.router.ts";
 
 import { createSegment, deleteSegment, getSegmentById, listSegments, reorderSegment, updateSegment } from "./segment.controller.ts";
-import { SegmentNotFoundError, SegmentRequiredDeleteError, segmentParamsSchema, createSegmentBodySchema, reorderSegmentBodySchema, updateSegmentBodySchema } from "./segment.schema.ts";
+import { SegmentNotFoundError, SegmentRequiredDeleteError, SegmentRequiredUpdateError, segmentParamsSchema, createSegmentBodySchema, reorderSegmentBodySchema, updateSegmentBodySchema } from "./segment.schema.ts";
 
 /**
  * Accounting segment routes.
@@ -99,6 +99,15 @@ route({
           code: `segment_not_found`,
           message: `Accounting segment was not found.`,
           status: 404,
+        });
+        return;
+      }
+
+      if (error instanceof SegmentRequiredUpdateError) {
+        fail({
+          code: `segment_required_update_forbidden`,
+          message: `Required accounting segments must remain required.`,
+          status: 400,
         });
         return;
       }

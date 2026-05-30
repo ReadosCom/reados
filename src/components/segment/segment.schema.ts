@@ -1,7 +1,15 @@
 import { z } from "zod";
 import { apiSuccessSchema } from "@components/application/api.schema.ts";
 
-export const segmentTypeSchema = z.enum([`entity`, `account`, `generic`]);
+export const segmentTypeSchema = z.enum([`entity`, `account`, `customer`, `supplier`, `generic`]);
+
+export const requiredSegmentDefinitions = [
+  { id: `00000000-0000-7000-8000-000000000001`, label: `Entity`, order: 0, type: `entity` },
+  { id: `00000000-0000-7000-8000-000000000002`, label: `Account`, order: 1, type: `account` },
+  // Customer and Supplier are segment-domain anchors for future ERP Sales and Procurement integrations.
+  { id: `00000000-0000-7000-8000-000000000003`, label: `Customer`, order: 2, type: `customer` },
+  { id: `00000000-0000-7000-8000-000000000004`, label: `Supplier`, order: 3, type: `supplier` },
+] as const satisfies ReadonlyArray<{ id: string; label: string; order: number; type: z.infer<typeof segmentTypeSchema> }>;
 
 export const segmentSchema = z.object({
   createdAt: z.string().trim().min(1),
@@ -68,6 +76,16 @@ export class SegmentNotFoundError extends Error {
   public constructor(id: string) {
     super(`Accounting segment ${id} was not found.`);
     this.name = `SegmentNotFoundError`;
+    this.id = id;
+  }
+}
+
+export class SegmentRequiredUpdateError extends Error {
+  public readonly id: string;
+
+  public constructor(id: string) {
+    super(`Accounting segment ${id} is required and must remain required.`);
+    this.name = `SegmentRequiredUpdateError`;
     this.id = id;
   }
 }
