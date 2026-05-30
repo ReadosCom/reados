@@ -6,7 +6,6 @@
   "jurisdiction": "US",
   "basis": "US GAAP-oriented optional management extension",
   "version": "2026.05",
-  "extends": "us-gaap",
   "members": [
     {
       "code": "1160",
@@ -17,7 +16,12 @@
       "reporting": "debit",
       "level": 3,
       "active": true,
-      "tags": ["statement:balance-sheet", "section:asset", "extension:enterprise", "cash"]
+      "tags": [
+        "statement:balance-sheet",
+        "section:asset",
+        "extension:enterprise",
+        "cash"
+      ]
     },
     {
       "code": "1280",
@@ -28,7 +32,13 @@
       "reporting": "debit",
       "level": 3,
       "active": true,
-      "tags": ["statement:balance-sheet", "section:asset", "extension:enterprise", "unbilled", "contract-asset"]
+      "tags": [
+        "statement:balance-sheet",
+        "section:asset",
+        "extension:enterprise",
+        "unbilled",
+        "contract-asset"
+      ]
     },
     {
       "code": "1360",
@@ -39,7 +49,12 @@
       "reporting": "debit",
       "level": 3,
       "active": true,
-      "tags": ["statement:balance-sheet", "section:asset", "extension:enterprise", "spare-parts"]
+      "tags": [
+        "statement:balance-sheet",
+        "section:asset",
+        "extension:enterprise",
+        "spare-parts"
+      ]
     },
     {
       "code": "1590",
@@ -50,7 +65,13 @@
       "reporting": "debit",
       "level": 3,
       "active": true,
-      "tags": ["statement:balance-sheet", "section:asset", "extension:enterprise", "clearing", "ppe"]
+      "tags": [
+        "statement:balance-sheet",
+        "section:asset",
+        "extension:enterprise",
+        "clearing",
+        "ppe"
+      ]
     },
     {
       "code": "1960",
@@ -61,7 +82,13 @@
       "reporting": "debit",
       "level": 3,
       "active": true,
-      "tags": ["statement:balance-sheet", "section:asset", "extension:enterprise", "cloud", "implementation-cost"]
+      "tags": [
+        "statement:balance-sheet",
+        "section:asset",
+        "extension:enterprise",
+        "cloud",
+        "implementation-cost"
+      ]
     },
     {
       "code": "2180",
@@ -72,7 +99,12 @@
       "reporting": "credit",
       "level": 3,
       "active": true,
-      "tags": ["statement:balance-sheet", "section:liability", "extension:enterprise", "escheatment"]
+      "tags": [
+        "statement:balance-sheet",
+        "section:liability",
+        "extension:enterprise",
+        "escheatment"
+      ]
     },
     {
       "code": "2280",
@@ -83,7 +115,12 @@
       "reporting": "credit",
       "level": 3,
       "active": true,
-      "tags": ["statement:balance-sheet", "section:liability", "extension:enterprise", "restructuring"]
+      "tags": [
+        "statement:balance-sheet",
+        "section:liability",
+        "extension:enterprise",
+        "restructuring"
+      ]
     },
     {
       "code": "2760",
@@ -94,7 +131,12 @@
       "reporting": "credit",
       "level": 3,
       "active": true,
-      "tags": ["statement:balance-sheet", "section:liability", "extension:enterprise", "restructuring"]
+      "tags": [
+        "statement:balance-sheet",
+        "section:liability",
+        "extension:enterprise",
+        "restructuring"
+      ]
     },
     {
       "code": "3160",
@@ -105,7 +147,12 @@
       "reporting": "credit",
       "level": 3,
       "active": true,
-      "tags": ["statement:balance-sheet", "section:equity", "extension:enterprise", "partnership"]
+      "tags": [
+        "statement:balance-sheet",
+        "section:equity",
+        "extension:enterprise",
+        "partnership"
+      ]
     },
     {
       "code": "4330",
@@ -116,7 +163,13 @@
       "reporting": "credit",
       "level": 3,
       "active": true,
-      "tags": ["statement:income-statement", "section:revenue", "extension:enterprise", "subscription", "service"]
+      "tags": [
+        "statement:income-statement",
+        "section:revenue",
+        "extension:enterprise",
+        "subscription",
+        "service"
+      ]
     },
     {
       "code": "4540",
@@ -127,7 +180,12 @@
       "reporting": "credit",
       "level": 3,
       "active": true,
-      "tags": ["statement:income-statement", "section:revenue", "extension:enterprise", "marketplace"]
+      "tags": [
+        "statement:income-statement",
+        "section:revenue",
+        "extension:enterprise",
+        "marketplace"
+      ]
     },
     {
       "code": "5530",
@@ -138,7 +196,12 @@
       "reporting": "debit",
       "level": 3,
       "active": true,
-      "tags": ["statement:income-statement", "section:cost-of-sales", "extension:enterprise", "payment-processing"]
+      "tags": [
+        "statement:income-statement",
+        "section:cost-of-sales",
+        "extension:enterprise",
+        "payment-processing"
+      ]
     },
     {
       "code": "6160",
@@ -149,7 +212,12 @@
       "reporting": "debit",
       "level": 3,
       "active": true,
-      "tags": ["statement:income-statement", "section:operating-expense", "extension:enterprise", "partner"]
+      "tags": [
+        "statement:income-statement",
+        "section:operating-expense",
+        "extension:enterprise",
+        "partner"
+      ]
     },
     {
       "code": "6250",
@@ -160,7 +228,13 @@
       "reporting": "debit",
       "level": 3,
       "active": true,
-      "tags": ["statement:income-statement", "section:operating-expense", "extension:enterprise", "software", "capitalization"]
+      "tags": [
+        "statement:income-statement",
+        "section:operating-expense",
+        "extension:enterprise",
+        "software",
+        "capitalization"
+      ]
     },
     {
       "code": "6380",
@@ -171,7 +245,12 @@
       "reporting": "debit",
       "level": 3,
       "active": true,
-      "tags": ["statement:income-statement", "section:operating-expense", "extension:enterprise", "regulatory"]
+      "tags": [
+        "statement:income-statement",
+        "section:operating-expense",
+        "extension:enterprise",
+        "regulatory"
+      ]
     },
     {
       "code": "6560",
@@ -182,7 +261,12 @@
       "reporting": "debit",
       "level": 3,
       "active": true,
-      "tags": ["statement:income-statement", "section:operating-expense", "extension:enterprise", "security"]
+      "tags": [
+        "statement:income-statement",
+        "section:operating-expense",
+        "extension:enterprise",
+        "security"
+      ]
     },
     {
       "code": "6650",
@@ -193,7 +277,12 @@
       "reporting": "debit",
       "level": 3,
       "active": true,
-      "tags": ["statement:income-statement", "section:operating-expense", "extension:enterprise", "analytics"]
+      "tags": [
+        "statement:income-statement",
+        "section:operating-expense",
+        "extension:enterprise",
+        "analytics"
+      ]
     },
     {
       "code": "6830",
@@ -204,7 +293,12 @@
       "reporting": "debit",
       "level": 3,
       "active": true,
-      "tags": ["statement:income-statement", "section:operating-expense", "extension:enterprise", "collections"]
+      "tags": [
+        "statement:income-statement",
+        "section:operating-expense",
+        "extension:enterprise",
+        "collections"
+      ]
     },
     {
       "code": "7340",
@@ -215,7 +309,12 @@
       "reporting": "credit",
       "level": 3,
       "active": true,
-      "tags": ["statement:income-statement", "section:non-operating-income", "extension:enterprise", "government-grant"]
+      "tags": [
+        "statement:income-statement",
+        "section:non-operating-income",
+        "extension:enterprise",
+        "government-grant"
+      ]
     },
     {
       "code": "7850",
@@ -226,7 +325,13 @@
       "reporting": "debit",
       "level": 3,
       "active": true,
-      "tags": ["statement:income-statement", "section:non-operating-expense", "extension:enterprise", "restructuring"]
+      "tags": [
+        "statement:income-statement",
+        "section:non-operating-expense",
+        "extension:enterprise",
+        "restructuring"
+      ]
     }
-  ]
+  ],
+  "extensionOf": "us-gaap"
 }

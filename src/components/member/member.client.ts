@@ -1,7 +1,18 @@
 import { parseApiSuccess } from "@components/application/api.client.ts";
 import { erpServiceDelete, erpServiceGet, erpServicePost, erpServicePut } from "@components/application/application.client.ts";
 import { z } from "zod";
-import { accountTemplateSchema, createMemberBodySchema, listMembersResponseSchema, memberSchema, updateMemberBodySchema, type AccountTemplate, type CreateMemberBody, type Member, type UpdateMemberBody } from "./member.schema.ts";
+import {
+  applyMemberTemplateResponseSchema,
+  createMemberBodySchema,
+  listAccountTemplatesResponseSchema,
+  listMembersResponseSchema,
+  memberSchema,
+  updateMemberBodySchema,
+  type AccountTemplate,
+  type CreateMemberBody,
+  type Member,
+  type UpdateMemberBody,
+} from "./member.schema.ts";
 type CreateMemberInput = Omit<CreateMemberBody, `segmentId`>;
 
 export const getMembers = async (segmentId: string): Promise<Member[]> => {
@@ -43,11 +54,11 @@ export const deleteMember = async (id: string): Promise<{ deleted: boolean }> =>
 export const getAccountTemplates = async (): Promise<AccountTemplate[]> => {
   const response = await erpServiceGet({ path: `/accounting/member/templates` });
   if (!response.ok) throw new Error(`Failed to load account templates.`);
-  return parseApiSuccess(await response.json(), z.array(accountTemplateSchema));
+  return listAccountTemplatesResponseSchema.parse(await response.json()).data;
 };
 
 export const applyAccountTemplate = async (segmentId: string, templateId: string): Promise<{ applied: boolean }> => {
   const response = await erpServicePost({ body: { segmentId, templateId }, path: `/accounting/member/templates/apply` });
   if (!response.ok) throw new Error(`Failed to apply account template.`);
-  return parseApiSuccess(await response.json(), z.object({ applied: z.boolean() }));
+  return applyMemberTemplateResponseSchema.parse(await response.json()).data;
 };
