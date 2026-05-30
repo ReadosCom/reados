@@ -129,13 +129,9 @@ export const deleteMember = async (id: string) => {
 };
 
 export const listAccountTemplates = async (): Promise<AccountTemplate[]> => {
-  return [
-    await readAccountTemplate(`tr-tek-duzen`),
-    await readAccountTemplate(`ifrs-global-core`),
-    await readAccountTemplate(`ifrs-global-enterprise-extension`),
-    await readAccountTemplate(`us-gaap`),
-    await readAccountTemplate(`us-gaap-enterprise-extensions`),
-  ].map((t) => ({
+  const templates = await Promise.all([...accountTemplatePaths.keys()].map((templateId) => readAccountTemplate(templateId)));
+
+  return templates.map((t) => ({
     id: t.id,
     label: t.label,
     description: t.description,
