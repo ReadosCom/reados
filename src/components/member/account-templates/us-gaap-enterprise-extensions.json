@@ -13,15 +13,7 @@
       "description": "Optional enterprise extension account for cash in transit.",
       "parentCode": "1100",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "tags": [
-        "statement:balance-sheet",
-        "section:asset",
-        "extension:enterprise",
-        "cash"
-      ]
+      "reporting": "debit"
     },
     {
       "code": "1280",
@@ -29,16 +21,7 @@
       "description": "Optional enterprise extension account for unbilled receivables.",
       "parentCode": "1200",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "tags": [
-        "statement:balance-sheet",
-        "section:asset",
-        "extension:enterprise",
-        "unbilled",
-        "contract-asset"
-      ]
+      "reporting": "debit"
     },
     {
       "code": "1360",
@@ -46,15 +29,7 @@
       "description": "Optional enterprise extension account for spare parts inventory.",
       "parentCode": "1300",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "tags": [
-        "statement:balance-sheet",
-        "section:asset",
-        "extension:enterprise",
-        "spare-parts"
-      ]
+      "reporting": "debit"
     },
     {
       "code": "1590",
@@ -62,16 +37,7 @@
       "description": "Optional enterprise extension account for ppe clearing.",
       "parentCode": "1500",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "tags": [
-        "statement:balance-sheet",
-        "section:asset",
-        "extension:enterprise",
-        "clearing",
-        "ppe"
-      ]
+      "reporting": "debit"
     },
     {
       "code": "1960",
@@ -79,16 +45,7 @@
       "description": "Optional enterprise extension account for implementation costs in cloud arrangements.",
       "parentCode": "1900",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "tags": [
-        "statement:balance-sheet",
-        "section:asset",
-        "extension:enterprise",
-        "cloud",
-        "implementation-cost"
-      ]
+      "reporting": "debit"
     },
     {
       "code": "2180",
@@ -96,15 +53,7 @@
       "description": "Optional enterprise extension account for escheatment payable.",
       "parentCode": "2100",
       "type": "liability",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "tags": [
-        "statement:balance-sheet",
-        "section:liability",
-        "extension:enterprise",
-        "escheatment"
-      ]
+      "reporting": "credit"
     },
     {
       "code": "2280",
@@ -112,15 +61,7 @@
       "description": "Optional enterprise extension account for restructuring accrual - current.",
       "parentCode": "2200",
       "type": "liability",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "tags": [
-        "statement:balance-sheet",
-        "section:liability",
-        "extension:enterprise",
-        "restructuring"
-      ]
+      "reporting": "credit"
     },
     {
       "code": "2760",
@@ -128,15 +69,7 @@
       "description": "Optional enterprise extension account for restructuring accrual - noncurrent.",
       "parentCode": "2700",
       "type": "liability",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "tags": [
-        "statement:balance-sheet",
-        "section:liability",
-        "extension:enterprise",
-        "restructuring"
-      ]
+      "reporting": "credit"
     },
     {
       "code": "3160",
@@ -144,15 +77,7 @@
       "description": "Optional enterprise extension account for partner capital.",
       "parentCode": "3100",
       "type": "equity",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "tags": [
-        "statement:balance-sheet",
-        "section:equity",
-        "extension:enterprise",
-        "partnership"
-      ]
+      "reporting": "credit"
     },
     {
       "code": "4330",
@@ -160,16 +85,7 @@
       "description": "Optional enterprise extension account for professional services subscription revenue.",
       "parentCode": "4300",
       "type": "revenue",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "tags": [
-        "statement:income-statement",
-        "section:revenue",
-        "extension:enterprise",
-        "subscription",
-        "service"
-      ]
+      "reporting": "credit"
     },
     {
       "code": "4540",
@@ -177,15 +93,7 @@
       "description": "Optional enterprise extension account for marketplace revenue.",
       "parentCode": "4500",
       "type": "revenue",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "tags": [
-        "statement:income-statement",
-        "section:revenue",
-        "extension:enterprise",
-        "marketplace"
-      ]
+      "reporting": "credit"
     },
     {
       "code": "5530",
@@ -193,15 +101,7 @@
       "description": "Optional enterprise extension account for payment processing cost of revenue.",
       "parentCode": "5500",
       "type": "expense",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "tags": [
-        "statement:income-statement",
-        "section:cost-of-sales",
-        "extension:enterprise",
-        "payment-processing"
-      ]
+      "reporting": "debit"
     },
     {
       "code": "6160",
@@ -209,15 +109,7 @@
       "description": "Optional enterprise extension account for partner marketing expense.",
       "parentCode": "6100",
       "type": "expense",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "tags": [
-        "statement:income-statement",
-        "section:operating-expense",
-        "extension:enterprise",
-        "partner"
-      ]
+      "reporting": "debit"
     },
     {
       "code": "6250",
@@ -225,16 +117,7 @@
       "description": "Optional enterprise extension account for capitalized software contra expense.",
       "parentCode": "6200",
       "type": "expense",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "tags": [
-        "statement:income-statement",
-        "section:operating-expense",
-        "extension:enterprise",
-        "software",
-        "capitalization"
-      ]
+      "reporting": "debit"
     },
     {
       "code": "6380",
@@ -242,15 +125,7 @@
       "description": "Optional enterprise extension account for regulatory filing fees.",
       "parentCode": "6300",
       "type": "expense",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "tags": [
-        "statement:income-statement",
-        "section:operating-expense",
-        "extension:enterprise",
-        "regulatory"
-      ]
+      "reporting": "debit"
     },
     {
       "code": "6560",
@@ -258,15 +133,7 @@
       "description": "Optional enterprise extension account for security and monitoring.",
       "parentCode": "6500",
       "type": "expense",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "tags": [
-        "statement:income-statement",
-        "section:operating-expense",
-        "extension:enterprise",
-        "security"
-      ]
+      "reporting": "debit"
     },
     {
       "code": "6650",
@@ -274,15 +141,7 @@
       "description": "Optional enterprise extension account for data and analytics tools.",
       "parentCode": "6600",
       "type": "expense",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "tags": [
-        "statement:income-statement",
-        "section:operating-expense",
-        "extension:enterprise",
-        "analytics"
-      ]
+      "reporting": "debit"
     },
     {
       "code": "6830",
@@ -290,15 +149,7 @@
       "description": "Optional enterprise extension account for collections expense.",
       "parentCode": "6800",
       "type": "expense",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "tags": [
-        "statement:income-statement",
-        "section:operating-expense",
-        "extension:enterprise",
-        "collections"
-      ]
+      "reporting": "debit"
     },
     {
       "code": "7340",
@@ -306,15 +157,7 @@
       "description": "Optional enterprise extension account for government grant income.",
       "parentCode": "7300",
       "type": "revenue",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "tags": [
-        "statement:income-statement",
-        "section:non-operating-income",
-        "extension:enterprise",
-        "government-grant"
-      ]
+      "reporting": "credit"
     },
     {
       "code": "7850",
@@ -322,15 +165,7 @@
       "description": "Optional enterprise extension account for restructuring expense.",
       "parentCode": "7800",
       "type": "expense",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "tags": [
-        "statement:income-statement",
-        "section:non-operating-expense",
-        "extension:enterprise",
-        "restructuring"
-      ]
+      "reporting": "debit"
     }
   ],
   "extensionOf": "us-gaap"
