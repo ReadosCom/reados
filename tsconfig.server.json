@@ -19,6 +19,6 @@
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src/*.server.ts", "src/**/*.server.ts", "src/components/**/*.ts", "src/**/*.d.ts", "scripts/**/*.ts"],
+  "include": ["src/*.server.ts", "src/**/*.server.ts", "src/components/**/*.ts", "src/**/*.d.ts"],
   "exclude": ["src/components/**/*.route.ts"]
 }

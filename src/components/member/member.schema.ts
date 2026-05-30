@@ -75,8 +75,6 @@ export type AccountTemplateDocument = AccountTemplate & {
   version: string;
 };
 
-export class MemberValidationError extends Error {}
-
 export type MemberType = z.infer<typeof accountMemberTypeSchema>;
 export type MemberReporting = z.infer<typeof accountMemberReportingSchema>;
 export type Member = z.infer<typeof memberSchema>;

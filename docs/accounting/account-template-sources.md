@@ -57,7 +57,6 @@ No community, blog, or forum source was used as a source of truth for the embedd
   - `src/components/member/account-templates/us-gaap.json`
   - `src/components/member/account-templates/us-gaap-enterprise-extensions.json`
 - Source audit: `docs/accounting/us-gaap-coa-source-audit.md`
-- Validation report: `docs/accounting/validation/us-gaap-coa-validation-report.md`
 - Last source access date: 2026-05-29 (UTC)
 - Decision: manually authored US GAAP-oriented Reados templates, separate from FASB Codification text and XBRL taxonomies.
 
