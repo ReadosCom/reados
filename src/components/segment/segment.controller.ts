@@ -13,18 +13,6 @@ import {
   type UpdateSegmentBody,
 } from "./segment.schema.ts";
 
-const getRequiredSegmentId = (type: `entity` | `account` | `customer` | `supplier`) => {
-  const segment = requiredSegmentDefinitions.find((requiredSegment) => requiredSegment.type === type);
-  if (!segment) {
-    throw new Error(`Required segment definition missing for type "${type}".`);
-  }
-  return segment.id;
-};
-
-const entitySystemSegmentId = getRequiredSegmentId(`entity`);
-const accountSystemSegmentId = getRequiredSegmentId(`account`);
-const customerSystemSegmentId = getRequiredSegmentId(`customer`);
-const supplierSystemSegmentId = getRequiredSegmentId(`supplier`);
 const requiredSegmentIds = requiredSegmentDefinitions.map((requiredSegment) => requiredSegment.id);
 const pool = ensurePool();
 
@@ -66,28 +54,24 @@ const ensureDefaultSegments = async () => {
 
   try {
     await client.query(`BEGIN;`);
-    await client.query(
-      `
-        INSERT INTO "segment" (
-          "id",
-          "label",
-          "order",
-          "required",
-          "type"
-        )
-        VALUES
-          ($1, 'Entity', 0, true, 'entity'),
-          ($2, 'Account', 1, true, 'account'),
-          ($3, 'Customer', 2, true, 'customer'),
-          ($4, 'Supplier', 3, true, 'supplier')
-        ON CONFLICT ("id") DO NOTHING;
-      `,
-      [entitySystemSegmentId, accountSystemSegmentId, customerSystemSegmentId, supplierSystemSegmentId],
-    );
+    for (const requiredSegment of requiredSegmentDefinitions) {
+      await client.query(
+        `
+          INSERT INTO "segment" (
+            "id",
+            "label",
+            "order",
+            "required",
+            "type"
+          )
+          VALUES ($1, $2, $3, true, $4)
+          ON CONFLICT ("id") DO NOTHING;
+        `,
+        [requiredSegment.id, requiredSegment.label, requiredSegment.order, requiredSegment.type],
+      );
 
-    for (const requiredSegmentId of requiredSegmentIds) {
-      await client.query(`ALTER TABLE "gl" ADD COLUMN IF NOT EXISTS ${escapeIdentifier(requiredSegmentId)} text;`);
-      await client.query(`CREATE INDEX IF NOT EXISTS ${escapeIdentifier(getGlSegmentIndexName(requiredSegmentId))} ON "gl" (${escapeIdentifier(requiredSegmentId)});`);
+      await client.query(`ALTER TABLE "gl" ADD COLUMN IF NOT EXISTS ${escapeIdentifier(requiredSegment.id)} text;`);
+      await client.query(`CREATE INDEX IF NOT EXISTS ${escapeIdentifier(getGlSegmentIndexName(requiredSegment.id))} ON "gl" (${escapeIdentifier(requiredSegment.id)});`);
     }
 
     await client.query(`COMMIT;`);
