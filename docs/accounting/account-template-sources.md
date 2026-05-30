@@ -1,8 +1,8 @@
 # Account Template Authoring Guide (Manual JSON)
 
-_Last reviewed: 2026-05-28 (UTC)_
+_Last reviewed: 2026-05-29 (UTC)_
 
-Embedded account template JSON files were intentionally removed. Teams should now curate and author template JSON files manually with strict source validation.
+Curated account template JSON files must be authored with strict source validation, schema validation, and documented provenance before they are enabled for tenant import workflows.
 
 ## Where to source authoritative structure
 
@@ -23,12 +23,20 @@ Use these sources as starting points for hierarchy design and terminology:
 - **Spain PGC-oriented**
   - ICAC and official PGC publications.
 
+
+## Curated templates currently restored
+
+- `us-gaap`: standalone US GAAP enterprise baseline in `src/components/member/templates/us-gaap.json`.
+- `us-gaap-enterprise-extensions`: optional management-accounting extension layer in `src/components/member/templates/us-gaap-enterprise-extensions.json`; apply after `us-gaap`.
+
+Source audit, validation decisions, and finance-team adoption notes are documented in `docs/accounting/us-gaap-coa-source-audit.md`. Validation output is generated at `docs/accounting/validation/us-gaap-coa-validation-report.md` by running `npm run run -- scripts/validate-account-templates.ts`.
+
 ## Required safety checks before authoring JSON
 
 1. Verify publishing authority (official or quasi-official).
 2. Verify licensing/redistribution rights.
 3. Record source URL and access date in this document.
-4. Normalize naming/codes and map to Reados `type` (`asset|liability|revenue|expense`).
+4. Normalize naming/codes and map to Reados `type` (`asset|liability|equity|revenue|expense`).
 5. Validate JSON against runtime Zod schema before shipping.
 
 ## JSON shape to author
@@ -47,7 +55,11 @@ Each file should match this structure:
       "name": "Assets",
       "description": "Statement bucket",
       "parentCode": null,
-      "type": "asset"
+      "type": "asset",
+      "reporting": "debit",
+      "level": 1,
+      "active": true,
+      "tags": ["statement:balance-sheet", "section:asset"]
     }
   ]
 }
@@ -64,5 +76,5 @@ Each file should match this structure:
 ## Current runtime status
 
 - Backend member creation is enabled.
-- Template listing currently returns documented template identifiers.
-- Template apply endpoint intentionally rejects until curated JSON files are reintroduced with full provenance.
+- Template listing reads curated JSON templates from `src/components/member/templates/`.
+- Template apply endpoint upserts curated template members by stable account code for idempotent re-application.

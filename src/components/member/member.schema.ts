@@ -43,6 +43,10 @@ export const accountTemplateSchema = z.object({
   label: z.string().trim().min(1),
   description: z.string().trim().min(1),
   source: z.enum([`embedded`, `public-dataset`]),
+  jurisdiction: z.string().trim().min(1).optional(),
+  basis: z.string().trim().min(1).optional(),
+  version: z.string().trim().min(1).optional(),
+  extends: z.string().trim().min(1).optional(),
 });
 
 export const applyMemberTemplateBodySchema = z.object({
@@ -56,6 +60,10 @@ export const accountTemplateMemberSchema = z.object({
   description: z.string().trim().min(1),
   parentCode: z.string().trim().min(1).nullable(),
   type: accountMemberTypeSchema,
+  reporting: accountMemberReportingSchema,
+  level: z.number().int().positive(),
+  active: z.boolean(),
+  tags: z.array(z.string().trim().min(1)).min(1),
 });
 
 export const accountTemplateDocumentSchema = accountTemplateSchema.extend({

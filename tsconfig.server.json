@@ -9,18 +9,16 @@
     "paths": {
       "@components/*": ["./src/components/*"]
     },
-
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
     "verbatimModuleSyntax": true,
     "moduleDetection": "force",
     "noEmit": true,
-
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src/*.server.ts", "src/**/*.server.ts", "src/components/**/*.ts", "src/**/*.d.ts"],
+  "include": ["src/*.server.ts", "src/**/*.server.ts", "src/components/**/*.ts", "src/**/*.d.ts", "scripts/**/*.ts"],
   "exclude": ["src/components/**/*.route.ts"]
 }

@@ -1,14 +1,34 @@
+import { readFile } from "node:fs/promises";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
+
 import { ensurePool } from "@components/postgres/pool.ts";
 import type { SegmentType } from "@components/segment/segment.schema.ts";
-import type { AccountTemplate, CreateMemberBody, Member, MemberOwnershipRow, MemberRow, UpdateMemberBody } from "./member.schema.ts";
+import { accountTemplateDocumentSchema, type AccountTemplate, type CreateMemberBody, type Member, type MemberOwnershipRow, type MemberRow, type UpdateMemberBody } from "./member.schema.ts";
 
 const pool = ensurePool();
+const templateDirectory = join(dirname(fileURLToPath(import.meta.url)), `templates`);
+const accountTemplateFiles = [`us-gaap.json`, `us-gaap-enterprise-extensions.json`] as const;
 
 const asMember = (row: MemberRow): Member => ({ ...row, createdAt: row.createdAt.toISOString(), updatedAt: row.updatedAt.toISOString() });
 
 const getSegmentType = async (segmentId: string): Promise<SegmentType | null> => {
   const result = await pool.query<{ type: SegmentType }>(`SELECT "type" FROM "segment" WHERE "id" = $1 LIMIT 1;`, [segmentId]);
   return result.rows[0]?.type ?? null;
+};
+
+const readAccountTemplateDocuments = async () => {
+  return Promise.all(
+    accountTemplateFiles.map(async (fileName) => {
+      const document = JSON.parse(await readFile(join(templateDirectory, fileName), `utf8`));
+      return accountTemplateDocumentSchema.parse(document);
+    }),
+  );
+};
+
+const getAccountTemplateDocument = async (templateId: string) => {
+  const documents = await readAccountTemplateDocuments();
+  return documents.find((document) => document.id === templateId) ?? null;
 };
 
 const isDescendantMember = async ({ candidateId, memberId, segmentId }: { candidateId: string; memberId: string; segmentId: string }) => {
@@ -103,13 +123,53 @@ export const deleteMember = async (id: string) => {
 };
 
 export const listAccountTemplates = async (): Promise<AccountTemplate[]> => {
-  return [
-    { id: `tr-tek-duzen`, label: `Turkey Tek Düzen`, description: `See docs/accounting/account-template-sources.md for official sourcing guidance and manual JSON authoring rules.`, source: `embedded` },
-    { id: `ifrs`, label: `IFRS`, description: `See docs/accounting/account-template-sources.md for official sourcing guidance and manual JSON authoring rules.`, source: `embedded` },
-    { id: `us-gaap`, label: `US GAAP`, description: `See docs/accounting/account-template-sources.md for official sourcing guidance and manual JSON authoring rules.`, source: `embedded` },
-  ];
+  const documents = await readAccountTemplateDocuments();
+  return documents.map(({ members, ...template }) => {
+    void members;
+    return template;
+  });
 };
 
 export const applyAccountTemplate = async (segmentId: string, templateId: string) => {
-  throw new Error(`Embedded account templates were removed for segment "${segmentId}" and template "${templateId}". Create template JSON files manually using docs/accounting/account-template-sources.md guidance.`);
+  const segmentType = await getSegmentType(segmentId);
+  if (segmentType !== `account`) throw new Error(`Account templates can only be applied to account segments.`);
+
+  const template = await getAccountTemplateDocument(templateId);
+  if (!template) throw new Error(`Account template was not found.`);
+
+  const client = await pool.connect();
+
+  try {
+    await client.query(`BEGIN;`);
+    const memberIdsByCode = new Map<string, string>();
+    const existingResult = await client.query<Pick<MemberRow, "id" | "code">>(`SELECT "id", "code" FROM "member" WHERE "segment" = $1;`, [segmentId]);
+    for (const member of existingResult.rows) memberIdsByCode.set(member.code, member.id);
+
+    for (const member of [...template.members].sort((left, right) => left.level - right.level || left.code.localeCompare(right.code))) {
+      const parent = member.parentCode ? memberIdsByCode.get(member.parentCode) : null;
+      if (member.parentCode && !parent) throw new Error(`Template parent ${member.parentCode} must be applied before child ${member.code}.`);
+
+      const result = await client.query<Pick<MemberRow, "id" | "code">>(
+        `INSERT INTO "member" ("segment", "code", "name", "description", "parent", "type", "reporting")
+        VALUES ($1, $2, $3, $4, $5, $6, $7)
+        ON CONFLICT ("segment", "code") DO UPDATE
+        SET "name" = EXCLUDED."name",
+          "description" = EXCLUDED."description",
+          "parent" = EXCLUDED."parent",
+          "type" = EXCLUDED."type",
+          "reporting" = EXCLUDED."reporting"
+        RETURNING "id", "code";`,
+        [segmentId, member.code, member.name, member.description, parent, member.type, member.reporting],
+      );
+      const applied = result.rows[0];
+      memberIdsByCode.set(applied.code, applied.id);
+    }
+
+    await client.query(`COMMIT;`);
+  } catch (error) {
+    await client.query(`ROLLBACK;`);
+    throw error;
+  } finally {
+    client.release();
+  }
 };
