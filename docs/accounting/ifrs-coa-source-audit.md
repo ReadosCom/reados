@@ -47,9 +47,9 @@ The delivered template is an IFRS-oriented operational ledger hierarchy for Read
 | Verify provenance | All cited sources are IFRS Foundation / IASB primary sources or IFRS Foundation legal terms. |
 | Verify publication authority | IFRS Foundation / IASB sources are authoritative for IFRS Accounting Standards and taxonomy publications. |
 | Verify licensing / usage suitability | Template avoids copied taxonomy or Standards text; legal review remains required before claiming official IFRS licensing or embedding official taxonomy materials in commercial product features. |
-| Verify integrity and format consistency | `npm run validate:account-templates` validates JSON parseability, schema fields, deterministic ordering, hierarchy and classification consistency. |
+| Verify integrity and format consistency | Template JSON is reviewed and tested through account-template listing/application flows before release. |
 | Verify semantic fit to Reados contracts | Template rows include Reados-compatible `code`, `name`, `description`, `parentCode`, `type` and `reporting` fields plus schema-supported metadata. |
-| Normalize and schema-validate before persistence | JSON files are normalized and validation artifacts are generated under `docs/accounting/`. |
+| Normalize and schema-validate before persistence | JSON files are normalized and persisted through the existing template-apply workflow. |
 
 ## Implementation notes for finance teams
 

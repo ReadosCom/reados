@@ -1,0 +1,172 @@
+{
+  "id": "us-gaap-enterprise-extensions",
+  "label": "US GAAP Enterprise Extensions",
+  "description": "Optional enterprise extension layer for specialized management-accounting accounts. Apply only after the core us-gaap template.",
+  "source": "embedded",
+  "jurisdiction": "US",
+  "basis": "US GAAP-oriented optional management extension",
+  "version": "2026.05",
+  "members": [
+    {
+      "code": "1160",
+      "name": "Cash in Transit",
+      "description": "Optional enterprise extension account for cash in transit.",
+      "parentCode": "1100",
+      "type": "asset",
+      "reporting": "debit"
+    },
+    {
+      "code": "1280",
+      "name": "Unbilled Receivables",
+      "description": "Optional enterprise extension account for unbilled receivables.",
+      "parentCode": "1200",
+      "type": "asset",
+      "reporting": "debit"
+    },
+    {
+      "code": "1360",
+      "name": "Spare Parts Inventory",
+      "description": "Optional enterprise extension account for spare parts inventory.",
+      "parentCode": "1300",
+      "type": "asset",
+      "reporting": "debit"
+    },
+    {
+      "code": "1590",
+      "name": "PPE Clearing",
+      "description": "Optional enterprise extension account for ppe clearing.",
+      "parentCode": "1500",
+      "type": "asset",
+      "reporting": "debit"
+    },
+    {
+      "code": "1960",
+      "name": "Implementation Costs in Cloud Arrangements",
+      "description": "Optional enterprise extension account for implementation costs in cloud arrangements.",
+      "parentCode": "1900",
+      "type": "asset",
+      "reporting": "debit"
+    },
+    {
+      "code": "2180",
+      "name": "Escheatment Payable",
+      "description": "Optional enterprise extension account for escheatment payable.",
+      "parentCode": "2100",
+      "type": "liability",
+      "reporting": "credit"
+    },
+    {
+      "code": "2280",
+      "name": "Restructuring Accrual - Current",
+      "description": "Optional enterprise extension account for restructuring accrual - current.",
+      "parentCode": "2200",
+      "type": "liability",
+      "reporting": "credit"
+    },
+    {
+      "code": "2760",
+      "name": "Restructuring Accrual - Noncurrent",
+      "description": "Optional enterprise extension account for restructuring accrual - noncurrent.",
+      "parentCode": "2700",
+      "type": "liability",
+      "reporting": "credit"
+    },
+    {
+      "code": "3160",
+      "name": "Partner Capital",
+      "description": "Optional enterprise extension account for partner capital.",
+      "parentCode": "3100",
+      "type": "equity",
+      "reporting": "credit"
+    },
+    {
+      "code": "4330",
+      "name": "Professional Services Subscription Revenue",
+      "description": "Optional enterprise extension account for professional services subscription revenue.",
+      "parentCode": "4300",
+      "type": "revenue",
+      "reporting": "credit"
+    },
+    {
+      "code": "4540",
+      "name": "Marketplace Revenue",
+      "description": "Optional enterprise extension account for marketplace revenue.",
+      "parentCode": "4500",
+      "type": "revenue",
+      "reporting": "credit"
+    },
+    {
+      "code": "5530",
+      "name": "Payment Processing Cost of Revenue",
+      "description": "Optional enterprise extension account for payment processing cost of revenue.",
+      "parentCode": "5500",
+      "type": "expense",
+      "reporting": "debit"
+    },
+    {
+      "code": "6160",
+      "name": "Partner Marketing Expense",
+      "description": "Optional enterprise extension account for partner marketing expense.",
+      "parentCode": "6100",
+      "type": "expense",
+      "reporting": "debit"
+    },
+    {
+      "code": "6250",
+      "name": "Capitalized Software Contra Expense",
+      "description": "Optional enterprise extension account for capitalized software contra expense.",
+      "parentCode": "6200",
+      "type": "expense",
+      "reporting": "debit"
+    },
+    {
+      "code": "6380",
+      "name": "Regulatory Filing Fees",
+      "description": "Optional enterprise extension account for regulatory filing fees.",
+      "parentCode": "6300",
+      "type": "expense",
+      "reporting": "debit"
+    },
+    {
+      "code": "6560",
+      "name": "Security and Monitoring",
+      "description": "Optional enterprise extension account for security and monitoring.",
+      "parentCode": "6500",
+      "type": "expense",
+      "reporting": "debit"
+    },
+    {
+      "code": "6650",
+      "name": "Data and Analytics Tools",
+      "description": "Optional enterprise extension account for data and analytics tools.",
+      "parentCode": "6600",
+      "type": "expense",
+      "reporting": "debit"
+    },
+    {
+      "code": "6830",
+      "name": "Collections Expense",
+      "description": "Optional enterprise extension account for collections expense.",
+      "parentCode": "6800",
+      "type": "expense",
+      "reporting": "debit"
+    },
+    {
+      "code": "7340",
+      "name": "Government Grant Income",
+      "description": "Optional enterprise extension account for government grant income.",
+      "parentCode": "7300",
+      "type": "revenue",
+      "reporting": "credit"
+    },
+    {
+      "code": "7850",
+      "name": "Restructuring Expense",
+      "description": "Optional enterprise extension account for restructuring expense.",
+      "parentCode": "7800",
+      "type": "expense",
+      "reporting": "debit"
+    }
+  ],
+  "extensionOf": "us-gaap"
+}

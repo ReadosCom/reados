@@ -9,6 +9,8 @@ const accountTemplatePaths = new Map([
   [`tr-tek-duzen`, new URL(`./account-templates/tr-tek-duzen.json`, import.meta.url)],
   [`ifrs-global-core`, new URL(`./account-templates/ifrs-global-core.json`, import.meta.url)],
   [`ifrs-global-enterprise-extension`, new URL(`./account-templates/ifrs-global-enterprise-extension.json`, import.meta.url)],
+  [`us-gaap`, new URL(`./account-templates/us-gaap.json`, import.meta.url)],
+  [`us-gaap-enterprise-extensions`, new URL(`./account-templates/us-gaap-enterprise-extensions.json`, import.meta.url)],
 ]);
 
 const asMember = (row: MemberRow): Member => ({ ...row, createdAt: row.createdAt.toISOString(), updatedAt: row.updatedAt.toISOString() });
@@ -127,16 +129,15 @@ export const deleteMember = async (id: string) => {
 };
 
 export const listAccountTemplates = async (): Promise<AccountTemplate[]> => {
-  const trTekDuzen = await readAccountTemplate(`tr-tek-duzen`);
-  const ifrsGlobalCore = await readAccountTemplate(`ifrs-global-core`);
-  const ifrsGlobalEnterpriseExtension = await readAccountTemplate(`ifrs-global-enterprise-extension`);
+  const templates = await Promise.all([...accountTemplatePaths.keys()].map((templateId) => readAccountTemplate(templateId)));
 
-  return [
-    { id: trTekDuzen.id, label: trTekDuzen.label, description: trTekDuzen.description, source: trTekDuzen.source },
-    { id: ifrsGlobalCore.id, label: ifrsGlobalCore.label, description: ifrsGlobalCore.description, source: ifrsGlobalCore.source },
-    { id: ifrsGlobalEnterpriseExtension.id, label: ifrsGlobalEnterpriseExtension.label, description: ifrsGlobalEnterpriseExtension.description, source: ifrsGlobalEnterpriseExtension.source },
-    { id: `us-gaap`, label: `US GAAP`, description: `See docs/accounting/account-template-sources.md for official sourcing guidance and manual JSON authoring rules.`, source: `embedded` },
-  ];
+  return templates.map((t) => ({
+    id: t.id,
+    label: t.label,
+    description: t.description,
+    source: t.source,
+    extensionOf: t.extensionOf,
+  }));
 };
 
 export const applyAccountTemplate = async (segmentId: string, templateId: string) => {

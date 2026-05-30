@@ -44,6 +44,9 @@ export const accountTemplateSchema = z.object({
   description: z.string().trim().min(1),
   extensionOf: z.string().trim().min(1).optional(),
   source: z.enum([`embedded`, `public-dataset`]),
+  jurisdiction: z.string().trim().min(1).optional(),
+  basis: z.string().trim().min(1).optional(),
+  version: z.string().trim().min(1).optional(),
 });
 
 export const listAccountTemplatesResponseSchema = apiSuccessSchema(z.array(accountTemplateSchema));
@@ -71,8 +74,6 @@ export type AccountTemplateDocument = AccountTemplate & {
   standard: string;
   version: string;
 };
-
-export class MemberValidationError extends Error {}
 
 export type MemberType = z.infer<typeof accountMemberTypeSchema>;
 export type MemberReporting = z.infer<typeof accountMemberReportingSchema>;

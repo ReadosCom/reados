@@ -254,7 +254,7 @@ test(`accounting module APIs cover success, validation, and domain error paths`,
   const templateResponse = await request.get(`${erpOrigin()}/accounting/member/templates`);
   expect(templateResponse.ok()).toBeTruthy();
   const templates = apiSuccessSchema(z.array(accountTemplateSchema)).parse(await templateResponse.json()).data;
-  expect(templates.map((template) => template.id)).toEqual([`tr-tek-duzen`, `ifrs-global-core`, `ifrs-global-enterprise-extension`, `us-gaap`]);
+  expect(templates.map((template) => template.id)).toEqual([`tr-tek-duzen`, `ifrs-global-core`, `ifrs-global-enterprise-extension`, `us-gaap`, `us-gaap-enterprise-extensions`]);
 
   const applyTemplateResponse = await request.post(`${erpOrigin()}/accounting/member/templates/apply`, {
     data: { segmentId: accountSegmentId, templateId: templates[0]?.id },
