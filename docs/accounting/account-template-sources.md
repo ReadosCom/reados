@@ -114,7 +114,6 @@ Each file should match this structure:
   - `src/components/member/account-templates/ifrs-global-core.json`
   - `src/components/member/account-templates/ifrs-global-enterprise-extension.json`
 - Source audit: `docs/accounting/ifrs-coa-source-audit.md`
-- Validation report: `docs/accounting/ifrs-coa-validation-report.md` and `docs/accounting/ifrs-coa-validation-report.json`
 - Last source access date: 2026-05-29 (UTC)
 - Decision: manually authored IFRS-oriented Reados template, not copied from IFRS Taxonomy files or any jurisdictional uniform CoA.
 
