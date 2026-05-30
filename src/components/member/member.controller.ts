@@ -105,7 +105,18 @@ export const deleteMember = async (id: string) => {
 export const listAccountTemplates = async (): Promise<AccountTemplate[]> => {
   return [
     { id: `tr-tek-duzen`, label: `Turkey Tek Düzen`, description: `See docs/accounting/account-template-sources.md for official sourcing guidance and manual JSON authoring rules.`, source: `embedded` },
-    { id: `ifrs`, label: `IFRS`, description: `See docs/accounting/account-template-sources.md for official sourcing guidance and manual JSON authoring rules.`, source: `embedded` },
+    {
+      id: `ifrs-global-core`,
+      label: `IFRS Global Core`,
+      description: `Standalone IFRS-oriented global baseline. See docs/accounting/ifrs-coa-source-audit.md and docs/accounting/ifrs-coa-validation-report.md.`,
+      source: `embedded`,
+    },
+    {
+      id: `ifrs-global-enterprise-extension`,
+      label: `IFRS Global Enterprise Extension`,
+      description: `Optional IFRS-oriented enterprise extension layer for the IFRS Global Core baseline.`,
+      source: `embedded`,
+    },
     { id: `us-gaap`, label: `US GAAP`, description: `See docs/accounting/account-template-sources.md for official sourcing guidance and manual JSON authoring rules.`, source: `embedded` },
   ];
 };

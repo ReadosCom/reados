@@ -50,15 +50,36 @@ export const applyMemberTemplateBodySchema = z.object({
   templateId: z.string().trim().min(1),
 });
 
+export const accountTemplateStatementSchema = z.enum([`financial-position`, `profit-or-loss`, `other-comprehensive-income`, `cash-flows`, `equity-changes`, `management-reporting`]);
+export const accountTemplateClassificationSchema = z.enum([`current`, `non-current`, `operating`, `investing`, `financing`, `income-tax`, `discontinued-operations`, `contra`, `control`, `detail`, `subtotal`, `extension`]);
+
 export const accountTemplateMemberSchema = z.object({
   code: z.string().trim().min(1),
   name: z.string().trim().min(1),
   description: z.string().trim().min(1),
   parentCode: z.string().trim().min(1).nullable(),
+  level: z.number().int().positive(),
   type: accountMemberTypeSchema,
+  reporting: accountMemberReportingSchema,
+  statement: accountTemplateStatementSchema,
+  classificationTags: z.array(accountTemplateClassificationSchema).min(1),
+  active: z.boolean(),
+  ifrsReferences: z.array(z.string().trim().min(1)).min(1),
+});
+
+export const accountTemplateMetadataSchema = z.object({
+  accessDate: z.string().trim().min(1),
+  baseline: z.enum([`core`, `optional-extension`]),
+  framework: z.literal(`IFRS Accounting Standards`),
+  idempotencyKey: z.string().trim().min(1),
+  independentOfJurisdictionalCoa: z.boolean(),
+  intendedUse: z.string().trim().min(1),
+  ordering: z.literal(`code-ascending`),
 });
 
 export const accountTemplateDocumentSchema = accountTemplateSchema.extend({
+  extensionOf: z.string().trim().min(1).optional(),
+  metadata: accountTemplateMetadataSchema,
   members: z.array(accountTemplateMemberSchema).min(1),
 });
 

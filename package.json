@@ -21,7 +21,8 @@
     "seed": "npm run run -- src/seed.server.ts",
     "run": "tsx",
     "watch": "tsx watch --clear-screen=false",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "validate:account-templates": "node scripts/validate-account-templates.mjs"
   },
   "dependencies": {
     "@fontsource-variable/inter": "^5.2.8",
