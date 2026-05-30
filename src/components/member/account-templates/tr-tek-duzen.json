@@ -24,10 +24,7 @@
       "description": "Official class/group heading.",
       "parentCode": null,
       "type": "asset",
-      "reporting": "debit",
-      "level": 1,
-      "active": true,
-      "classificationTags": ["class", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "10",
@@ -35,10 +32,7 @@
       "description": "Official class/group heading.",
       "parentCode": "1",
       "type": "asset",
-      "reporting": "debit",
-      "level": 2,
-      "active": true,
-      "classificationTags": ["group", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "100",
@@ -46,10 +40,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "10",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "101",
@@ -57,10 +48,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "10",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "102",
@@ -68,10 +56,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "10",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "103",
@@ -79,10 +64,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "10",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet", "contra"]
+      "reporting": "debit"
     },
     {
       "code": "108",
@@ -90,10 +72,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "10",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "11",
@@ -101,10 +80,7 @@
       "description": "Official class/group heading.",
       "parentCode": "1",
       "type": "asset",
-      "reporting": "debit",
-      "level": 2,
-      "active": true,
-      "classificationTags": ["group", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "110",
@@ -112,10 +88,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "11",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "111",
@@ -123,10 +96,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "11",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "112",
@@ -134,10 +104,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "11",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "118",
@@ -145,10 +112,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "11",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "119",
@@ -156,10 +120,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "11",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet", "contra"]
+      "reporting": "debit"
     },
     {
       "code": "12",
@@ -167,10 +128,7 @@
       "description": "Official class/group heading.",
       "parentCode": "1",
       "type": "asset",
-      "reporting": "debit",
-      "level": 2,
-      "active": true,
-      "classificationTags": ["group", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "120",
@@ -178,10 +136,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "12",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet", "customer", "sales-segment-compatible"]
+      "reporting": "debit"
     },
     {
       "code": "121",
@@ -189,10 +144,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "12",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "122",
@@ -200,10 +152,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "12",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet", "contra"]
+      "reporting": "debit"
     },
     {
       "code": "124",
@@ -211,10 +160,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "12",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet", "contra"]
+      "reporting": "debit"
     },
     {
       "code": "126",
@@ -222,10 +168,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "12",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "127",
@@ -233,10 +176,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "12",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "128",
@@ -244,10 +184,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "12",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "129",
@@ -255,10 +192,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "12",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet", "contra"]
+      "reporting": "debit"
     },
     {
       "code": "13",
@@ -266,10 +200,7 @@
       "description": "Official class/group heading.",
       "parentCode": "1",
       "type": "asset",
-      "reporting": "debit",
-      "level": 2,
-      "active": true,
-      "classificationTags": ["group", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "131",
@@ -277,10 +208,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "13",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "132",
@@ -288,10 +216,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "13",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "133",
@@ -299,10 +224,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "13",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "135",
@@ -310,10 +232,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "13",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "136",
@@ -321,10 +240,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "13",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "137",
@@ -332,10 +248,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "13",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet", "contra"]
+      "reporting": "debit"
     },
     {
       "code": "138",
@@ -343,10 +256,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "13",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "139",
@@ -354,10 +264,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "13",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet", "contra"]
+      "reporting": "debit"
     },
     {
       "code": "15",
@@ -365,10 +272,7 @@
       "description": "Official class/group heading.",
       "parentCode": "1",
       "type": "asset",
-      "reporting": "debit",
-      "level": 2,
-      "active": true,
-      "classificationTags": ["group", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "150",
@@ -376,10 +280,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "15",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "151",
@@ -387,10 +288,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "15",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "152",
@@ -398,10 +296,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "15",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "153",
@@ -409,10 +304,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "15",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "157",
@@ -420,10 +312,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "15",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "158",
@@ -431,10 +320,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "15",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet", "contra"]
+      "reporting": "debit"
     },
     {
       "code": "159",
@@ -442,10 +328,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "15",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "17",
@@ -453,10 +336,7 @@
       "description": "Official class/group heading.",
       "parentCode": "1",
       "type": "asset",
-      "reporting": "debit",
-      "level": 2,
-      "active": true,
-      "classificationTags": ["group", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "170",
@@ -464,10 +344,7 @@
       "description": "Expanded from the official 170-177 construction cost ledger range; use subaccounts/project dimensions for individual long-term construction projects.",
       "parentCode": "17",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "171",
@@ -475,10 +352,7 @@
       "description": "Expanded from the official 170-177 construction cost ledger range; use subaccounts/project dimensions for individual long-term construction projects.",
       "parentCode": "17",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "172",
@@ -486,10 +360,7 @@
       "description": "Expanded from the official 170-177 construction cost ledger range; use subaccounts/project dimensions for individual long-term construction projects.",
       "parentCode": "17",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "173",
@@ -497,10 +368,7 @@
       "description": "Expanded from the official 170-177 construction cost ledger range; use subaccounts/project dimensions for individual long-term construction projects.",
       "parentCode": "17",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "174",
@@ -508,10 +376,7 @@
       "description": "Expanded from the official 170-177 construction cost ledger range; use subaccounts/project dimensions for individual long-term construction projects.",
       "parentCode": "17",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "175",
@@ -519,10 +384,7 @@
       "description": "Expanded from the official 170-177 construction cost ledger range; use subaccounts/project dimensions for individual long-term construction projects.",
       "parentCode": "17",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "176",
@@ -530,10 +392,7 @@
       "description": "Expanded from the official 170-177 construction cost ledger range; use subaccounts/project dimensions for individual long-term construction projects.",
       "parentCode": "17",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "177",
@@ -541,10 +400,7 @@
       "description": "Expanded from the official 170-177 construction cost ledger range; use subaccounts/project dimensions for individual long-term construction projects.",
       "parentCode": "17",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "178",
@@ -552,10 +408,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "17",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "179",
@@ -563,10 +416,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "17",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "18",
@@ -574,10 +424,7 @@
       "description": "Official class/group heading.",
       "parentCode": "1",
       "type": "asset",
-      "reporting": "debit",
-      "level": 2,
-      "active": true,
-      "classificationTags": ["group", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "180",
@@ -585,10 +432,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "18",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "181",
@@ -596,10 +440,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "18",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "19",
@@ -607,10 +448,7 @@
       "description": "Official class/group heading.",
       "parentCode": "1",
       "type": "asset",
-      "reporting": "debit",
-      "level": 2,
-      "active": true,
-      "classificationTags": ["group", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "190",
@@ -618,10 +456,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "19",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "191",
@@ -629,10 +464,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "19",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "192",
@@ -640,10 +472,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "19",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "193",
@@ -651,10 +480,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "19",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "195",
@@ -662,10 +488,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "19",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "196",
@@ -673,10 +496,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "19",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "197",
@@ -684,10 +504,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "19",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "198",
@@ -695,10 +512,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "19",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "199",
@@ -706,10 +520,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "19",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet", "contra"]
+      "reporting": "debit"
     },
     {
       "code": "2",
@@ -717,10 +528,7 @@
       "description": "Official class/group heading.",
       "parentCode": null,
       "type": "asset",
-      "reporting": "debit",
-      "level": 1,
-      "active": true,
-      "classificationTags": ["class", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "22",
@@ -728,10 +536,7 @@
       "description": "Official class/group heading.",
       "parentCode": "2",
       "type": "asset",
-      "reporting": "debit",
-      "level": 2,
-      "active": true,
-      "classificationTags": ["group", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "220",
@@ -739,10 +544,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "22",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet", "customer", "sales-segment-compatible"]
+      "reporting": "debit"
     },
     {
       "code": "221",
@@ -750,10 +552,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "22",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "222",
@@ -761,10 +560,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "22",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet", "contra"]
+      "reporting": "debit"
     },
     {
       "code": "224",
@@ -772,10 +568,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "22",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet", "contra"]
+      "reporting": "debit"
     },
     {
       "code": "226",
@@ -783,10 +576,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "22",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "229",
@@ -794,10 +584,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "22",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet", "contra"]
+      "reporting": "debit"
     },
     {
       "code": "23",
@@ -805,10 +592,7 @@
       "description": "Official class/group heading.",
       "parentCode": "2",
       "type": "asset",
-      "reporting": "debit",
-      "level": 2,
-      "active": true,
-      "classificationTags": ["group", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "231",
@@ -816,10 +600,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "23",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "232",
@@ -827,10 +608,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "23",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "233",
@@ -838,10 +616,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "23",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "235",
@@ -849,10 +624,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "23",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "236",
@@ -860,10 +632,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "23",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "237",
@@ -871,10 +640,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "23",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet", "contra"]
+      "reporting": "debit"
     },
     {
       "code": "239",
@@ -882,10 +648,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "23",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet", "contra"]
+      "reporting": "debit"
     },
     {
       "code": "24",
@@ -893,10 +656,7 @@
       "description": "Official class/group heading.",
       "parentCode": "2",
       "type": "asset",
-      "reporting": "debit",
-      "level": 2,
-      "active": true,
-      "classificationTags": ["group", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "240",
@@ -904,10 +664,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "24",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "241",
@@ -915,10 +672,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "24",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet", "contra"]
+      "reporting": "debit"
     },
     {
       "code": "242",
@@ -926,10 +680,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "24",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "243",
@@ -937,10 +688,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "24",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet", "contra"]
+      "reporting": "debit"
     },
     {
       "code": "244",
@@ -948,10 +696,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "24",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet", "contra"]
+      "reporting": "debit"
     },
     {
       "code": "245",
@@ -959,10 +704,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "24",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "246",
@@ -970,10 +712,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "24",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet", "contra"]
+      "reporting": "debit"
     },
     {
       "code": "247",
@@ -981,10 +720,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "24",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet", "contra"]
+      "reporting": "debit"
     },
     {
       "code": "248",
@@ -992,10 +728,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "24",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "249",
@@ -1003,10 +736,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "24",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet", "contra"]
+      "reporting": "debit"
     },
     {
       "code": "25",
@@ -1014,10 +744,7 @@
       "description": "Official class/group heading.",
       "parentCode": "2",
       "type": "asset",
-      "reporting": "debit",
-      "level": 2,
-      "active": true,
-      "classificationTags": ["group", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "250",
@@ -1025,10 +752,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "25",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "251",
@@ -1036,10 +760,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "25",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "252",
@@ -1047,10 +768,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "25",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "253",
@@ -1058,10 +776,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "25",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "254",
@@ -1069,10 +784,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "25",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "255",
@@ -1080,10 +792,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "25",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "256",
@@ -1091,10 +800,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "25",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "257",
@@ -1102,10 +808,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "25",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet", "contra"]
+      "reporting": "debit"
     },
     {
       "code": "258",
@@ -1113,10 +816,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "25",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "259",
@@ -1124,10 +824,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "25",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "26",
@@ -1135,10 +832,7 @@
       "description": "Official class/group heading.",
       "parentCode": "2",
       "type": "asset",
-      "reporting": "debit",
-      "level": 2,
-      "active": true,
-      "classificationTags": ["group", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "260",
@@ -1146,10 +840,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "26",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "261",
@@ -1157,10 +848,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "26",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "262",
@@ -1168,10 +856,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "26",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "263",
@@ -1179,10 +864,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "26",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "264",
@@ -1190,10 +872,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "26",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "267",
@@ -1201,10 +880,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "26",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "268",
@@ -1212,10 +888,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "26",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet", "contra"]
+      "reporting": "debit"
     },
     {
       "code": "269",
@@ -1223,10 +896,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "26",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "27",
@@ -1234,10 +904,7 @@
       "description": "Official class/group heading.",
       "parentCode": "2",
       "type": "asset",
-      "reporting": "debit",
-      "level": 2,
-      "active": true,
-      "classificationTags": ["group", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "271",
@@ -1245,10 +912,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "27",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "272",
@@ -1256,10 +920,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "27",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "277",
@@ -1267,10 +928,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "27",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "278",
@@ -1278,10 +936,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "27",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet", "contra"]
+      "reporting": "debit"
     },
     {
       "code": "279",
@@ -1289,10 +944,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "27",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "28",
@@ -1300,10 +952,7 @@
       "description": "Official class/group heading.",
       "parentCode": "2",
       "type": "asset",
-      "reporting": "debit",
-      "level": 2,
-      "active": true,
-      "classificationTags": ["group", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "280",
@@ -1311,10 +960,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "28",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "281",
@@ -1322,10 +968,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "28",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "29",
@@ -1333,10 +976,7 @@
       "description": "Official class/group heading.",
       "parentCode": "2",
       "type": "asset",
-      "reporting": "debit",
-      "level": 2,
-      "active": true,
-      "classificationTags": ["group", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "291",
@@ -1344,10 +984,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "29",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "292",
@@ -1355,10 +992,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "29",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "293",
@@ -1366,10 +1000,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "29",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "294",
@@ -1377,10 +1008,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "29",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "295",
@@ -1388,10 +1016,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "29",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "297",
@@ -1399,10 +1024,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "29",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "debit"
     },
     {
       "code": "298",
@@ -1410,10 +1032,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "29",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet", "contra"]
+      "reporting": "debit"
     },
     {
       "code": "299",
@@ -1421,10 +1040,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "29",
       "type": "asset",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet", "contra"]
+      "reporting": "debit"
     },
     {
       "code": "3",
@@ -1432,10 +1048,7 @@
       "description": "Official class/group heading.",
       "parentCode": null,
       "type": "liability",
-      "reporting": "credit",
-      "level": 1,
-      "active": true,
-      "classificationTags": ["class", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "30",
@@ -1443,10 +1056,7 @@
       "description": "Official class/group heading.",
       "parentCode": "3",
       "type": "liability",
-      "reporting": "credit",
-      "level": 2,
-      "active": true,
-      "classificationTags": ["group", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "300",
@@ -1454,10 +1064,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "30",
       "type": "liability",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "301",
@@ -1465,10 +1072,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "30",
       "type": "liability",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "302",
@@ -1476,10 +1080,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "30",
       "type": "liability",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet", "contra"]
+      "reporting": "credit"
     },
     {
       "code": "303",
@@ -1487,10 +1088,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "30",
       "type": "liability",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "304",
@@ -1498,10 +1096,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "30",
       "type": "liability",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "305",
@@ -1509,10 +1104,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "30",
       "type": "liability",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "306",
@@ -1520,10 +1112,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "30",
       "type": "liability",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "308",
@@ -1531,10 +1120,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "30",
       "type": "liability",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet", "contra"]
+      "reporting": "credit"
     },
     {
       "code": "309",
@@ -1542,10 +1128,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "30",
       "type": "liability",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "32",
@@ -1553,10 +1136,7 @@
       "description": "Official class/group heading.",
       "parentCode": "3",
       "type": "liability",
-      "reporting": "credit",
-      "level": 2,
-      "active": true,
-      "classificationTags": ["group", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "320",
@@ -1564,10 +1144,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "32",
       "type": "liability",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet", "supplier", "procurement-segment-compatible"]
+      "reporting": "credit"
     },
     {
       "code": "321",
@@ -1575,10 +1152,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "32",
       "type": "liability",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "322",
@@ -1586,10 +1160,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "32",
       "type": "liability",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet", "contra"]
+      "reporting": "credit"
     },
     {
       "code": "326",
@@ -1597,10 +1168,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "32",
       "type": "liability",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "329",
@@ -1608,10 +1176,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "32",
       "type": "liability",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "33",
@@ -1619,10 +1184,7 @@
       "description": "Official class/group heading.",
       "parentCode": "3",
       "type": "liability",
-      "reporting": "credit",
-      "level": 2,
-      "active": true,
-      "classificationTags": ["group", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "331",
@@ -1630,10 +1192,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "33",
       "type": "liability",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "332",
@@ -1641,10 +1200,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "33",
       "type": "liability",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "333",
@@ -1652,10 +1208,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "33",
       "type": "liability",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "335",
@@ -1663,10 +1216,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "33",
       "type": "liability",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "336",
@@ -1674,10 +1224,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "33",
       "type": "liability",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "337",
@@ -1685,10 +1232,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "33",
       "type": "liability",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet", "contra"]
+      "reporting": "credit"
     },
     {
       "code": "34",
@@ -1696,10 +1240,7 @@
       "description": "Official class/group heading.",
       "parentCode": "3",
       "type": "liability",
-      "reporting": "credit",
-      "level": 2,
-      "active": true,
-      "classificationTags": ["group", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "340",
@@ -1707,10 +1248,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "34",
       "type": "liability",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "349",
@@ -1718,10 +1256,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "34",
       "type": "liability",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "35",
@@ -1729,10 +1264,7 @@
       "description": "Official class/group heading.",
       "parentCode": "3",
       "type": "liability",
-      "reporting": "credit",
-      "level": 2,
-      "active": true,
-      "classificationTags": ["group", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "350",
@@ -1740,10 +1272,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "35",
       "type": "liability",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "358",
@@ -1751,10 +1280,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "35",
       "type": "liability",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "36",
@@ -1762,10 +1288,7 @@
       "description": "Official class/group heading.",
       "parentCode": "3",
       "type": "liability",
-      "reporting": "credit",
-      "level": 2,
-      "active": true,
-      "classificationTags": ["group", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "360",
@@ -1773,10 +1296,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "36",
       "type": "liability",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "361",
@@ -1784,10 +1304,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "36",
       "type": "liability",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "368",
@@ -1795,10 +1312,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "36",
       "type": "liability",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "369",
@@ -1806,10 +1320,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "36",
       "type": "liability",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "37",
@@ -1817,10 +1328,7 @@
       "description": "Official class/group heading.",
       "parentCode": "3",
       "type": "liability",
-      "reporting": "credit",
-      "level": 2,
-      "active": true,
-      "classificationTags": ["group", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "370",
@@ -1828,10 +1336,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "37",
       "type": "liability",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "371",
@@ -1839,10 +1344,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "37",
       "type": "liability",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet", "contra"]
+      "reporting": "credit"
     },
     {
       "code": "372",
@@ -1850,10 +1352,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "37",
       "type": "liability",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "373",
@@ -1861,10 +1360,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "37",
       "type": "liability",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "379",
@@ -1872,10 +1368,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "37",
       "type": "liability",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "38",
@@ -1883,10 +1376,7 @@
       "description": "Official class/group heading.",
       "parentCode": "3",
       "type": "liability",
-      "reporting": "credit",
-      "level": 2,
-      "active": true,
-      "classificationTags": ["group", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "380",
@@ -1894,10 +1384,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "38",
       "type": "liability",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "381",
@@ -1905,10 +1392,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "38",
       "type": "liability",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "39",
@@ -1916,10 +1400,7 @@
       "description": "Official class/group heading.",
       "parentCode": "3",
       "type": "liability",
-      "reporting": "credit",
-      "level": 2,
-      "active": true,
-      "classificationTags": ["group", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "391",
@@ -1927,10 +1408,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "39",
       "type": "liability",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "392",
@@ -1938,10 +1416,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "39",
       "type": "liability",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "393",
@@ -1949,10 +1424,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "39",
       "type": "liability",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "397",
@@ -1960,10 +1432,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "39",
       "type": "liability",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "399",
@@ -1971,10 +1440,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "39",
       "type": "liability",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "4",
@@ -1982,10 +1448,7 @@
       "description": "Official class/group heading.",
       "parentCode": null,
       "type": "liability",
-      "reporting": "credit",
-      "level": 1,
-      "active": true,
-      "classificationTags": ["class", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "40",
@@ -1993,10 +1456,7 @@
       "description": "Official class/group heading.",
       "parentCode": "4",
       "type": "liability",
-      "reporting": "credit",
-      "level": 2,
-      "active": true,
-      "classificationTags": ["group", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "400",
@@ -2004,10 +1464,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "40",
       "type": "liability",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "401",
@@ -2015,10 +1472,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "40",
       "type": "liability",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "402",
@@ -2026,10 +1480,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "40",
       "type": "liability",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet", "contra"]
+      "reporting": "credit"
     },
     {
       "code": "405",
@@ -2037,10 +1488,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "40",
       "type": "liability",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "407",
@@ -2048,10 +1496,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "40",
       "type": "liability",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "408",
@@ -2059,10 +1504,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "40",
       "type": "liability",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet", "contra"]
+      "reporting": "credit"
     },
     {
       "code": "409",
@@ -2070,10 +1512,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "40",
       "type": "liability",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "42",
@@ -2081,10 +1520,7 @@
       "description": "Official class/group heading.",
       "parentCode": "4",
       "type": "liability",
-      "reporting": "credit",
-      "level": 2,
-      "active": true,
-      "classificationTags": ["group", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "420",
@@ -2092,10 +1528,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "42",
       "type": "liability",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet", "supplier", "procurement-segment-compatible"]
+      "reporting": "credit"
     },
     {
       "code": "421",
@@ -2103,10 +1536,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "42",
       "type": "liability",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "422",
@@ -2114,10 +1544,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "42",
       "type": "liability",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet", "contra"]
+      "reporting": "credit"
     },
     {
       "code": "426",
@@ -2125,10 +1552,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "42",
       "type": "liability",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "429",
@@ -2136,10 +1560,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "42",
       "type": "liability",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "43",
@@ -2147,10 +1568,7 @@
       "description": "Official class/group heading.",
       "parentCode": "4",
       "type": "liability",
-      "reporting": "credit",
-      "level": 2,
-      "active": true,
-      "classificationTags": ["group", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "431",
@@ -2158,10 +1576,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "43",
       "type": "liability",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "432",
@@ -2169,10 +1584,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "43",
       "type": "liability",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "433",
@@ -2180,10 +1592,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "43",
       "type": "liability",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "436",
@@ -2191,10 +1600,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "43",
       "type": "liability",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "437",
@@ -2202,10 +1608,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "43",
       "type": "liability",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet", "contra"]
+      "reporting": "credit"
     },
     {
       "code": "438",
@@ -2213,10 +1616,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "43",
       "type": "liability",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "44",
@@ -2224,10 +1624,7 @@
       "description": "Official class/group heading.",
       "parentCode": "4",
       "type": "liability",
-      "reporting": "credit",
-      "level": 2,
-      "active": true,
-      "classificationTags": ["group", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "440",
@@ -2235,10 +1632,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "44",
       "type": "liability",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "449",
@@ -2246,10 +1640,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "44",
       "type": "liability",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "47",
@@ -2257,10 +1648,7 @@
       "description": "Official class/group heading.",
       "parentCode": "4",
       "type": "liability",
-      "reporting": "credit",
-      "level": 2,
-      "active": true,
-      "classificationTags": ["group", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "472",
@@ -2268,10 +1656,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "47",
       "type": "liability",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "479",
@@ -2279,10 +1664,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "47",
       "type": "liability",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "48",
@@ -2290,10 +1672,7 @@
       "description": "Official class/group heading.",
       "parentCode": "4",
       "type": "liability",
-      "reporting": "credit",
-      "level": 2,
-      "active": true,
-      "classificationTags": ["group", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "480",
@@ -2301,10 +1680,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "48",
       "type": "liability",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "481",
@@ -2312,10 +1688,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "48",
       "type": "liability",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "49",
@@ -2323,10 +1696,7 @@
       "description": "Official class/group heading.",
       "parentCode": "4",
       "type": "liability",
-      "reporting": "credit",
-      "level": 2,
-      "active": true,
-      "classificationTags": ["group", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "492",
@@ -2334,10 +1704,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "49",
       "type": "liability",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "493",
@@ -2345,10 +1712,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "49",
       "type": "liability",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "499",
@@ -2356,10 +1720,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "49",
       "type": "liability",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "5",
@@ -2367,10 +1728,7 @@
       "description": "Official class/group heading.",
       "parentCode": null,
       "type": "equity",
-      "reporting": "credit",
-      "level": 1,
-      "active": true,
-      "classificationTags": ["class", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "50",
@@ -2378,10 +1736,7 @@
       "description": "Official class/group heading.",
       "parentCode": "5",
       "type": "equity",
-      "reporting": "credit",
-      "level": 2,
-      "active": true,
-      "classificationTags": ["group", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "500",
@@ -2389,10 +1744,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "50",
       "type": "equity",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "501",
@@ -2400,10 +1752,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "50",
       "type": "equity",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet", "contra"]
+      "reporting": "credit"
     },
     {
       "code": "502",
@@ -2411,10 +1760,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "50",
       "type": "equity",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "503",
@@ -2422,10 +1768,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "50",
       "type": "equity",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet", "contra"]
+      "reporting": "credit"
     },
     {
       "code": "52",
@@ -2433,10 +1776,7 @@
       "description": "Official class/group heading.",
       "parentCode": "5",
       "type": "equity",
-      "reporting": "credit",
-      "level": 2,
-      "active": true,
-      "classificationTags": ["group", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "520",
@@ -2444,10 +1784,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "52",
       "type": "equity",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "521",
@@ -2455,10 +1792,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "52",
       "type": "equity",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "522",
@@ -2466,10 +1800,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "52",
       "type": "equity",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "523",
@@ -2477,10 +1808,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "52",
       "type": "equity",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "524",
@@ -2488,10 +1816,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "52",
       "type": "equity",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "529",
@@ -2499,10 +1824,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "52",
       "type": "equity",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "54",
@@ -2510,10 +1832,7 @@
       "description": "Official class/group heading.",
       "parentCode": "5",
       "type": "equity",
-      "reporting": "credit",
-      "level": 2,
-      "active": true,
-      "classificationTags": ["group", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "540",
@@ -2521,10 +1840,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "54",
       "type": "equity",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "541",
@@ -2532,10 +1848,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "54",
       "type": "equity",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "542",
@@ -2543,10 +1856,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "54",
       "type": "equity",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "548",
@@ -2554,10 +1864,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "54",
       "type": "equity",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "549",
@@ -2565,10 +1872,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "54",
       "type": "equity",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "57",
@@ -2576,10 +1880,7 @@
       "description": "Official class/group heading.",
       "parentCode": "5",
       "type": "equity",
-      "reporting": "credit",
-      "level": 2,
-      "active": true,
-      "classificationTags": ["group", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "570",
@@ -2587,10 +1888,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "57",
       "type": "equity",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "58",
@@ -2598,10 +1896,7 @@
       "description": "Official class/group heading.",
       "parentCode": "5",
       "type": "equity",
-      "reporting": "credit",
-      "level": 2,
-      "active": true,
-      "classificationTags": ["group", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "580",
@@ -2609,10 +1904,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "58",
       "type": "equity",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet", "contra"]
+      "reporting": "credit"
     },
     {
       "code": "59",
@@ -2620,10 +1912,7 @@
       "description": "Official class/group heading.",
       "parentCode": "5",
       "type": "equity",
-      "reporting": "credit",
-      "level": 2,
-      "active": true,
-      "classificationTags": ["group", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "590",
@@ -2631,10 +1920,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "59",
       "type": "equity",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet"]
+      "reporting": "credit"
     },
     {
       "code": "591",
@@ -2642,10 +1928,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "59",
       "type": "equity",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "balance-sheet", "contra"]
+      "reporting": "credit"
     },
     {
       "code": "6",
@@ -2653,10 +1936,7 @@
       "description": "Official class/group heading.",
       "parentCode": null,
       "type": "revenue",
-      "reporting": "credit",
-      "level": 1,
-      "active": true,
-      "classificationTags": ["class", "income-statement"]
+      "reporting": "credit"
     },
     {
       "code": "60",
@@ -2664,10 +1944,7 @@
       "description": "Official class/group heading.",
       "parentCode": "6",
       "type": "revenue",
-      "reporting": "credit",
-      "level": 2,
-      "active": true,
-      "classificationTags": ["group", "income-statement"]
+      "reporting": "credit"
     },
     {
       "code": "600",
@@ -2675,10 +1952,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "60",
       "type": "revenue",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "income-statement"]
+      "reporting": "credit"
     },
     {
       "code": "601",
@@ -2686,10 +1960,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "60",
       "type": "revenue",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "income-statement"]
+      "reporting": "credit"
     },
     {
       "code": "602",
@@ -2697,10 +1968,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "60",
       "type": "revenue",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "income-statement"]
+      "reporting": "credit"
     },
     {
       "code": "61",
@@ -2708,10 +1976,7 @@
       "description": "Official class/group heading.",
       "parentCode": "6",
       "type": "expense",
-      "reporting": "debit",
-      "level": 2,
-      "active": true,
-      "classificationTags": ["group", "income-statement", "contra"]
+      "reporting": "debit"
     },
     {
       "code": "610",
@@ -2719,10 +1984,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "61",
       "type": "expense",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "income-statement", "contra"]
+      "reporting": "debit"
     },
     {
       "code": "611",
@@ -2730,10 +1992,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "61",
       "type": "expense",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "income-statement", "contra"]
+      "reporting": "debit"
     },
     {
       "code": "612",
@@ -2741,10 +2000,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "61",
       "type": "expense",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "income-statement", "contra"]
+      "reporting": "debit"
     },
     {
       "code": "62",
@@ -2752,10 +2008,7 @@
       "description": "Official class/group heading.",
       "parentCode": "6",
       "type": "expense",
-      "reporting": "debit",
-      "level": 2,
-      "active": true,
-      "classificationTags": ["group", "income-statement", "contra"]
+      "reporting": "debit"
     },
     {
       "code": "620",
@@ -2763,10 +2016,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "62",
       "type": "expense",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "income-statement", "contra"]
+      "reporting": "debit"
     },
     {
       "code": "621",
@@ -2774,10 +2024,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "62",
       "type": "expense",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "income-statement", "contra"]
+      "reporting": "debit"
     },
     {
       "code": "622",
@@ -2785,10 +2032,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "62",
       "type": "expense",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "income-statement", "contra"]
+      "reporting": "debit"
     },
     {
       "code": "623",
@@ -2796,10 +2040,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "62",
       "type": "expense",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "income-statement", "contra"]
+      "reporting": "debit"
     },
     {
       "code": "63",
@@ -2807,10 +2048,7 @@
       "description": "Official class/group heading.",
       "parentCode": "6",
       "type": "expense",
-      "reporting": "debit",
-      "level": 2,
-      "active": true,
-      "classificationTags": ["group", "income-statement", "contra"]
+      "reporting": "debit"
     },
     {
       "code": "630",
@@ -2818,10 +2056,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "63",
       "type": "expense",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "income-statement", "contra"]
+      "reporting": "debit"
     },
     {
       "code": "631",
@@ -2829,10 +2064,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "63",
       "type": "expense",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "income-statement", "contra"]
+      "reporting": "debit"
     },
     {
       "code": "632",
@@ -2840,10 +2072,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "63",
       "type": "expense",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "income-statement", "contra"]
+      "reporting": "debit"
     },
     {
       "code": "64",
@@ -2851,10 +2080,7 @@
       "description": "Official class/group heading.",
       "parentCode": "6",
       "type": "revenue",
-      "reporting": "credit",
-      "level": 2,
-      "active": true,
-      "classificationTags": ["group", "income-statement"]
+      "reporting": "credit"
     },
     {
       "code": "640",
@@ -2862,10 +2088,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "64",
       "type": "revenue",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "income-statement"]
+      "reporting": "credit"
     },
     {
       "code": "641",
@@ -2873,10 +2096,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "64",
       "type": "revenue",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "income-statement"]
+      "reporting": "credit"
     },
     {
       "code": "642",
@@ -2884,10 +2104,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "64",
       "type": "revenue",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "income-statement"]
+      "reporting": "credit"
     },
     {
       "code": "643",
@@ -2895,10 +2112,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "64",
       "type": "revenue",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "income-statement"]
+      "reporting": "credit"
     },
     {
       "code": "644",
@@ -2906,10 +2120,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "64",
       "type": "revenue",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "income-statement"]
+      "reporting": "credit"
     },
     {
       "code": "645",
@@ -2917,10 +2128,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "64",
       "type": "revenue",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "income-statement"]
+      "reporting": "credit"
     },
     {
       "code": "646",
@@ -2928,10 +2136,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "64",
       "type": "revenue",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "income-statement"]
+      "reporting": "credit"
     },
     {
       "code": "647",
@@ -2939,10 +2144,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "64",
       "type": "revenue",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "income-statement"]
+      "reporting": "credit"
     },
     {
       "code": "648",
@@ -2950,10 +2152,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "64",
       "type": "revenue",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "income-statement"]
+      "reporting": "credit"
     },
     {
       "code": "649",
@@ -2961,10 +2160,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "64",
       "type": "revenue",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "income-statement"]
+      "reporting": "credit"
     },
     {
       "code": "65",
@@ -2972,10 +2168,7 @@
       "description": "Official class/group heading.",
       "parentCode": "6",
       "type": "expense",
-      "reporting": "debit",
-      "level": 2,
-      "active": true,
-      "classificationTags": ["group", "income-statement", "contra"]
+      "reporting": "debit"
     },
     {
       "code": "653",
@@ -2983,10 +2176,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "65",
       "type": "expense",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "income-statement", "contra"]
+      "reporting": "debit"
     },
     {
       "code": "654",
@@ -2994,10 +2184,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "65",
       "type": "expense",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "income-statement", "contra"]
+      "reporting": "debit"
     },
     {
       "code": "655",
@@ -3005,10 +2192,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "65",
       "type": "expense",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "income-statement", "contra"]
+      "reporting": "debit"
     },
     {
       "code": "656",
@@ -3016,10 +2200,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "65",
       "type": "expense",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "income-statement", "contra"]
+      "reporting": "debit"
     },
     {
       "code": "657",
@@ -3027,10 +2208,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "65",
       "type": "expense",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "income-statement", "contra"]
+      "reporting": "debit"
     },
     {
       "code": "658",
@@ -3038,10 +2216,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "65",
       "type": "expense",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "income-statement", "contra"]
+      "reporting": "debit"
     },
     {
       "code": "659",
@@ -3049,10 +2224,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "65",
       "type": "expense",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "income-statement", "contra"]
+      "reporting": "debit"
     },
     {
       "code": "66",
@@ -3060,10 +2232,7 @@
       "description": "Official class/group heading.",
       "parentCode": "6",
       "type": "expense",
-      "reporting": "debit",
-      "level": 2,
-      "active": true,
-      "classificationTags": ["group", "income-statement", "contra"]
+      "reporting": "debit"
     },
     {
       "code": "660",
@@ -3071,10 +2240,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "66",
       "type": "expense",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "income-statement", "contra"]
+      "reporting": "debit"
     },
     {
       "code": "661",
@@ -3082,10 +2248,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "66",
       "type": "expense",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "income-statement", "contra"]
+      "reporting": "debit"
     },
     {
       "code": "67",
@@ -3093,10 +2256,7 @@
       "description": "Official class/group heading.",
       "parentCode": "6",
       "type": "revenue",
-      "reporting": "credit",
-      "level": 2,
-      "active": true,
-      "classificationTags": ["group", "income-statement"]
+      "reporting": "credit"
     },
     {
       "code": "671",
@@ -3104,10 +2264,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "67",
       "type": "revenue",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "income-statement"]
+      "reporting": "credit"
     },
     {
       "code": "679",
@@ -3115,10 +2272,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "67",
       "type": "revenue",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "income-statement"]
+      "reporting": "credit"
     },
     {
       "code": "68",
@@ -3126,10 +2280,7 @@
       "description": "Official class/group heading.",
       "parentCode": "6",
       "type": "expense",
-      "reporting": "debit",
-      "level": 2,
-      "active": true,
-      "classificationTags": ["group", "income-statement", "contra"]
+      "reporting": "debit"
     },
     {
       "code": "680",
@@ -3137,10 +2288,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "68",
       "type": "expense",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "income-statement", "contra"]
+      "reporting": "debit"
     },
     {
       "code": "681",
@@ -3148,10 +2296,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "68",
       "type": "expense",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "income-statement", "contra"]
+      "reporting": "debit"
     },
     {
       "code": "689",
@@ -3159,10 +2304,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "68",
       "type": "expense",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "income-statement", "contra"]
+      "reporting": "debit"
     },
     {
       "code": "69",
@@ -3170,10 +2312,7 @@
       "description": "Official class/group heading.",
       "parentCode": "6",
       "type": "equity",
-      "reporting": "credit",
-      "level": 2,
-      "active": true,
-      "classificationTags": ["group", "income-statement"]
+      "reporting": "credit"
     },
     {
       "code": "690",
@@ -3181,10 +2320,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "69",
       "type": "equity",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "income-statement"]
+      "reporting": "credit"
     },
     {
       "code": "691",
@@ -3192,10 +2328,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "69",
       "type": "expense",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "income-statement", "contra"]
+      "reporting": "debit"
     },
     {
       "code": "692",
@@ -3203,10 +2336,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "69",
       "type": "equity",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "income-statement"]
+      "reporting": "credit"
     },
     {
       "code": "697",
@@ -3214,10 +2344,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "69",
       "type": "equity",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "income-statement"]
+      "reporting": "credit"
     },
     {
       "code": "698",
@@ -3225,10 +2352,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "69",
       "type": "equity",
-      "reporting": "credit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "income-statement"]
+      "reporting": "credit"
     },
     {
       "code": "7",
@@ -3236,10 +2360,7 @@
       "description": "Official class/group heading.",
       "parentCode": null,
       "type": "expense",
-      "reporting": "debit",
-      "level": 1,
-      "active": true,
-      "classificationTags": ["class", "cost-accounting"]
+      "reporting": "debit"
     },
     {
       "code": "70",
@@ -3247,10 +2368,7 @@
       "description": "Official class/group heading.",
       "parentCode": "7",
       "type": "expense",
-      "reporting": "debit",
-      "level": 2,
-      "active": true,
-      "classificationTags": ["group", "cost-accounting"]
+      "reporting": "debit"
     },
     {
       "code": "700",
@@ -3258,10 +2376,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "70",
       "type": "expense",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "cost-accounting"]
+      "reporting": "debit"
     },
     {
       "code": "701",
@@ -3269,10 +2384,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "70",
       "type": "expense",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "cost-accounting"]
+      "reporting": "debit"
     },
     {
       "code": "71",
@@ -3280,10 +2392,7 @@
       "description": "Official class/group heading.",
       "parentCode": "7",
       "type": "expense",
-      "reporting": "debit",
-      "level": 2,
-      "active": true,
-      "classificationTags": ["group", "cost-accounting"]
+      "reporting": "debit"
     },
     {
       "code": "710",
@@ -3291,10 +2400,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "71",
       "type": "expense",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "cost-accounting"]
+      "reporting": "debit"
     },
     {
       "code": "711",
@@ -3302,10 +2408,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "71",
       "type": "expense",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "cost-accounting"]
+      "reporting": "debit"
     },
     {
       "code": "712",
@@ -3313,10 +2416,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "71",
       "type": "expense",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "cost-accounting"]
+      "reporting": "debit"
     },
     {
       "code": "713",
@@ -3324,10 +2424,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "71",
       "type": "expense",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "cost-accounting"]
+      "reporting": "debit"
     },
     {
       "code": "72",
@@ -3335,10 +2432,7 @@
       "description": "Official class/group heading.",
       "parentCode": "7",
       "type": "expense",
-      "reporting": "debit",
-      "level": 2,
-      "active": true,
-      "classificationTags": ["group", "cost-accounting"]
+      "reporting": "debit"
     },
     {
       "code": "720",
@@ -3346,10 +2440,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "72",
       "type": "expense",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "cost-accounting"]
+      "reporting": "debit"
     },
     {
       "code": "721",
@@ -3357,10 +2448,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "72",
       "type": "expense",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "cost-accounting"]
+      "reporting": "debit"
     },
     {
       "code": "722",
@@ -3368,10 +2456,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "72",
       "type": "expense",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "cost-accounting"]
+      "reporting": "debit"
     },
     {
       "code": "723",
@@ -3379,10 +2464,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "72",
       "type": "expense",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "cost-accounting"]
+      "reporting": "debit"
     },
     {
       "code": "73",
@@ -3390,10 +2472,7 @@
       "description": "Official class/group heading.",
       "parentCode": "7",
       "type": "expense",
-      "reporting": "debit",
-      "level": 2,
-      "active": true,
-      "classificationTags": ["group", "cost-accounting"]
+      "reporting": "debit"
     },
     {
       "code": "730",
@@ -3401,10 +2480,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "73",
       "type": "expense",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "cost-accounting"]
+      "reporting": "debit"
     },
     {
       "code": "731",
@@ -3412,10 +2488,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "73",
       "type": "expense",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "cost-accounting"]
+      "reporting": "debit"
     },
     {
       "code": "732",
@@ -3423,10 +2496,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "73",
       "type": "expense",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "cost-accounting"]
+      "reporting": "debit"
     },
     {
       "code": "733",
@@ -3434,10 +2504,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "73",
       "type": "expense",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "cost-accounting"]
+      "reporting": "debit"
     },
     {
       "code": "734",
@@ -3445,10 +2512,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "73",
       "type": "expense",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "cost-accounting"]
+      "reporting": "debit"
     },
     {
       "code": "74",
@@ -3456,10 +2520,7 @@
       "description": "Official class/group heading.",
       "parentCode": "7",
       "type": "expense",
-      "reporting": "debit",
-      "level": 2,
-      "active": true,
-      "classificationTags": ["group", "cost-accounting"]
+      "reporting": "debit"
     },
     {
       "code": "740",
@@ -3467,10 +2528,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "74",
       "type": "expense",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "cost-accounting"]
+      "reporting": "debit"
     },
     {
       "code": "741",
@@ -3478,10 +2536,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "74",
       "type": "expense",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "cost-accounting"]
+      "reporting": "debit"
     },
     {
       "code": "742",
@@ -3489,10 +2544,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "74",
       "type": "expense",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "cost-accounting"]
+      "reporting": "debit"
     },
     {
       "code": "75",
@@ -3500,10 +2552,7 @@
       "description": "Official class/group heading.",
       "parentCode": "7",
       "type": "expense",
-      "reporting": "debit",
-      "level": 2,
-      "active": true,
-      "classificationTags": ["group", "cost-accounting"]
+      "reporting": "debit"
     },
     {
       "code": "750",
@@ -3511,10 +2560,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "75",
       "type": "expense",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "cost-accounting"]
+      "reporting": "debit"
     },
     {
       "code": "751",
@@ -3522,10 +2568,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "75",
       "type": "expense",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "cost-accounting"]
+      "reporting": "debit"
     },
     {
       "code": "752",
@@ -3533,10 +2576,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "75",
       "type": "expense",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "cost-accounting"]
+      "reporting": "debit"
     },
     {
       "code": "76",
@@ -3544,10 +2584,7 @@
       "description": "Official class/group heading.",
       "parentCode": "7",
       "type": "expense",
-      "reporting": "debit",
-      "level": 2,
-      "active": true,
-      "classificationTags": ["group", "cost-accounting"]
+      "reporting": "debit"
     },
     {
       "code": "760",
@@ -3555,10 +2592,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "76",
       "type": "expense",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "cost-accounting"]
+      "reporting": "debit"
     },
     {
       "code": "761",
@@ -3566,10 +2600,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "76",
       "type": "expense",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "cost-accounting"]
+      "reporting": "debit"
     },
     {
       "code": "762",
@@ -3577,10 +2608,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "76",
       "type": "expense",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "cost-accounting"]
+      "reporting": "debit"
     },
     {
       "code": "77",
@@ -3588,10 +2616,7 @@
       "description": "Official class/group heading.",
       "parentCode": "7",
       "type": "expense",
-      "reporting": "debit",
-      "level": 2,
-      "active": true,
-      "classificationTags": ["group", "cost-accounting"]
+      "reporting": "debit"
     },
     {
       "code": "770",
@@ -3599,10 +2624,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "77",
       "type": "expense",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "cost-accounting"]
+      "reporting": "debit"
     },
     {
       "code": "771",
@@ -3610,10 +2632,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "77",
       "type": "expense",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "cost-accounting"]
+      "reporting": "debit"
     },
     {
       "code": "772",
@@ -3621,10 +2640,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "77",
       "type": "expense",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "cost-accounting"]
+      "reporting": "debit"
     },
     {
       "code": "78",
@@ -3632,10 +2648,7 @@
       "description": "Official class/group heading.",
       "parentCode": "7",
       "type": "expense",
-      "reporting": "debit",
-      "level": 2,
-      "active": true,
-      "classificationTags": ["group", "cost-accounting"]
+      "reporting": "debit"
     },
     {
       "code": "780",
@@ -3643,10 +2656,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "78",
       "type": "expense",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "cost-accounting"]
+      "reporting": "debit"
     },
     {
       "code": "781",
@@ -3654,10 +2664,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "78",
       "type": "expense",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "cost-accounting"]
+      "reporting": "debit"
     },
     {
       "code": "782",
@@ -3665,10 +2672,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "78",
       "type": "expense",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "cost-accounting"]
+      "reporting": "debit"
     },
     {
       "code": "790",
@@ -3676,10 +2680,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "7",
       "type": "expense",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "cost-accounting"]
+      "reporting": "debit"
     },
     {
       "code": "791",
@@ -3687,10 +2688,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "7",
       "type": "expense",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "cost-accounting"]
+      "reporting": "debit"
     },
     {
       "code": "792",
@@ -3698,10 +2696,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "7",
       "type": "expense",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "cost-accounting"]
+      "reporting": "debit"
     },
     {
       "code": "793",
@@ -3709,10 +2704,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "7",
       "type": "expense",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "cost-accounting"]
+      "reporting": "debit"
     },
     {
       "code": "794",
@@ -3720,10 +2712,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "7",
       "type": "expense",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "cost-accounting"]
+      "reporting": "debit"
     },
     {
       "code": "795",
@@ -3731,10 +2720,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "7",
       "type": "expense",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "cost-accounting"]
+      "reporting": "debit"
     },
     {
       "code": "796",
@@ -3742,10 +2728,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "7",
       "type": "expense",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "cost-accounting"]
+      "reporting": "debit"
     },
     {
       "code": "797",
@@ -3753,10 +2736,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "7",
       "type": "expense",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "cost-accounting"]
+      "reporting": "debit"
     },
     {
       "code": "798",
@@ -3764,10 +2744,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "7",
       "type": "expense",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "cost-accounting"]
+      "reporting": "debit"
     },
     {
       "code": "799",
@@ -3775,10 +2752,7 @@
       "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
       "parentCode": "7",
       "type": "expense",
-      "reporting": "debit",
-      "level": 3,
-      "active": true,
-      "classificationTags": ["ledger", "cost-accounting"]
+      "reporting": "debit"
     },
     {
       "code": "8",
@@ -3786,10 +2760,7 @@
       "description": "Official class/group heading.",
       "parentCode": null,
       "type": "management",
-      "reporting": "debit",
-      "level": 1,
-      "active": true,
-      "classificationTags": ["class", "management-accounting"]
+      "reporting": "debit"
     },
     {
       "code": "9",
@@ -3797,10 +2768,7 @@
       "description": "Official class/group heading.",
       "parentCode": null,
       "type": "memo",
-      "reporting": "debit",
-      "level": 1,
-      "active": true,
-      "classificationTags": ["class", "memorandum"]
+      "reporting": "debit"
     }
   ],
   "enterpriseExtensions": []

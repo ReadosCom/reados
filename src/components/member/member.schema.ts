@@ -54,25 +54,17 @@ export const applyMemberTemplateBodySchema = z.object({
 
 export const applyMemberTemplateResponseSchema = apiSuccessSchema(z.object({ applied: z.literal(true) }));
 
-export type AccountTemplateMember = {
-  active: boolean;
-  classificationTags: string[];
-  code: string;
-  description: string;
-  level: number;
-  name: string;
-  parentCode: string | null;
-  reporting: MemberReporting;
-  type: MemberType;
-};
+export const accountTemplateMemberSchema = memberEditorSchema.omit({ parent: true }).extend({
+  parentCode: z.string().trim().min(1).nullable(),
+});
 
 export type AccountTemplateDocument = AccountTemplate & {
   currency: string;
-  enterpriseExtensions: AccountTemplateMember[];
+  enterpriseExtensions: z.infer<typeof accountTemplateMemberSchema>[];
   jurisdiction: string;
   language: string;
   license: string;
-  members: AccountTemplateMember[];
+  members: z.infer<typeof accountTemplateMemberSchema>[];
   officialBaselineAccountTotal: number;
   sources: Array<{ accessedAt: string; authority: string; url: string }>;
   standard: string;
@@ -87,6 +79,7 @@ export type Member = z.infer<typeof memberSchema>;
 export type CreateMemberBody = z.infer<typeof createMemberBodySchema>;
 export type UpdateMemberBody = z.infer<typeof updateMemberBodySchema>;
 export type AccountTemplate = z.infer<typeof accountTemplateSchema>;
+export type AccountTemplateMember = z.infer<typeof accountTemplateMemberSchema>;
 export type MemberEditor = z.infer<typeof memberEditorSchema>;
 
 export type MemberRow = {
