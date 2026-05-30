@@ -25,6 +25,7 @@ export const SegmentList = () => {
   const [isEditorOpen, setIsEditorOpen] = useState(false);
   const [selectedSegment, setSelectedSegment] = useState<SegmentRecord | undefined>(undefined);
   const segments = [...(segmentData ?? [])].sort((left, right) => left.order - right.order);
+  const nextSegmentOrder = segments.reduce((maxOrder, segment) => Math.max(maxOrder, segment.order), -1) + 1;
 
   const onMoveSegment = useCallback(
     async (segmentId: string, direction: -1 | 1) => {
@@ -212,7 +213,7 @@ export const SegmentList = () => {
       {selectedSegment ? (
         <SegmentEditorDialog mode="edit" onOpenChange={setIsEditorOpen} open={isEditorOpen} segment={selectedSegment} />
       ) : (
-        <SegmentEditorDialog mode="create" nextOrder={segments.length} onOpenChange={setIsEditorOpen} open={isEditorOpen} />
+        <SegmentEditorDialog mode="create" nextOrder={nextSegmentOrder} onOpenChange={setIsEditorOpen} open={isEditorOpen} />
       )}
     </section>
   );
