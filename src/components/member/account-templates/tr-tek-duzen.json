@@ -21,7 +21,7 @@
     {
       "code": "1",
       "name": "Dönen Varlıklar",
-      "description": "Official class/group heading.",
+      "description": "Tek Düzen hesap sınıfı 1 (Dönen Varlıklar), dönen varlıkların, yani bir yıl içinde nakde dönecek veya tüketilecek değerlerin izlenmesi için kullanılır.",
       "parentCode": null,
       "type": "asset",
       "reporting": "debit"
@@ -29,7 +29,7 @@
     {
       "code": "10",
       "name": "Hazır Değerler",
-      "description": "Official class/group heading.",
+      "description": "Tek Düzen 10 (Hazır Değerler) hesap grubu, 1 Dönen Varlıklar içinde yer alır ve bu gruba bağlı alt hesapların toplu izlenmesini sağlar.",
       "parentCode": "1",
       "type": "asset",
       "reporting": "debit"
@@ -37,7 +37,7 @@
     {
       "code": "100",
       "name": "Kasa",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 100 (Kasa) hesabı, 10 Hazır Değerler grubu altında işletme kasasında bulunan ulusal/yabancı paraların izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "10",
       "type": "asset",
       "reporting": "debit"
@@ -45,7 +45,7 @@
     {
       "code": "101",
       "name": "Alınan Çekler",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 101 (Alınan Çekler) hesabı, 10 Hazır Değerler grubu altında çeklerden doğan tutarların izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "10",
       "type": "asset",
       "reporting": "debit"
@@ -53,7 +53,7 @@
     {
       "code": "102",
       "name": "Bankalar",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 102 (Bankalar) hesabı, 10 Hazır Değerler grubu altında banka ve benzeri finans kuruluşlarındaki para hareketlerinin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "10",
       "type": "asset",
       "reporting": "debit"
@@ -61,7 +61,7 @@
     {
       "code": "103",
       "name": "Verilen Çekler ve Ödeme Emirleri (-)",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 103 (Verilen Çekler ve Ödeme Emirleri (-)) hesabı, 10 Hazır Değerler grubu altında çeklerden doğan tutarların izlenmesi için kullanılır; hesap düzenleyici niteliği nedeniyle ters karakter gösterebilir.",
       "parentCode": "10",
       "type": "asset",
       "reporting": "debit"
@@ -69,7 +69,7 @@
     {
       "code": "108",
       "name": "Diğer Hazır Değerler",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 108 (Diğer Hazır Değerler) hesabı, 10 Hazır Değerler grubu altında bu grupta özel adı geçmeyen diğer kalemlerin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "10",
       "type": "asset",
       "reporting": "debit"
@@ -77,7 +77,7 @@
     {
       "code": "11",
       "name": "Menkul Kıymetler",
-      "description": "Official class/group heading.",
+      "description": "Tek Düzen 11 (Menkul Kıymetler) hesap grubu, 1 Dönen Varlıklar içinde yer alır ve bu gruba bağlı alt hesapların toplu izlenmesini sağlar.",
       "parentCode": "1",
       "type": "asset",
       "reporting": "debit"
@@ -85,7 +85,7 @@
     {
       "code": "110",
       "name": "Hisse Senetleri",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 110 (Hisse Senetleri) hesabı, 11 Menkul Kıymetler grubu altında hisse senedi yatırımlarının izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "11",
       "type": "asset",
       "reporting": "debit"
@@ -93,7 +93,7 @@
     {
       "code": "111",
       "name": "Özel Kesim Tahvil, Senet ve Bonoları",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 111 (Özel Kesim Tahvil, Senet ve Bonoları) hesabı, 11 Menkul Kıymetler grubu altında tahvil ve bono yatırımlarının izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "11",
       "type": "asset",
       "reporting": "debit"
@@ -101,7 +101,7 @@
     {
       "code": "112",
       "name": "Kamu Kesimi Tahvil, Senet ve Bonoları",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 112 (Kamu Kesimi Tahvil, Senet ve Bonoları) hesabı, 11 Menkul Kıymetler grubu altında tahvil ve bono yatırımlarının izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "11",
       "type": "asset",
       "reporting": "debit"
@@ -109,7 +109,7 @@
     {
       "code": "118",
       "name": "Diğer Menkul Kıymetler",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 118 (Diğer Menkul Kıymetler) hesabı, 11 Menkul Kıymetler grubu altında bu grupta özel adı geçmeyen diğer kalemlerin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "11",
       "type": "asset",
       "reporting": "debit"
@@ -117,7 +117,7 @@
     {
       "code": "119",
       "name": "Menkul Kıymetler Değer Düşüklüğü Karşılığı (-)",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 119 (Menkul Kıymetler Değer Düşüklüğü Karşılığı (-)) hesabı, 11 Menkul Kıymetler grubu altında ilgili ana hesapları azaltıcı/düzenleyici kalemlerin izlenmesi için kullanılır; hesap düzenleyici niteliği nedeniyle ters karakter gösterebilir.",
       "parentCode": "11",
       "type": "asset",
       "reporting": "debit"
@@ -125,7 +125,7 @@
     {
       "code": "12",
       "name": "Ticari Alacaklar",
-      "description": "Official class/group heading.",
+      "description": "Tek Düzen 12 (Ticari Alacaklar) hesap grubu, 1 Dönen Varlıklar içinde yer alır ve bu gruba bağlı alt hesapların toplu izlenmesini sağlar.",
       "parentCode": "1",
       "type": "asset",
       "reporting": "debit"
@@ -133,7 +133,7 @@
     {
       "code": "120",
       "name": "Alıcılar",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 120 (Alıcılar) hesabı, 12 Ticari Alacaklar grubu altında mal ve hizmet satışlarından doğan ticari alacakların izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "12",
       "type": "asset",
       "reporting": "debit"
@@ -141,7 +141,7 @@
     {
       "code": "121",
       "name": "Alacak Senetleri",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 121 (Alacak Senetleri) hesabı, 12 Ticari Alacaklar grubu altında senetli ticari alacakların izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "12",
       "type": "asset",
       "reporting": "debit"
@@ -149,7 +149,7 @@
     {
       "code": "122",
       "name": "Alacak Senetleri Reeskontu (-)",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 122 (Alacak Senetleri Reeskontu (-)) hesabı, 12 Ticari Alacaklar grubu altında senetli ticari alacakların izlenmesi için kullanılır; hesap düzenleyici niteliği nedeniyle ters karakter gösterebilir.",
       "parentCode": "12",
       "type": "asset",
       "reporting": "debit"
@@ -157,7 +157,7 @@
     {
       "code": "124",
       "name": "Kazanılmamış Finansal Kiralama Faiz Gelirleri (-)",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 124 (Kazanılmamış Finansal Kiralama Faiz Gelirleri (-)) hesabı, 12 Ticari Alacaklar grubu altında faiz gelirleri veya faiz giderlerinin izlenmesi için kullanılır; hesap düzenleyici niteliği nedeniyle ters karakter gösterebilir.",
       "parentCode": "12",
       "type": "asset",
       "reporting": "debit"
@@ -165,7 +165,7 @@
     {
       "code": "126",
       "name": "Verilen Depozito ve Teminatlar",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 126 (Verilen Depozito ve Teminatlar) hesabı, 12 Ticari Alacaklar grubu altında depozito ve teminat kalemlerinin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "12",
       "type": "asset",
       "reporting": "debit"
@@ -173,7 +173,7 @@
     {
       "code": "127",
       "name": "Diğer Ticari Alacaklar Senet ve Bonoları",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 127 (Diğer Ticari Alacaklar Senet ve Bonoları) hesabı, 12 Ticari Alacaklar grubu altında bono ve benzeri menkul kıymetlerin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "12",
       "type": "asset",
       "reporting": "debit"
@@ -181,7 +181,7 @@
     {
       "code": "128",
       "name": "Şüpheli Ticari Alacaklar",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 128 (Şüpheli Ticari Alacaklar) hesabı, 12 Ticari Alacaklar grubu altında \"Şüpheli Ticari Alacaklar\" kapsamındaki muhasebe hareketlerinin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "12",
       "type": "asset",
       "reporting": "debit"
@@ -189,7 +189,7 @@
     {
       "code": "129",
       "name": "Şüpheli Ticari Alacaklar Karşılığı (-)",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 129 (Şüpheli Ticari Alacaklar Karşılığı (-)) hesabı, 12 Ticari Alacaklar grubu altında ilgili ana hesapları azaltıcı/düzenleyici kalemlerin izlenmesi için kullanılır; hesap düzenleyici niteliği nedeniyle ters karakter gösterebilir.",
       "parentCode": "12",
       "type": "asset",
       "reporting": "debit"
@@ -197,7 +197,7 @@
     {
       "code": "13",
       "name": "Diğer Alacaklar",
-      "description": "Official class/group heading.",
+      "description": "Tek Düzen 13 (Diğer Alacaklar) hesap grubu, 1 Dönen Varlıklar içinde yer alır ve bu gruba bağlı alt hesapların toplu izlenmesini sağlar.",
       "parentCode": "1",
       "type": "asset",
       "reporting": "debit"
@@ -205,7 +205,7 @@
     {
       "code": "131",
       "name": "Ortaklardan Alacaklar",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 131 (Ortaklardan Alacaklar) hesabı, 13 Diğer Alacaklar grubu altında ortaklarla ilgili alacak/borç hareketlerinin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "13",
       "type": "asset",
       "reporting": "debit"
@@ -213,7 +213,7 @@
     {
       "code": "132",
       "name": "İştiraklerden Alacaklar",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 132 (İştiraklerden Alacaklar) hesabı, 13 Diğer Alacaklar grubu altında \"İştiraklerden Alacaklar\" kapsamındaki muhasebe hareketlerinin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "13",
       "type": "asset",
       "reporting": "debit"
@@ -221,7 +221,7 @@
     {
       "code": "133",
       "name": "Bağlı Ortaklıklardan Alacaklar",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 133 (Bağlı Ortaklıklardan Alacaklar) hesabı, 13 Diğer Alacaklar grubu altında ortaklarla ilgili alacak/borç hareketlerinin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "13",
       "type": "asset",
       "reporting": "debit"
@@ -229,7 +229,7 @@
     {
       "code": "135",
       "name": "Personelden Alacaklar",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 135 (Personelden Alacaklar) hesabı, 13 Diğer Alacaklar grubu altında personel ile ilgili alacak/borç ve avans kalemlerinin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "13",
       "type": "asset",
       "reporting": "debit"
@@ -237,7 +237,7 @@
     {
       "code": "136",
       "name": "Diğer Çeşitli Alacaklar",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 136 (Diğer Çeşitli Alacaklar) hesabı, 13 Diğer Alacaklar grubu altında bu grupta özel adı geçmeyen diğer kalemlerin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "13",
       "type": "asset",
       "reporting": "debit"
@@ -245,7 +245,7 @@
     {
       "code": "137",
       "name": "Diğer Alacak Senetleri Reeskontu (-)",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 137 (Diğer Alacak Senetleri Reeskontu (-)) hesabı, 13 Diğer Alacaklar grubu altında senetli ticari alacakların izlenmesi için kullanılır; hesap düzenleyici niteliği nedeniyle ters karakter gösterebilir.",
       "parentCode": "13",
       "type": "asset",
       "reporting": "debit"
@@ -253,7 +253,7 @@
     {
       "code": "138",
       "name": "Şüpheli Diğer Alacaklar",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 138 (Şüpheli Diğer Alacaklar) hesabı, 13 Diğer Alacaklar grubu altında \"Şüpheli Diğer Alacaklar\" kapsamındaki muhasebe hareketlerinin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "13",
       "type": "asset",
       "reporting": "debit"
@@ -261,7 +261,7 @@
     {
       "code": "139",
       "name": "Şüpheli Diğer Alacaklar Karşılığı (-)",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 139 (Şüpheli Diğer Alacaklar Karşılığı (-)) hesabı, 13 Diğer Alacaklar grubu altında ilgili ana hesapları azaltıcı/düzenleyici kalemlerin izlenmesi için kullanılır; hesap düzenleyici niteliği nedeniyle ters karakter gösterebilir.",
       "parentCode": "13",
       "type": "asset",
       "reporting": "debit"
@@ -269,7 +269,7 @@
     {
       "code": "15",
       "name": "Stoklar",
-      "description": "Official class/group heading.",
+      "description": "Tek Düzen 15 (Stoklar) hesap grubu, 1 Dönen Varlıklar içinde yer alır ve bu gruba bağlı alt hesapların toplu izlenmesini sağlar.",
       "parentCode": "1",
       "type": "asset",
       "reporting": "debit"
@@ -277,7 +277,7 @@
     {
       "code": "150",
       "name": "İlk Madde ve Malzeme",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 150 (İlk Madde ve Malzeme) hesabı, 15 Stoklar grubu altında \"İlk Madde ve Malzeme\" kapsamındaki muhasebe hareketlerinin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "15",
       "type": "asset",
       "reporting": "debit"
@@ -285,7 +285,7 @@
     {
       "code": "151",
       "name": "Yarı Mamuller - Üretim",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 151 (Yarı Mamuller - Üretim) hesabı, 15 Stoklar grubu altında üretim sürecindeki yarı mamullerin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "15",
       "type": "asset",
       "reporting": "debit"
@@ -293,7 +293,7 @@
     {
       "code": "152",
       "name": "Mamuller",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 152 (Mamuller) hesabı, 15 Stoklar grubu altında üretimi tamamlanmış mamullerin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "15",
       "type": "asset",
       "reporting": "debit"
@@ -301,7 +301,7 @@
     {
       "code": "153",
       "name": "Ticari Mallar",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 153 (Ticari Mallar) hesabı, 15 Stoklar grubu altında satılmak üzere alınan ticari malların izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "15",
       "type": "asset",
       "reporting": "debit"
@@ -309,7 +309,7 @@
     {
       "code": "157",
       "name": "Diğer Stoklar",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 157 (Diğer Stoklar) hesabı, 15 Stoklar grubu altında stok kalemlerinin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "15",
       "type": "asset",
       "reporting": "debit"
@@ -317,7 +317,7 @@
     {
       "code": "158",
       "name": "Stok Değer Düşüklüğü Karşılığı (-)",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 158 (Stok Değer Düşüklüğü Karşılığı (-)) hesabı, 15 Stoklar grubu altında stok kalemlerinin izlenmesi için kullanılır; hesap düzenleyici niteliği nedeniyle ters karakter gösterebilir.",
       "parentCode": "15",
       "type": "asset",
       "reporting": "debit"
@@ -325,7 +325,7 @@
     {
       "code": "159",
       "name": "Verilen Sipariş Avansları",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 159 (Verilen Sipariş Avansları) hesabı, 15 Stoklar grubu altında alınan/verilen avans hareketlerinin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "15",
       "type": "asset",
       "reporting": "debit"
@@ -333,7 +333,7 @@
     {
       "code": "17",
       "name": "Yıllara Yaygın İnşaat ve Onarım Maliyetleri",
-      "description": "Official class/group heading.",
+      "description": "Tek Düzen 17 (Yıllara Yaygın İnşaat ve Onarım Maliyetleri) hesap grubu, 1 Dönen Varlıklar içinde yer alır ve bu gruba bağlı alt hesapların toplu izlenmesini sağlar.",
       "parentCode": "1",
       "type": "asset",
       "reporting": "debit"
@@ -405,7 +405,7 @@
     {
       "code": "178",
       "name": "Yıllara Yaygın İnşaat Enflasyon Düzeltme",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 178 (Yıllara Yaygın İnşaat Enflasyon Düzeltme) hesabı, 17 Yıllara Yaygın İnşaat ve Onarım Maliyetleri grubu altında \"Yıllara Yaygın İnşaat Enflasyon Düzeltme\" kapsamındaki muhasebe hareketlerinin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "17",
       "type": "asset",
       "reporting": "debit"
@@ -413,7 +413,7 @@
     {
       "code": "179",
       "name": "Taşeronlara Verilen Avanslar",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 179 (Taşeronlara Verilen Avanslar) hesabı, 17 Yıllara Yaygın İnşaat ve Onarım Maliyetleri grubu altında alınan/verilen avans hareketlerinin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "17",
       "type": "asset",
       "reporting": "debit"
@@ -421,7 +421,7 @@
     {
       "code": "18",
       "name": "Gelecek Aylara Ait Giderler ve Gelir Tahakkukları",
-      "description": "Official class/group heading.",
+      "description": "Tek Düzen 18 (Gelecek Aylara Ait Giderler ve Gelir Tahakkukları) hesap grubu, 1 Dönen Varlıklar içinde yer alır ve bu gruba bağlı alt hesapların toplu izlenmesini sağlar.",
       "parentCode": "1",
       "type": "asset",
       "reporting": "debit"
@@ -429,7 +429,7 @@
     {
       "code": "180",
       "name": "Gelecek Aylara Ait Giderler",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 180 (Gelecek Aylara Ait Giderler) hesabı, 18 Gelecek Aylara Ait Giderler ve Gelir Tahakkukları grubu altında gider niteliğindeki işlemlerin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "18",
       "type": "asset",
       "reporting": "debit"
@@ -437,7 +437,7 @@
     {
       "code": "181",
       "name": "Gelir Tahakkukları",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 181 (Gelir Tahakkukları) hesabı, 18 Gelecek Aylara Ait Giderler ve Gelir Tahakkukları grubu altında gelir niteliğindeki işlemlerin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "18",
       "type": "asset",
       "reporting": "debit"
@@ -445,7 +445,7 @@
     {
       "code": "19",
       "name": "Diğer Dönen Varlıklar",
-      "description": "Official class/group heading.",
+      "description": "Tek Düzen 19 (Diğer Dönen Varlıklar) hesap grubu, 1 Dönen Varlıklar içinde yer alır ve bu gruba bağlı alt hesapların toplu izlenmesini sağlar.",
       "parentCode": "1",
       "type": "asset",
       "reporting": "debit"
@@ -453,7 +453,7 @@
     {
       "code": "190",
       "name": "Devreden KDV",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 190 (Devreden KDV) hesabı, 19 Diğer Dönen Varlıklar grubu altında katma değer vergisi kalemlerinin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "19",
       "type": "asset",
       "reporting": "debit"
@@ -461,7 +461,7 @@
     {
       "code": "191",
       "name": "İndirilecek KDV",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 191 (İndirilecek KDV) hesabı, 19 Diğer Dönen Varlıklar grubu altında katma değer vergisi kalemlerinin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "19",
       "type": "asset",
       "reporting": "debit"
@@ -469,7 +469,7 @@
     {
       "code": "192",
       "name": "Diğer KDV",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 192 (Diğer KDV) hesabı, 19 Diğer Dönen Varlıklar grubu altında katma değer vergisi kalemlerinin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "19",
       "type": "asset",
       "reporting": "debit"
@@ -477,7 +477,7 @@
     {
       "code": "193",
       "name": "Peşin Ödenen Vergiler ve Fonlar",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 193 (Peşin Ödenen Vergiler ve Fonlar) hesabı, 19 Diğer Dönen Varlıklar grubu altında vergi, fon ve benzeri kamu yükümlülüklerinin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "19",
       "type": "asset",
       "reporting": "debit"
@@ -485,7 +485,7 @@
     {
       "code": "195",
       "name": "İş Avansları",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 195 (İş Avansları) hesabı, 19 Diğer Dönen Varlıklar grubu altında alınan/verilen avans hareketlerinin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "19",
       "type": "asset",
       "reporting": "debit"
@@ -493,7 +493,7 @@
     {
       "code": "196",
       "name": "Personel Avansları",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 196 (Personel Avansları) hesabı, 19 Diğer Dönen Varlıklar grubu altında personel ile ilgili alacak/borç ve avans kalemlerinin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "19",
       "type": "asset",
       "reporting": "debit"
@@ -501,7 +501,7 @@
     {
       "code": "197",
       "name": "Sayım ve Tesellüm Noksanları",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 197 (Sayım ve Tesellüm Noksanları) hesabı, 19 Diğer Dönen Varlıklar grubu altında \"Sayım ve Tesellüm Noksanları\" kapsamındaki muhasebe hareketlerinin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "19",
       "type": "asset",
       "reporting": "debit"
@@ -509,7 +509,7 @@
     {
       "code": "198",
       "name": "Diğer Çeşitli Dönen Varlıklar",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 198 (Diğer Çeşitli Dönen Varlıklar) hesabı, 19 Diğer Dönen Varlıklar grubu altında bu grupta özel adı geçmeyen diğer kalemlerin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "19",
       "type": "asset",
       "reporting": "debit"
@@ -517,7 +517,7 @@
     {
       "code": "199",
       "name": "Diğer Dönen Varlıklar Karşılığı (-)",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 199 (Diğer Dönen Varlıklar Karşılığı (-)) hesabı, 19 Diğer Dönen Varlıklar grubu altında ilgili ana hesapları azaltıcı/düzenleyici kalemlerin izlenmesi için kullanılır; hesap düzenleyici niteliği nedeniyle ters karakter gösterebilir.",
       "parentCode": "19",
       "type": "asset",
       "reporting": "debit"
@@ -525,7 +525,7 @@
     {
       "code": "2",
       "name": "Duran Varlıklar",
-      "description": "Official class/group heading.",
+      "description": "Tek Düzen hesap sınıfı 2 (Duran Varlıklar), duran varlıkların, yani bir yıldan uzun süre işletmede kalacak değerlerin izlenmesi için kullanılır.",
       "parentCode": null,
       "type": "asset",
       "reporting": "debit"
@@ -533,7 +533,7 @@
     {
       "code": "22",
       "name": "Ticari Alacaklar",
-      "description": "Official class/group heading.",
+      "description": "Tek Düzen 22 (Ticari Alacaklar) hesap grubu, 2 Duran Varlıklar içinde yer alır ve bu gruba bağlı alt hesapların toplu izlenmesini sağlar.",
       "parentCode": "2",
       "type": "asset",
       "reporting": "debit"
@@ -541,7 +541,7 @@
     {
       "code": "220",
       "name": "Alıcılar",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 220 (Alıcılar) hesabı, 22 Ticari Alacaklar grubu altında mal ve hizmet satışlarından doğan ticari alacakların izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "22",
       "type": "asset",
       "reporting": "debit"
@@ -549,7 +549,7 @@
     {
       "code": "221",
       "name": "Alacak Senetleri",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 221 (Alacak Senetleri) hesabı, 22 Ticari Alacaklar grubu altında senetli ticari alacakların izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "22",
       "type": "asset",
       "reporting": "debit"
@@ -557,7 +557,7 @@
     {
       "code": "222",
       "name": "Alacak Senetleri Reeskontu (-)",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 222 (Alacak Senetleri Reeskontu (-)) hesabı, 22 Ticari Alacaklar grubu altında senetli ticari alacakların izlenmesi için kullanılır; hesap düzenleyici niteliği nedeniyle ters karakter gösterebilir.",
       "parentCode": "22",
       "type": "asset",
       "reporting": "debit"
@@ -565,7 +565,7 @@
     {
       "code": "224",
       "name": "Kazanılmamış Finansal Kiralama Faiz Gelirleri (-)",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 224 (Kazanılmamış Finansal Kiralama Faiz Gelirleri (-)) hesabı, 22 Ticari Alacaklar grubu altında faiz gelirleri veya faiz giderlerinin izlenmesi için kullanılır; hesap düzenleyici niteliği nedeniyle ters karakter gösterebilir.",
       "parentCode": "22",
       "type": "asset",
       "reporting": "debit"
@@ -573,7 +573,7 @@
     {
       "code": "226",
       "name": "Verilen Depozito ve Teminatlar",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 226 (Verilen Depozito ve Teminatlar) hesabı, 22 Ticari Alacaklar grubu altında depozito ve teminat kalemlerinin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "22",
       "type": "asset",
       "reporting": "debit"
@@ -581,7 +581,7 @@
     {
       "code": "229",
       "name": "Şüpheli Alacaklar Karşılığı (-)",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 229 (Şüpheli Alacaklar Karşılığı (-)) hesabı, 22 Ticari Alacaklar grubu altında ilgili ana hesapları azaltıcı/düzenleyici kalemlerin izlenmesi için kullanılır; hesap düzenleyici niteliği nedeniyle ters karakter gösterebilir.",
       "parentCode": "22",
       "type": "asset",
       "reporting": "debit"
@@ -589,7 +589,7 @@
     {
       "code": "23",
       "name": "Diğer Alacaklar",
-      "description": "Official class/group heading.",
+      "description": "Tek Düzen 23 (Diğer Alacaklar) hesap grubu, 2 Duran Varlıklar içinde yer alır ve bu gruba bağlı alt hesapların toplu izlenmesini sağlar.",
       "parentCode": "2",
       "type": "asset",
       "reporting": "debit"
@@ -597,7 +597,7 @@
     {
       "code": "231",
       "name": "Ortaklardan Alacaklar",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 231 (Ortaklardan Alacaklar) hesabı, 23 Diğer Alacaklar grubu altında ortaklarla ilgili alacak/borç hareketlerinin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "23",
       "type": "asset",
       "reporting": "debit"
@@ -605,7 +605,7 @@
     {
       "code": "232",
       "name": "İştiraklerden Alacaklar",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 232 (İştiraklerden Alacaklar) hesabı, 23 Diğer Alacaklar grubu altında \"İştiraklerden Alacaklar\" kapsamındaki muhasebe hareketlerinin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "23",
       "type": "asset",
       "reporting": "debit"
@@ -613,7 +613,7 @@
     {
       "code": "233",
       "name": "Bağlı Ortaklıklardan Alacaklar",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 233 (Bağlı Ortaklıklardan Alacaklar) hesabı, 23 Diğer Alacaklar grubu altında ortaklarla ilgili alacak/borç hareketlerinin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "23",
       "type": "asset",
       "reporting": "debit"
@@ -621,7 +621,7 @@
     {
       "code": "235",
       "name": "Personelden Alacaklar",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 235 (Personelden Alacaklar) hesabı, 23 Diğer Alacaklar grubu altında personel ile ilgili alacak/borç ve avans kalemlerinin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "23",
       "type": "asset",
       "reporting": "debit"
@@ -629,7 +629,7 @@
     {
       "code": "236",
       "name": "Diğer Çeşitli Alacaklar",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 236 (Diğer Çeşitli Alacaklar) hesabı, 23 Diğer Alacaklar grubu altında bu grupta özel adı geçmeyen diğer kalemlerin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "23",
       "type": "asset",
       "reporting": "debit"
@@ -637,7 +637,7 @@
     {
       "code": "237",
       "name": "Diğer Alacak Senetleri Reeskontu (-)",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 237 (Diğer Alacak Senetleri Reeskontu (-)) hesabı, 23 Diğer Alacaklar grubu altında senetli ticari alacakların izlenmesi için kullanılır; hesap düzenleyici niteliği nedeniyle ters karakter gösterebilir.",
       "parentCode": "23",
       "type": "asset",
       "reporting": "debit"
@@ -645,7 +645,7 @@
     {
       "code": "239",
       "name": "Şüpheli Diğer Alacaklar Karşılığı (-)",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 239 (Şüpheli Diğer Alacaklar Karşılığı (-)) hesabı, 23 Diğer Alacaklar grubu altında ilgili ana hesapları azaltıcı/düzenleyici kalemlerin izlenmesi için kullanılır; hesap düzenleyici niteliği nedeniyle ters karakter gösterebilir.",
       "parentCode": "23",
       "type": "asset",
       "reporting": "debit"
@@ -653,7 +653,7 @@
     {
       "code": "24",
       "name": "Mali Duran Varlıklar",
-      "description": "Official class/group heading.",
+      "description": "Tek Düzen 24 (Mali Duran Varlıklar) hesap grubu, 2 Duran Varlıklar içinde yer alır ve bu gruba bağlı alt hesapların toplu izlenmesini sağlar.",
       "parentCode": "2",
       "type": "asset",
       "reporting": "debit"
@@ -661,7 +661,7 @@
     {
       "code": "240",
       "name": "Bağlı Menkul Kıymetler",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 240 (Bağlı Menkul Kıymetler) hesabı, 24 Mali Duran Varlıklar grubu altında \"Bağlı Menkul Kıymetler\" kapsamındaki muhasebe hareketlerinin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "24",
       "type": "asset",
       "reporting": "debit"
@@ -669,7 +669,7 @@
     {
       "code": "241",
       "name": "Bağlı Menkul Kıymetler Değer Düşüklüğü Karşılığı (-)",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 241 (Bağlı Menkul Kıymetler Değer Düşüklüğü Karşılığı (-)) hesabı, 24 Mali Duran Varlıklar grubu altında ilgili ana hesapları azaltıcı/düzenleyici kalemlerin izlenmesi için kullanılır; hesap düzenleyici niteliği nedeniyle ters karakter gösterebilir.",
       "parentCode": "24",
       "type": "asset",
       "reporting": "debit"
@@ -677,7 +677,7 @@
     {
       "code": "242",
       "name": "İştirakler",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 242 (İştirakler) hesabı, 24 Mali Duran Varlıklar grubu altında \"İştirakler\" kapsamındaki muhasebe hareketlerinin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "24",
       "type": "asset",
       "reporting": "debit"
@@ -685,7 +685,7 @@
     {
       "code": "243",
       "name": "İştiraklere Sermaye Taahhütleri (-)",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 243 (İştiraklere Sermaye Taahhütleri (-)) hesabı, 24 Mali Duran Varlıklar grubu altında sermaye hareketlerinin izlenmesi için kullanılır; hesap düzenleyici niteliği nedeniyle ters karakter gösterebilir.",
       "parentCode": "24",
       "type": "asset",
       "reporting": "debit"
@@ -693,7 +693,7 @@
     {
       "code": "244",
       "name": "İştirakler Sermaye Payları Değer Düşüklüğü Karşılığı (-)",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 244 (İştirakler Sermaye Payları Değer Düşüklüğü Karşılığı (-)) hesabı, 24 Mali Duran Varlıklar grubu altında sermaye hareketlerinin izlenmesi için kullanılır; hesap düzenleyici niteliği nedeniyle ters karakter gösterebilir.",
       "parentCode": "24",
       "type": "asset",
       "reporting": "debit"
@@ -701,7 +701,7 @@
     {
       "code": "245",
       "name": "Bağlı Ortaklıklar",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 245 (Bağlı Ortaklıklar) hesabı, 24 Mali Duran Varlıklar grubu altında ortaklarla ilgili alacak/borç hareketlerinin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "24",
       "type": "asset",
       "reporting": "debit"
@@ -709,7 +709,7 @@
     {
       "code": "246",
       "name": "Bağlı Ortaklıklara Sermaye Taahhütleri (-)",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 246 (Bağlı Ortaklıklara Sermaye Taahhütleri (-)) hesabı, 24 Mali Duran Varlıklar grubu altında ortaklarla ilgili alacak/borç hareketlerinin izlenmesi için kullanılır; hesap düzenleyici niteliği nedeniyle ters karakter gösterebilir.",
       "parentCode": "24",
       "type": "asset",
       "reporting": "debit"
@@ -717,7 +717,7 @@
     {
       "code": "247",
       "name": "Bağlı Ortaklıklar Sermaye Payları Değer Düşüklüğü Karşılığı (-)",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 247 (Bağlı Ortaklıklar Sermaye Payları Değer Düşüklüğü Karşılığı (-)) hesabı, 24 Mali Duran Varlıklar grubu altında ortaklarla ilgili alacak/borç hareketlerinin izlenmesi için kullanılır; hesap düzenleyici niteliği nedeniyle ters karakter gösterebilir.",
       "parentCode": "24",
       "type": "asset",
       "reporting": "debit"
@@ -725,7 +725,7 @@
     {
       "code": "248",
       "name": "Diğer Mali Duran Varlıklar",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 248 (Diğer Mali Duran Varlıklar) hesabı, 24 Mali Duran Varlıklar grubu altında bu grupta özel adı geçmeyen diğer kalemlerin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "24",
       "type": "asset",
       "reporting": "debit"
@@ -733,7 +733,7 @@
     {
       "code": "249",
       "name": "Diğer Mali Duran Varlıklar Karşılığı (-)",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 249 (Diğer Mali Duran Varlıklar Karşılığı (-)) hesabı, 24 Mali Duran Varlıklar grubu altında ilgili ana hesapları azaltıcı/düzenleyici kalemlerin izlenmesi için kullanılır; hesap düzenleyici niteliği nedeniyle ters karakter gösterebilir.",
       "parentCode": "24",
       "type": "asset",
       "reporting": "debit"
@@ -741,7 +741,7 @@
     {
       "code": "25",
       "name": "Maddi Duran Varlıklar",
-      "description": "Official class/group heading.",
+      "description": "Tek Düzen 25 (Maddi Duran Varlıklar) hesap grubu, 2 Duran Varlıklar içinde yer alır ve bu gruba bağlı alt hesapların toplu izlenmesini sağlar.",
       "parentCode": "2",
       "type": "asset",
       "reporting": "debit"
@@ -749,7 +749,7 @@
     {
       "code": "250",
       "name": "Arazi ve Arsalar",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 250 (Arazi ve Arsalar) hesabı, 25 Maddi Duran Varlıklar grubu altında \"Arazi ve Arsalar\" kapsamındaki muhasebe hareketlerinin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "25",
       "type": "asset",
       "reporting": "debit"
@@ -757,7 +757,7 @@
     {
       "code": "251",
       "name": "Yeraltı ve Yerüstü Düzenleri",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 251 (Yeraltı ve Yerüstü Düzenleri) hesabı, 25 Maddi Duran Varlıklar grubu altında \"Yeraltı ve Yerüstü Düzenleri\" kapsamındaki muhasebe hareketlerinin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "25",
       "type": "asset",
       "reporting": "debit"
@@ -765,7 +765,7 @@
     {
       "code": "252",
       "name": "Binalar",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 252 (Binalar) hesabı, 25 Maddi Duran Varlıklar grubu altında \"Binalar\" kapsamındaki muhasebe hareketlerinin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "25",
       "type": "asset",
       "reporting": "debit"
@@ -773,7 +773,7 @@
     {
       "code": "253",
       "name": "Tesis, Makine ve Cihazlar",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 253 (Tesis, Makine ve Cihazlar) hesabı, 25 Maddi Duran Varlıklar grubu altında \"Tesis, Makine ve Cihazlar\" kapsamındaki muhasebe hareketlerinin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "25",
       "type": "asset",
       "reporting": "debit"
@@ -781,7 +781,7 @@
     {
       "code": "254",
       "name": "Taşıtlar",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 254 (Taşıtlar) hesabı, 25 Maddi Duran Varlıklar grubu altında \"Taşıtlar\" kapsamındaki muhasebe hareketlerinin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "25",
       "type": "asset",
       "reporting": "debit"
@@ -789,7 +789,7 @@
     {
       "code": "255",
       "name": "Demirbaşlar",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 255 (Demirbaşlar) hesabı, 25 Maddi Duran Varlıklar grubu altında \"Demirbaşlar\" kapsamındaki muhasebe hareketlerinin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "25",
       "type": "asset",
       "reporting": "debit"
@@ -797,7 +797,7 @@
     {
       "code": "256",
       "name": "Diğer Maddi Duran Varlıklar",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 256 (Diğer Maddi Duran Varlıklar) hesabı, 25 Maddi Duran Varlıklar grubu altında bu grupta özel adı geçmeyen diğer kalemlerin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "25",
       "type": "asset",
       "reporting": "debit"
@@ -805,7 +805,7 @@
     {
       "code": "257",
       "name": "Birikmiş Amortismanlar (-)",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 257 (Birikmiş Amortismanlar (-)) hesabı, 25 Maddi Duran Varlıklar grubu altında amortisman giderleri ve birikmiş amortismanların izlenmesi için kullanılır; hesap düzenleyici niteliği nedeniyle ters karakter gösterebilir.",
       "parentCode": "25",
       "type": "asset",
       "reporting": "debit"
@@ -813,7 +813,7 @@
     {
       "code": "258",
       "name": "Yapılmakta Olan Yatırımlar",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 258 (Yapılmakta Olan Yatırımlar) hesabı, 25 Maddi Duran Varlıklar grubu altında \"Yapılmakta Olan Yatırımlar\" kapsamındaki muhasebe hareketlerinin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "25",
       "type": "asset",
       "reporting": "debit"
@@ -821,7 +821,7 @@
     {
       "code": "259",
       "name": "Verilen Avanslar",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 259 (Verilen Avanslar) hesabı, 25 Maddi Duran Varlıklar grubu altında alınan/verilen avans hareketlerinin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "25",
       "type": "asset",
       "reporting": "debit"
@@ -829,7 +829,7 @@
     {
       "code": "26",
       "name": "Maddi Olmayan Duran Varlıklar",
-      "description": "Official class/group heading.",
+      "description": "Tek Düzen 26 (Maddi Olmayan Duran Varlıklar) hesap grubu, 2 Duran Varlıklar içinde yer alır ve bu gruba bağlı alt hesapların toplu izlenmesini sağlar.",
       "parentCode": "2",
       "type": "asset",
       "reporting": "debit"
@@ -837,7 +837,7 @@
     {
       "code": "260",
       "name": "Haklar",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 260 (Haklar) hesabı, 26 Maddi Olmayan Duran Varlıklar grubu altında \"Haklar\" kapsamındaki muhasebe hareketlerinin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "26",
       "type": "asset",
       "reporting": "debit"
@@ -845,7 +845,7 @@
     {
       "code": "261",
       "name": "Şerefiye",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 261 (Şerefiye) hesabı, 26 Maddi Olmayan Duran Varlıklar grubu altında \"Şerefiye\" kapsamındaki muhasebe hareketlerinin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "26",
       "type": "asset",
       "reporting": "debit"
@@ -853,7 +853,7 @@
     {
       "code": "262",
       "name": "Kuruluş ve Örgütlenme Giderleri",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 262 (Kuruluş ve Örgütlenme Giderleri) hesabı, 26 Maddi Olmayan Duran Varlıklar grubu altında gider niteliğindeki işlemlerin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "26",
       "type": "asset",
       "reporting": "debit"
@@ -861,7 +861,7 @@
     {
       "code": "263",
       "name": "Araştırma ve Geliştirme Giderleri",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 263 (Araştırma ve Geliştirme Giderleri) hesabı, 26 Maddi Olmayan Duran Varlıklar grubu altında gider niteliğindeki işlemlerin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "26",
       "type": "asset",
       "reporting": "debit"
@@ -869,7 +869,7 @@
     {
       "code": "264",
       "name": "Özel Maliyetler",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 264 (Özel Maliyetler) hesabı, 26 Maddi Olmayan Duran Varlıklar grubu altında maliyet unsurlarının ve dağıtım/yansıtma kayıtlarının izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "26",
       "type": "asset",
       "reporting": "debit"
@@ -877,7 +877,7 @@
     {
       "code": "267",
       "name": "Diğer Maddi Olmayan Duran Varlıklar",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 267 (Diğer Maddi Olmayan Duran Varlıklar) hesabı, 26 Maddi Olmayan Duran Varlıklar grubu altında bu grupta özel adı geçmeyen diğer kalemlerin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "26",
       "type": "asset",
       "reporting": "debit"
@@ -885,7 +885,7 @@
     {
       "code": "268",
       "name": "Birikmiş Amortismanlar (-)",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 268 (Birikmiş Amortismanlar (-)) hesabı, 26 Maddi Olmayan Duran Varlıklar grubu altında amortisman giderleri ve birikmiş amortismanların izlenmesi için kullanılır; hesap düzenleyici niteliği nedeniyle ters karakter gösterebilir.",
       "parentCode": "26",
       "type": "asset",
       "reporting": "debit"
@@ -893,7 +893,7 @@
     {
       "code": "269",
       "name": "Verilen Avanslar",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 269 (Verilen Avanslar) hesabı, 26 Maddi Olmayan Duran Varlıklar grubu altında alınan/verilen avans hareketlerinin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "26",
       "type": "asset",
       "reporting": "debit"
@@ -901,7 +901,7 @@
     {
       "code": "27",
       "name": "Özel Tükenmeye Tabi Varlıklar",
-      "description": "Official class/group heading.",
+      "description": "Tek Düzen 27 (Özel Tükenmeye Tabi Varlıklar) hesap grubu, 2 Duran Varlıklar içinde yer alır ve bu gruba bağlı alt hesapların toplu izlenmesini sağlar.",
       "parentCode": "2",
       "type": "asset",
       "reporting": "debit"
@@ -909,7 +909,7 @@
     {
       "code": "271",
       "name": "Arama Giderleri",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 271 (Arama Giderleri) hesabı, 27 Özel Tükenmeye Tabi Varlıklar grubu altında gider niteliğindeki işlemlerin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "27",
       "type": "asset",
       "reporting": "debit"
@@ -917,7 +917,7 @@
     {
       "code": "272",
       "name": "Hazırlık ve Geliştirme Giderleri",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 272 (Hazırlık ve Geliştirme Giderleri) hesabı, 27 Özel Tükenmeye Tabi Varlıklar grubu altında gider niteliğindeki işlemlerin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "27",
       "type": "asset",
       "reporting": "debit"
@@ -925,7 +925,7 @@
     {
       "code": "277",
       "name": "Diğer Özel Tükenmeye Tabi Varlıklar",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 277 (Diğer Özel Tükenmeye Tabi Varlıklar) hesabı, 27 Özel Tükenmeye Tabi Varlıklar grubu altında bu grupta özel adı geçmeyen diğer kalemlerin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "27",
       "type": "asset",
       "reporting": "debit"
@@ -933,7 +933,7 @@
     {
       "code": "278",
       "name": "Birikmiş Tükenme Payları (-)",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 278 (Birikmiş Tükenme Payları (-)) hesabı, 27 Özel Tükenmeye Tabi Varlıklar grubu altında ilgili ana hesapları azaltıcı/düzenleyici kalemlerin izlenmesi için kullanılır; hesap düzenleyici niteliği nedeniyle ters karakter gösterebilir.",
       "parentCode": "27",
       "type": "asset",
       "reporting": "debit"
@@ -941,7 +941,7 @@
     {
       "code": "279",
       "name": "Verilen Avanslar",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 279 (Verilen Avanslar) hesabı, 27 Özel Tükenmeye Tabi Varlıklar grubu altında alınan/verilen avans hareketlerinin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "27",
       "type": "asset",
       "reporting": "debit"
@@ -949,7 +949,7 @@
     {
       "code": "28",
       "name": "Gelecek Yıllara Ait Giderler ve Gelir Tahakkukları",
-      "description": "Official class/group heading.",
+      "description": "Tek Düzen 28 (Gelecek Yıllara Ait Giderler ve Gelir Tahakkukları) hesap grubu, 2 Duran Varlıklar içinde yer alır ve bu gruba bağlı alt hesapların toplu izlenmesini sağlar.",
       "parentCode": "2",
       "type": "asset",
       "reporting": "debit"
@@ -957,7 +957,7 @@
     {
       "code": "280",
       "name": "Gelecek Yıllara Ait Giderler",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 280 (Gelecek Yıllara Ait Giderler) hesabı, 28 Gelecek Yıllara Ait Giderler ve Gelir Tahakkukları grubu altında gider niteliğindeki işlemlerin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "28",
       "type": "asset",
       "reporting": "debit"
@@ -965,7 +965,7 @@
     {
       "code": "281",
       "name": "Gelir Tahakkukları",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 281 (Gelir Tahakkukları) hesabı, 28 Gelecek Yıllara Ait Giderler ve Gelir Tahakkukları grubu altında gelir niteliğindeki işlemlerin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "28",
       "type": "asset",
       "reporting": "debit"
@@ -973,7 +973,7 @@
     {
       "code": "29",
       "name": "Diğer Duran Varlıklar",
-      "description": "Official class/group heading.",
+      "description": "Tek Düzen 29 (Diğer Duran Varlıklar) hesap grubu, 2 Duran Varlıklar içinde yer alır ve bu gruba bağlı alt hesapların toplu izlenmesini sağlar.",
       "parentCode": "2",
       "type": "asset",
       "reporting": "debit"
@@ -981,7 +981,7 @@
     {
       "code": "291",
       "name": "Gelecek Yıllarda İndirilecek KDV",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 291 (Gelecek Yıllarda İndirilecek KDV) hesabı, 29 Diğer Duran Varlıklar grubu altında katma değer vergisi kalemlerinin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "29",
       "type": "asset",
       "reporting": "debit"
@@ -989,7 +989,7 @@
     {
       "code": "292",
       "name": "Diğer KDV",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 292 (Diğer KDV) hesabı, 29 Diğer Duran Varlıklar grubu altında katma değer vergisi kalemlerinin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "29",
       "type": "asset",
       "reporting": "debit"
@@ -997,7 +997,7 @@
     {
       "code": "293",
       "name": "Gelecek Yıllar İhtiyacı Stoklar",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 293 (Gelecek Yıllar İhtiyacı Stoklar) hesabı, 29 Diğer Duran Varlıklar grubu altında stok kalemlerinin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "29",
       "type": "asset",
       "reporting": "debit"
@@ -1005,7 +1005,7 @@
     {
       "code": "294",
       "name": "Elden Çıkarılacak Stoklar ve Maddi Duran Varlıklar",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 294 (Elden Çıkarılacak Stoklar ve Maddi Duran Varlıklar) hesabı, 29 Diğer Duran Varlıklar grubu altında stok kalemlerinin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "29",
       "type": "asset",
       "reporting": "debit"
@@ -1013,7 +1013,7 @@
     {
       "code": "295",
       "name": "Peşin Ödenen Vergiler ve Fonlar",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 295 (Peşin Ödenen Vergiler ve Fonlar) hesabı, 29 Diğer Duran Varlıklar grubu altında vergi, fon ve benzeri kamu yükümlülüklerinin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "29",
       "type": "asset",
       "reporting": "debit"
@@ -1021,7 +1021,7 @@
     {
       "code": "297",
       "name": "Diğer Çeşitli Duran Varlıklar",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 297 (Diğer Çeşitli Duran Varlıklar) hesabı, 29 Diğer Duran Varlıklar grubu altında bu grupta özel adı geçmeyen diğer kalemlerin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "29",
       "type": "asset",
       "reporting": "debit"
@@ -1029,7 +1029,7 @@
     {
       "code": "298",
       "name": "Stok Değer Düşüklüğü Karşılığı (-)",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 298 (Stok Değer Düşüklüğü Karşılığı (-)) hesabı, 29 Diğer Duran Varlıklar grubu altında stok kalemlerinin izlenmesi için kullanılır; hesap düzenleyici niteliği nedeniyle ters karakter gösterebilir.",
       "parentCode": "29",
       "type": "asset",
       "reporting": "debit"
@@ -1037,7 +1037,7 @@
     {
       "code": "299",
       "name": "Birikmiş Amortismanlar (-)",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 299 (Birikmiş Amortismanlar (-)) hesabı, 29 Diğer Duran Varlıklar grubu altında amortisman giderleri ve birikmiş amortismanların izlenmesi için kullanılır; hesap düzenleyici niteliği nedeniyle ters karakter gösterebilir.",
       "parentCode": "29",
       "type": "asset",
       "reporting": "debit"
@@ -1045,7 +1045,7 @@
     {
       "code": "3",
       "name": "Kısa Vadeli Yabancı Kaynaklar",
-      "description": "Official class/group heading.",
+      "description": "Tek Düzen hesap sınıfı 3 (Kısa Vadeli Yabancı Kaynaklar), kısa vadeli yabancı kaynakların, yani bir yıl içinde ödenecek yükümlülüklerin izlenmesi için kullanılır.",
       "parentCode": null,
       "type": "liability",
       "reporting": "credit"
@@ -1053,7 +1053,7 @@
     {
       "code": "30",
       "name": "Mali Borçlar",
-      "description": "Official class/group heading.",
+      "description": "Tek Düzen 30 (Mali Borçlar) hesap grubu, 3 Kısa Vadeli Yabancı Kaynaklar içinde yer alır ve bu gruba bağlı alt hesapların toplu izlenmesini sağlar.",
       "parentCode": "3",
       "type": "liability",
       "reporting": "credit"
@@ -1061,7 +1061,7 @@
     {
       "code": "300",
       "name": "Banka Kredileri",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 300 (Banka Kredileri) hesabı, 30 Mali Borçlar grubu altında banka ve benzeri finans kuruluşlarındaki para hareketlerinin izlenmesi için kullanılır; hesap normalde alacak karakterlidir.",
       "parentCode": "30",
       "type": "liability",
       "reporting": "credit"
@@ -1069,7 +1069,7 @@
     {
       "code": "301",
       "name": "Finansal Kiralama İşlemlerinden Borçlar",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 301 (Finansal Kiralama İşlemlerinden Borçlar) hesabı, 30 Mali Borçlar grubu altında \"Finansal Kiralama İşlemlerinden Borçlar\" kapsamındaki muhasebe hareketlerinin izlenmesi için kullanılır; hesap normalde alacak karakterlidir.",
       "parentCode": "30",
       "type": "liability",
       "reporting": "credit"
@@ -1077,7 +1077,7 @@
     {
       "code": "302",
       "name": "Ertelenmiş Finansal Kiralama Borçlanma Maliyetleri (-)",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 302 (Ertelenmiş Finansal Kiralama Borçlanma Maliyetleri (-)) hesabı, 30 Mali Borçlar grubu altında maliyet unsurlarının ve dağıtım/yansıtma kayıtlarının izlenmesi için kullanılır; hesap düzenleyici niteliği nedeniyle ters karakter gösterebilir.",
       "parentCode": "30",
       "type": "liability",
       "reporting": "credit"
@@ -1085,7 +1085,7 @@
     {
       "code": "303",
       "name": "Uzun Vadeli Kredilerin Anapara Taksitleri ve Faizleri",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 303 (Uzun Vadeli Kredilerin Anapara Taksitleri ve Faizleri) hesabı, 30 Mali Borçlar grubu altında faiz gelirleri veya faiz giderlerinin izlenmesi için kullanılır; hesap normalde alacak karakterlidir.",
       "parentCode": "30",
       "type": "liability",
       "reporting": "credit"
@@ -1093,7 +1093,7 @@
     {
       "code": "304",
       "name": "Tahvil Anapara Borç, Taksit ve Faizleri",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 304 (Tahvil Anapara Borç, Taksit ve Faizleri) hesabı, 30 Mali Borçlar grubu altında tahvil ve bono yatırımlarının izlenmesi için kullanılır; hesap normalde alacak karakterlidir.",
       "parentCode": "30",
       "type": "liability",
       "reporting": "credit"
@@ -1101,7 +1101,7 @@
     {
       "code": "305",
       "name": "Çıkarılmış Bonolar ve Senetler",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 305 (Çıkarılmış Bonolar ve Senetler) hesabı, 30 Mali Borçlar grubu altında bono ve benzeri menkul kıymetlerin izlenmesi için kullanılır; hesap normalde alacak karakterlidir.",
       "parentCode": "30",
       "type": "liability",
       "reporting": "credit"
@@ -1109,7 +1109,7 @@
     {
       "code": "306",
       "name": "Çıkarılmış Diğer Menkul Kıymetler",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 306 (Çıkarılmış Diğer Menkul Kıymetler) hesabı, 30 Mali Borçlar grubu altında \"Çıkarılmış Diğer Menkul Kıymetler\" kapsamındaki muhasebe hareketlerinin izlenmesi için kullanılır; hesap normalde alacak karakterlidir.",
       "parentCode": "30",
       "type": "liability",
       "reporting": "credit"
@@ -1117,7 +1117,7 @@
     {
       "code": "308",
       "name": "Menkul Kıymetler İhraç Farkları (-)",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 308 (Menkul Kıymetler İhraç Farkları (-)) hesabı, 30 Mali Borçlar grubu altında ilgili ana hesapları azaltıcı/düzenleyici kalemlerin izlenmesi için kullanılır; hesap düzenleyici niteliği nedeniyle ters karakter gösterebilir.",
       "parentCode": "30",
       "type": "liability",
       "reporting": "credit"
@@ -1125,7 +1125,7 @@
     {
       "code": "309",
       "name": "Diğer Mali Borçlar",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 309 (Diğer Mali Borçlar) hesabı, 30 Mali Borçlar grubu altında bu grupta özel adı geçmeyen diğer kalemlerin izlenmesi için kullanılır; hesap normalde alacak karakterlidir.",
       "parentCode": "30",
       "type": "liability",
       "reporting": "credit"
@@ -1133,7 +1133,7 @@
     {
       "code": "32",
       "name": "Ticari Borçlar",
-      "description": "Official class/group heading.",
+      "description": "Tek Düzen 32 (Ticari Borçlar) hesap grubu, 3 Kısa Vadeli Yabancı Kaynaklar içinde yer alır ve bu gruba bağlı alt hesapların toplu izlenmesini sağlar.",
       "parentCode": "3",
       "type": "liability",
       "reporting": "credit"
@@ -1141,7 +1141,7 @@
     {
       "code": "320",
       "name": "Satıcılar",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 320 (Satıcılar) hesabı, 32 Ticari Borçlar grubu altında mal ve hizmet alımlarından doğan ticari borçların izlenmesi için kullanılır; hesap normalde alacak karakterlidir.",
       "parentCode": "32",
       "type": "liability",
       "reporting": "credit"
@@ -1149,7 +1149,7 @@
     {
       "code": "321",
       "name": "Borç Senetleri",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 321 (Borç Senetleri) hesabı, 32 Ticari Borçlar grubu altında senetli ticari borçların izlenmesi için kullanılır; hesap normalde alacak karakterlidir.",
       "parentCode": "32",
       "type": "liability",
       "reporting": "credit"
@@ -1157,7 +1157,7 @@
     {
       "code": "322",
       "name": "Borç Senetleri Reeskontu (-)",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 322 (Borç Senetleri Reeskontu (-)) hesabı, 32 Ticari Borçlar grubu altında senetli ticari borçların izlenmesi için kullanılır; hesap düzenleyici niteliği nedeniyle ters karakter gösterebilir.",
       "parentCode": "32",
       "type": "liability",
       "reporting": "credit"
@@ -1165,7 +1165,7 @@
     {
       "code": "326",
       "name": "Alınan Depozito ve Teminatlar",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 326 (Alınan Depozito ve Teminatlar) hesabı, 32 Ticari Borçlar grubu altında depozito ve teminat kalemlerinin izlenmesi için kullanılır; hesap normalde alacak karakterlidir.",
       "parentCode": "32",
       "type": "liability",
       "reporting": "credit"
@@ -1173,7 +1173,7 @@
     {
       "code": "329",
       "name": "Diğer Ticari Borçlar",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 329 (Diğer Ticari Borçlar) hesabı, 32 Ticari Borçlar grubu altında bu grupta özel adı geçmeyen diğer kalemlerin izlenmesi için kullanılır; hesap normalde alacak karakterlidir.",
       "parentCode": "32",
       "type": "liability",
       "reporting": "credit"
@@ -1181,7 +1181,7 @@
     {
       "code": "33",
       "name": "Diğer Borçlar",
-      "description": "Official class/group heading.",
+      "description": "Tek Düzen 33 (Diğer Borçlar) hesap grubu, 3 Kısa Vadeli Yabancı Kaynaklar içinde yer alır ve bu gruba bağlı alt hesapların toplu izlenmesini sağlar.",
       "parentCode": "3",
       "type": "liability",
       "reporting": "credit"
@@ -1189,7 +1189,7 @@
     {
       "code": "331",
       "name": "Ortaklara Borçlar",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 331 (Ortaklara Borçlar) hesabı, 33 Diğer Borçlar grubu altında ortaklarla ilgili alacak/borç hareketlerinin izlenmesi için kullanılır; hesap normalde alacak karakterlidir.",
       "parentCode": "33",
       "type": "liability",
       "reporting": "credit"
@@ -1197,7 +1197,7 @@
     {
       "code": "332",
       "name": "İştiraklere Borçlar",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 332 (İştiraklere Borçlar) hesabı, 33 Diğer Borçlar grubu altında \"İştiraklere Borçlar\" kapsamındaki muhasebe hareketlerinin izlenmesi için kullanılır; hesap normalde alacak karakterlidir.",
       "parentCode": "33",
       "type": "liability",
       "reporting": "credit"
@@ -1205,7 +1205,7 @@
     {
       "code": "333",
       "name": "Bağlı Ortaklıklara Borçlar",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 333 (Bağlı Ortaklıklara Borçlar) hesabı, 33 Diğer Borçlar grubu altında ortaklarla ilgili alacak/borç hareketlerinin izlenmesi için kullanılır; hesap normalde alacak karakterlidir.",
       "parentCode": "33",
       "type": "liability",
       "reporting": "credit"
@@ -1213,7 +1213,7 @@
     {
       "code": "335",
       "name": "Personele Borçlar",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 335 (Personele Borçlar) hesabı, 33 Diğer Borçlar grubu altında personel ile ilgili alacak/borç ve avans kalemlerinin izlenmesi için kullanılır; hesap normalde alacak karakterlidir.",
       "parentCode": "33",
       "type": "liability",
       "reporting": "credit"
@@ -1221,7 +1221,7 @@
     {
       "code": "336",
       "name": "Diğer Çeşitli Borçlar",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 336 (Diğer Çeşitli Borçlar) hesabı, 33 Diğer Borçlar grubu altında bu grupta özel adı geçmeyen diğer kalemlerin izlenmesi için kullanılır; hesap normalde alacak karakterlidir.",
       "parentCode": "33",
       "type": "liability",
       "reporting": "credit"
@@ -1229,7 +1229,7 @@
     {
       "code": "337",
       "name": "Diğer Borç Senetleri Reeskontu (-)",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 337 (Diğer Borç Senetleri Reeskontu (-)) hesabı, 33 Diğer Borçlar grubu altında senetli ticari borçların izlenmesi için kullanılır; hesap düzenleyici niteliği nedeniyle ters karakter gösterebilir.",
       "parentCode": "33",
       "type": "liability",
       "reporting": "credit"
@@ -1237,7 +1237,7 @@
     {
       "code": "34",
       "name": "Alınan Avanslar",
-      "description": "Official class/group heading.",
+      "description": "Tek Düzen 34 (Alınan Avanslar) hesap grubu, 3 Kısa Vadeli Yabancı Kaynaklar içinde yer alır ve bu gruba bağlı alt hesapların toplu izlenmesini sağlar.",
       "parentCode": "3",
       "type": "liability",
       "reporting": "credit"
@@ -1245,7 +1245,7 @@
     {
       "code": "340",
       "name": "Alınan Sipariş Avansları",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 340 (Alınan Sipariş Avansları) hesabı, 34 Alınan Avanslar grubu altında alınan/verilen avans hareketlerinin izlenmesi için kullanılır; hesap normalde alacak karakterlidir.",
       "parentCode": "34",
       "type": "liability",
       "reporting": "credit"
@@ -1253,7 +1253,7 @@
     {
       "code": "349",
       "name": "Alınan Diğer Avanslar",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 349 (Alınan Diğer Avanslar) hesabı, 34 Alınan Avanslar grubu altında alınan/verilen avans hareketlerinin izlenmesi için kullanılır; hesap normalde alacak karakterlidir.",
       "parentCode": "34",
       "type": "liability",
       "reporting": "credit"
@@ -1261,7 +1261,7 @@
     {
       "code": "35",
       "name": "Yıllara Yaygın İnşaat ve Onarım Hakedişleri",
-      "description": "Official class/group heading.",
+      "description": "Tek Düzen 35 (Yıllara Yaygın İnşaat ve Onarım Hakedişleri) hesap grubu, 3 Kısa Vadeli Yabancı Kaynaklar içinde yer alır ve bu gruba bağlı alt hesapların toplu izlenmesini sağlar.",
       "parentCode": "3",
       "type": "liability",
       "reporting": "credit"
@@ -1269,7 +1269,7 @@
     {
       "code": "350",
       "name": "Yıllara Yaygın İnşaat ve Onarım Hakedişleri",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 350 (Yıllara Yaygın İnşaat ve Onarım Hakedişleri) hesabı, 35 Yıllara Yaygın İnşaat ve Onarım Hakedişleri grubu altında \"Yıllara Yaygın İnşaat ve Onarım Hakedişleri\" kapsamındaki muhasebe hareketlerinin izlenmesi için kullanılır; hesap normalde alacak karakterlidir.",
       "parentCode": "35",
       "type": "liability",
       "reporting": "credit"
@@ -1277,7 +1277,7 @@
     {
       "code": "358",
       "name": "Yıllara Yaygın İnşaat Enflasyon Düzeltme",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 358 (Yıllara Yaygın İnşaat Enflasyon Düzeltme) hesabı, 35 Yıllara Yaygın İnşaat ve Onarım Hakedişleri grubu altında \"Yıllara Yaygın İnşaat Enflasyon Düzeltme\" kapsamındaki muhasebe hareketlerinin izlenmesi için kullanılır; hesap normalde alacak karakterlidir.",
       "parentCode": "35",
       "type": "liability",
       "reporting": "credit"
@@ -1285,7 +1285,7 @@
     {
       "code": "36",
       "name": "Ödenecek Vergi ve Diğer Yükümlülükler",
-      "description": "Official class/group heading.",
+      "description": "Tek Düzen 36 (Ödenecek Vergi ve Diğer Yükümlülükler) hesap grubu, 3 Kısa Vadeli Yabancı Kaynaklar içinde yer alır ve bu gruba bağlı alt hesapların toplu izlenmesini sağlar.",
       "parentCode": "3",
       "type": "liability",
       "reporting": "credit"
@@ -1293,7 +1293,7 @@
     {
       "code": "360",
       "name": "Ödenecek Vergi ve Fonlar",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 360 (Ödenecek Vergi ve Fonlar) hesabı, 36 Ödenecek Vergi ve Diğer Yükümlülükler grubu altında vergi, fon ve benzeri kamu yükümlülüklerinin izlenmesi için kullanılır; hesap normalde alacak karakterlidir.",
       "parentCode": "36",
       "type": "liability",
       "reporting": "credit"
@@ -1301,7 +1301,7 @@
     {
       "code": "361",
       "name": "Ödenecek Sosyal Güvenlik Kesintileri",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 361 (Ödenecek Sosyal Güvenlik Kesintileri) hesabı, 36 Ödenecek Vergi ve Diğer Yükümlülükler grubu altında sosyal güvenlik kesintileri ve yükümlülüklerinin izlenmesi için kullanılır; hesap normalde alacak karakterlidir.",
       "parentCode": "36",
       "type": "liability",
       "reporting": "credit"
@@ -1309,7 +1309,7 @@
     {
       "code": "368",
       "name": "Vadesi Geçmiş, Ertelenmiş veya Taksitlendirilmiş Vergi ve Diğer Yükümlülükler",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 368 (Vadesi Geçmiş, Ertelenmiş veya Taksitlendirilmiş Vergi ve Diğer Yükümlülükler) hesabı, 36 Ödenecek Vergi ve Diğer Yükümlülükler grubu altında vergi, fon ve benzeri kamu yükümlülüklerinin izlenmesi için kullanılır; hesap normalde alacak karakterlidir.",
       "parentCode": "36",
       "type": "liability",
       "reporting": "credit"
@@ -1317,7 +1317,7 @@
     {
       "code": "369",
       "name": "Ödenecek Diğer Yükümlülükler",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 369 (Ödenecek Diğer Yükümlülükler) hesabı, 36 Ödenecek Vergi ve Diğer Yükümlülükler grubu altında \"Ödenecek Diğer Yükümlülükler\" kapsamındaki muhasebe hareketlerinin izlenmesi için kullanılır; hesap normalde alacak karakterlidir.",
       "parentCode": "36",
       "type": "liability",
       "reporting": "credit"
@@ -1325,7 +1325,7 @@
     {
       "code": "37",
       "name": "Borç ve Gider Karşılıkları",
-      "description": "Official class/group heading.",
+      "description": "Tek Düzen 37 (Borç ve Gider Karşılıkları) hesap grubu, 3 Kısa Vadeli Yabancı Kaynaklar içinde yer alır ve bu gruba bağlı alt hesapların toplu izlenmesini sağlar.",
       "parentCode": "3",
       "type": "liability",
       "reporting": "credit"
@@ -1333,7 +1333,7 @@
     {
       "code": "370",
       "name": "Dönem Karı Vergi ve Diğer Yasal Yükümlülük Karşılıkları",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 370 (Dönem Karı Vergi ve Diğer Yasal Yükümlülük Karşılıkları) hesabı, 37 Borç ve Gider Karşılıkları grubu altında vergi, fon ve benzeri kamu yükümlülüklerinin izlenmesi için kullanılır; hesap normalde alacak karakterlidir.",
       "parentCode": "37",
       "type": "liability",
       "reporting": "credit"
@@ -1341,7 +1341,7 @@
     {
       "code": "371",
       "name": "Dönem Karının Peşin Ödenen Vergi ve Diğer Yükümlülükleri (-)",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 371 (Dönem Karının Peşin Ödenen Vergi ve Diğer Yükümlülükleri (-)) hesabı, 37 Borç ve Gider Karşılıkları grubu altında vergi, fon ve benzeri kamu yükümlülüklerinin izlenmesi için kullanılır; hesap düzenleyici niteliği nedeniyle ters karakter gösterebilir.",
       "parentCode": "37",
       "type": "liability",
       "reporting": "credit"
@@ -1349,7 +1349,7 @@
     {
       "code": "372",
       "name": "Kıdem Tazminatı Karşılığı",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 372 (Kıdem Tazminatı Karşılığı) hesabı, 37 Borç ve Gider Karşılıkları grubu altında ilgili ana hesapları azaltıcı/düzenleyici kalemlerin izlenmesi için kullanılır; hesap düzenleyici niteliği nedeniyle ters karakter gösterebilir.",
       "parentCode": "37",
       "type": "liability",
       "reporting": "credit"
@@ -1357,7 +1357,7 @@
     {
       "code": "373",
       "name": "Maliyet Giderleri Karşılığı",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 373 (Maliyet Giderleri Karşılığı) hesabı, 37 Borç ve Gider Karşılıkları grubu altında maliyet unsurlarının ve dağıtım/yansıtma kayıtlarının izlenmesi için kullanılır; hesap düzenleyici niteliği nedeniyle ters karakter gösterebilir.",
       "parentCode": "37",
       "type": "liability",
       "reporting": "credit"
@@ -1365,7 +1365,7 @@
     {
       "code": "379",
       "name": "Diğer Borç ve Gider Karşılıkları",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 379 (Diğer Borç ve Gider Karşılıkları) hesabı, 37 Borç ve Gider Karşılıkları grubu altında muhtemel risk ve giderler için ayrılan karşılıkların izlenmesi için kullanılır; hesap normalde alacak karakterlidir.",
       "parentCode": "37",
       "type": "liability",
       "reporting": "credit"
@@ -1373,7 +1373,7 @@
     {
       "code": "38",
       "name": "Gelecek Aylara Ait Gelirler ve Gider Tahakkukları",
-      "description": "Official class/group heading.",
+      "description": "Tek Düzen 38 (Gelecek Aylara Ait Gelirler ve Gider Tahakkukları) hesap grubu, 3 Kısa Vadeli Yabancı Kaynaklar içinde yer alır ve bu gruba bağlı alt hesapların toplu izlenmesini sağlar.",
       "parentCode": "3",
       "type": "liability",
       "reporting": "credit"
@@ -1381,7 +1381,7 @@
     {
       "code": "380",
       "name": "Gelecek Aylara Ait Gelirler",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 380 (Gelecek Aylara Ait Gelirler) hesabı, 38 Gelecek Aylara Ait Gelirler ve Gider Tahakkukları grubu altında gelir niteliğindeki işlemlerin izlenmesi için kullanılır; hesap normalde alacak karakterlidir.",
       "parentCode": "38",
       "type": "liability",
       "reporting": "credit"
@@ -1389,7 +1389,7 @@
     {
       "code": "381",
       "name": "Gider Tahakkukları",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 381 (Gider Tahakkukları) hesabı, 38 Gelecek Aylara Ait Gelirler ve Gider Tahakkukları grubu altında gider niteliğindeki işlemlerin izlenmesi için kullanılır; hesap normalde alacak karakterlidir.",
       "parentCode": "38",
       "type": "liability",
       "reporting": "credit"
@@ -1397,7 +1397,7 @@
     {
       "code": "39",
       "name": "Diğer Kısa Vadeli Yabancı Kaynaklar",
-      "description": "Official class/group heading.",
+      "description": "Tek Düzen 39 (Diğer Kısa Vadeli Yabancı Kaynaklar) hesap grubu, 3 Kısa Vadeli Yabancı Kaynaklar içinde yer alır ve bu gruba bağlı alt hesapların toplu izlenmesini sağlar.",
       "parentCode": "3",
       "type": "liability",
       "reporting": "credit"
@@ -1405,7 +1405,7 @@
     {
       "code": "391",
       "name": "Hesaplanan KDV",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 391 (Hesaplanan KDV) hesabı, 39 Diğer Kısa Vadeli Yabancı Kaynaklar grubu altında katma değer vergisi kalemlerinin izlenmesi için kullanılır; hesap normalde alacak karakterlidir.",
       "parentCode": "39",
       "type": "liability",
       "reporting": "credit"
@@ -1413,7 +1413,7 @@
     {
       "code": "392",
       "name": "Diğer KDV",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 392 (Diğer KDV) hesabı, 39 Diğer Kısa Vadeli Yabancı Kaynaklar grubu altında katma değer vergisi kalemlerinin izlenmesi için kullanılır; hesap normalde alacak karakterlidir.",
       "parentCode": "39",
       "type": "liability",
       "reporting": "credit"
@@ -1421,7 +1421,7 @@
     {
       "code": "393",
       "name": "Merkez ve Şubeler Cari Hesabı",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 393 (Merkez ve Şubeler Cari Hesabı) hesabı, 39 Diğer Kısa Vadeli Yabancı Kaynaklar grubu altında \"Merkez ve Şubeler Cari Hesabı\" kapsamındaki muhasebe hareketlerinin izlenmesi için kullanılır; hesap normalde alacak karakterlidir.",
       "parentCode": "39",
       "type": "liability",
       "reporting": "credit"
@@ -1429,7 +1429,7 @@
     {
       "code": "397",
       "name": "Sayım ve Tesellüm Fazlaları",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 397 (Sayım ve Tesellüm Fazlaları) hesabı, 39 Diğer Kısa Vadeli Yabancı Kaynaklar grubu altında \"Sayım ve Tesellüm Fazlaları\" kapsamındaki muhasebe hareketlerinin izlenmesi için kullanılır; hesap normalde alacak karakterlidir.",
       "parentCode": "39",
       "type": "liability",
       "reporting": "credit"
@@ -1437,7 +1437,7 @@
     {
       "code": "399",
       "name": "Diğer Çeşitli Yabancı Kaynaklar",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 399 (Diğer Çeşitli Yabancı Kaynaklar) hesabı, 39 Diğer Kısa Vadeli Yabancı Kaynaklar grubu altında bu grupta özel adı geçmeyen diğer kalemlerin izlenmesi için kullanılır; hesap normalde alacak karakterlidir.",
       "parentCode": "39",
       "type": "liability",
       "reporting": "credit"
@@ -1445,7 +1445,7 @@
     {
       "code": "4",
       "name": "Uzun Vadeli Yabancı Kaynaklar",
-      "description": "Official class/group heading.",
+      "description": "Tek Düzen hesap sınıfı 4 (Uzun Vadeli Yabancı Kaynaklar), uzun vadeli yabancı kaynakların, yani vadesi bir yılı aşan yükümlülüklerin izlenmesi için kullanılır.",
       "parentCode": null,
       "type": "liability",
       "reporting": "credit"
@@ -1453,7 +1453,7 @@
     {
       "code": "40",
       "name": "Mali Borçlar",
-      "description": "Official class/group heading.",
+      "description": "Tek Düzen 40 (Mali Borçlar) hesap grubu, 4 Uzun Vadeli Yabancı Kaynaklar içinde yer alır ve bu gruba bağlı alt hesapların toplu izlenmesini sağlar.",
       "parentCode": "4",
       "type": "liability",
       "reporting": "credit"
@@ -1461,7 +1461,7 @@
     {
       "code": "400",
       "name": "Banka Kredileri",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 400 (Banka Kredileri) hesabı, 40 Mali Borçlar grubu altında banka ve benzeri finans kuruluşlarındaki para hareketlerinin izlenmesi için kullanılır; hesap normalde alacak karakterlidir.",
       "parentCode": "40",
       "type": "liability",
       "reporting": "credit"
@@ -1469,7 +1469,7 @@
     {
       "code": "401",
       "name": "Finansal Kiralama İşlemlerinden Borçlar",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 401 (Finansal Kiralama İşlemlerinden Borçlar) hesabı, 40 Mali Borçlar grubu altında \"Finansal Kiralama İşlemlerinden Borçlar\" kapsamındaki muhasebe hareketlerinin izlenmesi için kullanılır; hesap normalde alacak karakterlidir.",
       "parentCode": "40",
       "type": "liability",
       "reporting": "credit"
@@ -1477,7 +1477,7 @@
     {
       "code": "402",
       "name": "Ertelenmiş Finansal Kiralama Borçlanma Maliyetleri (-)",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 402 (Ertelenmiş Finansal Kiralama Borçlanma Maliyetleri (-)) hesabı, 40 Mali Borçlar grubu altında maliyet unsurlarının ve dağıtım/yansıtma kayıtlarının izlenmesi için kullanılır; hesap düzenleyici niteliği nedeniyle ters karakter gösterebilir.",
       "parentCode": "40",
       "type": "liability",
       "reporting": "credit"
@@ -1485,7 +1485,7 @@
     {
       "code": "405",
       "name": "Çıkarılmış Tahviller",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 405 (Çıkarılmış Tahviller) hesabı, 40 Mali Borçlar grubu altında tahvil ve bono yatırımlarının izlenmesi için kullanılır; hesap normalde alacak karakterlidir.",
       "parentCode": "40",
       "type": "liability",
       "reporting": "credit"
@@ -1493,7 +1493,7 @@
     {
       "code": "407",
       "name": "Çıkarılmış Diğer Menkul Kıymetler",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 407 (Çıkarılmış Diğer Menkul Kıymetler) hesabı, 40 Mali Borçlar grubu altında \"Çıkarılmış Diğer Menkul Kıymetler\" kapsamındaki muhasebe hareketlerinin izlenmesi için kullanılır; hesap normalde alacak karakterlidir.",
       "parentCode": "40",
       "type": "liability",
       "reporting": "credit"
@@ -1501,7 +1501,7 @@
     {
       "code": "408",
       "name": "Menkul Kıymetler İhraç Farkı (-)",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 408 (Menkul Kıymetler İhraç Farkı (-)) hesabı, 40 Mali Borçlar grubu altında ilgili ana hesapları azaltıcı/düzenleyici kalemlerin izlenmesi için kullanılır; hesap düzenleyici niteliği nedeniyle ters karakter gösterebilir.",
       "parentCode": "40",
       "type": "liability",
       "reporting": "credit"
@@ -1509,7 +1509,7 @@
     {
       "code": "409",
       "name": "Diğer Mali Borçlar",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 409 (Diğer Mali Borçlar) hesabı, 40 Mali Borçlar grubu altında bu grupta özel adı geçmeyen diğer kalemlerin izlenmesi için kullanılır; hesap normalde alacak karakterlidir.",
       "parentCode": "40",
       "type": "liability",
       "reporting": "credit"
@@ -1517,7 +1517,7 @@
     {
       "code": "42",
       "name": "Ticari Borçlar",
-      "description": "Official class/group heading.",
+      "description": "Tek Düzen 42 (Ticari Borçlar) hesap grubu, 4 Uzun Vadeli Yabancı Kaynaklar içinde yer alır ve bu gruba bağlı alt hesapların toplu izlenmesini sağlar.",
       "parentCode": "4",
       "type": "liability",
       "reporting": "credit"
@@ -1525,7 +1525,7 @@
     {
       "code": "420",
       "name": "Satıcılar",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 420 (Satıcılar) hesabı, 42 Ticari Borçlar grubu altında mal ve hizmet alımlarından doğan ticari borçların izlenmesi için kullanılır; hesap normalde alacak karakterlidir.",
       "parentCode": "42",
       "type": "liability",
       "reporting": "credit"
@@ -1533,7 +1533,7 @@
     {
       "code": "421",
       "name": "Borç Senetleri",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 421 (Borç Senetleri) hesabı, 42 Ticari Borçlar grubu altında senetli ticari borçların izlenmesi için kullanılır; hesap normalde alacak karakterlidir.",
       "parentCode": "42",
       "type": "liability",
       "reporting": "credit"
@@ -1541,7 +1541,7 @@
     {
       "code": "422",
       "name": "Borç Senetleri Reeskontu (-)",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 422 (Borç Senetleri Reeskontu (-)) hesabı, 42 Ticari Borçlar grubu altında senetli ticari borçların izlenmesi için kullanılır; hesap düzenleyici niteliği nedeniyle ters karakter gösterebilir.",
       "parentCode": "42",
       "type": "liability",
       "reporting": "credit"
@@ -1549,7 +1549,7 @@
     {
       "code": "426",
       "name": "Alınan Depozito ve Teminatlar",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 426 (Alınan Depozito ve Teminatlar) hesabı, 42 Ticari Borçlar grubu altında depozito ve teminat kalemlerinin izlenmesi için kullanılır; hesap normalde alacak karakterlidir.",
       "parentCode": "42",
       "type": "liability",
       "reporting": "credit"
@@ -1557,7 +1557,7 @@
     {
       "code": "429",
       "name": "Diğer Ticari Borçlar",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 429 (Diğer Ticari Borçlar) hesabı, 42 Ticari Borçlar grubu altında bu grupta özel adı geçmeyen diğer kalemlerin izlenmesi için kullanılır; hesap normalde alacak karakterlidir.",
       "parentCode": "42",
       "type": "liability",
       "reporting": "credit"
@@ -1565,7 +1565,7 @@
     {
       "code": "43",
       "name": "Diğer Borçlar",
-      "description": "Official class/group heading.",
+      "description": "Tek Düzen 43 (Diğer Borçlar) hesap grubu, 4 Uzun Vadeli Yabancı Kaynaklar içinde yer alır ve bu gruba bağlı alt hesapların toplu izlenmesini sağlar.",
       "parentCode": "4",
       "type": "liability",
       "reporting": "credit"
@@ -1573,7 +1573,7 @@
     {
       "code": "431",
       "name": "Ortaklara Borçlar",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 431 (Ortaklara Borçlar) hesabı, 43 Diğer Borçlar grubu altında ortaklarla ilgili alacak/borç hareketlerinin izlenmesi için kullanılır; hesap normalde alacak karakterlidir.",
       "parentCode": "43",
       "type": "liability",
       "reporting": "credit"
@@ -1581,7 +1581,7 @@
     {
       "code": "432",
       "name": "İştiraklere Borçlar",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 432 (İştiraklere Borçlar) hesabı, 43 Diğer Borçlar grubu altında \"İştiraklere Borçlar\" kapsamındaki muhasebe hareketlerinin izlenmesi için kullanılır; hesap normalde alacak karakterlidir.",
       "parentCode": "43",
       "type": "liability",
       "reporting": "credit"
@@ -1589,7 +1589,7 @@
     {
       "code": "433",
       "name": "Bağlı Ortaklıklara Borçlar",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 433 (Bağlı Ortaklıklara Borçlar) hesabı, 43 Diğer Borçlar grubu altında ortaklarla ilgili alacak/borç hareketlerinin izlenmesi için kullanılır; hesap normalde alacak karakterlidir.",
       "parentCode": "43",
       "type": "liability",
       "reporting": "credit"
@@ -1597,7 +1597,7 @@
     {
       "code": "436",
       "name": "Diğer Çeşitli Borçlar",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 436 (Diğer Çeşitli Borçlar) hesabı, 43 Diğer Borçlar grubu altında bu grupta özel adı geçmeyen diğer kalemlerin izlenmesi için kullanılır; hesap normalde alacak karakterlidir.",
       "parentCode": "43",
       "type": "liability",
       "reporting": "credit"
@@ -1605,7 +1605,7 @@
     {
       "code": "437",
       "name": "Diğer Borç Senetleri Reeskontu (-)",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 437 (Diğer Borç Senetleri Reeskontu (-)) hesabı, 43 Diğer Borçlar grubu altında senetli ticari borçların izlenmesi için kullanılır; hesap düzenleyici niteliği nedeniyle ters karakter gösterebilir.",
       "parentCode": "43",
       "type": "liability",
       "reporting": "credit"
@@ -1613,7 +1613,7 @@
     {
       "code": "438",
       "name": "Kamuya Olan Ertelenmiş veya Taksitlendirilmiş Borçlar",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 438 (Kamuya Olan Ertelenmiş veya Taksitlendirilmiş Borçlar) hesabı, 43 Diğer Borçlar grubu altında \"Kamuya Olan Ertelenmiş veya Taksitlendirilmiş Borçlar\" kapsamındaki muhasebe hareketlerinin izlenmesi için kullanılır; hesap normalde alacak karakterlidir.",
       "parentCode": "43",
       "type": "liability",
       "reporting": "credit"
@@ -1621,7 +1621,7 @@
     {
       "code": "44",
       "name": "Alınan Avanslar",
-      "description": "Official class/group heading.",
+      "description": "Tek Düzen 44 (Alınan Avanslar) hesap grubu, 4 Uzun Vadeli Yabancı Kaynaklar içinde yer alır ve bu gruba bağlı alt hesapların toplu izlenmesini sağlar.",
       "parentCode": "4",
       "type": "liability",
       "reporting": "credit"
@@ -1629,7 +1629,7 @@
     {
       "code": "440",
       "name": "Alınan Sipariş Avansları",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 440 (Alınan Sipariş Avansları) hesabı, 44 Alınan Avanslar grubu altında alınan/verilen avans hareketlerinin izlenmesi için kullanılır; hesap normalde alacak karakterlidir.",
       "parentCode": "44",
       "type": "liability",
       "reporting": "credit"
@@ -1637,7 +1637,7 @@
     {
       "code": "449",
       "name": "Alınan Diğer Avanslar",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 449 (Alınan Diğer Avanslar) hesabı, 44 Alınan Avanslar grubu altında alınan/verilen avans hareketlerinin izlenmesi için kullanılır; hesap normalde alacak karakterlidir.",
       "parentCode": "44",
       "type": "liability",
       "reporting": "credit"
@@ -1645,7 +1645,7 @@
     {
       "code": "47",
       "name": "Borç ve Gider Karşılıkları",
-      "description": "Official class/group heading.",
+      "description": "Tek Düzen 47 (Borç ve Gider Karşılıkları) hesap grubu, 4 Uzun Vadeli Yabancı Kaynaklar içinde yer alır ve bu gruba bağlı alt hesapların toplu izlenmesini sağlar.",
       "parentCode": "4",
       "type": "liability",
       "reporting": "credit"
@@ -1653,7 +1653,7 @@
     {
       "code": "472",
       "name": "Kıdem Tazminatı Karşılığı",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 472 (Kıdem Tazminatı Karşılığı) hesabı, 47 Borç ve Gider Karşılıkları grubu altında ilgili ana hesapları azaltıcı/düzenleyici kalemlerin izlenmesi için kullanılır; hesap düzenleyici niteliği nedeniyle ters karakter gösterebilir.",
       "parentCode": "47",
       "type": "liability",
       "reporting": "credit"
@@ -1661,7 +1661,7 @@
     {
       "code": "479",
       "name": "Diğer Borç ve Gider Karşılıkları",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 479 (Diğer Borç ve Gider Karşılıkları) hesabı, 47 Borç ve Gider Karşılıkları grubu altında muhtemel risk ve giderler için ayrılan karşılıkların izlenmesi için kullanılır; hesap normalde alacak karakterlidir.",
       "parentCode": "47",
       "type": "liability",
       "reporting": "credit"
@@ -1669,7 +1669,7 @@
     {
       "code": "48",
       "name": "Gelecek Yıllara Ait Gelirler ve Gider Tahakkukları",
-      "description": "Official class/group heading.",
+      "description": "Tek Düzen 48 (Gelecek Yıllara Ait Gelirler ve Gider Tahakkukları) hesap grubu, 4 Uzun Vadeli Yabancı Kaynaklar içinde yer alır ve bu gruba bağlı alt hesapların toplu izlenmesini sağlar.",
       "parentCode": "4",
       "type": "liability",
       "reporting": "credit"
@@ -1677,7 +1677,7 @@
     {
       "code": "480",
       "name": "Gelecek Yıllara Ait Gelirler",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 480 (Gelecek Yıllara Ait Gelirler) hesabı, 48 Gelecek Yıllara Ait Gelirler ve Gider Tahakkukları grubu altında gelir niteliğindeki işlemlerin izlenmesi için kullanılır; hesap normalde alacak karakterlidir.",
       "parentCode": "48",
       "type": "liability",
       "reporting": "credit"
@@ -1685,7 +1685,7 @@
     {
       "code": "481",
       "name": "Gider Tahakkukları",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 481 (Gider Tahakkukları) hesabı, 48 Gelecek Yıllara Ait Gelirler ve Gider Tahakkukları grubu altında gider niteliğindeki işlemlerin izlenmesi için kullanılır; hesap normalde alacak karakterlidir.",
       "parentCode": "48",
       "type": "liability",
       "reporting": "credit"
@@ -1693,7 +1693,7 @@
     {
       "code": "49",
       "name": "Diğer Uzun Vadeli Yabancı Kaynaklar",
-      "description": "Official class/group heading.",
+      "description": "Tek Düzen 49 (Diğer Uzun Vadeli Yabancı Kaynaklar) hesap grubu, 4 Uzun Vadeli Yabancı Kaynaklar içinde yer alır ve bu gruba bağlı alt hesapların toplu izlenmesini sağlar.",
       "parentCode": "4",
       "type": "liability",
       "reporting": "credit"
@@ -1701,7 +1701,7 @@
     {
       "code": "492",
       "name": "Gelecek Yıllara Ertelenen veya Terkin Edilecek Katma Değer Vergisi",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 492 (Gelecek Yıllara Ertelenen veya Terkin Edilecek Katma Değer Vergisi) hesabı, 49 Diğer Uzun Vadeli Yabancı Kaynaklar grubu altında vergi, fon ve benzeri kamu yükümlülüklerinin izlenmesi için kullanılır; hesap normalde alacak karakterlidir.",
       "parentCode": "49",
       "type": "liability",
       "reporting": "credit"
@@ -1709,7 +1709,7 @@
     {
       "code": "493",
       "name": "Tesise Katılma Payları",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 493 (Tesise Katılma Payları) hesabı, 49 Diğer Uzun Vadeli Yabancı Kaynaklar grubu altında \"Tesise Katılma Payları\" kapsamındaki muhasebe hareketlerinin izlenmesi için kullanılır; hesap normalde alacak karakterlidir.",
       "parentCode": "49",
       "type": "liability",
       "reporting": "credit"
@@ -1717,7 +1717,7 @@
     {
       "code": "499",
       "name": "Diğer Çeşitli Uzun Vadeli Yabancı Kaynaklar",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 499 (Diğer Çeşitli Uzun Vadeli Yabancı Kaynaklar) hesabı, 49 Diğer Uzun Vadeli Yabancı Kaynaklar grubu altında bu grupta özel adı geçmeyen diğer kalemlerin izlenmesi için kullanılır; hesap normalde alacak karakterlidir.",
       "parentCode": "49",
       "type": "liability",
       "reporting": "credit"
@@ -1725,7 +1725,7 @@
     {
       "code": "5",
       "name": "Öz Kaynaklar",
-      "description": "Official class/group heading.",
+      "description": "Tek Düzen hesap sınıfı 5 (Öz Kaynaklar), özkaynakların, yani işletme sahipliğine ve birikmiş sonuçlara ilişkin unsurların izlenmesi için kullanılır.",
       "parentCode": null,
       "type": "equity",
       "reporting": "credit"
@@ -1733,7 +1733,7 @@
     {
       "code": "50",
       "name": "Ödenmiş Sermaye",
-      "description": "Official class/group heading.",
+      "description": "Tek Düzen 50 (Ödenmiş Sermaye) hesap grubu, 5 Öz Kaynaklar içinde yer alır ve bu gruba bağlı alt hesapların toplu izlenmesini sağlar.",
       "parentCode": "5",
       "type": "equity",
       "reporting": "credit"
@@ -1741,7 +1741,7 @@
     {
       "code": "500",
       "name": "Sermaye",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 500 (Sermaye) hesabı, 50 Ödenmiş Sermaye grubu altında sermaye hareketlerinin izlenmesi için kullanılır; hesap normalde alacak karakterlidir.",
       "parentCode": "50",
       "type": "equity",
       "reporting": "credit"
@@ -1749,7 +1749,7 @@
     {
       "code": "501",
       "name": "Ödenmemiş Sermaye (-)",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 501 (Ödenmemiş Sermaye (-)) hesabı, 50 Ödenmiş Sermaye grubu altında sermaye hareketlerinin izlenmesi için kullanılır; hesap düzenleyici niteliği nedeniyle ters karakter gösterebilir.",
       "parentCode": "50",
       "type": "equity",
       "reporting": "credit"
@@ -1757,7 +1757,7 @@
     {
       "code": "502",
       "name": "Sermaye Düzeltmesi Olumlu Farkları",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 502 (Sermaye Düzeltmesi Olumlu Farkları) hesabı, 50 Ödenmiş Sermaye grubu altında sermaye hareketlerinin izlenmesi için kullanılır; hesap normalde alacak karakterlidir.",
       "parentCode": "50",
       "type": "equity",
       "reporting": "credit"
@@ -1765,7 +1765,7 @@
     {
       "code": "503",
       "name": "Sermaye Düzeltmesi Olumsuz Farkları (-)",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 503 (Sermaye Düzeltmesi Olumsuz Farkları (-)) hesabı, 50 Ödenmiş Sermaye grubu altında sermaye hareketlerinin izlenmesi için kullanılır; hesap düzenleyici niteliği nedeniyle ters karakter gösterebilir.",
       "parentCode": "50",
       "type": "equity",
       "reporting": "credit"
@@ -1773,7 +1773,7 @@
     {
       "code": "52",
       "name": "Sermaye Yedekleri",
-      "description": "Official class/group heading.",
+      "description": "Tek Düzen 52 (Sermaye Yedekleri) hesap grubu, 5 Öz Kaynaklar içinde yer alır ve bu gruba bağlı alt hesapların toplu izlenmesini sağlar.",
       "parentCode": "5",
       "type": "equity",
       "reporting": "credit"
@@ -1781,7 +1781,7 @@
     {
       "code": "520",
       "name": "Hisse Senedi İhraç Primleri",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 520 (Hisse Senedi İhraç Primleri) hesabı, 52 Sermaye Yedekleri grubu altında \"Hisse Senedi İhraç Primleri\" kapsamındaki muhasebe hareketlerinin izlenmesi için kullanılır; hesap normalde alacak karakterlidir.",
       "parentCode": "52",
       "type": "equity",
       "reporting": "credit"
@@ -1789,7 +1789,7 @@
     {
       "code": "521",
       "name": "Hisse Senedi İptal Karları",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 521 (Hisse Senedi İptal Karları) hesabı, 52 Sermaye Yedekleri grubu altında \"Hisse Senedi İptal Karları\" kapsamındaki muhasebe hareketlerinin izlenmesi için kullanılır; hesap normalde alacak karakterlidir.",
       "parentCode": "52",
       "type": "equity",
       "reporting": "credit"
@@ -1797,7 +1797,7 @@
     {
       "code": "522",
       "name": "MDV Yeniden Değerleme Artışları",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 522 (MDV Yeniden Değerleme Artışları) hesabı, 52 Sermaye Yedekleri grubu altında \"MDV Yeniden Değerleme Artışları\" kapsamındaki muhasebe hareketlerinin izlenmesi için kullanılır; hesap normalde alacak karakterlidir.",
       "parentCode": "52",
       "type": "equity",
       "reporting": "credit"
@@ -1805,7 +1805,7 @@
     {
       "code": "523",
       "name": "İştirakler Yeniden Değerleme Artışları",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 523 (İştirakler Yeniden Değerleme Artışları) hesabı, 52 Sermaye Yedekleri grubu altında \"İştirakler Yeniden Değerleme Artışları\" kapsamındaki muhasebe hareketlerinin izlenmesi için kullanılır; hesap normalde alacak karakterlidir.",
       "parentCode": "52",
       "type": "equity",
       "reporting": "credit"
@@ -1813,7 +1813,7 @@
     {
       "code": "524",
       "name": "Maliyet Artışları Fonu",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 524 (Maliyet Artışları Fonu) hesabı, 52 Sermaye Yedekleri grubu altında maliyet unsurlarının ve dağıtım/yansıtma kayıtlarının izlenmesi için kullanılır; hesap normalde alacak karakterlidir.",
       "parentCode": "52",
       "type": "equity",
       "reporting": "credit"
@@ -1821,7 +1821,7 @@
     {
       "code": "529",
       "name": "Diğer Sermaye Yedekleri",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 529 (Diğer Sermaye Yedekleri) hesabı, 52 Sermaye Yedekleri grubu altında sermaye hareketlerinin izlenmesi için kullanılır; hesap normalde alacak karakterlidir.",
       "parentCode": "52",
       "type": "equity",
       "reporting": "credit"
@@ -1829,7 +1829,7 @@
     {
       "code": "54",
       "name": "Kar Yedekleri",
-      "description": "Official class/group heading.",
+      "description": "Tek Düzen 54 (Kar Yedekleri) hesap grubu, 5 Öz Kaynaklar içinde yer alır ve bu gruba bağlı alt hesapların toplu izlenmesini sağlar.",
       "parentCode": "5",
       "type": "equity",
       "reporting": "credit"
@@ -1837,7 +1837,7 @@
     {
       "code": "540",
       "name": "Yasal Yedekler",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 540 (Yasal Yedekler) hesabı, 54 Kar Yedekleri grubu altında \"Yasal Yedekler\" kapsamındaki muhasebe hareketlerinin izlenmesi için kullanılır; hesap normalde alacak karakterlidir.",
       "parentCode": "54",
       "type": "equity",
       "reporting": "credit"
@@ -1845,7 +1845,7 @@
     {
       "code": "541",
       "name": "Statü Yedekleri",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 541 (Statü Yedekleri) hesabı, 54 Kar Yedekleri grubu altında \"Statü Yedekleri\" kapsamındaki muhasebe hareketlerinin izlenmesi için kullanılır; hesap normalde alacak karakterlidir.",
       "parentCode": "54",
       "type": "equity",
       "reporting": "credit"
@@ -1853,7 +1853,7 @@
     {
       "code": "542",
       "name": "Olağanüstü Yedekler",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 542 (Olağanüstü Yedekler) hesabı, 54 Kar Yedekleri grubu altında \"Olağanüstü Yedekler\" kapsamındaki muhasebe hareketlerinin izlenmesi için kullanılır; hesap normalde alacak karakterlidir.",
       "parentCode": "54",
       "type": "equity",
       "reporting": "credit"
@@ -1861,7 +1861,7 @@
     {
       "code": "548",
       "name": "Diğer Kar Yedekleri",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 548 (Diğer Kar Yedekleri) hesabı, 54 Kar Yedekleri grubu altında bu grupta özel adı geçmeyen diğer kalemlerin izlenmesi için kullanılır; hesap normalde alacak karakterlidir.",
       "parentCode": "54",
       "type": "equity",
       "reporting": "credit"
@@ -1869,7 +1869,7 @@
     {
       "code": "549",
       "name": "Özel Fonlar",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 549 (Özel Fonlar) hesabı, 54 Kar Yedekleri grubu altında \"Özel Fonlar\" kapsamındaki muhasebe hareketlerinin izlenmesi için kullanılır; hesap normalde alacak karakterlidir.",
       "parentCode": "54",
       "type": "equity",
       "reporting": "credit"
@@ -1877,7 +1877,7 @@
     {
       "code": "57",
       "name": "Geçmiş Yıllar Karları",
-      "description": "Official class/group heading.",
+      "description": "Tek Düzen 57 (Geçmiş Yıllar Karları) hesap grubu, 5 Öz Kaynaklar içinde yer alır ve bu gruba bağlı alt hesapların toplu izlenmesini sağlar.",
       "parentCode": "5",
       "type": "equity",
       "reporting": "credit"
@@ -1885,7 +1885,7 @@
     {
       "code": "570",
       "name": "Geçmiş Yıllar Karları",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 570 (Geçmiş Yıllar Karları) hesabı, 57 Geçmiş Yıllar Karları grubu altında \"Geçmiş Yıllar Karları\" kapsamındaki muhasebe hareketlerinin izlenmesi için kullanılır; hesap normalde alacak karakterlidir.",
       "parentCode": "57",
       "type": "equity",
       "reporting": "credit"
@@ -1893,7 +1893,7 @@
     {
       "code": "58",
       "name": "Geçmiş Yıllar Zararları",
-      "description": "Official class/group heading.",
+      "description": "Tek Düzen 58 (Geçmiş Yıllar Zararları) hesap grubu, 5 Öz Kaynaklar içinde yer alır ve bu gruba bağlı alt hesapların toplu izlenmesini sağlar.",
       "parentCode": "5",
       "type": "equity",
       "reporting": "credit"
@@ -1901,7 +1901,7 @@
     {
       "code": "580",
       "name": "Geçmiş Yıllar Zararları (-)",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 580 (Geçmiş Yıllar Zararları (-)) hesabı, 58 Geçmiş Yıllar Zararları grubu altında zarar kalemlerinin izlenmesi için kullanılır; hesap düzenleyici niteliği nedeniyle ters karakter gösterebilir.",
       "parentCode": "58",
       "type": "equity",
       "reporting": "credit"
@@ -1909,7 +1909,7 @@
     {
       "code": "59",
       "name": "Dönem Net Karı (Zararı)",
-      "description": "Official class/group heading.",
+      "description": "Tek Düzen 59 (Dönem Net Karı (Zararı)) hesap grubu, 5 Öz Kaynaklar içinde yer alır ve bu gruba bağlı alt hesapların toplu izlenmesini sağlar.",
       "parentCode": "5",
       "type": "equity",
       "reporting": "credit"
@@ -1917,7 +1917,7 @@
     {
       "code": "590",
       "name": "Dönem Net Karı",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 590 (Dönem Net Karı) hesabı, 59 Dönem Net Karı (Zararı) grubu altında \"Dönem Net Karı\" kapsamındaki muhasebe hareketlerinin izlenmesi için kullanılır; hesap normalde alacak karakterlidir.",
       "parentCode": "59",
       "type": "equity",
       "reporting": "credit"
@@ -1925,7 +1925,7 @@
     {
       "code": "591",
       "name": "Dönem Net Zararı (-)",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 591 (Dönem Net Zararı (-)) hesabı, 59 Dönem Net Karı (Zararı) grubu altında zarar kalemlerinin izlenmesi için kullanılır; hesap düzenleyici niteliği nedeniyle ters karakter gösterebilir.",
       "parentCode": "59",
       "type": "equity",
       "reporting": "credit"
@@ -1933,7 +1933,7 @@
     {
       "code": "6",
       "name": "Gelir Tablosu Hesapları",
-      "description": "Official class/group heading.",
+      "description": "Tek Düzen hesap sınıfı 6 (Gelir Tablosu Hesapları), gelir tablosu hesaplarının, yani dönem gelir/gider ve kâr/zarar unsurlarının izlenmesi için kullanılır.",
       "parentCode": null,
       "type": "revenue",
       "reporting": "credit"
@@ -1941,7 +1941,7 @@
     {
       "code": "60",
       "name": "Brüt Satışlar",
-      "description": "Official class/group heading.",
+      "description": "Tek Düzen 60 (Brüt Satışlar) hesap grubu, 6 Gelir Tablosu Hesapları içinde yer alır ve bu gruba bağlı alt hesapların toplu izlenmesini sağlar.",
       "parentCode": "6",
       "type": "revenue",
       "reporting": "credit"
@@ -1949,7 +1949,7 @@
     {
       "code": "600",
       "name": "Yurtiçi Satışlar",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 600 (Yurtiçi Satışlar) hesabı, 60 Brüt Satışlar grubu altında satış işlemlerine ilişkin tutarların izlenmesi için kullanılır; hesap normalde alacak karakterlidir.",
       "parentCode": "60",
       "type": "revenue",
       "reporting": "credit"
@@ -1957,7 +1957,7 @@
     {
       "code": "601",
       "name": "Yurtdışı Satışlar",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 601 (Yurtdışı Satışlar) hesabı, 60 Brüt Satışlar grubu altında satış işlemlerine ilişkin tutarların izlenmesi için kullanılır; hesap normalde alacak karakterlidir.",
       "parentCode": "60",
       "type": "revenue",
       "reporting": "credit"
@@ -1965,7 +1965,7 @@
     {
       "code": "602",
       "name": "Diğer Gelirler",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 602 (Diğer Gelirler) hesabı, 60 Brüt Satışlar grubu altında gelir niteliğindeki işlemlerin izlenmesi için kullanılır; hesap normalde alacak karakterlidir.",
       "parentCode": "60",
       "type": "revenue",
       "reporting": "credit"
@@ -1973,7 +1973,7 @@
     {
       "code": "61",
       "name": "Satış İndirimleri (-)",
-      "description": "Official class/group heading.",
+      "description": "Tek Düzen 61 (Satış İndirimleri (-)) hesap grubu, 6 Gelir Tablosu Hesapları içinde yer alır ve bu gruba bağlı alt hesapların toplu izlenmesini sağlar.",
       "parentCode": "6",
       "type": "expense",
       "reporting": "debit"
@@ -1981,7 +1981,7 @@
     {
       "code": "610",
       "name": "Satıştan İadeler (-)",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 610 (Satıştan İadeler (-)) hesabı, 61 Satış İndirimleri (-) grubu altında satış işlemlerine ilişkin tutarların izlenmesi için kullanılır; hesap düzenleyici niteliği nedeniyle ters karakter gösterebilir.",
       "parentCode": "61",
       "type": "expense",
       "reporting": "debit"
@@ -1989,7 +1989,7 @@
     {
       "code": "611",
       "name": "Satış İskontoları (-)",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 611 (Satış İskontoları (-)) hesabı, 61 Satış İndirimleri (-) grubu altında satış işlemlerine ilişkin tutarların izlenmesi için kullanılır; hesap düzenleyici niteliği nedeniyle ters karakter gösterebilir.",
       "parentCode": "61",
       "type": "expense",
       "reporting": "debit"
@@ -1997,7 +1997,7 @@
     {
       "code": "612",
       "name": "Diğer İndirimler (-)",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 612 (Diğer İndirimler (-)) hesabı, 61 Satış İndirimleri (-) grubu altında ilgili ana hesapları azaltıcı/düzenleyici kalemlerin izlenmesi için kullanılır; hesap düzenleyici niteliği nedeniyle ters karakter gösterebilir.",
       "parentCode": "61",
       "type": "expense",
       "reporting": "debit"
@@ -2005,7 +2005,7 @@
     {
       "code": "62",
       "name": "Satışların Maliyeti (-)",
-      "description": "Official class/group heading.",
+      "description": "Tek Düzen 62 (Satışların Maliyeti (-)) hesap grubu, 6 Gelir Tablosu Hesapları içinde yer alır ve bu gruba bağlı alt hesapların toplu izlenmesini sağlar.",
       "parentCode": "6",
       "type": "expense",
       "reporting": "debit"
@@ -2013,7 +2013,7 @@
     {
       "code": "620",
       "name": "Satılan Mamuller Maliyeti (-)",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 620 (Satılan Mamuller Maliyeti (-)) hesabı, 62 Satışların Maliyeti (-) grubu altında üretimi tamamlanmış mamullerin izlenmesi için kullanılır; hesap düzenleyici niteliği nedeniyle ters karakter gösterebilir.",
       "parentCode": "62",
       "type": "expense",
       "reporting": "debit"
@@ -2021,7 +2021,7 @@
     {
       "code": "621",
       "name": "Satılan Ticari Mallar Maliyeti (-)",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 621 (Satılan Ticari Mallar Maliyeti (-)) hesabı, 62 Satışların Maliyeti (-) grubu altında satılmak üzere alınan ticari malların izlenmesi için kullanılır; hesap düzenleyici niteliği nedeniyle ters karakter gösterebilir.",
       "parentCode": "62",
       "type": "expense",
       "reporting": "debit"
@@ -2029,7 +2029,7 @@
     {
       "code": "622",
       "name": "Satılan Hizmet Maliyeti (-)",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 622 (Satılan Hizmet Maliyeti (-)) hesabı, 62 Satışların Maliyeti (-) grubu altında maliyet unsurlarının ve dağıtım/yansıtma kayıtlarının izlenmesi için kullanılır; hesap düzenleyici niteliği nedeniyle ters karakter gösterebilir.",
       "parentCode": "62",
       "type": "expense",
       "reporting": "debit"
@@ -2037,7 +2037,7 @@
     {
       "code": "623",
       "name": "Diğer Satışların Maliyeti (-)",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 623 (Diğer Satışların Maliyeti (-)) hesabı, 62 Satışların Maliyeti (-) grubu altında satış işlemlerine ilişkin tutarların izlenmesi için kullanılır; hesap düzenleyici niteliği nedeniyle ters karakter gösterebilir.",
       "parentCode": "62",
       "type": "expense",
       "reporting": "debit"
@@ -2045,7 +2045,7 @@
     {
       "code": "63",
       "name": "Faaliyet Giderleri (-)",
-      "description": "Official class/group heading.",
+      "description": "Tek Düzen 63 (Faaliyet Giderleri (-)) hesap grubu, 6 Gelir Tablosu Hesapları içinde yer alır ve bu gruba bağlı alt hesapların toplu izlenmesini sağlar.",
       "parentCode": "6",
       "type": "expense",
       "reporting": "debit"
@@ -2053,7 +2053,7 @@
     {
       "code": "630",
       "name": "Araştırma ve Geliştirme Giderleri (-)",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 630 (Araştırma ve Geliştirme Giderleri (-)) hesabı, 63 Faaliyet Giderleri (-) grubu altında gider niteliğindeki işlemlerin izlenmesi için kullanılır; hesap düzenleyici niteliği nedeniyle ters karakter gösterebilir.",
       "parentCode": "63",
       "type": "expense",
       "reporting": "debit"
@@ -2061,7 +2061,7 @@
     {
       "code": "631",
       "name": "Pazarlama, Satış ve Dağıtım Giderleri (-)",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 631 (Pazarlama, Satış ve Dağıtım Giderleri (-)) hesabı, 63 Faaliyet Giderleri (-) grubu altında satış işlemlerine ilişkin tutarların izlenmesi için kullanılır; hesap düzenleyici niteliği nedeniyle ters karakter gösterebilir.",
       "parentCode": "63",
       "type": "expense",
       "reporting": "debit"
@@ -2069,7 +2069,7 @@
     {
       "code": "632",
       "name": "Genel Yönetim Giderleri (-)",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 632 (Genel Yönetim Giderleri (-)) hesabı, 63 Faaliyet Giderleri (-) grubu altında gider niteliğindeki işlemlerin izlenmesi için kullanılır; hesap düzenleyici niteliği nedeniyle ters karakter gösterebilir.",
       "parentCode": "63",
       "type": "expense",
       "reporting": "debit"
@@ -2077,7 +2077,7 @@
     {
       "code": "64",
       "name": "Diğer Faaliyetlerden Olağan Gelir ve Karlar",
-      "description": "Official class/group heading.",
+      "description": "Tek Düzen 64 (Diğer Faaliyetlerden Olağan Gelir ve Karlar) hesap grubu, 6 Gelir Tablosu Hesapları içinde yer alır ve bu gruba bağlı alt hesapların toplu izlenmesini sağlar.",
       "parentCode": "6",
       "type": "revenue",
       "reporting": "credit"
@@ -2085,7 +2085,7 @@
     {
       "code": "640",
       "name": "İştiraklerden Temettü Gelirleri",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 640 (İştiraklerden Temettü Gelirleri) hesabı, 64 Diğer Faaliyetlerden Olağan Gelir ve Karlar grubu altında gelir niteliğindeki işlemlerin izlenmesi için kullanılır; hesap normalde alacak karakterlidir.",
       "parentCode": "64",
       "type": "revenue",
       "reporting": "credit"
@@ -2093,7 +2093,7 @@
     {
       "code": "641",
       "name": "Bağlı Ortaklıklardan Temettü Gelirleri",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 641 (Bağlı Ortaklıklardan Temettü Gelirleri) hesabı, 64 Diğer Faaliyetlerden Olağan Gelir ve Karlar grubu altında ortaklarla ilgili alacak/borç hareketlerinin izlenmesi için kullanılır; hesap normalde alacak karakterlidir.",
       "parentCode": "64",
       "type": "revenue",
       "reporting": "credit"
@@ -2101,7 +2101,7 @@
     {
       "code": "642",
       "name": "Faiz Gelirleri",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 642 (Faiz Gelirleri) hesabı, 64 Diğer Faaliyetlerden Olağan Gelir ve Karlar grubu altında faiz gelirleri veya faiz giderlerinin izlenmesi için kullanılır; hesap normalde alacak karakterlidir.",
       "parentCode": "64",
       "type": "revenue",
       "reporting": "credit"
@@ -2109,7 +2109,7 @@
     {
       "code": "643",
       "name": "Komisyon Gelirleri",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 643 (Komisyon Gelirleri) hesabı, 64 Diğer Faaliyetlerden Olağan Gelir ve Karlar grubu altında gelir niteliğindeki işlemlerin izlenmesi için kullanılır; hesap normalde alacak karakterlidir.",
       "parentCode": "64",
       "type": "revenue",
       "reporting": "credit"
@@ -2117,7 +2117,7 @@
     {
       "code": "644",
       "name": "Konusu Kalmayan Karşılıklar",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 644 (Konusu Kalmayan Karşılıklar) hesabı, 64 Diğer Faaliyetlerden Olağan Gelir ve Karlar grubu altında muhtemel risk ve giderler için ayrılan karşılıkların izlenmesi için kullanılır; hesap normalde alacak karakterlidir.",
       "parentCode": "64",
       "type": "revenue",
       "reporting": "credit"
@@ -2125,7 +2125,7 @@
     {
       "code": "645",
       "name": "Menkul Kıymet Satış Karları",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 645 (Menkul Kıymet Satış Karları) hesabı, 64 Diğer Faaliyetlerden Olağan Gelir ve Karlar grubu altında satış işlemlerine ilişkin tutarların izlenmesi için kullanılır; hesap normalde alacak karakterlidir.",
       "parentCode": "64",
       "type": "revenue",
       "reporting": "credit"
@@ -2133,7 +2133,7 @@
     {
       "code": "646",
       "name": "Kambiyo Karları",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 646 (Kambiyo Karları) hesabı, 64 Diğer Faaliyetlerden Olağan Gelir ve Karlar grubu altında \"Kambiyo Karları\" kapsamındaki muhasebe hareketlerinin izlenmesi için kullanılır; hesap normalde alacak karakterlidir.",
       "parentCode": "64",
       "type": "revenue",
       "reporting": "credit"
@@ -2141,7 +2141,7 @@
     {
       "code": "647",
       "name": "Reeskont Faiz Gelirleri",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 647 (Reeskont Faiz Gelirleri) hesabı, 64 Diğer Faaliyetlerden Olağan Gelir ve Karlar grubu altında alacak/borç senetlerine ilişkin reeskont tutarlarının izlenmesi için kullanılır; hesap normalde alacak karakterlidir.",
       "parentCode": "64",
       "type": "revenue",
       "reporting": "credit"
@@ -2149,7 +2149,7 @@
     {
       "code": "648",
       "name": "Enflasyon Düzeltmesi Karları",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 648 (Enflasyon Düzeltmesi Karları) hesabı, 64 Diğer Faaliyetlerden Olağan Gelir ve Karlar grubu altında \"Enflasyon Düzeltmesi Karları\" kapsamındaki muhasebe hareketlerinin izlenmesi için kullanılır; hesap normalde alacak karakterlidir.",
       "parentCode": "64",
       "type": "revenue",
       "reporting": "credit"
@@ -2157,7 +2157,7 @@
     {
       "code": "649",
       "name": "Diğer Olağan Gelir ve Karlar",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 649 (Diğer Olağan Gelir ve Karlar) hesabı, 64 Diğer Faaliyetlerden Olağan Gelir ve Karlar grubu altında gelir niteliğindeki işlemlerin izlenmesi için kullanılır; hesap normalde alacak karakterlidir.",
       "parentCode": "64",
       "type": "revenue",
       "reporting": "credit"
@@ -2165,7 +2165,7 @@
     {
       "code": "65",
       "name": "Diğer Faaliyetlerden Olağan Gider ve Zararlar (-)",
-      "description": "Official class/group heading.",
+      "description": "Tek Düzen 65 (Diğer Faaliyetlerden Olağan Gider ve Zararlar (-)) hesap grubu, 6 Gelir Tablosu Hesapları içinde yer alır ve bu gruba bağlı alt hesapların toplu izlenmesini sağlar.",
       "parentCode": "6",
       "type": "expense",
       "reporting": "debit"
@@ -2173,7 +2173,7 @@
     {
       "code": "653",
       "name": "Komisyon Giderleri (-)",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 653 (Komisyon Giderleri (-)) hesabı, 65 Diğer Faaliyetlerden Olağan Gider ve Zararlar (-) grubu altında gider niteliğindeki işlemlerin izlenmesi için kullanılır; hesap düzenleyici niteliği nedeniyle ters karakter gösterebilir.",
       "parentCode": "65",
       "type": "expense",
       "reporting": "debit"
@@ -2181,7 +2181,7 @@
     {
       "code": "654",
       "name": "Karşılık Giderleri (-)",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 654 (Karşılık Giderleri (-)) hesabı, 65 Diğer Faaliyetlerden Olağan Gider ve Zararlar (-) grubu altında muhtemel risk ve giderler için ayrılan karşılıkların izlenmesi için kullanılır; hesap düzenleyici niteliği nedeniyle ters karakter gösterebilir.",
       "parentCode": "65",
       "type": "expense",
       "reporting": "debit"
@@ -2189,7 +2189,7 @@
     {
       "code": "655",
       "name": "Menkul Kıymet Satış Zararları (-)",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 655 (Menkul Kıymet Satış Zararları (-)) hesabı, 65 Diğer Faaliyetlerden Olağan Gider ve Zararlar (-) grubu altında satış işlemlerine ilişkin tutarların izlenmesi için kullanılır; hesap düzenleyici niteliği nedeniyle ters karakter gösterebilir.",
       "parentCode": "65",
       "type": "expense",
       "reporting": "debit"
@@ -2197,7 +2197,7 @@
     {
       "code": "656",
       "name": "Kambiyo Zararları (-)",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 656 (Kambiyo Zararları (-)) hesabı, 65 Diğer Faaliyetlerden Olağan Gider ve Zararlar (-) grubu altında zarar kalemlerinin izlenmesi için kullanılır; hesap düzenleyici niteliği nedeniyle ters karakter gösterebilir.",
       "parentCode": "65",
       "type": "expense",
       "reporting": "debit"
@@ -2205,7 +2205,7 @@
     {
       "code": "657",
       "name": "Reeskont Faiz Giderleri (-)",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 657 (Reeskont Faiz Giderleri (-)) hesabı, 65 Diğer Faaliyetlerden Olağan Gider ve Zararlar (-) grubu altında alacak/borç senetlerine ilişkin reeskont tutarlarının izlenmesi için kullanılır; hesap düzenleyici niteliği nedeniyle ters karakter gösterebilir.",
       "parentCode": "65",
       "type": "expense",
       "reporting": "debit"
@@ -2213,7 +2213,7 @@
     {
       "code": "658",
       "name": "Enflasyon Düzeltmesi Zararları (-)",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 658 (Enflasyon Düzeltmesi Zararları (-)) hesabı, 65 Diğer Faaliyetlerden Olağan Gider ve Zararlar (-) grubu altında zarar kalemlerinin izlenmesi için kullanılır; hesap düzenleyici niteliği nedeniyle ters karakter gösterebilir.",
       "parentCode": "65",
       "type": "expense",
       "reporting": "debit"
@@ -2221,7 +2221,7 @@
     {
       "code": "659",
       "name": "Diğer Olağan Gider ve Zararlar (-)",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 659 (Diğer Olağan Gider ve Zararlar (-)) hesabı, 65 Diğer Faaliyetlerden Olağan Gider ve Zararlar (-) grubu altında zarar kalemlerinin izlenmesi için kullanılır; hesap düzenleyici niteliği nedeniyle ters karakter gösterebilir.",
       "parentCode": "65",
       "type": "expense",
       "reporting": "debit"
@@ -2229,7 +2229,7 @@
     {
       "code": "66",
       "name": "Finansman Giderleri (-)",
-      "description": "Official class/group heading.",
+      "description": "Tek Düzen 66 (Finansman Giderleri (-)) hesap grubu, 6 Gelir Tablosu Hesapları içinde yer alır ve bu gruba bağlı alt hesapların toplu izlenmesini sağlar.",
       "parentCode": "6",
       "type": "expense",
       "reporting": "debit"
@@ -2237,7 +2237,7 @@
     {
       "code": "660",
       "name": "Kısa Vadeli Borçlanma Giderleri (-)",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 660 (Kısa Vadeli Borçlanma Giderleri (-)) hesabı, 66 Finansman Giderleri (-) grubu altında gider niteliğindeki işlemlerin izlenmesi için kullanılır; hesap düzenleyici niteliği nedeniyle ters karakter gösterebilir.",
       "parentCode": "66",
       "type": "expense",
       "reporting": "debit"
@@ -2245,7 +2245,7 @@
     {
       "code": "661",
       "name": "Uzun Vadeli Borçlanma Giderleri (-)",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 661 (Uzun Vadeli Borçlanma Giderleri (-)) hesabı, 66 Finansman Giderleri (-) grubu altında gider niteliğindeki işlemlerin izlenmesi için kullanılır; hesap düzenleyici niteliği nedeniyle ters karakter gösterebilir.",
       "parentCode": "66",
       "type": "expense",
       "reporting": "debit"
@@ -2253,7 +2253,7 @@
     {
       "code": "67",
       "name": "Olağandışı Gelir ve Karlar",
-      "description": "Official class/group heading.",
+      "description": "Tek Düzen 67 (Olağandışı Gelir ve Karlar) hesap grubu, 6 Gelir Tablosu Hesapları içinde yer alır ve bu gruba bağlı alt hesapların toplu izlenmesini sağlar.",
       "parentCode": "6",
       "type": "revenue",
       "reporting": "credit"
@@ -2261,7 +2261,7 @@
     {
       "code": "671",
       "name": "Önceki Dönem Gelir ve Karları",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 671 (Önceki Dönem Gelir ve Karları) hesabı, 67 Olağandışı Gelir ve Karlar grubu altında gelir niteliğindeki işlemlerin izlenmesi için kullanılır; hesap normalde alacak karakterlidir.",
       "parentCode": "67",
       "type": "revenue",
       "reporting": "credit"
@@ -2269,7 +2269,7 @@
     {
       "code": "679",
       "name": "Diğer Olağandışı Gelir ve Karlar",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 679 (Diğer Olağandışı Gelir ve Karlar) hesabı, 67 Olağandışı Gelir ve Karlar grubu altında gelir niteliğindeki işlemlerin izlenmesi için kullanılır; hesap normalde alacak karakterlidir.",
       "parentCode": "67",
       "type": "revenue",
       "reporting": "credit"
@@ -2277,7 +2277,7 @@
     {
       "code": "68",
       "name": "Olağandışı Gider ve Zararlar (-)",
-      "description": "Official class/group heading.",
+      "description": "Tek Düzen 68 (Olağandışı Gider ve Zararlar (-)) hesap grubu, 6 Gelir Tablosu Hesapları içinde yer alır ve bu gruba bağlı alt hesapların toplu izlenmesini sağlar.",
       "parentCode": "6",
       "type": "expense",
       "reporting": "debit"
@@ -2285,7 +2285,7 @@
     {
       "code": "680",
       "name": "Çalışmayan Kısım Gider ve Zararları (-)",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 680 (Çalışmayan Kısım Gider ve Zararları (-)) hesabı, 68 Olağandışı Gider ve Zararlar (-) grubu altında zarar kalemlerinin izlenmesi için kullanılır; hesap düzenleyici niteliği nedeniyle ters karakter gösterebilir.",
       "parentCode": "68",
       "type": "expense",
       "reporting": "debit"
@@ -2293,7 +2293,7 @@
     {
       "code": "681",
       "name": "Önceki Dönem Gider ve Zararları (-)",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 681 (Önceki Dönem Gider ve Zararları (-)) hesabı, 68 Olağandışı Gider ve Zararlar (-) grubu altında zarar kalemlerinin izlenmesi için kullanılır; hesap düzenleyici niteliği nedeniyle ters karakter gösterebilir.",
       "parentCode": "68",
       "type": "expense",
       "reporting": "debit"
@@ -2301,7 +2301,7 @@
     {
       "code": "689",
       "name": "Diğer Olağandışı Gider ve Zararlar (-)",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 689 (Diğer Olağandışı Gider ve Zararlar (-)) hesabı, 68 Olağandışı Gider ve Zararlar (-) grubu altında zarar kalemlerinin izlenmesi için kullanılır; hesap düzenleyici niteliği nedeniyle ters karakter gösterebilir.",
       "parentCode": "68",
       "type": "expense",
       "reporting": "debit"
@@ -2309,7 +2309,7 @@
     {
       "code": "69",
       "name": "Dönem Net Karı veya Zararı",
-      "description": "Official class/group heading.",
+      "description": "Tek Düzen 69 (Dönem Net Karı veya Zararı) hesap grubu, 6 Gelir Tablosu Hesapları içinde yer alır ve bu gruba bağlı alt hesapların toplu izlenmesini sağlar.",
       "parentCode": "6",
       "type": "equity",
       "reporting": "credit"
@@ -2317,7 +2317,7 @@
     {
       "code": "690",
       "name": "Dönem Karı veya Zararı",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 690 (Dönem Karı veya Zararı) hesabı, 69 Dönem Net Karı veya Zararı grubu altında zarar kalemlerinin izlenmesi için kullanılır; hesap normalde alacak karakterlidir.",
       "parentCode": "69",
       "type": "equity",
       "reporting": "credit"
@@ -2325,7 +2325,7 @@
     {
       "code": "691",
       "name": "Dönem Karı Vergi ve Diğer Yasal Yükümlülük Karşılıkları (-)",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 691 (Dönem Karı Vergi ve Diğer Yasal Yükümlülük Karşılıkları (-)) hesabı, 69 Dönem Net Karı veya Zararı grubu altında vergi, fon ve benzeri kamu yükümlülüklerinin izlenmesi için kullanılır; hesap düzenleyici niteliği nedeniyle ters karakter gösterebilir.",
       "parentCode": "69",
       "type": "expense",
       "reporting": "debit"
@@ -2333,7 +2333,7 @@
     {
       "code": "692",
       "name": "Dönem Net Karı veya Zararı",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 692 (Dönem Net Karı veya Zararı) hesabı, 69 Dönem Net Karı veya Zararı grubu altında zarar kalemlerinin izlenmesi için kullanılır; hesap normalde alacak karakterlidir.",
       "parentCode": "69",
       "type": "equity",
       "reporting": "credit"
@@ -2341,7 +2341,7 @@
     {
       "code": "697",
       "name": "Yıllara Yaygın İnşaat Enflasyon Düzeltme",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 697 (Yıllara Yaygın İnşaat Enflasyon Düzeltme) hesabı, 69 Dönem Net Karı veya Zararı grubu altında \"Yıllara Yaygın İnşaat Enflasyon Düzeltme\" kapsamındaki muhasebe hareketlerinin izlenmesi için kullanılır; hesap normalde alacak karakterlidir.",
       "parentCode": "69",
       "type": "equity",
       "reporting": "credit"
@@ -2349,7 +2349,7 @@
     {
       "code": "698",
       "name": "Enflasyon Düzeltme",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 698 (Enflasyon Düzeltme) hesabı, 69 Dönem Net Karı veya Zararı grubu altında \"Enflasyon Düzeltme\" kapsamındaki muhasebe hareketlerinin izlenmesi için kullanılır; hesap normalde alacak karakterlidir.",
       "parentCode": "69",
       "type": "equity",
       "reporting": "credit"
@@ -2357,7 +2357,7 @@
     {
       "code": "7",
       "name": "Maliyet Hesapları",
-      "description": "Official class/group heading.",
+      "description": "Tek Düzen hesap sınıfı 7 (Maliyet Hesapları), maliyet hesaplarının, yani maliyet türleri ve yansıtma mekanizmalarının izlenmesi için kullanılır.",
       "parentCode": null,
       "type": "expense",
       "reporting": "debit"
@@ -2365,7 +2365,7 @@
     {
       "code": "70",
       "name": "Maliyet Muhasebesi Bağlantı Hesapları",
-      "description": "Official class/group heading.",
+      "description": "Tek Düzen 70 (Maliyet Muhasebesi Bağlantı Hesapları) hesap grubu, 7 Maliyet Hesapları içinde yer alır ve bu gruba bağlı alt hesapların toplu izlenmesini sağlar.",
       "parentCode": "7",
       "type": "expense",
       "reporting": "debit"
@@ -2373,7 +2373,7 @@
     {
       "code": "700",
       "name": "Maliyet Muhasebesi Bağlantı Hesapları",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 700 (Maliyet Muhasebesi Bağlantı Hesapları) hesabı, 70 Maliyet Muhasebesi Bağlantı Hesapları grubu altında maliyet unsurlarının ve dağıtım/yansıtma kayıtlarının izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "70",
       "type": "expense",
       "reporting": "debit"
@@ -2381,7 +2381,7 @@
     {
       "code": "701",
       "name": "Maliyet Muhasebesi Yansıtma Hesabı",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 701 (Maliyet Muhasebesi Yansıtma Hesabı) hesabı, 70 Maliyet Muhasebesi Bağlantı Hesapları grubu altında maliyet unsurlarının ve dağıtım/yansıtma kayıtlarının izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "70",
       "type": "expense",
       "reporting": "debit"
@@ -2389,7 +2389,7 @@
     {
       "code": "71",
       "name": "Direkt İlk Madde ve Malzeme Giderleri",
-      "description": "Official class/group heading.",
+      "description": "Tek Düzen 71 (Direkt İlk Madde ve Malzeme Giderleri) hesap grubu, 7 Maliyet Hesapları içinde yer alır ve bu gruba bağlı alt hesapların toplu izlenmesini sağlar.",
       "parentCode": "7",
       "type": "expense",
       "reporting": "debit"
@@ -2397,7 +2397,7 @@
     {
       "code": "710",
       "name": "Direkt İlk Madde ve Malzeme Giderleri",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 710 (Direkt İlk Madde ve Malzeme Giderleri) hesabı, 71 Direkt İlk Madde ve Malzeme Giderleri grubu altında gider niteliğindeki işlemlerin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "71",
       "type": "expense",
       "reporting": "debit"
@@ -2405,7 +2405,7 @@
     {
       "code": "711",
       "name": "Direkt İlk Madde ve Malzeme Yansıtma Hesabı",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 711 (Direkt İlk Madde ve Malzeme Yansıtma Hesabı) hesabı, 71 Direkt İlk Madde ve Malzeme Giderleri grubu altında \"Direkt İlk Madde ve Malzeme Yansıtma Hesabı\" kapsamındaki muhasebe hareketlerinin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "71",
       "type": "expense",
       "reporting": "debit"
@@ -2413,7 +2413,7 @@
     {
       "code": "712",
       "name": "Direkt İlk Madde ve Malzeme Fiyat Farkı",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 712 (Direkt İlk Madde ve Malzeme Fiyat Farkı) hesabı, 71 Direkt İlk Madde ve Malzeme Giderleri grubu altında \"Direkt İlk Madde ve Malzeme Fiyat Farkı\" kapsamındaki muhasebe hareketlerinin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "71",
       "type": "expense",
       "reporting": "debit"
@@ -2421,7 +2421,7 @@
     {
       "code": "713",
       "name": "Direkt İlk Madde ve Malzeme Miktar Farkı",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 713 (Direkt İlk Madde ve Malzeme Miktar Farkı) hesabı, 71 Direkt İlk Madde ve Malzeme Giderleri grubu altında \"Direkt İlk Madde ve Malzeme Miktar Farkı\" kapsamındaki muhasebe hareketlerinin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "71",
       "type": "expense",
       "reporting": "debit"
@@ -2429,7 +2429,7 @@
     {
       "code": "72",
       "name": "Direkt İşçilik Giderleri",
-      "description": "Official class/group heading.",
+      "description": "Tek Düzen 72 (Direkt İşçilik Giderleri) hesap grubu, 7 Maliyet Hesapları içinde yer alır ve bu gruba bağlı alt hesapların toplu izlenmesini sağlar.",
       "parentCode": "7",
       "type": "expense",
       "reporting": "debit"
@@ -2437,7 +2437,7 @@
     {
       "code": "720",
       "name": "Direkt İşçilik Giderleri",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 720 (Direkt İşçilik Giderleri) hesabı, 72 Direkt İşçilik Giderleri grubu altında gider niteliğindeki işlemlerin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "72",
       "type": "expense",
       "reporting": "debit"
@@ -2445,7 +2445,7 @@
     {
       "code": "721",
       "name": "Direkt İşçilik Giderleri Yansıtma Hesabı",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 721 (Direkt İşçilik Giderleri Yansıtma Hesabı) hesabı, 72 Direkt İşçilik Giderleri grubu altında gider niteliğindeki işlemlerin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "72",
       "type": "expense",
       "reporting": "debit"
@@ -2453,7 +2453,7 @@
     {
       "code": "722",
       "name": "Direkt İşçilik Ücret Farkları",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 722 (Direkt İşçilik Ücret Farkları) hesabı, 72 Direkt İşçilik Giderleri grubu altında \"Direkt İşçilik Ücret Farkları\" kapsamındaki muhasebe hareketlerinin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "72",
       "type": "expense",
       "reporting": "debit"
@@ -2461,7 +2461,7 @@
     {
       "code": "723",
       "name": "Direkt İşçilik Süre (Zaman) Farkları",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 723 (Direkt İşçilik Süre (Zaman) Farkları) hesabı, 72 Direkt İşçilik Giderleri grubu altında \"Direkt İşçilik Süre (Zaman) Farkları\" kapsamındaki muhasebe hareketlerinin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "72",
       "type": "expense",
       "reporting": "debit"
@@ -2469,7 +2469,7 @@
     {
       "code": "73",
       "name": "Genel Üretim Giderleri",
-      "description": "Official class/group heading.",
+      "description": "Tek Düzen 73 (Genel Üretim Giderleri) hesap grubu, 7 Maliyet Hesapları içinde yer alır ve bu gruba bağlı alt hesapların toplu izlenmesini sağlar.",
       "parentCode": "7",
       "type": "expense",
       "reporting": "debit"
@@ -2477,7 +2477,7 @@
     {
       "code": "730",
       "name": "Genel Üretim Giderleri",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 730 (Genel Üretim Giderleri) hesabı, 73 Genel Üretim Giderleri grubu altında gider niteliğindeki işlemlerin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "73",
       "type": "expense",
       "reporting": "debit"
@@ -2485,7 +2485,7 @@
     {
       "code": "731",
       "name": "Genel Üretim Giderleri Yansıtma Hesabı",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 731 (Genel Üretim Giderleri Yansıtma Hesabı) hesabı, 73 Genel Üretim Giderleri grubu altında gider niteliğindeki işlemlerin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "73",
       "type": "expense",
       "reporting": "debit"
@@ -2493,7 +2493,7 @@
     {
       "code": "732",
       "name": "Genel Üretim Giderleri Bütçe Farkları",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 732 (Genel Üretim Giderleri Bütçe Farkları) hesabı, 73 Genel Üretim Giderleri grubu altında gider niteliğindeki işlemlerin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "73",
       "type": "expense",
       "reporting": "debit"
@@ -2501,7 +2501,7 @@
     {
       "code": "733",
       "name": "Genel Üretim Giderleri Verimlilik Farkları",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 733 (Genel Üretim Giderleri Verimlilik Farkları) hesabı, 73 Genel Üretim Giderleri grubu altında gider niteliğindeki işlemlerin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "73",
       "type": "expense",
       "reporting": "debit"
@@ -2509,7 +2509,7 @@
     {
       "code": "734",
       "name": "Genel Üretim Giderleri Kapasite Farkları",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 734 (Genel Üretim Giderleri Kapasite Farkları) hesabı, 73 Genel Üretim Giderleri grubu altında gider niteliğindeki işlemlerin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "73",
       "type": "expense",
       "reporting": "debit"
@@ -2517,7 +2517,7 @@
     {
       "code": "74",
       "name": "Hizmet Üretim Maliyeti",
-      "description": "Official class/group heading.",
+      "description": "Tek Düzen 74 (Hizmet Üretim Maliyeti) hesap grubu, 7 Maliyet Hesapları içinde yer alır ve bu gruba bağlı alt hesapların toplu izlenmesini sağlar.",
       "parentCode": "7",
       "type": "expense",
       "reporting": "debit"
@@ -2525,7 +2525,7 @@
     {
       "code": "740",
       "name": "Hizmet Üretim Maliyeti",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 740 (Hizmet Üretim Maliyeti) hesabı, 74 Hizmet Üretim Maliyeti grubu altında maliyet unsurlarının ve dağıtım/yansıtma kayıtlarının izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "74",
       "type": "expense",
       "reporting": "debit"
@@ -2533,7 +2533,7 @@
     {
       "code": "741",
       "name": "Hizmet Üretim Maliyeti Yansıtma Hesabı",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 741 (Hizmet Üretim Maliyeti Yansıtma Hesabı) hesabı, 74 Hizmet Üretim Maliyeti grubu altında maliyet unsurlarının ve dağıtım/yansıtma kayıtlarının izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "74",
       "type": "expense",
       "reporting": "debit"
@@ -2541,7 +2541,7 @@
     {
       "code": "742",
       "name": "Hizmet Üretim Maliyeti Fark Hesapları",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 742 (Hizmet Üretim Maliyeti Fark Hesapları) hesabı, 74 Hizmet Üretim Maliyeti grubu altında maliyet unsurlarının ve dağıtım/yansıtma kayıtlarının izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "74",
       "type": "expense",
       "reporting": "debit"
@@ -2549,7 +2549,7 @@
     {
       "code": "75",
       "name": "Araştırma ve Geliştirme Giderleri",
-      "description": "Official class/group heading.",
+      "description": "Tek Düzen 75 (Araştırma ve Geliştirme Giderleri) hesap grubu, 7 Maliyet Hesapları içinde yer alır ve bu gruba bağlı alt hesapların toplu izlenmesini sağlar.",
       "parentCode": "7",
       "type": "expense",
       "reporting": "debit"
@@ -2557,7 +2557,7 @@
     {
       "code": "750",
       "name": "Araştırma ve Geliştirme Giderleri",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 750 (Araştırma ve Geliştirme Giderleri) hesabı, 75 Araştırma ve Geliştirme Giderleri grubu altında gider niteliğindeki işlemlerin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "75",
       "type": "expense",
       "reporting": "debit"
@@ -2565,7 +2565,7 @@
     {
       "code": "751",
       "name": "Araştırma ve Geliştirme Giderleri Yansıtma Hesabı",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 751 (Araştırma ve Geliştirme Giderleri Yansıtma Hesabı) hesabı, 75 Araştırma ve Geliştirme Giderleri grubu altında gider niteliğindeki işlemlerin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "75",
       "type": "expense",
       "reporting": "debit"
@@ -2573,7 +2573,7 @@
     {
       "code": "752",
       "name": "Araştırma ve Geliştirme Gider Farkları",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 752 (Araştırma ve Geliştirme Gider Farkları) hesabı, 75 Araştırma ve Geliştirme Giderleri grubu altında gider niteliğindeki işlemlerin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "75",
       "type": "expense",
       "reporting": "debit"
@@ -2581,7 +2581,7 @@
     {
       "code": "76",
       "name": "Pazarlama, Satış ve Dağıtım Giderleri",
-      "description": "Official class/group heading.",
+      "description": "Tek Düzen 76 (Pazarlama, Satış ve Dağıtım Giderleri) hesap grubu, 7 Maliyet Hesapları içinde yer alır ve bu gruba bağlı alt hesapların toplu izlenmesini sağlar.",
       "parentCode": "7",
       "type": "expense",
       "reporting": "debit"
@@ -2589,7 +2589,7 @@
     {
       "code": "760",
       "name": "Pazarlama, Satış ve Dağıtım Giderleri",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 760 (Pazarlama, Satış ve Dağıtım Giderleri) hesabı, 76 Pazarlama, Satış ve Dağıtım Giderleri grubu altında satış işlemlerine ilişkin tutarların izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "76",
       "type": "expense",
       "reporting": "debit"
@@ -2597,7 +2597,7 @@
     {
       "code": "761",
       "name": "Pazarlama, Satış ve Dağıtım Giderleri Yansıtma Hesabı",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 761 (Pazarlama, Satış ve Dağıtım Giderleri Yansıtma Hesabı) hesabı, 76 Pazarlama, Satış ve Dağıtım Giderleri grubu altında satış işlemlerine ilişkin tutarların izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "76",
       "type": "expense",
       "reporting": "debit"
@@ -2605,7 +2605,7 @@
     {
       "code": "762",
       "name": "Pazarlama, Satış ve Dağıtım Giderleri Fark Hesabı",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 762 (Pazarlama, Satış ve Dağıtım Giderleri Fark Hesabı) hesabı, 76 Pazarlama, Satış ve Dağıtım Giderleri grubu altında satış işlemlerine ilişkin tutarların izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "76",
       "type": "expense",
       "reporting": "debit"
@@ -2613,7 +2613,7 @@
     {
       "code": "77",
       "name": "Genel Yönetim Giderleri",
-      "description": "Official class/group heading.",
+      "description": "Tek Düzen 77 (Genel Yönetim Giderleri) hesap grubu, 7 Maliyet Hesapları içinde yer alır ve bu gruba bağlı alt hesapların toplu izlenmesini sağlar.",
       "parentCode": "7",
       "type": "expense",
       "reporting": "debit"
@@ -2621,7 +2621,7 @@
     {
       "code": "770",
       "name": "Genel Yönetim Giderleri",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 770 (Genel Yönetim Giderleri) hesabı, 77 Genel Yönetim Giderleri grubu altında gider niteliğindeki işlemlerin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "77",
       "type": "expense",
       "reporting": "debit"
@@ -2629,7 +2629,7 @@
     {
       "code": "771",
       "name": "Genel Yönetim Giderleri Yansıtma Hesabı",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 771 (Genel Yönetim Giderleri Yansıtma Hesabı) hesabı, 77 Genel Yönetim Giderleri grubu altında gider niteliğindeki işlemlerin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "77",
       "type": "expense",
       "reporting": "debit"
@@ -2637,7 +2637,7 @@
     {
       "code": "772",
       "name": "Genel Yönetim Gider Farkları Hesabı",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 772 (Genel Yönetim Gider Farkları Hesabı) hesabı, 77 Genel Yönetim Giderleri grubu altında gider niteliğindeki işlemlerin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "77",
       "type": "expense",
       "reporting": "debit"
@@ -2645,7 +2645,7 @@
     {
       "code": "78",
       "name": "Finansman Giderleri",
-      "description": "Official class/group heading.",
+      "description": "Tek Düzen 78 (Finansman Giderleri) hesap grubu, 7 Maliyet Hesapları içinde yer alır ve bu gruba bağlı alt hesapların toplu izlenmesini sağlar.",
       "parentCode": "7",
       "type": "expense",
       "reporting": "debit"
@@ -2653,7 +2653,7 @@
     {
       "code": "780",
       "name": "Finansman Giderleri",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 780 (Finansman Giderleri) hesabı, 78 Finansman Giderleri grubu altında gider niteliğindeki işlemlerin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "78",
       "type": "expense",
       "reporting": "debit"
@@ -2661,7 +2661,7 @@
     {
       "code": "781",
       "name": "Finansman Giderleri Yansıtma Hesabı",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 781 (Finansman Giderleri Yansıtma Hesabı) hesabı, 78 Finansman Giderleri grubu altında gider niteliğindeki işlemlerin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "78",
       "type": "expense",
       "reporting": "debit"
@@ -2669,7 +2669,7 @@
     {
       "code": "782",
       "name": "Finansman Giderleri Fark Hesabı",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 782 (Finansman Giderleri Fark Hesabı) hesabı, 78 Finansman Giderleri grubu altında gider niteliğindeki işlemlerin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "78",
       "type": "expense",
       "reporting": "debit"
@@ -2677,7 +2677,7 @@
     {
       "code": "790",
       "name": "İlk Madde ve Malzeme Giderleri",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 790 (İlk Madde ve Malzeme Giderleri) hesabı, 7 Maliyet Hesapları grubu altında gider niteliğindeki işlemlerin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "7",
       "type": "expense",
       "reporting": "debit"
@@ -2685,7 +2685,7 @@
     {
       "code": "791",
       "name": "İşçi Ücret ve Giderleri",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 791 (İşçi Ücret ve Giderleri) hesabı, 7 Maliyet Hesapları grubu altında gider niteliğindeki işlemlerin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "7",
       "type": "expense",
       "reporting": "debit"
@@ -2693,7 +2693,7 @@
     {
       "code": "792",
       "name": "Memur Ücret ve Giderleri",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 792 (Memur Ücret ve Giderleri) hesabı, 7 Maliyet Hesapları grubu altında gider niteliğindeki işlemlerin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "7",
       "type": "expense",
       "reporting": "debit"
@@ -2701,7 +2701,7 @@
     {
       "code": "793",
       "name": "Dışarıdan Sağlanan Fayda ve Hizmetler",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 793 (Dışarıdan Sağlanan Fayda ve Hizmetler) hesabı, 7 Maliyet Hesapları grubu altında \"Dışarıdan Sağlanan Fayda ve Hizmetler\" kapsamındaki muhasebe hareketlerinin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "7",
       "type": "expense",
       "reporting": "debit"
@@ -2709,7 +2709,7 @@
     {
       "code": "794",
       "name": "Çeşitli Giderler",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 794 (Çeşitli Giderler) hesabı, 7 Maliyet Hesapları grubu altında gider niteliğindeki işlemlerin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "7",
       "type": "expense",
       "reporting": "debit"
@@ -2717,7 +2717,7 @@
     {
       "code": "795",
       "name": "Vergi, Resim ve Harçlar",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 795 (Vergi, Resim ve Harçlar) hesabı, 7 Maliyet Hesapları grubu altında vergi, fon ve benzeri kamu yükümlülüklerinin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "7",
       "type": "expense",
       "reporting": "debit"
@@ -2725,7 +2725,7 @@
     {
       "code": "796",
       "name": "Amortismanlar ve Tükenme Payları",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 796 (Amortismanlar ve Tükenme Payları) hesabı, 7 Maliyet Hesapları grubu altında amortisman giderleri ve birikmiş amortismanların izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "7",
       "type": "expense",
       "reporting": "debit"
@@ -2733,7 +2733,7 @@
     {
       "code": "797",
       "name": "Finansman Giderleri",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 797 (Finansman Giderleri) hesabı, 7 Maliyet Hesapları grubu altında gider niteliğindeki işlemlerin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "7",
       "type": "expense",
       "reporting": "debit"
@@ -2741,7 +2741,7 @@
     {
       "code": "798",
       "name": "Gider Çeşitleri Yansıtma Hesabı",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 798 (Gider Çeşitleri Yansıtma Hesabı) hesabı, 7 Maliyet Hesapları grubu altında gider niteliğindeki işlemlerin izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "7",
       "type": "expense",
       "reporting": "debit"
@@ -2749,7 +2749,7 @@
     {
       "code": "799",
       "name": "Üretim Maliyet Hesabı",
-      "description": "Official ledger account from the Turkish Uniform Chart of Accounts baseline.",
+      "description": "Tek Düzen 799 (Üretim Maliyet Hesabı) hesabı, 7 Maliyet Hesapları grubu altında maliyet unsurlarının ve dağıtım/yansıtma kayıtlarının izlenmesi için kullanılır; hesap normalde borç karakterlidir.",
       "parentCode": "7",
       "type": "expense",
       "reporting": "debit"
@@ -2757,7 +2757,7 @@
     {
       "code": "8",
       "name": "Serbest Hesaplar",
-      "description": "Official class/group heading.",
+      "description": "Tek Düzen hesap sınıfı 8 (Serbest Hesaplar), serbest (yönetim muhasebesi odaklı) hesapların izlenmesi için ayrılmıştır.",
       "parentCode": null,
       "type": "management",
       "reporting": "debit"
@@ -2765,7 +2765,7 @@
     {
       "code": "9",
       "name": "Nazım Hesaplar",
-      "description": "Official class/group heading.",
+      "description": "Tek Düzen hesap sınıfı 9 (Nazım Hesaplar), nazım hesapların, yani bilanço dışı izleme amaçlı hesapların takibi için kullanılır.",
       "parentCode": null,
       "type": "memo",
       "reporting": "debit"

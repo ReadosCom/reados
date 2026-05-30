@@ -37,6 +37,7 @@ No community, blog, or forum source was used as a source of truth for the embedd
 ### Integrity and format validation
 
 - The mandatory PDF was downloaded directly from `ismmmo.org.tr` on 2026-05-29 and parsed from the account-plan section.
+- Account `description` texts are authored from the same official source's **C- Hesap Planı Açıklamaları** section, preserving Tek Düzen account intent in concise explanatory prose.
 - Extracted entries were normalized to deterministic JSON records with:
   - `code`
   - `name`

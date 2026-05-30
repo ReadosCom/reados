@@ -37,7 +37,9 @@ test(`Turkish Tek Duzen template is listed and applies idempotently`, async ({ p
   expect(membersPayload.data).toHaveLength(344);
   expect(new Set(membersPayload.data.map((member) => member.code)).size).toBe(344);
   expect(membersByCode.get(`1`)?.name).toBe(`Dönen Varlıklar`);
+  expect(membersByCode.get(`1`)?.description).toContain(`dönen varlıkların`);
   expect(membersByCode.get(`100`)?.parent).toBe(membersByCode.get(`10`)?.id);
+  expect(membersByCode.get(`100`)?.description).toContain(`işletme kasasında`);
   expect(membersByCode.get(`120`)?.name).toBe(`Alıcılar`);
   expect(membersByCode.get(`320`)?.name).toBe(`Satıcılar`);
   expect(membersByCode.get(`8`)?.type).toBe(`management`);
