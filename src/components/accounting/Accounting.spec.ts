@@ -259,8 +259,8 @@ test(`accounting module APIs cover success, validation, and domain error paths`,
   const applyTemplateResponse = await request.post(`${erpOrigin()}/accounting/member/templates/apply`, {
     data: { segmentId: accountSegmentId, templateId: templates[0]?.id },
   });
-  expect(applyTemplateResponse.status()).toBe(400);
-  expect(apiErrorResponseSchema.parse(await applyTemplateResponse.json()).error.code).toBe(`account_template_apply_failed`);
+  expect(applyTemplateResponse.ok()).toBeTruthy();
+  expect(apiSuccessSchema(z.object({ applied: z.literal(true) })).parse(await applyTemplateResponse.json()).data.applied).toBe(true);
 
   const requiredSegmentDeleteResponse = await request.delete(`${erpOrigin()}/accounting/segment/${accountSegmentId}`);
   expect(requiredSegmentDeleteResponse.status()).toBe(400);

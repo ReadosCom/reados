@@ -135,7 +135,16 @@ export const MemberList = ({ segmentId, segmentType }: { segmentId: string; segm
       },
       {
         accessorKey: `description`,
+        meta: {
+          cellClassName: `max-w-[16rem]`,
+          headerClassName: `max-w-[16rem]`,
+        },
         header: t(`Description`),
+        cell: ({ row }) => (
+          <span className="block max-w-full truncate" title={row.original.description}>
+            {row.original.description}
+          </span>
+        ),
       },
       {
         accessorKey: `type`,

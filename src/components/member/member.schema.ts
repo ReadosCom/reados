@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { apiSuccessSchema } from "@components/application/api.schema.ts";
 
-export const accountMemberTypeSchema = z.enum([`expense`, `revenue`, `asset`, `liability`, `equity`]);
+export const accountMemberTypeSchema = z.enum([`expense`, `revenue`, `asset`, `liability`, `equity`, `management`, `memo`]);
 export const accountMemberReportingSchema = z.enum([`debit`, `credit`]);
 const isoInstantStringSchema = z.iso.datetime({ offset: true });
 
@@ -45,22 +45,31 @@ export const accountTemplateSchema = z.object({
   source: z.enum([`embedded`, `public-dataset`]),
 });
 
+export const listAccountTemplatesResponseSchema = apiSuccessSchema(z.array(accountTemplateSchema));
+
 export const applyMemberTemplateBodySchema = z.object({
   segmentId: z.uuid({ version: `v7` }),
   templateId: z.string().trim().min(1),
 });
 
-export const accountTemplateMemberSchema = z.object({
-  code: z.string().trim().min(1),
-  name: z.string().trim().min(1),
-  description: z.string().trim().min(1),
+export const applyMemberTemplateResponseSchema = apiSuccessSchema(z.object({ applied: z.literal(true) }));
+
+export const accountTemplateMemberSchema = memberEditorSchema.omit({ parent: true }).extend({
   parentCode: z.string().trim().min(1).nullable(),
-  type: accountMemberTypeSchema,
 });
 
-export const accountTemplateDocumentSchema = accountTemplateSchema.extend({
-  members: z.array(accountTemplateMemberSchema).min(1),
-});
+export type AccountTemplateDocument = AccountTemplate & {
+  currency: string;
+  enterpriseExtensions: z.infer<typeof accountTemplateMemberSchema>[];
+  jurisdiction: string;
+  language: string;
+  license: string;
+  members: z.infer<typeof accountTemplateMemberSchema>[];
+  officialBaselineAccountTotal: number;
+  sources: Array<{ accessedAt: string; authority: string; url: string }>;
+  standard: string;
+  version: string;
+};
 
 export class MemberValidationError extends Error {}
 
@@ -70,6 +79,7 @@ export type Member = z.infer<typeof memberSchema>;
 export type CreateMemberBody = z.infer<typeof createMemberBodySchema>;
 export type UpdateMemberBody = z.infer<typeof updateMemberBodySchema>;
 export type AccountTemplate = z.infer<typeof accountTemplateSchema>;
+export type AccountTemplateMember = z.infer<typeof accountTemplateMemberSchema>;
 export type MemberEditor = z.infer<typeof memberEditorSchema>;
 
 export type MemberRow = {
@@ -86,6 +96,7 @@ export type MemberRow = {
 };
 
 export type MemberOwnershipRow = {
+  code: string;
   id: string;
   segment: string;
   type: MemberType | null;
