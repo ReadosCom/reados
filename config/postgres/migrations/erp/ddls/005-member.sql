@@ -44,11 +44,11 @@ BEGIN
     RAISE EXCEPTION 'Member reporting is required for account segments.';
   END IF;
 
-  IF "segmentType" IN ('entity', 'generic') AND NEW."type" IS NOT NULL THEN
+  IF "segmentType" IN ('entity', 'customer', 'supplier', 'generic') AND NEW."type" IS NOT NULL THEN
     RAISE EXCEPTION 'Member type is only allowed for account segments.';
   END IF;
 
-  IF "segmentType" IN ('entity', 'generic') AND NEW."reporting" IS NOT NULL THEN
+  IF "segmentType" IN ('entity', 'customer', 'supplier', 'generic') AND NEW."reporting" IS NOT NULL THEN
     RAISE EXCEPTION 'Member reporting is only allowed for account segments.';
   END IF;
 

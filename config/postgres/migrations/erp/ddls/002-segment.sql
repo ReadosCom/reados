@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS "segment" (
   "createdAt" timestamptz NOT NULL DEFAULT transaction_timestamp(),
   "updatedAt" timestamptz NOT NULL DEFAULT transaction_timestamp(),
   CONSTRAINT "segmentOrderUnique" UNIQUE ("order"),
-  CONSTRAINT "segmentTypeValid" CHECK ("type" IN ('entity', 'account', 'generic'))
+  CONSTRAINT "segmentTypeValid" CHECK ("type" IN ('entity', 'account', 'customer', 'supplier', 'generic'))
 );
 
 SELECT "ensureSetUpdatedAtTrigger"('segment');
@@ -38,4 +38,4 @@ ALTER TABLE "segment"
 DROP CONSTRAINT IF EXISTS "segmentTypeValid";
 
 ALTER TABLE "segment"
-ADD CONSTRAINT "segmentTypeValid" CHECK ("type" IN ('entity', 'account', 'generic'));
+ADD CONSTRAINT "segmentTypeValid" CHECK ("type" IN ('entity', 'account', 'customer', 'supplier', 'generic'));

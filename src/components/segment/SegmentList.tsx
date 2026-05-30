@@ -154,7 +154,25 @@ export const SegmentList = () => {
       {
         accessorKey: `type`,
         header: t(`Type`),
-        cell: ({ row }) => <>{row.original.type === `entity` ? t(`Entity`) : row.original.type === `account` ? t(`Account`) : t(`Generic`)}</>,
+        cell: ({ row }) => {
+          if (row.original.type === `entity`) {
+            return <>{t(`Entity`)}</>;
+          }
+
+          if (row.original.type === `account`) {
+            return <>{t(`Account`)}</>;
+          }
+
+          if (row.original.type === `customer`) {
+            return <>{t(`Customer`)}</>;
+          }
+
+          if (row.original.type === `supplier`) {
+            return <>{t(`Supplier`)}</>;
+          }
+
+          return <>{t(`Generic`)}</>;
+        },
       },
       {
         accessorKey: `required`,

@@ -1,10 +1,17 @@
 import { ensurePool } from "@components/postgres/pool.ts";
 import { escapeIdentifier } from "pg";
 
-import { SegmentNotFoundError, SegmentRequiredDeleteError, type CreateSegmentBody, type ReorderSegmentBody, type Segment, type SegmentRow, type UpdateSegmentBody } from "./segment.schema.ts";
-
-const entitySystemSegmentId = `00000000-0000-7000-8000-000000000001`;
-const accountSystemSegmentId = `00000000-0000-7000-8000-000000000002`;
+import {
+  SegmentNotFoundError,
+  SegmentRequiredDeleteError,
+  SegmentRequiredUpdateError,
+  requiredSegmentDefinitions,
+  type CreateSegmentBody,
+  type ReorderSegmentBody,
+  type Segment,
+  type SegmentRow,
+  type UpdateSegmentBody,
+} from "./segment.schema.ts";
 const pool = ensurePool();
 
 const getGlSegmentIndexName = (segmentId: string) => {
@@ -40,32 +47,60 @@ const selectSegments = async () => {
   );
 };
 
-const ensureDefaultSegments = async () => {
+const ensureRequiredSegments = async () => {
   const client = await pool.connect();
 
   try {
     await client.query(`BEGIN;`);
-    await client.query(
-      `
-        INSERT INTO "segment" (
-          "id",
-          "label",
-          "order",
-          "required",
-          "type"
-        )
-        VALUES
-          ($1, 'Entity', 0, true, 'entity'),
-          ($2, 'Account', 1, true, 'account')
-        ON CONFLICT ("id") DO NOTHING;
-      `,
-      [entitySystemSegmentId, accountSystemSegmentId],
-    );
+    await client.query(`LOCK TABLE "segment" IN SHARE ROW EXCLUSIVE MODE;`);
 
-    await client.query(`ALTER TABLE "gl" ADD COLUMN IF NOT EXISTS ${escapeIdentifier(entitySystemSegmentId)} text;`);
-    await client.query(`ALTER TABLE "gl" ADD COLUMN IF NOT EXISTS ${escapeIdentifier(accountSystemSegmentId)} text;`);
-    await client.query(`CREATE INDEX IF NOT EXISTS ${escapeIdentifier(getGlSegmentIndexName(entitySystemSegmentId))} ON "gl" (${escapeIdentifier(entitySystemSegmentId)});`);
-    await client.query(`CREATE INDEX IF NOT EXISTS ${escapeIdentifier(getGlSegmentIndexName(accountSystemSegmentId))} ON "gl" (${escapeIdentifier(accountSystemSegmentId)});`);
+    const existingResult = await client.query<Pick<SegmentRow, "id" | "order">>(
+      `
+        SELECT
+          "id",
+          "order"
+        FROM "segment";
+      `,
+    );
+    const existingSegmentIds = new Set(existingResult.rows.map((row) => row.id));
+    let nextOrder = Math.max(-1, ...existingResult.rows.map((row) => row.order)) + 1;
+
+    for (const requiredSegment of requiredSegmentDefinitions) {
+      if (existingSegmentIds.has(requiredSegment.id)) {
+        await client.query(
+          `
+            UPDATE "segment"
+            SET
+              "required" = true,
+              "type" = $2
+            WHERE "id" = $1;
+          `,
+          [requiredSegment.id, requiredSegment.type],
+        );
+        continue;
+      }
+
+      await client.query(
+        `
+          INSERT INTO "segment" (
+            "id",
+            "label",
+            "order",
+            "required",
+            "type"
+          )
+          VALUES ($1, $2, $3, true, $4);
+        `,
+        [requiredSegment.id, requiredSegment.label, nextOrder, requiredSegment.type],
+      );
+      nextOrder += 1;
+    }
+
+    for (const requiredSegment of requiredSegmentDefinitions) {
+      await client.query(`ALTER TABLE "gl" ADD COLUMN IF NOT EXISTS ${escapeIdentifier(requiredSegment.id)} text;`);
+      await client.query(`CREATE INDEX IF NOT EXISTS ${escapeIdentifier(getGlSegmentIndexName(requiredSegment.id))} ON "gl" (${escapeIdentifier(requiredSegment.id)});`);
+    }
+
     await client.query(`COMMIT;`);
   } catch (error) {
     await client.query(`ROLLBACK;`);
@@ -128,12 +163,8 @@ const ensureOrder = async (rows: SegmentRow[]) => {
  * Returns all accounting segments ordered for presentation/processing.
  */
 export const listSegments = async () => {
-  let result = await selectSegments();
-
-  if (result.rowCount === 0) {
-    await ensureDefaultSegments();
-    result = await selectSegments();
-  }
+  await ensureRequiredSegments();
+  const result = await selectSegments();
 
   const orderedRows = await ensureOrder(result.rows);
 
@@ -144,6 +175,8 @@ export const listSegments = async () => {
  * Returns one accounting segment by id.
  */
 export const getSegmentById = async (id: string) => {
+  await ensureRequiredSegments();
+
   const result = await pool.query<SegmentRow>(
     `
       SELECT
@@ -204,6 +237,10 @@ export const createSegment = async (body: CreateSegmentBody) => {
 export const updateSegment = async (id: string, body: UpdateSegmentBody) => {
   await getSegmentById(id);
 
+  if (body.required === false && requiredSegmentDefinitions.some((requiredSegment) => requiredSegment.id === id)) {
+    throw new SegmentRequiredUpdateError(id);
+  }
+
   const result = await pool.query<SegmentRow>(
     `
       UPDATE "segment"
@@ -237,6 +274,8 @@ export const updateSegment = async (id: string, body: UpdateSegmentBody) => {
  * Deletes one accounting segment.
  */
 export const deleteSegment = async (id: string) => {
+  await ensureRequiredSegments();
+
   const client = await pool.connect();
 
   try {
