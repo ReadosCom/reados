@@ -147,6 +147,9 @@ export const applyAccountTemplate = async (segmentId: string, templateId: string
   }
 
   const template = await readAccountTemplate(templateId);
+  if (template.extensionOf) {
+    await applyAccountTemplate(segmentId, template.extensionOf);
+  }
   const client = await pool.connect();
 
   try {

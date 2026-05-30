@@ -18,2291 +18,992 @@
       "name": "Assets",
       "description": "IFRS reporting class 1000 (Assets) aggregates top-level balances for the financial position presentation under Conceptual Framework elements of financial statements.",
       "parentCode": null,
-      "level": 1,
       "type": "asset",
-      "reporting": "debit",
-      "statement": "financial-position",
-      "classificationTags": [
-        "subtotal"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "Conceptual Framework elements of financial statements",
-        "IAS 1 current and non-current presentation"
-      ]
+      "reporting": "debit"
     },
     {
       "code": "1100",
       "name": "Current assets",
       "description": "IFRS reporting group 1100 (Current assets) provides structured roll-up within 1000 (Assets) for financial position classification and disclosure alignment.",
       "parentCode": "1000",
-      "level": 2,
       "type": "asset",
-      "reporting": "debit",
-      "statement": "financial-position",
-      "classificationTags": [
-        "current",
-        "subtotal"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IFRS Accounting Taxonomy 2025",
-        "IAS 1 statement of financial position structure"
-      ]
+      "reporting": "debit"
     },
     {
       "code": "1110",
       "name": "Cash and cash equivalents",
       "description": "IFRS account 1110 (Cash and cash equivalents) is used under group 1100 (Current assets) to recognize and monitor this balance area in the financial position. It normally carries a debit balance. Primary reference: IAS 7 cash and cash equivalents. Classification focus: current.",
       "parentCode": "1100",
-      "level": 3,
       "type": "asset",
-      "reporting": "debit",
-      "statement": "financial-position",
-      "classificationTags": [
-        "current",
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IAS 7 cash and cash equivalents",
-        "IFRS Accounting Taxonomy 2025"
-      ]
+      "reporting": "debit"
     },
     {
       "code": "1120",
       "name": "Short-term deposits and treasury placements",
       "description": "IFRS account 1120 (Short-term deposits and treasury placements) is used under group 1100 (Current assets) to recognize and monitor this balance area in the financial position. It normally carries a debit balance. Primary reference: IFRS 9 financial assets. Classification focus: current.",
       "parentCode": "1100",
-      "level": 3,
       "type": "asset",
-      "reporting": "debit",
-      "statement": "financial-position",
-      "classificationTags": [
-        "current",
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IFRS 9 financial assets",
-        "IAS 1 current assets"
-      ]
+      "reporting": "debit"
     },
     {
       "code": "1130",
       "name": "Trade receivables",
       "description": "IFRS account 1130 (Trade receivables) is used under group 1100 (Current assets) to recognize and monitor this balance area in the financial position. It normally carries a debit balance. Primary reference: IFRS 9 financial assets. Classification focus: current.",
       "parentCode": "1100",
-      "level": 3,
       "type": "asset",
-      "reporting": "debit",
-      "statement": "financial-position",
-      "classificationTags": [
-        "current",
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IFRS 9 financial assets",
-        "IFRS 15 contract balances"
-      ]
+      "reporting": "debit"
     },
     {
       "code": "1135",
       "name": "Allowance for expected credit losses on trade receivables",
       "description": "IFRS account 1135 (Allowance for expected credit losses on trade receivables) is used under group 1100 (Current assets) to recognize and monitor this balance area in the financial position. It is a contra account and normally carries the opposite balance to the related base account. Primary reference: IFRS 9 expected credit losses. Classification focus: current.",
       "parentCode": "1100",
-      "level": 3,
       "type": "asset",
-      "reporting": "credit",
-      "statement": "financial-position",
-      "classificationTags": [
-        "current",
-        "contra",
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IFRS 9 expected credit losses"
-      ]
+      "reporting": "credit"
     },
     {
       "code": "1140",
       "name": "Contract assets",
       "description": "IFRS account 1140 (Contract assets) is used under group 1100 (Current assets) to recognize and monitor this balance area in the financial position. It normally carries a debit balance. Primary reference: IFRS 15 contract assets. Classification focus: current.",
       "parentCode": "1100",
-      "level": 3,
       "type": "asset",
-      "reporting": "debit",
-      "statement": "financial-position",
-      "classificationTags": [
-        "current",
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IFRS 15 contract assets"
-      ]
+      "reporting": "debit"
     },
     {
       "code": "1150",
       "name": "Other receivables",
       "description": "IFRS account 1150 (Other receivables) is used under group 1100 (Current assets) to recognize and monitor this balance area in the financial position. It normally carries a debit balance. Primary reference: IFRS 9 financial assets. Classification focus: current.",
       "parentCode": "1100",
-      "level": 3,
       "type": "asset",
-      "reporting": "debit",
-      "statement": "financial-position",
-      "classificationTags": [
-        "current",
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IFRS 9 financial assets"
-      ]
+      "reporting": "debit"
     },
     {
       "code": "1160",
       "name": "Inventories",
       "description": "IFRS account 1160 (Inventories) is used under group 1100 (Current assets) to recognize and monitor this balance area in the financial position. It normally carries a debit balance. Primary reference: IAS 2 inventories. Classification focus: current.",
       "parentCode": "1100",
-      "level": 3,
       "type": "asset",
-      "reporting": "debit",
-      "statement": "financial-position",
-      "classificationTags": [
-        "current",
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IAS 2 inventories"
-      ]
+      "reporting": "debit"
     },
     {
       "code": "1170",
       "name": "Prepaid expenses",
       "description": "IFRS account 1170 (Prepaid expenses) is used under group 1100 (Current assets) to recognize and monitor this balance area in the financial position. It normally carries a debit balance. Primary reference: IAS 1 current assets. Classification focus: current.",
       "parentCode": "1100",
-      "level": 3,
       "type": "asset",
-      "reporting": "debit",
-      "statement": "financial-position",
-      "classificationTags": [
-        "current",
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IAS 1 current assets"
-      ]
+      "reporting": "debit"
     },
     {
       "code": "1180",
       "name": "Current tax assets",
       "description": "IFRS account 1180 (Current tax assets) is used under group 1100 (Current assets) to recognize and monitor this balance area in the financial position. It normally carries a debit balance. Primary reference: IAS 12 current tax assets. Classification focus: current, income tax.",
       "parentCode": "1100",
-      "level": 3,
       "type": "asset",
-      "reporting": "debit",
-      "statement": "financial-position",
-      "classificationTags": [
-        "current",
-        "income-tax",
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IAS 12 current tax assets"
-      ]
+      "reporting": "debit"
     },
     {
       "code": "1190",
       "name": "Assets held for sale",
       "description": "IFRS account 1190 (Assets held for sale) is used under group 1100 (Current assets) to recognize and monitor this balance area in the financial position. It normally carries a debit balance. Primary reference: IFRS 5 non-current assets held for sale and discontinued operations. Classification focus: current, discontinued operations.",
       "parentCode": "1100",
-      "level": 3,
       "type": "asset",
-      "reporting": "debit",
-      "statement": "financial-position",
-      "classificationTags": [
-        "current",
-        "discontinued-operations",
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IFRS 5 non-current assets held for sale and discontinued operations"
-      ]
+      "reporting": "debit"
     },
     {
       "code": "1200",
       "name": "Non-current assets",
       "description": "IFRS reporting group 1200 (Non-current assets) provides structured roll-up within 1000 (Assets) for financial position classification and disclosure alignment.",
       "parentCode": "1000",
-      "level": 2,
       "type": "asset",
-      "reporting": "debit",
-      "statement": "financial-position",
-      "classificationTags": [
-        "non-current",
-        "subtotal"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IFRS Accounting Taxonomy 2025",
-        "IAS 1 statement of financial position structure"
-      ]
+      "reporting": "debit"
     },
     {
       "code": "1210",
       "name": "Property, plant and equipment",
       "description": "IFRS account 1210 (Property, plant and equipment) is used under group 1200 (Non-current assets) to recognize and monitor this balance area in the financial position. It normally carries a debit balance. Primary reference: IAS 16 property plant and equipment. Classification focus: non current.",
       "parentCode": "1200",
-      "level": 3,
       "type": "asset",
-      "reporting": "debit",
-      "statement": "financial-position",
-      "classificationTags": [
-        "non-current",
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IAS 16 property plant and equipment"
-      ]
+      "reporting": "debit"
     },
     {
       "code": "1215",
       "name": "Accumulated depreciation on property, plant and equipment",
       "description": "IFRS account 1215 (Accumulated depreciation on property, plant and equipment) is used under group 1200 (Non-current assets) to recognize and monitor this balance area in the financial position. It is a contra account and normally carries the opposite balance to the related base account. Primary reference: IAS 16 depreciation. Classification focus: non current.",
       "parentCode": "1200",
-      "level": 3,
       "type": "asset",
-      "reporting": "credit",
-      "statement": "financial-position",
-      "classificationTags": [
-        "non-current",
-        "contra",
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IAS 16 depreciation"
-      ]
+      "reporting": "credit"
     },
     {
       "code": "1220",
       "name": "Right-of-use assets",
       "description": "IFRS account 1220 (Right-of-use assets) is used under group 1200 (Non-current assets) to recognize and monitor this balance area in the financial position. It normally carries a debit balance. Primary reference: IFRS 16 right-of-use assets. Classification focus: non current.",
       "parentCode": "1200",
-      "level": 3,
       "type": "asset",
-      "reporting": "debit",
-      "statement": "financial-position",
-      "classificationTags": [
-        "non-current",
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IFRS 16 right-of-use assets"
-      ]
+      "reporting": "debit"
     },
     {
       "code": "1225",
       "name": "Accumulated depreciation on right-of-use assets",
       "description": "IFRS account 1225 (Accumulated depreciation on right-of-use assets) is used under group 1200 (Non-current assets) to recognize and monitor this balance area in the financial position. It is a contra account and normally carries the opposite balance to the related base account. Primary reference: IFRS 16 depreciation. Classification focus: non current.",
       "parentCode": "1200",
-      "level": 3,
       "type": "asset",
-      "reporting": "credit",
-      "statement": "financial-position",
-      "classificationTags": [
-        "non-current",
-        "contra",
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IFRS 16 depreciation"
-      ]
+      "reporting": "credit"
     },
     {
       "code": "1230",
       "name": "Investment property",
       "description": "IFRS account 1230 (Investment property) is used under group 1200 (Non-current assets) to recognize and monitor this balance area in the financial position. It normally carries a debit balance. Primary reference: IAS 40 investment property. Classification focus: non current, investing.",
       "parentCode": "1200",
-      "level": 3,
       "type": "asset",
-      "reporting": "debit",
-      "statement": "financial-position",
-      "classificationTags": [
-        "non-current",
-        "investing",
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IAS 40 investment property"
-      ]
+      "reporting": "debit"
     },
     {
       "code": "1240",
       "name": "Goodwill",
       "description": "IFRS account 1240 (Goodwill) is used under group 1200 (Non-current assets) to recognize and monitor this balance area in the financial position. It normally carries a debit balance. Primary reference: IFRS 3 goodwill. Classification focus: non current.",
       "parentCode": "1200",
-      "level": 3,
       "type": "asset",
-      "reporting": "debit",
-      "statement": "financial-position",
-      "classificationTags": [
-        "non-current",
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IFRS 3 goodwill",
-        "IAS 36 impairment"
-      ]
+      "reporting": "debit"
     },
     {
       "code": "1250",
       "name": "Intangible assets other than goodwill",
       "description": "IFRS account 1250 (Intangible assets other than goodwill) is used under group 1200 (Non-current assets) to recognize and monitor this balance area in the financial position. It normally carries a debit balance. Primary reference: IAS 38 intangible assets. Classification focus: non current.",
       "parentCode": "1200",
-      "level": 3,
       "type": "asset",
-      "reporting": "debit",
-      "statement": "financial-position",
-      "classificationTags": [
-        "non-current",
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IAS 38 intangible assets"
-      ]
+      "reporting": "debit"
     },
     {
       "code": "1255",
       "name": "Accumulated amortization of intangible assets",
       "description": "IFRS account 1255 (Accumulated amortization of intangible assets) is used under group 1200 (Non-current assets) to recognize and monitor this balance area in the financial position. It is a contra account and normally carries the opposite balance to the related base account. Primary reference: IAS 38 amortization. Classification focus: non current.",
       "parentCode": "1200",
-      "level": 3,
       "type": "asset",
-      "reporting": "credit",
-      "statement": "financial-position",
-      "classificationTags": [
-        "non-current",
-        "contra",
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IAS 38 amortization"
-      ]
+      "reporting": "credit"
     },
     {
       "code": "1260",
       "name": "Investments in associates and joint ventures",
       "description": "IFRS account 1260 (Investments in associates and joint ventures) is used under group 1200 (Non-current assets) to recognize and monitor this balance area in the financial position. It normally carries a debit balance. Primary reference: IAS 28 investments in associates and joint ventures. Classification focus: non current, investing.",
       "parentCode": "1200",
-      "level": 3,
       "type": "asset",
-      "reporting": "debit",
-      "statement": "financial-position",
-      "classificationTags": [
-        "non-current",
-        "investing",
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IAS 28 investments in associates and joint ventures"
-      ]
+      "reporting": "debit"
     },
     {
       "code": "1270",
       "name": "Non-current financial assets",
       "description": "IFRS account 1270 (Non-current financial assets) is used under group 1200 (Non-current assets) to recognize and monitor this balance area in the financial position. It normally carries a debit balance. Primary reference: IFRS 9 financial assets. Classification focus: non current, investing.",
       "parentCode": "1200",
-      "level": 3,
       "type": "asset",
-      "reporting": "debit",
-      "statement": "financial-position",
-      "classificationTags": [
-        "non-current",
-        "investing",
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IFRS 9 financial assets"
-      ]
+      "reporting": "debit"
     },
     {
       "code": "1280",
       "name": "Deferred tax assets",
       "description": "IFRS account 1280 (Deferred tax assets) is used under group 1200 (Non-current assets) to recognize and monitor this balance area in the financial position. It normally carries a debit balance. Primary reference: IAS 12 deferred tax assets. Classification focus: non current, income tax.",
       "parentCode": "1200",
-      "level": 3,
       "type": "asset",
-      "reporting": "debit",
-      "statement": "financial-position",
-      "classificationTags": [
-        "non-current",
-        "income-tax",
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IAS 12 deferred tax assets"
-      ]
+      "reporting": "debit"
     },
     {
       "code": "1290",
       "name": "Biological assets",
       "description": "IFRS account 1290 (Biological assets) is used under group 1200 (Non-current assets) to recognize and monitor this balance area in the financial position. It normally carries a debit balance. Primary reference: IAS 41 agriculture. Classification focus: non current.",
       "parentCode": "1200",
-      "level": 3,
       "type": "asset",
-      "reporting": "debit",
-      "statement": "financial-position",
-      "classificationTags": [
-        "non-current",
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IAS 41 agriculture"
-      ]
+      "reporting": "debit"
     },
     {
       "code": "1295",
       "name": "Other non-current assets",
       "description": "IFRS account 1295 (Other non-current assets) is used under group 1200 (Non-current assets) to recognize and monitor this balance area in the financial position. It normally carries a debit balance. Primary reference: IAS 1 non-current assets. Classification focus: non current.",
       "parentCode": "1200",
-      "level": 3,
       "type": "asset",
-      "reporting": "debit",
-      "statement": "financial-position",
-      "classificationTags": [
-        "non-current",
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IAS 1 non-current assets"
-      ]
+      "reporting": "debit"
     },
     {
       "code": "2000",
       "name": "Liabilities",
       "description": "IFRS reporting class 2000 (Liabilities) aggregates top-level balances for the financial position presentation under Conceptual Framework elements of financial statements.",
       "parentCode": null,
-      "level": 1,
       "type": "liability",
-      "reporting": "credit",
-      "statement": "financial-position",
-      "classificationTags": [
-        "subtotal"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "Conceptual Framework elements of financial statements",
-        "IAS 1 current and non-current presentation"
-      ]
+      "reporting": "credit"
     },
     {
       "code": "2100",
       "name": "Current liabilities",
       "description": "IFRS reporting group 2100 (Current liabilities) provides structured roll-up within 2000 (Liabilities) for financial position classification and disclosure alignment.",
       "parentCode": "2000",
-      "level": 2,
       "type": "liability",
-      "reporting": "credit",
-      "statement": "financial-position",
-      "classificationTags": [
-        "current",
-        "subtotal"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IFRS Accounting Taxonomy 2025",
-        "IAS 1 statement of financial position structure"
-      ]
+      "reporting": "credit"
     },
     {
       "code": "2110",
       "name": "Trade payables",
       "description": "IFRS account 2110 (Trade payables) is used under group 2100 (Current liabilities) to recognize and monitor this balance area in the financial position. It normally carries a credit balance. Primary reference: IFRS 9 financial liabilities. Classification focus: current.",
       "parentCode": "2100",
-      "level": 3,
       "type": "liability",
-      "reporting": "credit",
-      "statement": "financial-position",
-      "classificationTags": [
-        "current",
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IFRS 9 financial liabilities",
-        "IAS 1 current liabilities"
-      ]
+      "reporting": "credit"
     },
     {
       "code": "2120",
       "name": "Accrued expenses",
       "description": "IFRS account 2120 (Accrued expenses) is used under group 2100 (Current liabilities) to recognize and monitor this balance area in the financial position. It normally carries a credit balance. Primary reference: IAS 37 accruals and provisions distinction. Classification focus: current.",
       "parentCode": "2100",
-      "level": 3,
       "type": "liability",
-      "reporting": "credit",
-      "statement": "financial-position",
-      "classificationTags": [
-        "current",
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IAS 37 accruals and provisions distinction"
-      ]
+      "reporting": "credit"
     },
     {
       "code": "2130",
       "name": "Contract liabilities",
       "description": "IFRS account 2130 (Contract liabilities) is used under group 2100 (Current liabilities) to recognize and monitor this balance area in the financial position. It normally carries a credit balance. Primary reference: IFRS 15 contract liabilities. Classification focus: current.",
       "parentCode": "2100",
-      "level": 3,
       "type": "liability",
-      "reporting": "credit",
-      "statement": "financial-position",
-      "classificationTags": [
-        "current",
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IFRS 15 contract liabilities"
-      ]
+      "reporting": "credit"
     },
     {
       "code": "2140",
       "name": "Current borrowings",
       "description": "IFRS account 2140 (Current borrowings) is used under group 2100 (Current liabilities) to recognize and monitor this balance area in the financial position. It normally carries a credit balance. Primary reference: IFRS 9 financial liabilities. Classification focus: current, financing.",
       "parentCode": "2100",
-      "level": 3,
       "type": "liability",
-      "reporting": "credit",
-      "statement": "financial-position",
-      "classificationTags": [
-        "current",
-        "financing",
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IFRS 9 financial liabilities",
-        "IAS 1 current liabilities"
-      ]
+      "reporting": "credit"
     },
     {
       "code": "2150",
       "name": "Current lease liabilities",
       "description": "IFRS account 2150 (Current lease liabilities) is used under group 2100 (Current liabilities) to recognize and monitor this balance area in the financial position. It normally carries a credit balance. Primary reference: IFRS 16 lease liabilities. Classification focus: current, financing.",
       "parentCode": "2100",
-      "level": 3,
       "type": "liability",
-      "reporting": "credit",
-      "statement": "financial-position",
-      "classificationTags": [
-        "current",
-        "financing",
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IFRS 16 lease liabilities"
-      ]
+      "reporting": "credit"
     },
     {
       "code": "2160",
       "name": "Current provisions",
       "description": "IFRS account 2160 (Current provisions) is used under group 2100 (Current liabilities) to recognize and monitor this balance area in the financial position. It normally carries a credit balance. Primary reference: IAS 37 provisions. Classification focus: current.",
       "parentCode": "2100",
-      "level": 3,
       "type": "liability",
-      "reporting": "credit",
-      "statement": "financial-position",
-      "classificationTags": [
-        "current",
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IAS 37 provisions"
-      ]
+      "reporting": "credit"
     },
     {
       "code": "2170",
       "name": "Current tax liabilities",
       "description": "IFRS account 2170 (Current tax liabilities) is used under group 2100 (Current liabilities) to recognize and monitor this balance area in the financial position. It normally carries a credit balance. Primary reference: IAS 12 current tax liabilities. Classification focus: current, income tax.",
       "parentCode": "2100",
-      "level": 3,
       "type": "liability",
-      "reporting": "credit",
-      "statement": "financial-position",
-      "classificationTags": [
-        "current",
-        "income-tax",
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IAS 12 current tax liabilities"
-      ]
+      "reporting": "credit"
     },
     {
       "code": "2180",
       "name": "Refund liabilities and customer rebates",
       "description": "IFRS account 2180 (Refund liabilities and customer rebates) is used under group 2100 (Current liabilities) to recognize and monitor this balance area in the financial position. It normally carries a credit balance. Primary reference: IFRS 15 refund liabilities. Classification focus: current, operating.",
       "parentCode": "2100",
-      "level": 3,
       "type": "liability",
-      "reporting": "credit",
-      "statement": "financial-position",
-      "classificationTags": [
-        "current",
-        "operating",
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IFRS 15 refund liabilities"
-      ]
+      "reporting": "credit"
     },
     {
       "code": "2190",
       "name": "Liabilities directly associated with assets held for sale",
       "description": "IFRS account 2190 (Liabilities directly associated with assets held for sale) is used under group 2100 (Current liabilities) to recognize and monitor this balance area in the financial position. It normally carries a credit balance. Primary reference: IFRS 5 disposal groups. Classification focus: current, discontinued operations.",
       "parentCode": "2100",
-      "level": 3,
       "type": "liability",
-      "reporting": "credit",
-      "statement": "financial-position",
-      "classificationTags": [
-        "current",
-        "discontinued-operations",
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IFRS 5 disposal groups"
-      ]
+      "reporting": "credit"
     },
     {
       "code": "2200",
       "name": "Non-current liabilities",
       "description": "IFRS reporting group 2200 (Non-current liabilities) provides structured roll-up within 2000 (Liabilities) for financial position classification and disclosure alignment.",
       "parentCode": "2000",
-      "level": 2,
       "type": "liability",
-      "reporting": "credit",
-      "statement": "financial-position",
-      "classificationTags": [
-        "non-current",
-        "subtotal"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IFRS Accounting Taxonomy 2025",
-        "IAS 1 statement of financial position structure"
-      ]
+      "reporting": "credit"
     },
     {
       "code": "2210",
       "name": "Non-current borrowings",
       "description": "IFRS account 2210 (Non-current borrowings) is used under group 2200 (Non-current liabilities) to recognize and monitor this balance area in the financial position. It normally carries a credit balance. Primary reference: IFRS 9 financial liabilities. Classification focus: non current, financing.",
       "parentCode": "2200",
-      "level": 3,
       "type": "liability",
-      "reporting": "credit",
-      "statement": "financial-position",
-      "classificationTags": [
-        "non-current",
-        "financing",
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IFRS 9 financial liabilities",
-        "IAS 1 non-current liabilities"
-      ]
+      "reporting": "credit"
     },
     {
       "code": "2220",
       "name": "Non-current lease liabilities",
       "description": "IFRS account 2220 (Non-current lease liabilities) is used under group 2200 (Non-current liabilities) to recognize and monitor this balance area in the financial position. It normally carries a credit balance. Primary reference: IFRS 16 lease liabilities. Classification focus: non current, financing.",
       "parentCode": "2200",
-      "level": 3,
       "type": "liability",
-      "reporting": "credit",
-      "statement": "financial-position",
-      "classificationTags": [
-        "non-current",
-        "financing",
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IFRS 16 lease liabilities"
-      ]
+      "reporting": "credit"
     },
     {
       "code": "2230",
       "name": "Deferred tax liabilities",
       "description": "IFRS account 2230 (Deferred tax liabilities) is used under group 2200 (Non-current liabilities) to recognize and monitor this balance area in the financial position. It normally carries a credit balance. Primary reference: IAS 12 deferred tax liabilities. Classification focus: non current, income tax.",
       "parentCode": "2200",
-      "level": 3,
       "type": "liability",
-      "reporting": "credit",
-      "statement": "financial-position",
-      "classificationTags": [
-        "non-current",
-        "income-tax",
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IAS 12 deferred tax liabilities"
-      ]
+      "reporting": "credit"
     },
     {
       "code": "2240",
       "name": "Employee benefit obligations",
       "description": "IFRS account 2240 (Employee benefit obligations) is used under group 2200 (Non-current liabilities) to recognize and monitor this balance area in the financial position. It normally carries a credit balance. Primary reference: IAS 19 employee benefits. Classification focus: non current.",
       "parentCode": "2200",
-      "level": 3,
       "type": "liability",
-      "reporting": "credit",
-      "statement": "financial-position",
-      "classificationTags": [
-        "non-current",
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IAS 19 employee benefits"
-      ]
+      "reporting": "credit"
     },
     {
       "code": "2250",
       "name": "Non-current provisions",
       "description": "IFRS account 2250 (Non-current provisions) is used under group 2200 (Non-current liabilities) to recognize and monitor this balance area in the financial position. It normally carries a credit balance. Primary reference: IAS 37 provisions. Classification focus: non current.",
       "parentCode": "2200",
-      "level": 3,
       "type": "liability",
-      "reporting": "credit",
-      "statement": "financial-position",
-      "classificationTags": [
-        "non-current",
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IAS 37 provisions"
-      ]
+      "reporting": "credit"
     },
     {
       "code": "2260",
       "name": "Other non-current financial liabilities",
       "description": "IFRS account 2260 (Other non-current financial liabilities) is used under group 2200 (Non-current liabilities) to recognize and monitor this balance area in the financial position. It normally carries a credit balance. Primary reference: IFRS 9 financial liabilities. Classification focus: non current, financing.",
       "parentCode": "2200",
-      "level": 3,
       "type": "liability",
-      "reporting": "credit",
-      "statement": "financial-position",
-      "classificationTags": [
-        "non-current",
-        "financing",
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IFRS 9 financial liabilities"
-      ]
+      "reporting": "credit"
     },
     {
       "code": "2270",
       "name": "Other non-current liabilities",
       "description": "IFRS account 2270 (Other non-current liabilities) is used under group 2200 (Non-current liabilities) to recognize and monitor this balance area in the financial position. It normally carries a credit balance. Primary reference: IAS 1 non-current liabilities. Classification focus: non current.",
       "parentCode": "2200",
-      "level": 3,
       "type": "liability",
-      "reporting": "credit",
-      "statement": "financial-position",
-      "classificationTags": [
-        "non-current",
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IAS 1 non-current liabilities"
-      ]
+      "reporting": "credit"
     },
     {
       "code": "3000",
       "name": "Equity",
       "description": "IFRS reporting class 3000 (Equity) aggregates top-level balances for the financial position presentation under Conceptual Framework elements of financial statements.",
       "parentCode": null,
-      "level": 1,
       "type": "equity",
-      "reporting": "credit",
-      "statement": "financial-position",
-      "classificationTags": [
-        "subtotal"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "Conceptual Framework elements of financial statements",
-        "IAS 1 statement of changes in equity"
-      ]
+      "reporting": "credit"
     },
     {
       "code": "3100",
       "name": "Issued capital",
       "description": "IFRS reporting group 3100 (Issued capital) provides structured roll-up within 3000 (Equity) for financial position classification and disclosure alignment.",
       "parentCode": "3000",
-      "level": 2,
       "type": "equity",
-      "reporting": "credit",
-      "statement": "financial-position",
-      "classificationTags": [
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IAS 32 equity instruments",
-        "IAS 1 equity presentation"
-      ]
+      "reporting": "credit"
     },
     {
       "code": "3200",
       "name": "Share premium",
       "description": "IFRS reporting group 3200 (Share premium) provides structured roll-up within 3000 (Equity) for financial position classification and disclosure alignment.",
       "parentCode": "3000",
-      "level": 2,
       "type": "equity",
-      "reporting": "credit",
-      "statement": "financial-position",
-      "classificationTags": [
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IAS 1 equity presentation"
-      ]
+      "reporting": "credit"
     },
     {
       "code": "3300",
       "name": "Treasury shares",
       "description": "IFRS reporting group 3300 (Treasury shares) provides structured roll-up within 3000 (Equity) for financial position classification and disclosure alignment.",
       "parentCode": "3000",
-      "level": 2,
       "type": "equity",
-      "reporting": "debit",
-      "statement": "financial-position",
-      "classificationTags": [
-        "contra",
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IAS 32 treasury shares"
-      ]
+      "reporting": "debit"
     },
     {
       "code": "3400",
       "name": "Retained earnings",
       "description": "IFRS reporting group 3400 (Retained earnings) provides structured roll-up within 3000 (Equity) for financial position classification and disclosure alignment.",
       "parentCode": "3000",
-      "level": 2,
       "type": "equity",
-      "reporting": "credit",
-      "statement": "financial-position",
-      "classificationTags": [
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IAS 1 statement of changes in equity"
-      ]
+      "reporting": "credit"
     },
     {
       "code": "3500",
       "name": "Other components of equity",
       "description": "IFRS reporting group 3500 (Other components of equity) provides structured roll-up within 3000 (Equity) for financial position classification and disclosure alignment.",
       "parentCode": "3000",
-      "level": 2,
       "type": "equity",
-      "reporting": "credit",
-      "statement": "financial-position",
-      "classificationTags": [
-        "subtotal"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IFRS Accounting Taxonomy 2025",
-        "IAS 1 statement of financial position structure"
-      ]
+      "reporting": "credit"
     },
     {
       "code": "3510",
       "name": "Foreign currency translation reserve",
       "description": "IFRS account 3510 (Foreign currency translation reserve) is used under group 3500 (Other components of equity) to recognize and monitor this balance area in the financial position. It normally carries a credit balance. Primary reference: IAS 21 foreign currency translation reserve.",
       "parentCode": "3500",
-      "level": 3,
       "type": "equity",
-      "reporting": "credit",
-      "statement": "financial-position",
-      "classificationTags": [
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IAS 21 foreign currency translation reserve"
-      ]
+      "reporting": "credit"
     },
     {
       "code": "3520",
       "name": "Cash flow hedge reserve",
       "description": "IFRS account 3520 (Cash flow hedge reserve) is used under group 3500 (Other components of equity) to recognize and monitor this balance area in the financial position. It normally carries a credit balance. Primary reference: IFRS 9 cash flow hedge reserve.",
       "parentCode": "3500",
-      "level": 3,
       "type": "equity",
-      "reporting": "credit",
-      "statement": "financial-position",
-      "classificationTags": [
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IFRS 9 cash flow hedge reserve"
-      ]
+      "reporting": "credit"
     },
     {
       "code": "3530",
       "name": "Fair value reserve for financial assets at fair value through OCI",
       "description": "IFRS account 3530 (Fair value reserve for financial assets at fair value through OCI) is used under group 3500 (Other components of equity) to recognize and monitor this balance area in the financial position. It normally carries a credit balance. Primary reference: IFRS 9 fair value through other comprehensive income reserve.",
       "parentCode": "3500",
-      "level": 3,
       "type": "equity",
-      "reporting": "credit",
-      "statement": "financial-position",
-      "classificationTags": [
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IFRS 9 fair value through other comprehensive income reserve"
-      ]
+      "reporting": "credit"
     },
     {
       "code": "3540",
       "name": "Revaluation surplus",
       "description": "IFRS account 3540 (Revaluation surplus) is used under group 3500 (Other components of equity) to recognize and monitor this balance area in the financial position. It normally carries a credit balance. Primary reference: IAS 16 revaluation surplus.",
       "parentCode": "3500",
-      "level": 3,
       "type": "equity",
-      "reporting": "credit",
-      "statement": "financial-position",
-      "classificationTags": [
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IAS 16 revaluation surplus",
-        "IAS 38 revaluation model"
-      ]
+      "reporting": "credit"
     },
     {
       "code": "3550",
       "name": "Remeasurements of defined benefit plans reserve",
       "description": "IFRS account 3550 (Remeasurements of defined benefit plans reserve) is used under group 3500 (Other components of equity) to recognize and monitor this balance area in the financial position. It normally carries a credit balance. Primary reference: IAS 19 remeasurements in other comprehensive income.",
       "parentCode": "3500",
-      "level": 3,
       "type": "equity",
-      "reporting": "credit",
-      "statement": "financial-position",
-      "classificationTags": [
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IAS 19 remeasurements in other comprehensive income"
-      ]
+      "reporting": "credit"
     },
     {
       "code": "3600",
       "name": "Non-controlling interests",
       "description": "IFRS reporting group 3600 (Non-controlling interests) provides structured roll-up within 3000 (Equity) for financial position classification and disclosure alignment.",
       "parentCode": "3000",
-      "level": 2,
       "type": "equity",
-      "reporting": "credit",
-      "statement": "financial-position",
-      "classificationTags": [
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IFRS 10 non-controlling interests"
-      ]
+      "reporting": "credit"
     },
     {
       "code": "4000",
       "name": "Income",
       "description": "IFRS reporting class 4000 (Income) aggregates top-level balances for the profit or loss presentation under Conceptual Framework elements of financial statements.",
       "parentCode": null,
-      "level": 1,
       "type": "revenue",
-      "reporting": "credit",
-      "statement": "profit-or-loss",
-      "classificationTags": [
-        "subtotal"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "Conceptual Framework elements of financial statements",
-        "IFRS 18 profit or loss categories"
-      ]
+      "reporting": "credit"
     },
     {
       "code": "4100",
       "name": "Operating revenue",
       "description": "IFRS reporting group 4100 (Operating revenue) provides structured roll-up within 4000 (Income) for profit or loss classification and disclosure alignment.",
       "parentCode": "4000",
-      "level": 2,
       "type": "revenue",
-      "reporting": "credit",
-      "statement": "profit-or-loss",
-      "classificationTags": [
-        "operating",
-        "subtotal"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IFRS Accounting Taxonomy 2025",
-        "IFRS 18 presentation categories"
-      ]
+      "reporting": "credit"
     },
     {
       "code": "4110",
       "name": "Revenue from contracts with customers",
       "description": "IFRS account 4110 (Revenue from contracts with customers) is used under group 4100 (Operating revenue) to recognize and monitor this balance area in the profit or loss. It normally carries a credit balance. Primary reference: IFRS 15 revenue from contracts with customers. Classification focus: operating.",
       "parentCode": "4100",
-      "level": 3,
       "type": "revenue",
-      "reporting": "credit",
-      "statement": "profit-or-loss",
-      "classificationTags": [
-        "operating",
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IFRS 15 revenue from contracts with customers"
-      ]
+      "reporting": "credit"
     },
     {
       "code": "4120",
       "name": "Revenue from services",
       "description": "IFRS account 4120 (Revenue from services) is used under group 4100 (Operating revenue) to recognize and monitor this balance area in the profit or loss. It normally carries a credit balance. Primary reference: IFRS 15 revenue from contracts with customers. Classification focus: operating.",
       "parentCode": "4100",
-      "level": 3,
       "type": "revenue",
-      "reporting": "credit",
-      "statement": "profit-or-loss",
-      "classificationTags": [
-        "operating",
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IFRS 15 revenue from contracts with customers"
-      ]
+      "reporting": "credit"
     },
     {
       "code": "4130",
       "name": "Subscription and recurring revenue",
       "description": "IFRS account 4130 (Subscription and recurring revenue) is used under group 4100 (Operating revenue) to recognize and monitor this balance area in the profit or loss. It normally carries a credit balance. Primary reference: IFRS 15 revenue from contracts with customers. Classification focus: operating.",
       "parentCode": "4100",
-      "level": 3,
       "type": "revenue",
-      "reporting": "credit",
-      "statement": "profit-or-loss",
-      "classificationTags": [
-        "operating",
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IFRS 15 revenue from contracts with customers"
-      ]
+      "reporting": "credit"
     },
     {
       "code": "4140",
       "name": "Rental revenue from operating activities",
       "description": "IFRS account 4140 (Rental revenue from operating activities) is used under group 4100 (Operating revenue) to recognize and monitor this balance area in the profit or loss. It normally carries a credit balance. Primary reference: IFRS 16 lessor accounting. Classification focus: operating.",
       "parentCode": "4100",
-      "level": 3,
       "type": "revenue",
-      "reporting": "credit",
-      "statement": "profit-or-loss",
-      "classificationTags": [
-        "operating",
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IFRS 16 lessor accounting",
-        "IFRS 18 operating category"
-      ]
+      "reporting": "credit"
     },
     {
       "code": "4150",
       "name": "Royalty and licence revenue",
       "description": "IFRS account 4150 (Royalty and licence revenue) is used under group 4100 (Operating revenue) to recognize and monitor this balance area in the profit or loss. It normally carries a credit balance. Primary reference: IFRS 15 licences. Classification focus: operating.",
       "parentCode": "4100",
-      "level": 3,
       "type": "revenue",
-      "reporting": "credit",
-      "statement": "profit-or-loss",
-      "classificationTags": [
-        "operating",
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IFRS 15 licences"
-      ]
+      "reporting": "credit"
     },
     {
       "code": "4160",
       "name": "Other operating income",
       "description": "IFRS account 4160 (Other operating income) is used under group 4100 (Operating revenue) to recognize and monitor this balance area in the profit or loss. It normally carries a credit balance. Primary reference: IFRS 18 operating category. Classification focus: operating.",
       "parentCode": "4100",
-      "level": 3,
       "type": "revenue",
-      "reporting": "credit",
-      "statement": "profit-or-loss",
-      "classificationTags": [
-        "operating",
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IFRS 18 operating category"
-      ]
+      "reporting": "credit"
     },
     {
       "code": "4200",
       "name": "Investing income",
       "description": "IFRS reporting group 4200 (Investing income) provides structured roll-up within 4000 (Income) for profit or loss classification and disclosure alignment.",
       "parentCode": "4000",
-      "level": 2,
       "type": "revenue",
-      "reporting": "credit",
-      "statement": "profit-or-loss",
-      "classificationTags": [
-        "investing",
-        "subtotal"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IFRS Accounting Taxonomy 2025",
-        "IFRS 18 presentation categories"
-      ]
+      "reporting": "credit"
     },
     {
       "code": "4210",
       "name": "Dividend income",
       "description": "IFRS account 4210 (Dividend income) is used under group 4200 (Investing income) to recognize and monitor this balance area in the profit or loss. It normally carries a credit balance. Primary reference: IFRS 18 investing category. Classification focus: investing.",
       "parentCode": "4200",
-      "level": 3,
       "type": "revenue",
-      "reporting": "credit",
-      "statement": "profit-or-loss",
-      "classificationTags": [
-        "investing",
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IFRS 18 investing category"
-      ]
+      "reporting": "credit"
     },
     {
       "code": "4220",
       "name": "Interest income from investments",
       "description": "IFRS account 4220 (Interest income from investments) is used under group 4200 (Investing income) to recognize and monitor this balance area in the profit or loss. It normally carries a credit balance. Primary reference: IFRS 18 investing category. Classification focus: investing.",
       "parentCode": "4200",
-      "level": 3,
       "type": "revenue",
-      "reporting": "credit",
-      "statement": "profit-or-loss",
-      "classificationTags": [
-        "investing",
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IFRS 18 investing category",
-        "IFRS 9 interest revenue"
-      ]
+      "reporting": "credit"
     },
     {
       "code": "4230",
       "name": "Share of profit of associates and joint ventures",
       "description": "IFRS account 4230 (Share of profit of associates and joint ventures) is used under group 4200 (Investing income) to recognize and monitor this balance area in the profit or loss. It normally carries a credit balance. Primary reference: IAS 28 share of profit or loss. Classification focus: investing.",
       "parentCode": "4200",
-      "level": 3,
       "type": "revenue",
-      "reporting": "credit",
-      "statement": "profit-or-loss",
-      "classificationTags": [
-        "investing",
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IAS 28 share of profit or loss",
-        "IFRS 18 investing category"
-      ]
+      "reporting": "credit"
     },
     {
       "code": "4240",
       "name": "Fair value gains on investment property",
       "description": "IFRS account 4240 (Fair value gains on investment property) is used under group 4200 (Investing income) to recognize and monitor this balance area in the profit or loss. It normally carries a credit balance. Primary reference: IAS 40 fair value model. Classification focus: investing.",
       "parentCode": "4200",
-      "level": 3,
       "type": "revenue",
-      "reporting": "credit",
-      "statement": "profit-or-loss",
-      "classificationTags": [
-        "investing",
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IAS 40 fair value model"
-      ]
+      "reporting": "credit"
     },
     {
       "code": "4300",
       "name": "Financing income",
       "description": "IFRS reporting group 4300 (Financing income) provides structured roll-up within 4000 (Income) for profit or loss classification and disclosure alignment.",
       "parentCode": "4000",
-      "level": 2,
       "type": "revenue",
-      "reporting": "credit",
-      "statement": "profit-or-loss",
-      "classificationTags": [
-        "financing",
-        "subtotal"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IFRS Accounting Taxonomy 2025",
-        "IFRS 18 presentation categories"
-      ]
+      "reporting": "credit"
     },
     {
       "code": "4310",
       "name": "Foreign exchange gains on financing items",
       "description": "IFRS account 4310 (Foreign exchange gains on financing items) is used under group 4300 (Financing income) to recognize and monitor this balance area in the profit or loss. It normally carries a credit balance. Primary reference: IAS 21 foreign exchange differences. Classification focus: financing.",
       "parentCode": "4300",
-      "level": 3,
       "type": "revenue",
-      "reporting": "credit",
-      "statement": "profit-or-loss",
-      "classificationTags": [
-        "financing",
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IAS 21 foreign exchange differences",
-        "IFRS 18 financing category"
-      ]
+      "reporting": "credit"
     },
     {
       "code": "4400",
       "name": "Other gains",
       "description": "IFRS reporting group 4400 (Other gains) provides structured roll-up within 4000 (Income) for profit or loss classification and disclosure alignment.",
       "parentCode": "4000",
-      "level": 2,
       "type": "revenue",
-      "reporting": "credit",
-      "statement": "profit-or-loss",
-      "classificationTags": [
-        "operating",
-        "subtotal"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IFRS Accounting Taxonomy 2025",
-        "IFRS 18 presentation categories"
-      ]
+      "reporting": "credit"
     },
     {
       "code": "4410",
       "name": "Gain on disposal of property, plant and equipment",
       "description": "IFRS account 4410 (Gain on disposal of property, plant and equipment) is used under group 4400 (Other gains) to recognize and monitor this balance area in the profit or loss. It normally carries a credit balance. Primary reference: IAS 16 derecognition gains and losses. Classification focus: operating.",
       "parentCode": "4400",
-      "level": 3,
       "type": "revenue",
-      "reporting": "credit",
-      "statement": "profit-or-loss",
-      "classificationTags": [
-        "operating",
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IAS 16 derecognition gains and losses",
-        "IFRS 18 classification judgement"
-      ]
+      "reporting": "credit"
     },
     {
       "code": "4420",
       "name": "Gain on disposal of subsidiaries or businesses",
       "description": "IFRS account 4420 (Gain on disposal of subsidiaries or businesses) is used under group 4400 (Other gains) to recognize and monitor this balance area in the profit or loss. It normally carries a credit balance. Primary reference: IFRS 10 loss of control. Classification focus: investing.",
       "parentCode": "4400",
-      "level": 3,
       "type": "revenue",
-      "reporting": "credit",
-      "statement": "profit-or-loss",
-      "classificationTags": [
-        "investing",
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IFRS 10 loss of control",
-        "IFRS 18 investing category"
-      ]
+      "reporting": "credit"
     },
     {
       "code": "5000",
       "name": "Expenses",
       "description": "IFRS reporting class 5000 (Expenses) aggregates top-level balances for the profit or loss presentation under Conceptual Framework elements of financial statements.",
       "parentCode": null,
-      "level": 1,
       "type": "expense",
-      "reporting": "debit",
-      "statement": "profit-or-loss",
-      "classificationTags": [
-        "subtotal"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "Conceptual Framework elements of financial statements",
-        "IFRS 18 profit or loss categories"
-      ]
+      "reporting": "debit"
     },
     {
       "code": "5100",
       "name": "Cost of sales and service delivery",
       "description": "IFRS reporting group 5100 (Cost of sales and service delivery) provides structured roll-up within 5000 (Expenses) for profit or loss classification and disclosure alignment.",
       "parentCode": "5000",
-      "level": 2,
       "type": "expense",
-      "reporting": "debit",
-      "statement": "profit-or-loss",
-      "classificationTags": [
-        "operating",
-        "subtotal"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IFRS Accounting Taxonomy 2025",
-        "IFRS 18 presentation categories"
-      ]
+      "reporting": "debit"
     },
     {
       "code": "5110",
       "name": "Raw materials and consumables used",
       "description": "IFRS account 5110 (Raw materials and consumables used) is used under group 5100 (Cost of sales and service delivery) to recognize and monitor this balance area in the profit or loss. It normally carries a debit balance. Primary reference: IAS 2 inventories. Classification focus: operating.",
       "parentCode": "5100",
-      "level": 3,
       "type": "expense",
-      "reporting": "debit",
-      "statement": "profit-or-loss",
-      "classificationTags": [
-        "operating",
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IAS 2 inventories",
-        "IFRS 18 expenses by nature"
-      ]
+      "reporting": "debit"
     },
     {
       "code": "5120",
       "name": "Direct labour",
       "description": "IFRS account 5120 (Direct labour) is used under group 5100 (Cost of sales and service delivery) to recognize and monitor this balance area in the profit or loss. It normally carries a debit balance. Primary reference: IAS 19 employee benefits. Classification focus: operating.",
       "parentCode": "5100",
-      "level": 3,
       "type": "expense",
-      "reporting": "debit",
-      "statement": "profit-or-loss",
-      "classificationTags": [
-        "operating",
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IAS 19 employee benefits",
-        "IFRS 18 expenses by nature"
-      ]
+      "reporting": "debit"
     },
     {
       "code": "5130",
       "name": "Manufacturing overhead",
       "description": "IFRS account 5130 (Manufacturing overhead) is used under group 5100 (Cost of sales and service delivery) to recognize and monitor this balance area in the profit or loss. It normally carries a debit balance. Primary reference: IAS 2 cost of inventories. Classification focus: operating.",
       "parentCode": "5100",
-      "level": 3,
       "type": "expense",
-      "reporting": "debit",
-      "statement": "profit-or-loss",
-      "classificationTags": [
-        "operating",
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IAS 2 cost of inventories"
-      ]
+      "reporting": "debit"
     },
     {
       "code": "5140",
       "name": "Inventory write-downs",
       "description": "IFRS account 5140 (Inventory write-downs) is used under group 5100 (Cost of sales and service delivery) to recognize and monitor this balance area in the profit or loss. It normally carries a debit balance. Primary reference: IAS 2 write-down to net realisable value. Classification focus: operating.",
       "parentCode": "5100",
-      "level": 3,
       "type": "expense",
-      "reporting": "debit",
-      "statement": "profit-or-loss",
-      "classificationTags": [
-        "operating",
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IAS 2 write-down to net realisable value"
-      ]
+      "reporting": "debit"
     },
     {
       "code": "5150",
       "name": "Freight and fulfilment costs",
       "description": "IFRS account 5150 (Freight and fulfilment costs) is used under group 5100 (Cost of sales and service delivery) to recognize and monitor this balance area in the profit or loss. It normally carries a debit balance. Primary reference: IFRS 15 fulfilment costs. Classification focus: operating.",
       "parentCode": "5100",
-      "level": 3,
       "type": "expense",
-      "reporting": "debit",
-      "statement": "profit-or-loss",
-      "classificationTags": [
-        "operating",
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IFRS 15 fulfilment costs",
-        "IAS 2 inventories"
-      ]
+      "reporting": "debit"
     },
     {
       "code": "5200",
       "name": "Employee benefits expense",
       "description": "IFRS reporting group 5200 (Employee benefits expense) provides structured roll-up within 5000 (Expenses) for profit or loss classification and disclosure alignment.",
       "parentCode": "5000",
-      "level": 2,
       "type": "expense",
-      "reporting": "debit",
-      "statement": "profit-or-loss",
-      "classificationTags": [
-        "operating",
-        "subtotal"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IFRS Accounting Taxonomy 2025",
-        "IFRS 18 presentation categories"
-      ]
+      "reporting": "debit"
     },
     {
       "code": "5210",
       "name": "Wages and salaries",
       "description": "IFRS account 5210 (Wages and salaries) is used under group 5200 (Employee benefits expense) to recognize and monitor this balance area in the profit or loss. It normally carries a debit balance. Primary reference: IAS 19 short-term employee benefits. Classification focus: operating.",
       "parentCode": "5200",
-      "level": 3,
       "type": "expense",
-      "reporting": "debit",
-      "statement": "profit-or-loss",
-      "classificationTags": [
-        "operating",
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IAS 19 short-term employee benefits"
-      ]
+      "reporting": "debit"
     },
     {
       "code": "5220",
       "name": "Social security and payroll taxes",
       "description": "IFRS account 5220 (Social security and payroll taxes) is used under group 5200 (Employee benefits expense) to recognize and monitor this balance area in the profit or loss. It normally carries a debit balance. Primary reference: IAS 19 employee benefits. Classification focus: operating.",
       "parentCode": "5200",
-      "level": 3,
       "type": "expense",
-      "reporting": "debit",
-      "statement": "profit-or-loss",
-      "classificationTags": [
-        "operating",
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IAS 19 employee benefits"
-      ]
+      "reporting": "debit"
     },
     {
       "code": "5230",
       "name": "Pension and post-employment benefit expense",
       "description": "IFRS account 5230 (Pension and post-employment benefit expense) is used under group 5200 (Employee benefits expense) to recognize and monitor this balance area in the profit or loss. It normally carries a debit balance. Primary reference: IAS 19 post-employment benefits. Classification focus: operating.",
       "parentCode": "5200",
-      "level": 3,
       "type": "expense",
-      "reporting": "debit",
-      "statement": "profit-or-loss",
-      "classificationTags": [
-        "operating",
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IAS 19 post-employment benefits"
-      ]
+      "reporting": "debit"
     },
     {
       "code": "5240",
       "name": "Share-based payment expense",
       "description": "IFRS account 5240 (Share-based payment expense) is used under group 5200 (Employee benefits expense) to recognize and monitor this balance area in the profit or loss. It normally carries a debit balance. Primary reference: IFRS 2 share-based payment. Classification focus: operating.",
       "parentCode": "5200",
-      "level": 3,
       "type": "expense",
-      "reporting": "debit",
-      "statement": "profit-or-loss",
-      "classificationTags": [
-        "operating",
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IFRS 2 share-based payment"
-      ]
+      "reporting": "debit"
     },
     {
       "code": "5250",
       "name": "Termination benefits",
       "description": "IFRS account 5250 (Termination benefits) is used under group 5200 (Employee benefits expense) to recognize and monitor this balance area in the profit or loss. It normally carries a debit balance. Primary reference: IAS 19 termination benefits. Classification focus: operating.",
       "parentCode": "5200",
-      "level": 3,
       "type": "expense",
-      "reporting": "debit",
-      "statement": "profit-or-loss",
-      "classificationTags": [
-        "operating",
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IAS 19 termination benefits"
-      ]
+      "reporting": "debit"
     },
     {
       "code": "5300",
       "name": "Sales and marketing expense",
       "description": "IFRS reporting group 5300 (Sales and marketing expense) provides structured roll-up within 5000 (Expenses) for profit or loss classification and disclosure alignment.",
       "parentCode": "5000",
-      "level": 2,
       "type": "expense",
-      "reporting": "debit",
-      "statement": "profit-or-loss",
-      "classificationTags": [
-        "operating",
-        "subtotal"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IFRS Accounting Taxonomy 2025",
-        "IFRS 18 presentation categories"
-      ]
+      "reporting": "debit"
     },
     {
       "code": "5310",
       "name": "Advertising and promotion",
       "description": "IFRS account 5310 (Advertising and promotion) is used under group 5300 (Sales and marketing expense) to recognize and monitor this balance area in the profit or loss. It normally carries a debit balance. Primary reference: IAS 38 advertising and promotional expenditure. Classification focus: operating.",
       "parentCode": "5300",
-      "level": 3,
       "type": "expense",
-      "reporting": "debit",
-      "statement": "profit-or-loss",
-      "classificationTags": [
-        "operating",
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IAS 38 advertising and promotional expenditure"
-      ]
+      "reporting": "debit"
     },
     {
       "code": "5320",
       "name": "Sales commissions",
       "description": "IFRS account 5320 (Sales commissions) is used under group 5300 (Sales and marketing expense) to recognize and monitor this balance area in the profit or loss. It normally carries a debit balance. Primary reference: IFRS 15 costs to obtain a contract. Classification focus: operating.",
       "parentCode": "5300",
-      "level": 3,
       "type": "expense",
-      "reporting": "debit",
-      "statement": "profit-or-loss",
-      "classificationTags": [
-        "operating",
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IFRS 15 costs to obtain a contract"
-      ]
+      "reporting": "debit"
     },
     {
       "code": "5330",
       "name": "Customer support expense",
       "description": "IFRS account 5330 (Customer support expense) is used under group 5300 (Sales and marketing expense) to recognize and monitor this balance area in the profit or loss. It normally carries a debit balance. Primary reference: IFRS 18 operating category. Classification focus: operating.",
       "parentCode": "5300",
-      "level": 3,
       "type": "expense",
-      "reporting": "debit",
-      "statement": "profit-or-loss",
-      "classificationTags": [
-        "operating",
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IFRS 18 operating category"
-      ]
+      "reporting": "debit"
     },
     {
       "code": "5400",
       "name": "General and administrative expense",
       "description": "IFRS reporting group 5400 (General and administrative expense) provides structured roll-up within 5000 (Expenses) for profit or loss classification and disclosure alignment.",
       "parentCode": "5000",
-      "level": 2,
       "type": "expense",
-      "reporting": "debit",
-      "statement": "profit-or-loss",
-      "classificationTags": [
-        "operating",
-        "subtotal"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IFRS Accounting Taxonomy 2025",
-        "IFRS 18 presentation categories"
-      ]
+      "reporting": "debit"
     },
     {
       "code": "5410",
       "name": "Professional fees",
       "description": "IFRS account 5410 (Professional fees) is used under group 5400 (General and administrative expense) to recognize and monitor this balance area in the profit or loss. It normally carries a debit balance. Primary reference: IFRS 18 operating category. Classification focus: operating.",
       "parentCode": "5400",
-      "level": 3,
       "type": "expense",
-      "reporting": "debit",
-      "statement": "profit-or-loss",
-      "classificationTags": [
-        "operating",
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IFRS 18 operating category"
-      ]
+      "reporting": "debit"
     },
     {
       "code": "5420",
       "name": "Office and occupancy costs",
       "description": "IFRS account 5420 (Office and occupancy costs) is used under group 5400 (General and administrative expense) to recognize and monitor this balance area in the profit or loss. It normally carries a debit balance. Primary reference: IFRS 16 leases. Classification focus: operating.",
       "parentCode": "5400",
-      "level": 3,
       "type": "expense",
-      "reporting": "debit",
-      "statement": "profit-or-loss",
-      "classificationTags": [
-        "operating",
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IFRS 16 leases",
-        "IFRS 18 operating category"
-      ]
+      "reporting": "debit"
     },
     {
       "code": "5430",
       "name": "Information technology expense",
       "description": "IFRS account 5430 (Information technology expense) is used under group 5400 (General and administrative expense) to recognize and monitor this balance area in the profit or loss. It normally carries a debit balance. Primary reference: IAS 38 intangible assets judgement. Classification focus: operating.",
       "parentCode": "5400",
-      "level": 3,
       "type": "expense",
-      "reporting": "debit",
-      "statement": "profit-or-loss",
-      "classificationTags": [
-        "operating",
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IAS 38 intangible assets judgement",
-        "IFRS 18 operating category"
-      ]
+      "reporting": "debit"
     },
     {
       "code": "5440",
       "name": "Insurance expense",
       "description": "IFRS account 5440 (Insurance expense) is used under group 5400 (General and administrative expense) to recognize and monitor this balance area in the profit or loss. It normally carries a debit balance. Primary reference: IFRS 17 insurance contracts where applicable. Classification focus: operating.",
       "parentCode": "5400",
-      "level": 3,
       "type": "expense",
-      "reporting": "debit",
-      "statement": "profit-or-loss",
-      "classificationTags": [
-        "operating",
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IFRS 17 insurance contracts where applicable",
-        "IFRS 18 operating category"
-      ]
+      "reporting": "debit"
     },
     {
       "code": "5450",
       "name": "Travel and entertainment",
       "description": "IFRS account 5450 (Travel and entertainment) is used under group 5400 (General and administrative expense) to recognize and monitor this balance area in the profit or loss. It normally carries a debit balance. Primary reference: IFRS 18 operating category. Classification focus: operating.",
       "parentCode": "5400",
-      "level": 3,
       "type": "expense",
-      "reporting": "debit",
-      "statement": "profit-or-loss",
-      "classificationTags": [
-        "operating",
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IFRS 18 operating category"
-      ]
+      "reporting": "debit"
     },
     {
       "code": "5460",
       "name": "Taxes other than income taxes",
       "description": "IFRS account 5460 (Taxes other than income taxes) is used under group 5400 (General and administrative expense) to recognize and monitor this balance area in the profit or loss. It normally carries a debit balance. Primary reference: IFRIC 21 levies. Classification focus: operating.",
       "parentCode": "5400",
-      "level": 3,
       "type": "expense",
-      "reporting": "debit",
-      "statement": "profit-or-loss",
-      "classificationTags": [
-        "operating",
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IFRIC 21 levies",
-        "IFRS 18 operating category"
-      ]
+      "reporting": "debit"
     },
     {
       "code": "5500",
       "name": "Depreciation, amortization and impairment",
       "description": "IFRS reporting group 5500 (Depreciation, amortization and impairment) provides structured roll-up within 5000 (Expenses) for profit or loss classification and disclosure alignment.",
       "parentCode": "5000",
-      "level": 2,
       "type": "expense",
-      "reporting": "debit",
-      "statement": "profit-or-loss",
-      "classificationTags": [
-        "operating",
-        "subtotal"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IFRS Accounting Taxonomy 2025",
-        "IFRS 18 presentation categories"
-      ]
+      "reporting": "debit"
     },
     {
       "code": "5510",
       "name": "Depreciation expense",
       "description": "IFRS account 5510 (Depreciation expense) is used under group 5500 (Depreciation, amortization and impairment) to recognize and monitor this balance area in the profit or loss. It normally carries a debit balance. Primary reference: IAS 16 depreciation. Classification focus: operating.",
       "parentCode": "5500",
-      "level": 3,
       "type": "expense",
-      "reporting": "debit",
-      "statement": "profit-or-loss",
-      "classificationTags": [
-        "operating",
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IAS 16 depreciation",
-        "IFRS 16 right-of-use asset depreciation"
-      ]
+      "reporting": "debit"
     },
     {
       "code": "5520",
       "name": "Amortization expense",
       "description": "IFRS account 5520 (Amortization expense) is used under group 5500 (Depreciation, amortization and impairment) to recognize and monitor this balance area in the profit or loss. It normally carries a debit balance. Primary reference: IAS 38 amortization. Classification focus: operating.",
       "parentCode": "5500",
-      "level": 3,
       "type": "expense",
-      "reporting": "debit",
-      "statement": "profit-or-loss",
-      "classificationTags": [
-        "operating",
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IAS 38 amortization"
-      ]
+      "reporting": "debit"
     },
     {
       "code": "5530",
       "name": "Impairment losses",
       "description": "IFRS account 5530 (Impairment losses) is used under group 5500 (Depreciation, amortization and impairment) to recognize and monitor this balance area in the profit or loss. It normally carries a debit balance. Primary reference: IAS 36 impairment of assets. Classification focus: operating.",
       "parentCode": "5500",
-      "level": 3,
       "type": "expense",
-      "reporting": "debit",
-      "statement": "profit-or-loss",
-      "classificationTags": [
-        "operating",
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IAS 36 impairment of assets"
-      ]
+      "reporting": "debit"
     },
     {
       "code": "5540",
       "name": "Reversal of impairment losses",
       "description": "IFRS account 5540 (Reversal of impairment losses) is used under group 5500 (Depreciation, amortization and impairment) to recognize and monitor this balance area in the profit or loss. It is a contra account and normally carries the opposite balance to the related base account. Primary reference: IAS 36 reversal of impairment losses. Classification focus: operating.",
       "parentCode": "5500",
-      "level": 3,
       "type": "expense",
-      "reporting": "credit",
-      "statement": "profit-or-loss",
-      "classificationTags": [
-        "operating",
-        "contra",
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IAS 36 reversal of impairment losses"
-      ]
+      "reporting": "credit"
     },
     {
       "code": "5600",
       "name": "Research and development expense",
       "description": "IFRS reporting group 5600 (Research and development expense) provides structured roll-up within 5000 (Expenses) for profit or loss classification and disclosure alignment.",
       "parentCode": "5000",
-      "level": 2,
       "type": "expense",
-      "reporting": "debit",
-      "statement": "profit-or-loss",
-      "classificationTags": [
-        "operating",
-        "subtotal"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IFRS Accounting Taxonomy 2025",
-        "IFRS 18 presentation categories"
-      ]
+      "reporting": "debit"
     },
     {
       "code": "5610",
       "name": "Research expense",
       "description": "IFRS account 5610 (Research expense) is used under group 5600 (Research and development expense) to recognize and monitor this balance area in the profit or loss. It normally carries a debit balance. Primary reference: IAS 38 research phase. Classification focus: operating.",
       "parentCode": "5600",
-      "level": 3,
       "type": "expense",
-      "reporting": "debit",
-      "statement": "profit-or-loss",
-      "classificationTags": [
-        "operating",
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IAS 38 research phase"
-      ]
+      "reporting": "debit"
     },
     {
       "code": "5620",
       "name": "Development expense not capitalized",
       "description": "IFRS account 5620 (Development expense not capitalized) is used under group 5600 (Research and development expense) to recognize and monitor this balance area in the profit or loss. It normally carries a debit balance. Primary reference: IAS 38 development phase. Classification focus: operating.",
       "parentCode": "5600",
-      "level": 3,
       "type": "expense",
-      "reporting": "debit",
-      "statement": "profit-or-loss",
-      "classificationTags": [
-        "operating",
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IAS 38 development phase"
-      ]
+      "reporting": "debit"
     },
     {
       "code": "5700",
       "name": "Expected credit loss and financial asset impairment",
       "description": "IFRS reporting group 5700 (Expected credit loss and financial asset impairment) provides structured roll-up within 5000 (Expenses) for profit or loss classification and disclosure alignment.",
       "parentCode": "5000",
-      "level": 2,
       "type": "expense",
-      "reporting": "debit",
-      "statement": "profit-or-loss",
-      "classificationTags": [
-        "operating",
-        "subtotal"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IFRS Accounting Taxonomy 2025",
-        "IFRS 18 presentation categories"
-      ]
+      "reporting": "debit"
     },
     {
       "code": "5710",
       "name": "Expected credit loss expense",
       "description": "IFRS account 5710 (Expected credit loss expense) is used under group 5700 (Expected credit loss and financial asset impairment) to recognize and monitor this balance area in the profit or loss. It normally carries a debit balance. Primary reference: IFRS 9 expected credit losses. Classification focus: operating.",
       "parentCode": "5700",
-      "level": 3,
       "type": "expense",
-      "reporting": "debit",
-      "statement": "profit-or-loss",
-      "classificationTags": [
-        "operating",
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IFRS 9 expected credit losses"
-      ]
+      "reporting": "debit"
     },
     {
       "code": "5720",
       "name": "Bad debt write-offs",
       "description": "IFRS account 5720 (Bad debt write-offs) is used under group 5700 (Expected credit loss and financial asset impairment) to recognize and monitor this balance area in the profit or loss. It normally carries a debit balance. Primary reference: IFRS 9 financial assets. Classification focus: operating.",
       "parentCode": "5700",
-      "level": 3,
       "type": "expense",
-      "reporting": "debit",
-      "statement": "profit-or-loss",
-      "classificationTags": [
-        "operating",
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IFRS 9 financial assets"
-      ]
+      "reporting": "debit"
     },
     {
       "code": "5800",
       "name": "Investing expenses and losses",
       "description": "IFRS reporting group 5800 (Investing expenses and losses) provides structured roll-up within 5000 (Expenses) for profit or loss classification and disclosure alignment.",
       "parentCode": "5000",
-      "level": 2,
       "type": "expense",
-      "reporting": "debit",
-      "statement": "profit-or-loss",
-      "classificationTags": [
-        "investing",
-        "subtotal"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IFRS Accounting Taxonomy 2025",
-        "IFRS 18 presentation categories"
-      ]
+      "reporting": "debit"
     },
     {
       "code": "5810",
       "name": "Share of loss of associates and joint ventures",
       "description": "IFRS account 5810 (Share of loss of associates and joint ventures) is used under group 5800 (Investing expenses and losses) to recognize and monitor this balance area in the profit or loss. It normally carries a debit balance. Primary reference: IAS 28 share of profit or loss. Classification focus: investing.",
       "parentCode": "5800",
-      "level": 3,
       "type": "expense",
-      "reporting": "debit",
-      "statement": "profit-or-loss",
-      "classificationTags": [
-        "investing",
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IAS 28 share of profit or loss",
-        "IFRS 18 investing category"
-      ]
+      "reporting": "debit"
     },
     {
       "code": "5820",
       "name": "Fair value losses on investment property",
       "description": "IFRS account 5820 (Fair value losses on investment property) is used under group 5800 (Investing expenses and losses) to recognize and monitor this balance area in the profit or loss. It normally carries a debit balance. Primary reference: IAS 40 fair value model. Classification focus: investing.",
       "parentCode": "5800",
-      "level": 3,
       "type": "expense",
-      "reporting": "debit",
-      "statement": "profit-or-loss",
-      "classificationTags": [
-        "investing",
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IAS 40 fair value model"
-      ]
+      "reporting": "debit"
     },
     {
       "code": "5830",
       "name": "Loss on disposal of property, plant and equipment",
       "description": "IFRS account 5830 (Loss on disposal of property, plant and equipment) is used under group 5800 (Investing expenses and losses) to recognize and monitor this balance area in the profit or loss. It normally carries a debit balance. Primary reference: IAS 16 derecognition gains and losses. Classification focus: investing.",
       "parentCode": "5800",
-      "level": 3,
       "type": "expense",
-      "reporting": "debit",
-      "statement": "profit-or-loss",
-      "classificationTags": [
-        "investing",
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IAS 16 derecognition gains and losses",
-        "IFRS 18 classification judgement"
-      ]
+      "reporting": "debit"
     },
     {
       "code": "5900",
       "name": "Financing expenses",
       "description": "IFRS reporting group 5900 (Financing expenses) provides structured roll-up within 5000 (Expenses) for profit or loss classification and disclosure alignment.",
       "parentCode": "5000",
-      "level": 2,
       "type": "expense",
-      "reporting": "debit",
-      "statement": "profit-or-loss",
-      "classificationTags": [
-        "financing",
-        "subtotal"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IFRS Accounting Taxonomy 2025",
-        "IFRS 18 presentation categories"
-      ]
+      "reporting": "debit"
     },
     {
       "code": "5910",
       "name": "Interest expense on borrowings",
       "description": "IFRS account 5910 (Interest expense on borrowings) is used under group 5900 (Financing expenses) to recognize and monitor this balance area in the profit or loss. It normally carries a debit balance. Primary reference: IFRS 18 financing category. Classification focus: financing.",
       "parentCode": "5900",
-      "level": 3,
       "type": "expense",
-      "reporting": "debit",
-      "statement": "profit-or-loss",
-      "classificationTags": [
-        "financing",
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IFRS 18 financing category",
-        "IFRS 9 effective interest method"
-      ]
+      "reporting": "debit"
     },
     {
       "code": "5920",
       "name": "Interest expense on lease liabilities",
       "description": "IFRS account 5920 (Interest expense on lease liabilities) is used under group 5900 (Financing expenses) to recognize and monitor this balance area in the profit or loss. It normally carries a debit balance. Primary reference: IFRS 16 lease liabilities. Classification focus: financing.",
       "parentCode": "5900",
-      "level": 3,
       "type": "expense",
-      "reporting": "debit",
-      "statement": "profit-or-loss",
-      "classificationTags": [
-        "financing",
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IFRS 16 lease liabilities",
-        "IFRS 18 financing category"
-      ]
+      "reporting": "debit"
     },
     {
       "code": "5930",
       "name": "Foreign exchange losses on financing items",
       "description": "IFRS account 5930 (Foreign exchange losses on financing items) is used under group 5900 (Financing expenses) to recognize and monitor this balance area in the profit or loss. It normally carries a debit balance. Primary reference: IAS 21 foreign exchange differences. Classification focus: financing.",
       "parentCode": "5900",
-      "level": 3,
       "type": "expense",
-      "reporting": "debit",
-      "statement": "profit-or-loss",
-      "classificationTags": [
-        "financing",
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IAS 21 foreign exchange differences",
-        "IFRS 18 financing category"
-      ]
+      "reporting": "debit"
     },
     {
       "code": "5940",
       "name": "Unwinding of discount on provisions",
       "description": "IFRS account 5940 (Unwinding of discount on provisions) is used under group 5900 (Financing expenses) to recognize and monitor this balance area in the profit or loss. It normally carries a debit balance. Primary reference: IAS 37 provisions. Classification focus: financing.",
       "parentCode": "5900",
-      "level": 3,
       "type": "expense",
-      "reporting": "debit",
-      "statement": "profit-or-loss",
-      "classificationTags": [
-        "financing",
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IAS 37 provisions",
-        "IFRS 18 financing category"
-      ]
+      "reporting": "debit"
     },
     {
       "code": "6000",
       "name": "Income tax expense",
       "description": "IFRS reporting class 6000 (Income tax expense) aggregates top-level balances for the profit or loss presentation under IAS 12 income taxes.",
       "parentCode": null,
-      "level": 1,
       "type": "expense",
-      "reporting": "debit",
-      "statement": "profit-or-loss",
-      "classificationTags": [
-        "income-tax",
-        "subtotal"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IAS 12 income taxes",
-        "IFRS 18 income taxes category"
-      ]
+      "reporting": "debit"
     },
     {
       "code": "6100",
       "name": "Current tax expense",
       "description": "IFRS reporting group 6100 (Current tax expense) provides structured roll-up within 6000 (Income tax expense) for profit or loss classification and disclosure alignment.",
       "parentCode": "6000",
-      "level": 2,
       "type": "expense",
-      "reporting": "debit",
-      "statement": "profit-or-loss",
-      "classificationTags": [
-        "income-tax",
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IAS 12 current tax"
-      ]
+      "reporting": "debit"
     },
     {
       "code": "6200",
       "name": "Deferred tax expense or income",
       "description": "IFRS reporting group 6200 (Deferred tax expense or income) provides structured roll-up within 6000 (Income tax expense) for profit or loss classification and disclosure alignment.",
       "parentCode": "6000",
-      "level": 2,
       "type": "expense",
-      "reporting": "debit",
-      "statement": "profit-or-loss",
-      "classificationTags": [
-        "income-tax",
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IAS 12 deferred tax"
-      ]
+      "reporting": "debit"
     },
     {
       "code": "7000",
       "name": "Discontinued operations",
       "description": "IFRS reporting class 7000 (Discontinued operations) aggregates top-level balances for the profit or loss presentation under IFRS 5 discontinued operations.",
       "parentCode": null,
-      "level": 1,
       "type": "expense",
-      "reporting": "debit",
-      "statement": "profit-or-loss",
-      "classificationTags": [
-        "discontinued-operations",
-        "subtotal"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IFRS 5 discontinued operations",
-        "IFRS 18 discontinued operations category"
-      ]
+      "reporting": "debit"
     },
     {
       "code": "7100",
       "name": "Profit or loss from discontinued operations",
       "description": "IFRS reporting group 7100 (Profit or loss from discontinued operations) provides structured roll-up within 7000 (Discontinued operations) for profit or loss classification and disclosure alignment.",
       "parentCode": "7000",
-      "level": 2,
       "type": "expense",
-      "reporting": "debit",
-      "statement": "profit-or-loss",
-      "classificationTags": [
-        "discontinued-operations",
-        "detail"
-      ],
-      "active": true,
-      "ifrsReferences": [
-        "IFRS 5 discontinued operations"
-      ]
+      "reporting": "debit"
     }
   ]
 }
