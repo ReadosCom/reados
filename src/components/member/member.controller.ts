@@ -129,19 +129,19 @@ export const deleteMember = async (id: string) => {
 };
 
 export const listAccountTemplates = async (): Promise<AccountTemplate[]> => {
-  const trTekDuzen = await readAccountTemplate(`tr-tek-duzen`);
-  const ifrsGlobalCore = await readAccountTemplate(`ifrs-global-core`);
-  const ifrsGlobalEnterpriseExtension = await readAccountTemplate(`ifrs-global-enterprise-extension`);
-  const usGaap = await readAccountTemplate(`us-gaap`);
-  const usGaapEnterpriseExtensions = await readAccountTemplate(`us-gaap-enterprise-extensions`);
-
   return [
-    { id: trTekDuzen.id, label: trTekDuzen.label, description: trTekDuzen.description, source: trTekDuzen.source, extensionOf: trTekDuzen.extensionOf },
-    { id: ifrsGlobalCore.id, label: ifrsGlobalCore.label, description: ifrsGlobalCore.description, source: ifrsGlobalCore.source, extensionOf: ifrsGlobalCore.extensionOf },
-    { id: ifrsGlobalEnterpriseExtension.id, label: ifrsGlobalEnterpriseExtension.label, description: ifrsGlobalEnterpriseExtension.description, source: ifrsGlobalEnterpriseExtension.source, extensionOf: ifrsGlobalEnterpriseExtension.extensionOf },
-    { id: usGaap.id, label: usGaap.label, description: usGaap.description, source: usGaap.source, extensionOf: usGaap.extensionOf },
-    { id: usGaapEnterpriseExtensions.id, label: usGaapEnterpriseExtensions.label, description: usGaapEnterpriseExtensions.description, source: usGaapEnterpriseExtensions.source, extensionOf: usGaapEnterpriseExtensions.extensionOf },
-  ];
+    await readAccountTemplate(`tr-tek-duzen`),
+    await readAccountTemplate(`ifrs-global-core`),
+    await readAccountTemplate(`ifrs-global-enterprise-extension`),
+    await readAccountTemplate(`us-gaap`),
+    await readAccountTemplate(`us-gaap-enterprise-extensions`),
+  ].map((t) => ({
+    id: t.id,
+    label: t.label,
+    description: t.description,
+    source: t.source,
+    extensionOf: t.extensionOf,
+  }));
 };
 
 export const applyAccountTemplate = async (segmentId: string, templateId: string) => {
