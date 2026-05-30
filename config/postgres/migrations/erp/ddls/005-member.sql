@@ -64,3 +64,11 @@ FOR EACH ROW
 EXECUTE FUNCTION "validateMemberTypeForSegment"();
 
 SELECT "ensureSetUpdatedAtTrigger"('member');
+
+-- Historical alteration consolidated into the base member DDL file.
+-- Support enterprise CoA templates that include management (class 8) and memorandum (class 9) accounts.
+ALTER TABLE "member"
+DROP CONSTRAINT IF EXISTS "memberTypeValid";
+
+ALTER TABLE "member"
+ADD CONSTRAINT "memberTypeValid" CHECK ("type" IS NULL OR "type" IN ('expense', 'revenue', 'asset', 'liability', 'equity', 'management', 'memo'));
