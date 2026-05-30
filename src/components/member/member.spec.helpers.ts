@@ -1,41 +1,4 @@
 import { expect, type Page } from "@playwright/test";
-import { navigateToAccountingSegmentList, navigateToAccountingSegments } from "./e2e-helpers";
-
-export const createSegmentFromList = async ({ label, page }: { label: string; page: Page }) => {
-  await navigateToAccountingSegmentList(page);
-  await page.getByRole(`button`, { name: `New Segment` }).click();
-  await page.getByRole(`dialog`).getByLabel(`Label`).fill(label);
-  await page.getByRole(`dialog`).getByRole(`button`, { name: `Save segment` }).click();
-  await expect(page.getByRole(`cell`, { name: label })).toBeVisible();
-};
-
-export const openSegmentTab = async ({ label, page }: { label: string; page: Page }) => {
-  await navigateToAccountingSegments(page);
-  await page.getByRole(`tab`, { name: label }).click();
-};
-
-export const deleteSegmentFromList = async ({ label, page }: { label: string; page: Page }) => {
-  await navigateToAccountingSegmentList(page);
-  const row = page.getByRole(`row`).filter({ hasText: label }).first();
-  if ((await row.count()) === 0) {
-    return;
-  }
-
-  await row.getByRole(`button`, { name: `Delete segment` }).click();
-  await page.getByRole(`dialog`).getByRole(`button`, { name: `Delete` }).click();
-  await expect(page.getByRole(`cell`, { name: label })).toHaveCount(0);
-};
-
-export const deleteSegmentFromSegmentsPage = async ({ label, page }: { label: string; page: Page }) => {
-  await navigateToAccountingSegments(page);
-  const tab = page.getByRole(`tab`, { name: label });
-  if ((await tab.count()) === 0) {
-    return;
-  }
-
-  await tab.click();
-  await page.getByRole(`button`, { name: `Remove` }).click();
-};
 
 export const createMember = async ({ code, description, name, page }: { code: string; description: string; name: string; page: Page }) => {
   await page.getByRole(`button`, { name: `Create member` }).click();

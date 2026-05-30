@@ -1,6 +1,6 @@
 import { expect, test } from "../../../testing/e2e";
-import { createSegmentFromList, deleteSegmentFromList } from "../../../testing/e2e-accounting-helpers";
-import { createUniqueMemberSegmentNames, signInToDemoTenant } from "../../../testing/e2e-helpers";
+import { createSegmentFromList, createUniqueMemberSegmentNames, deleteSegmentFromList } from "./segment.spec.helpers";
+import { signInToDemoTenant } from "../../../testing/e2e-helpers";
 
 test(`segment list creates and edits a segment`, async ({ page }, testInfo) => {
   await signInToDemoTenant({ page });

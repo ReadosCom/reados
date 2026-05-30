@@ -24,6 +24,8 @@ Examples:
 ## Helpers
 - Use shared helpers in `testing/` only for cross-cutting setup/navigation (for example auth, host navigation).
 - Prefer keeping behavior-specific flow steps readable inside the spec file when the file remains small.
+- Keep domain-specific E2E helpers next to their specs under `src/components/<componentName>/`.
+- Keep `testing/e2e-helpers.ts` focused on shared auth/session utilities and avoid putting component-specific flow helpers there.
 
 ## Cleanup Contract
 - A test must remove entities it creates.

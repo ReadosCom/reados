@@ -1,4 +1,4 @@
-import type { Page, TestInfo } from "@playwright/test";
+import type { Page } from "@playwright/test";
 import { expect } from "@playwright/test";
 import { mkdir, rm } from "node:fs/promises";
 import path from "node:path";
@@ -6,28 +6,6 @@ import { getAppOrigin, getAuthenticationOrigin, getTenantOrigin } from "./hosts"
 
 const sleep = (milliseconds: number) => new Promise((resolve) => setTimeout(resolve, milliseconds));
 const otpLockPath = path.join(process.cwd(), "testing/output/.otp-signin-lock");
-
-const sanitizeForCode = (value: string) =>
-  value
-    .toLowerCase()
-    .replaceAll(/[^a-z0-9]+/g, `-`)
-    .replaceAll(/^-|-$/g, ``)
-    .slice(0, 24);
-
-export const createUniqueMemberSegmentNames = (testInfo: TestInfo) => {
-  const timestamp = Date.now().toString(36);
-  const random = Math.random().toString(36).slice(2, 7);
-  const base = sanitizeForCode(testInfo.title);
-  const token = `${base || `e2e`}-${timestamp}-${random}`;
-
-  return {
-    memberCode: `m-${token}`.slice(0, 48),
-    memberName: `Member ${token}`,
-    segmentLabel: `E2E Segment ${token}`,
-    token,
-    updatedMemberName: `Updated Member ${token}`,
-  };
-};
 
 export const signInToDemoTenant = async ({ email, page }: { email?: string; page: Page }) => {
   const userEmail = email ?? `admin@reados.localhost`;
@@ -77,16 +55,6 @@ export const waitForOtpCode = async ({ email, page }: { email: string; page: Pag
   expect(otpJson.data?.code).toBeTruthy();
 
   return otpJson.data?.code as string;
-};
-
-export const navigateToAccountingSegmentList = async (page: Page) => {
-  await page.goto(`${getTenantOrigin(`demo`)}/erp/accounting/configuration/segment-list`);
-  await expect(page.getByRole(`button`, { name: `New Segment` })).toBeVisible();
-};
-
-export const navigateToAccountingSegments = async (page: Page) => {
-  await page.goto(`${getTenantOrigin(`demo`)}/erp/accounting/configuration/segments`);
-  await expect(page.getByRole(`tab`).first()).toBeVisible();
 };
 
 const acquireOtpSigninLock = async () => {
