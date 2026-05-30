@@ -56,6 +56,8 @@ export const createMember = async (body: CreateMemberBody) => {
   if (!segmentType) throw new Error(`Segment not found.`);
   if (segmentType === `account` && !body.type) throw new Error(`type is required for account segment members.`);
   if (segmentType === `account` && !body.reporting) throw new Error(`reporting is required for account segment members.`);
+  if (segmentType !== `account` && body.type) throw new Error(`type is only allowed for account segment members.`);
+  if (segmentType !== `account` && body.reporting) throw new Error(`reporting is only allowed for account segment members.`);
 
   if (body.parent) {
     const parentResult = await pool.query<Pick<MemberOwnershipRow, "id" | "type" | "code">>(`SELECT "id", "type", "code" FROM "member" WHERE "id" = $1 AND "segment" = $2 LIMIT 1;`, [body.parent, body.segmentId]);
@@ -85,6 +87,8 @@ export const updateMember = async (id: string, body: UpdateMemberBody) => {
   if (!segmentType) throw new Error(`Segment not found.`);
   if (segmentType === `account` && !body.type) throw new Error(`type is required for account segment members.`);
   if (segmentType === `account` && !body.reporting) throw new Error(`reporting is required for account segment members.`);
+  if (segmentType !== `account` && body.type) throw new Error(`type is only allowed for account segment members.`);
+  if (segmentType !== `account` && body.reporting) throw new Error(`reporting is only allowed for account segment members.`);
 
   if (body.parent) {
     if (body.parent === id) throw new Error(`Member cannot be parent of itself.`);
