@@ -74,12 +74,12 @@ test(`accounting module APIs cover success, validation, and domain error paths`,
   expect(apiErrorResponseSchema.parse(await missingUpdateSegmentResponse.json()).error.code).toBe(`segment_not_found`);
 
   const updateSegmentResponse = await request.patch(`${erpOrigin()}/accounting/segment/${createdSegment.id}`, {
-    data: { label: `Coverage Segment Updated`, order: 3, required: false },
+    data: { label: `Coverage Segment Updated`, order: 7, required: false },
   });
   expect(updateSegmentResponse.ok()).toBeTruthy();
   const updatedSegment = segmentResponseSchema.parse(await updateSegmentResponse.json()).data;
   expect(updatedSegment.label).toBe(`Coverage Segment Updated`);
-  expect(updatedSegment.order).toBe(3);
+  expect(updatedSegment.order).toBe(7);
 
   const reorderUpResponse = await request.post(`${erpOrigin()}/accounting/segment/${createdSegment.id}/reorder`, {
     data: { direction: `up` },
