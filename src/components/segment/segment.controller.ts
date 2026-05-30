@@ -12,6 +12,20 @@ import {
   type SegmentRow,
   type UpdateSegmentBody,
 } from "./segment.schema.ts";
+
+const getRequiredSegmentId = (type: `entity` | `account` | `customer` | `supplier`) => {
+  const segment = requiredSegmentDefinitions.find((requiredSegment) => requiredSegment.type === type);
+  if (!segment) {
+    throw new Error(`Required segment definition missing for type "${type}".`);
+  }
+  return segment.id;
+};
+
+const entitySystemSegmentId = getRequiredSegmentId(`entity`);
+const accountSystemSegmentId = getRequiredSegmentId(`account`);
+const customerSystemSegmentId = getRequiredSegmentId(`customer`);
+const supplierSystemSegmentId = getRequiredSegmentId(`supplier`);
+const requiredSegmentIds = requiredSegmentDefinitions.map((requiredSegment) => requiredSegment.id);
 const pool = ensurePool();
 
 const getGlSegmentIndexName = (segmentId: string) => {
@@ -47,58 +61,33 @@ const selectSegments = async () => {
   );
 };
 
-const ensureRequiredSegments = async () => {
+const ensureDefaultSegments = async () => {
   const client = await pool.connect();
 
   try {
     await client.query(`BEGIN;`);
-    await client.query(`LOCK TABLE "segment" IN SHARE ROW EXCLUSIVE MODE;`);
-
-    const existingResult = await client.query<Pick<SegmentRow, "id" | "order">>(
+    await client.query(
       `
-        SELECT
+        INSERT INTO "segment" (
           "id",
-          "order"
-        FROM "segment";
+          "label",
+          "order",
+          "required",
+          "type"
+        )
+        VALUES
+          ($1, 'Entity', 0, true, 'entity'),
+          ($2, 'Account', 1, true, 'account'),
+          ($3, 'Customer', 2, true, 'customer'),
+          ($4, 'Supplier', 3, true, 'supplier')
+        ON CONFLICT ("id") DO NOTHING;
       `,
+      [entitySystemSegmentId, accountSystemSegmentId, customerSystemSegmentId, supplierSystemSegmentId],
     );
-    const existingSegmentIds = new Set(existingResult.rows.map((row) => row.id));
-    let nextOrder = Math.max(-1, ...existingResult.rows.map((row) => row.order)) + 1;
 
-    for (const requiredSegment of requiredSegmentDefinitions) {
-      if (existingSegmentIds.has(requiredSegment.id)) {
-        await client.query(
-          `
-            UPDATE "segment"
-            SET
-              "required" = true,
-              "type" = $2
-            WHERE "id" = $1;
-          `,
-          [requiredSegment.id, requiredSegment.type],
-        );
-        continue;
-      }
-
-      await client.query(
-        `
-          INSERT INTO "segment" (
-            "id",
-            "label",
-            "order",
-            "required",
-            "type"
-          )
-          VALUES ($1, $2, $3, true, $4);
-        `,
-        [requiredSegment.id, requiredSegment.label, nextOrder, requiredSegment.type],
-      );
-      nextOrder += 1;
-    }
-
-    for (const requiredSegment of requiredSegmentDefinitions) {
-      await client.query(`ALTER TABLE "gl" ADD COLUMN IF NOT EXISTS ${escapeIdentifier(requiredSegment.id)} text;`);
-      await client.query(`CREATE INDEX IF NOT EXISTS ${escapeIdentifier(getGlSegmentIndexName(requiredSegment.id))} ON "gl" (${escapeIdentifier(requiredSegment.id)});`);
+    for (const requiredSegmentId of requiredSegmentIds) {
+      await client.query(`ALTER TABLE "gl" ADD COLUMN IF NOT EXISTS ${escapeIdentifier(requiredSegmentId)} text;`);
+      await client.query(`CREATE INDEX IF NOT EXISTS ${escapeIdentifier(getGlSegmentIndexName(requiredSegmentId))} ON "gl" (${escapeIdentifier(requiredSegmentId)});`);
     }
 
     await client.query(`COMMIT;`);
@@ -163,8 +152,14 @@ const ensureOrder = async (rows: SegmentRow[]) => {
  * Returns all accounting segments ordered for presentation/processing.
  */
 export const listSegments = async () => {
-  await ensureRequiredSegments();
-  const result = await selectSegments();
+  let result = await selectSegments();
+
+  const missingRequiredSegments = requiredSegmentIds.some((requiredSegmentId) => !result.rows.some((row) => row.id === requiredSegmentId));
+
+  if (result.rowCount === 0 || missingRequiredSegments) {
+    await ensureDefaultSegments();
+    result = await selectSegments();
+  }
 
   const orderedRows = await ensureOrder(result.rows);
 
@@ -175,8 +170,6 @@ export const listSegments = async () => {
  * Returns one accounting segment by id.
  */
 export const getSegmentById = async (id: string) => {
-  await ensureRequiredSegments();
-
   const result = await pool.query<SegmentRow>(
     `
       SELECT
@@ -237,7 +230,7 @@ export const createSegment = async (body: CreateSegmentBody) => {
 export const updateSegment = async (id: string, body: UpdateSegmentBody) => {
   await getSegmentById(id);
 
-  if (body.required === false && requiredSegmentDefinitions.some((requiredSegment) => requiredSegment.id === id)) {
+  if (body.required === false && requiredSegmentIds.some((requiredSegmentId) => requiredSegmentId === id)) {
     throw new SegmentRequiredUpdateError(id);
   }
 
@@ -274,8 +267,6 @@ export const updateSegment = async (id: string, body: UpdateSegmentBody) => {
  * Deletes one accounting segment.
  */
 export const deleteSegment = async (id: string) => {
-  await ensureRequiredSegments();
-
   const client = await pool.connect();
 
   try {
