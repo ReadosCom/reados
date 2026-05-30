@@ -1,11 +1,14 @@
 import type { Page } from "@playwright/test";
 import { expect } from "@playwright/test";
-import { mkdir, rm } from "node:fs/promises";
+import { mkdir, rm, stat } from "node:fs/promises";
 import path from "node:path";
 import { getAppOrigin, getAuthenticationOrigin, getTenantOrigin } from "./hosts";
 
 const sleep = (milliseconds: number) => new Promise((resolve) => setTimeout(resolve, milliseconds));
 const otpLockPath = path.join(process.cwd(), "testing/output/.otp-signin-lock");
+const otpLockPollMilliseconds = 100;
+const otpLockTimeoutMilliseconds = 60_000;
+const otpLockStaleMilliseconds = 120_000;
 
 export const signInToDemoTenant = async ({ email, page }: { email?: string; page: Page }) => {
   const userEmail = email ?? `admin@reados.localhost`;
@@ -58,12 +61,25 @@ export const waitForOtpCode = async ({ email, page }: { email: string; page: Pag
 };
 
 const acquireOtpSigninLock = async () => {
-  for (let attempt = 0; attempt < 120; attempt += 1) {
+  const startedAt = Date.now();
+
+  while (Date.now() - startedAt < otpLockTimeoutMilliseconds) {
     try {
       await mkdir(otpLockPath);
       return;
     } catch {
-      await sleep(100);
+      try {
+        const lockStat = await stat(otpLockPath);
+        const lockAgeMilliseconds = Date.now() - lockStat.mtimeMs;
+        if (lockAgeMilliseconds > otpLockStaleMilliseconds) {
+          await rm(otpLockPath, { force: true, recursive: true });
+          continue;
+        }
+      } catch {
+        // Lock disappeared between checks; retry on next iteration.
+      }
+
+      await sleep(otpLockPollMilliseconds);
     }
   }
 

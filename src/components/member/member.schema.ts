@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { apiSuccessSchema } from "@components/application/api.schema.ts";
 
-export const accountMemberTypeSchema = z.enum([`expense`, `revenue`, `asset`, `liability`, `equity`]);
+export const accountMemberTypeSchema = z.enum([`expense`, `revenue`, `asset`, `liability`, `equity`, `management`, `memo`]);
 export const accountMemberReportingSchema = z.enum([`debit`, `credit`]);
 const isoInstantStringSchema = z.iso.datetime({ offset: true });
 
@@ -45,19 +45,23 @@ export const accountTemplateSchema = z.object({
   source: z.enum([`embedded`, `public-dataset`]),
 });
 
+export const listAccountTemplatesResponseSchema = apiSuccessSchema(z.array(accountTemplateSchema));
+
 export const applyMemberTemplateBodySchema = z.object({
   segmentId: z.uuid({ version: `v7` }),
   templateId: z.string().trim().min(1),
 });
 
+export const applyMemberTemplateResponseSchema = apiSuccessSchema(z.object({ applied: z.literal(true) }));
+
 export const accountTemplateStatementSchema = z.enum([`financial-position`, `profit-or-loss`, `other-comprehensive-income`, `cash-flows`, `equity-changes`, `management-reporting`]);
 export const accountTemplateClassificationSchema = z.enum([`current`, `non-current`, `operating`, `investing`, `financing`, `income-tax`, `discontinued-operations`, `contra`, `control`, `detail`, `subtotal`, `extension`]);
 
-export const accountTemplateMemberSchema = z.object({
-  code: z.string().trim().min(1),
-  name: z.string().trim().min(1),
-  description: z.string().trim().min(1),
+const accountTemplateCoreMemberSchema = memberEditorSchema.omit({ parent: true }).extend({
   parentCode: z.string().trim().min(1).nullable(),
+});
+
+const accountTemplateIfrsMemberSchema = accountTemplateCoreMemberSchema.extend({
   level: z.number().int().positive(),
   type: accountMemberTypeSchema,
   reporting: accountMemberReportingSchema,
@@ -66,6 +70,8 @@ export const accountTemplateMemberSchema = z.object({
   active: z.boolean(),
   ifrsReferences: z.array(z.string().trim().min(1)).min(1),
 });
+
+export const accountTemplateMemberSchema = z.union([accountTemplateCoreMemberSchema, accountTemplateIfrsMemberSchema]);
 
 export const accountTemplateMetadataSchema = z.object({
   accessDate: z.string().trim().min(1),
@@ -79,8 +85,17 @@ export const accountTemplateMetadataSchema = z.object({
 
 export const accountTemplateDocumentSchema = accountTemplateSchema.extend({
   extensionOf: z.string().trim().min(1).optional(),
-  metadata: accountTemplateMetadataSchema,
+  metadata: accountTemplateMetadataSchema.optional(),
   members: z.array(accountTemplateMemberSchema).min(1),
+  currency: z.string().trim().min(1).optional(),
+  enterpriseExtensions: z.array(accountTemplateMemberSchema).optional(),
+  jurisdiction: z.string().trim().min(1).optional(),
+  language: z.string().trim().min(1).optional(),
+  license: z.string().trim().min(1).optional(),
+  officialBaselineAccountTotal: z.number().int().positive().optional(),
+  sources: z.array(z.object({ accessedAt: z.string().trim().min(1), authority: z.string().trim().min(1), url: z.string().trim().min(1) })).optional(),
+  standard: z.string().trim().min(1).optional(),
+  version: z.string().trim().min(1).optional(),
 });
 
 export class MemberValidationError extends Error {}
@@ -91,6 +106,9 @@ export type Member = z.infer<typeof memberSchema>;
 export type CreateMemberBody = z.infer<typeof createMemberBodySchema>;
 export type UpdateMemberBody = z.infer<typeof updateMemberBodySchema>;
 export type AccountTemplate = z.infer<typeof accountTemplateSchema>;
+export type AccountTemplateMember = z.infer<typeof accountTemplateMemberSchema>;
+export type AccountTemplateMetadata = z.infer<typeof accountTemplateMetadataSchema>;
+export type AccountTemplateDocument = z.infer<typeof accountTemplateDocumentSchema>;
 export type MemberEditor = z.infer<typeof memberEditorSchema>;
 
 export type MemberRow = {
@@ -107,6 +125,7 @@ export type MemberRow = {
 };
 
 export type MemberOwnershipRow = {
+  code: string;
   id: string;
   segment: string;
   type: MemberType | null;

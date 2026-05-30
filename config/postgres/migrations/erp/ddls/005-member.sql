@@ -9,19 +9,13 @@ CREATE TABLE IF NOT EXISTS "member" (
   "reporting" text,
   "createdAt" timestamptz NOT NULL DEFAULT transaction_timestamp(),
   "updatedAt" timestamptz NOT NULL DEFAULT transaction_timestamp(),
-  CONSTRAINT "memberTypeValid" CHECK ("type" IS NULL OR "type" IN ('expense', 'revenue', 'asset', 'liability')),
+  CONSTRAINT "memberTypeValid" CHECK ("type" IS NULL OR "type" IN ('expense', 'revenue', 'asset', 'liability', 'equity', 'management', 'memo')),
   CONSTRAINT "memberReportingValid" CHECK ("reporting" IS NULL OR "reporting" IN ('debit', 'credit')),
   CONSTRAINT "memberUniqueCodeInSegment" UNIQUE ("segment", "code")
 );
 
 CREATE INDEX IF NOT EXISTS "memberSegmentIdx" ON "member" ("segment");
 CREATE INDEX IF NOT EXISTS "memberParentIdx" ON "member" ("parent");
-
-ALTER TABLE "member"
-DROP CONSTRAINT IF EXISTS "memberTypeValid";
-
-ALTER TABLE "member"
-ADD CONSTRAINT "memberTypeValid" CHECK ("type" IS NULL OR "type" IN ('expense', 'revenue', 'asset', 'liability', 'equity'));
 
 CREATE OR REPLACE FUNCTION "validateMemberTypeForSegment"()
 RETURNS trigger
@@ -44,11 +38,11 @@ BEGIN
     RAISE EXCEPTION 'Member reporting is required for account segments.';
   END IF;
 
-  IF "segmentType" IN ('entity', 'generic') AND NEW."type" IS NOT NULL THEN
+  IF "segmentType" IN ('entity', 'customer', 'supplier', 'generic') AND NEW."type" IS NOT NULL THEN
     RAISE EXCEPTION 'Member type is only allowed for account segments.';
   END IF;
 
-  IF "segmentType" IN ('entity', 'generic') AND NEW."reporting" IS NOT NULL THEN
+  IF "segmentType" IN ('entity', 'customer', 'supplier', 'generic') AND NEW."reporting" IS NOT NULL THEN
     RAISE EXCEPTION 'Member reporting is only allowed for account segments.';
   END IF;
 
@@ -56,11 +50,21 @@ BEGIN
 END;
 $$;
 
-DROP TRIGGER IF EXISTS "memberTypeBySegmentTrigger" ON "member";
-
-CREATE TRIGGER "memberTypeBySegmentTrigger"
-BEFORE INSERT OR UPDATE ON "member"
-FOR EACH ROW
-EXECUTE FUNCTION "validateMemberTypeForSegment"();
+DO $$
+BEGIN
+  IF NOT EXISTS (
+    SELECT 1
+    FROM "pg_trigger"
+    WHERE "tgname" = 'memberTypeBySegmentTrigger'
+      AND "tgrelid" = '"member"'::regclass
+      AND NOT "tgisinternal"
+  ) THEN
+    CREATE TRIGGER "memberTypeBySegmentTrigger"
+    BEFORE INSERT OR UPDATE ON "member"
+    FOR EACH ROW
+    EXECUTE FUNCTION "validateMemberTypeForSegment"();
+  END IF;
+END
+$$;
 
 SELECT "ensureSetUpdatedAtTrigger"('member');

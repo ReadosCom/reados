@@ -1,6 +1,11 @@
 import { expect, type Page, type TestInfo } from "@playwright/test";
 import { getTenantOrigin } from "../../../testing/hosts";
 
+const newSegmentButtonName = /new segment|create segment|yeni kırılım|kırılım oluştur/i;
+const saveSegmentButtonName = /save segment|saving|kırılımı kaydet|kaydediliyor/i;
+const deleteSegmentButtonName = /delete segment|kırılımı sil/i;
+const deleteConfirmButtonName = /delete|sil/i;
+
 const sanitizeForCode = (value: string) =>
   value
     .toLowerCase()
@@ -25,7 +30,8 @@ export const createUniqueMemberSegmentNames = (testInfo: TestInfo) => {
 
 export const navigateToAccountingSegmentList = async (page: Page) => {
   await page.goto(`${getTenantOrigin(`demo`)}/erp/accounting/configuration/segment-list`);
-  await expect(page.getByRole(`button`, { name: `New Segment` })).toBeVisible();
+  await expect(page.getByRole(`table`).first()).toBeVisible();
+  await expect(page.getByRole(`button`, { name: newSegmentButtonName }).first()).toBeVisible();
 };
 
 export const navigateToAccountingSegments = async (page: Page) => {
@@ -35,9 +41,9 @@ export const navigateToAccountingSegments = async (page: Page) => {
 
 export const createSegmentFromList = async ({ label, page }: { label: string; page: Page }) => {
   await navigateToAccountingSegmentList(page);
-  await page.getByRole(`button`, { name: `New Segment` }).click();
+  await page.getByRole(`button`, { name: newSegmentButtonName }).first().click();
   await page.getByRole(`dialog`).getByLabel(`Label`).fill(label);
-  await page.getByRole(`dialog`).getByRole(`button`, { name: `Save segment` }).click();
+  await page.getByRole(`dialog`).getByRole(`button`, { name: saveSegmentButtonName }).click();
   await expect(page.getByRole(`cell`, { name: label })).toBeVisible();
 };
 
@@ -53,7 +59,7 @@ export const deleteSegmentFromList = async ({ label, page }: { label: string; pa
     return;
   }
 
-  await row.getByRole(`button`, { name: `Delete segment` }).click();
-  await page.getByRole(`dialog`).getByRole(`button`, { name: `Delete` }).click();
+  await row.getByRole(`button`, { name: deleteSegmentButtonName }).click();
+  await page.getByRole(`dialog`).getByRole(`button`, { name: deleteConfirmButtonName }).click();
   await expect(page.getByRole(`cell`, { name: label })).toHaveCount(0);
 };

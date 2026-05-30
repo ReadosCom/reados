@@ -7,6 +7,9 @@ export const translations = {
   Account: {
     tr: { translation: `Hesap`, translatedBy: `AI` },
   },
+  Customer: {
+    tr: { translation: `Müşteri`, translatedBy: `AI` },
+  },
   "Could not load segment list right now.": {
     tr: { translation: `Kırılım listesi şu anda yüklenemedi.`, translatedBy: `AI` },
   },
@@ -42,6 +45,9 @@ export const translations = {
   },
   Required: {
     tr: { translation: `Zorunlu`, translatedBy: `AI` },
+  },
+  Supplier: {
+    tr: { translation: `Tedarikçi`, translatedBy: `AI` },
   },
   Type: {
     tr: { translation: `Tip`, translatedBy: `AI` },
