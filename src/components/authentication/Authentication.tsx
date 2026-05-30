@@ -6,6 +6,7 @@ import { useTranslation } from "@components/i18n/useTranslation.ts";
 import { getBrowserOrigin, getBrowserSearch, setBrowserLocation } from "@components/application/application.browser.ts";
 import { Button } from "@components/uiframework/Button";
 import { Input } from "@components/uiframework/Input";
+import { getLatestOtpForTesting } from "./authentication.client.ts";
 import { otpRequestBodySchema, otpVerifyBodySchema, type OtpRequestBody, type OtpVerifyBody } from "./authentication.schema.ts";
 import { useRequestAuthenticationOtpMutation, useVerifyAuthenticationOtpMutation } from "./authentication.query.ts";
 
@@ -67,6 +68,7 @@ export const Authentication = () => {
     formState: { errors: verifyErrors, isSubmitting: isSubmittingVerify },
     handleSubmit: handleVerifySubmit,
     register: registerVerify,
+    setValue: setVerifyValue,
   } = useForm<Pick<OtpVerifyBody, "code">>({
     defaultValues: {
       code: "",
@@ -86,6 +88,16 @@ export const Authentication = () => {
       setRequestMessage(result.message);
     } catch {
       setRequestMessage(t("If this account is eligible, we sent a verification code."));
+    }
+
+    try {
+      const latestOtp = await getLatestOtpForTesting({ email });
+
+      if (latestOtp.found) {
+        setVerifyValue(`code`, latestOtp.code);
+      }
+    } catch {
+      // Non-test environments don't expose test OTP endpoint.
     }
   };
 
