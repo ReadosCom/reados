@@ -17,8 +17,12 @@ test(`Turkish Tek Duzen template is listed and applies idempotently`, async ({ p
 
   const templatesPayload = listAccountTemplatesResponseSchema.parse(await templatesResponse.json());
   const turkeyTemplate = templatesPayload.data.find((template) => template.id === turkeyTemplateId);
+  const ifrsCoreTemplate = templatesPayload.data.find((template) => template.id === `ifrs-global-core`);
+  const ifrsExtensionTemplate = templatesPayload.data.find((template) => template.id === `ifrs-global-enterprise-extension`);
 
   expect(turkeyTemplate?.label).toBe(`Turkey Tek Düzen Hesap Planı`);
+  expect(ifrsCoreTemplate?.description).toContain(`IFRS`);
+  expect(ifrsExtensionTemplate?.description).toContain(`IFRS`);
 
   const applyBody = applyMemberTemplateBodySchema.parse({ segmentId: accountSystemSegmentId, templateId: turkeyTemplateId });
 

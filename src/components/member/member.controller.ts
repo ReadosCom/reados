@@ -5,7 +5,11 @@ import type { SegmentType } from "@components/segment/segment.schema.ts";
 import type { AccountTemplate, AccountTemplateDocument, CreateMemberBody, Member, MemberOwnershipRow, MemberRow, UpdateMemberBody } from "./member.schema.ts";
 
 const pool = ensurePool();
-const accountTemplatePaths = new Map([[`tr-tek-duzen`, new URL(`./account-templates/tr-tek-duzen.json`, import.meta.url)]]);
+const accountTemplatePaths = new Map([
+  [`tr-tek-duzen`, new URL(`./account-templates/tr-tek-duzen.json`, import.meta.url)],
+  [`ifrs-global-core`, new URL(`./account-templates/ifrs-global-core.json`, import.meta.url)],
+  [`ifrs-global-enterprise-extension`, new URL(`./account-templates/ifrs-global-enterprise-extension.json`, import.meta.url)],
+]);
 
 const asMember = (row: MemberRow): Member => ({ ...row, createdAt: row.createdAt.toISOString(), updatedAt: row.updatedAt.toISOString() });
 
@@ -124,10 +128,13 @@ export const deleteMember = async (id: string) => {
 
 export const listAccountTemplates = async (): Promise<AccountTemplate[]> => {
   const trTekDuzen = await readAccountTemplate(`tr-tek-duzen`);
+  const ifrsGlobalCore = await readAccountTemplate(`ifrs-global-core`);
+  const ifrsGlobalEnterpriseExtension = await readAccountTemplate(`ifrs-global-enterprise-extension`);
 
   return [
     { id: trTekDuzen.id, label: trTekDuzen.label, description: trTekDuzen.description, source: trTekDuzen.source },
-    { id: `ifrs`, label: `IFRS`, description: `See docs/accounting/account-template-sources.md for official sourcing guidance and manual JSON authoring rules.`, source: `embedded` },
+    { id: ifrsGlobalCore.id, label: ifrsGlobalCore.label, description: ifrsGlobalCore.description, source: ifrsGlobalCore.source },
+    { id: ifrsGlobalEnterpriseExtension.id, label: ifrsGlobalEnterpriseExtension.label, description: ifrsGlobalEnterpriseExtension.description, source: ifrsGlobalEnterpriseExtension.source },
     { id: `us-gaap`, label: `US GAAP`, description: `See docs/accounting/account-template-sources.md for official sourcing guidance and manual JSON authoring rules.`, source: `embedded` },
   ];
 };
@@ -140,6 +147,9 @@ export const applyAccountTemplate = async (segmentId: string, templateId: string
   }
 
   const template = await readAccountTemplate(templateId);
+  if (template.extensionOf) {
+    await applyAccountTemplate(segmentId, template.extensionOf);
+  }
   const client = await pool.connect();
 
   try {

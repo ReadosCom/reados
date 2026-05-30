@@ -42,6 +42,7 @@ export const accountTemplateSchema = z.object({
   id: z.string().trim().min(1),
   label: z.string().trim().min(1),
   description: z.string().trim().min(1),
+  extensionOf: z.string().trim().min(1).optional(),
   source: z.enum([`embedded`, `public-dataset`]),
 });
 

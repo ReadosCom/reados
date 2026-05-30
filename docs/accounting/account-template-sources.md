@@ -80,4 +80,47 @@ No community, blog, or forum source was used as a source of truth for the embedd
 
 ## JSON shape to author
 
-Each file should match the `AccountTemplateDocument` type in `src/components/member/member.schema.ts`.
+Each file should match this structure:
+
+```json
+{
+  "id": "ifrs",
+  "label": "IFRS",
+  "description": "IFRS-oriented starter hierarchy.",
+  "source": "embedded",
+  "members": [
+    {
+      "code": "1000",
+      "name": "Assets",
+      "description": "Statement bucket",
+      "parentCode": null,
+      "type": "asset"
+    }
+  ]
+}
+```
+
+## Recommended curation workflow
+
+1. Build level-1 classes from authoritative references.
+2. Expand to level-2/3 groups with stable code ranges.
+3. Confirm parent-child `type` consistency.
+4. Dry-run apply on empty account segment in local env.
+5. Add reviewer sign-off notes (source + mapping assumptions).
+
+## Authored IFRS global core template
+
+- Template files:
+  - `src/components/member/account-templates/ifrs-global-core.json`
+  - `src/components/member/account-templates/ifrs-global-enterprise-extension.json`
+- Source audit: `docs/accounting/ifrs-coa-source-audit.md`
+- Last source access date: 2026-05-29 (UTC)
+- Decision: manually authored IFRS-oriented Reados template, not copied from IFRS Taxonomy files or any jurisdictional uniform CoA.
+
+## Current runtime status
+
+- Backend member creation is enabled.
+- Template listing currently returns documented template identifiers.
+- Template apply endpoint intentionally rejects until curated JSON files are reintroduced with full provenance.
+
+Any embedded template JSON must remain compatible with the `AccountTemplateDocument` type in `src/components/member/member.schema.ts`.
