@@ -128,21 +128,13 @@ export const deleteMember = async (id: string) => {
 
 export const listAccountTemplates = async (): Promise<AccountTemplate[]> => {
   const trTekDuzen = await readAccountTemplate(`tr-tek-duzen`);
+  const ifrsGlobalCore = await readAccountTemplate(`ifrs-global-core`);
+  const ifrsGlobalEnterpriseExtension = await readAccountTemplate(`ifrs-global-enterprise-extension`);
 
   return [
     { id: trTekDuzen.id, label: trTekDuzen.label, description: trTekDuzen.description, source: trTekDuzen.source },
-    {
-      id: `ifrs-global-core`,
-      label: `IFRS Global Core`,
-      description: `Standalone IFRS-oriented global baseline. See docs/accounting/ifrs-coa-source-audit.md and docs/accounting/ifrs-coa-validation-report.md.`,
-      source: `embedded`,
-    },
-    {
-      id: `ifrs-global-enterprise-extension`,
-      label: `IFRS Global Enterprise Extension`,
-      description: `Optional IFRS-oriented enterprise extension layer for the IFRS Global Core baseline.`,
-      source: `embedded`,
-    },
+    { id: ifrsGlobalCore.id, label: ifrsGlobalCore.label, description: ifrsGlobalCore.description, source: ifrsGlobalCore.source },
+    { id: ifrsGlobalEnterpriseExtension.id, label: ifrsGlobalEnterpriseExtension.label, description: ifrsGlobalEnterpriseExtension.description, source: ifrsGlobalEnterpriseExtension.source },
     { id: `us-gaap`, label: `US GAAP`, description: `See docs/accounting/account-template-sources.md for official sourcing guidance and manual JSON authoring rules.`, source: `embedded` },
   ];
 };

@@ -17,249 +17,369 @@
     {
       "code": "1165",
       "name": "Work in progress inventories",
-      "description": "Optional inventory detail for production environments.",
+      "description": "IFRS account 1165 (Work in progress inventories) is used under parent account code 1160 to recognize and monitor this balance area in the financial position. It normally carries a debit balance. Primary reference: IAS 2 inventories. Classification focus: current, extension.",
       "parentCode": "1160",
       "level": 4,
       "type": "asset",
       "reporting": "debit",
       "statement": "financial-position",
-      "classificationTags": ["current", "detail", "extension"],
+      "classificationTags": [
+        "current",
+        "detail",
+        "extension"
+      ],
       "active": true,
-      "ifrsReferences": ["IAS 2 inventories"]
+      "ifrsReferences": [
+        "IAS 2 inventories"
+      ]
     },
     {
       "code": "1166",
       "name": "Finished goods inventories",
-      "description": "Optional inventory detail for manufacturing and distribution.",
+      "description": "IFRS account 1166 (Finished goods inventories) is used under parent account code 1160 to recognize and monitor this balance area in the financial position. It normally carries a debit balance. Primary reference: IAS 2 inventories. Classification focus: current, extension.",
       "parentCode": "1160",
       "level": 4,
       "type": "asset",
       "reporting": "debit",
       "statement": "financial-position",
-      "classificationTags": ["current", "detail", "extension"],
+      "classificationTags": [
+        "current",
+        "detail",
+        "extension"
+      ],
       "active": true,
-      "ifrsReferences": ["IAS 2 inventories"]
+      "ifrsReferences": [
+        "IAS 2 inventories"
+      ]
     },
     {
       "code": "1167",
       "name": "Inventory obsolescence allowance",
-      "description": "Optional contra inventory allowance account.",
+      "description": "IFRS account 1167 (Inventory obsolescence allowance) is used under parent account code 1160 to recognize and monitor this balance area in the financial position. It is a contra account and normally carries the opposite balance to the related base account. Primary reference: IAS 2 net realisable value. Classification focus: current, extension.",
       "parentCode": "1160",
       "level": 4,
       "type": "asset",
       "reporting": "credit",
       "statement": "financial-position",
-      "classificationTags": ["current", "contra", "detail", "extension"],
+      "classificationTags": [
+        "current",
+        "contra",
+        "detail",
+        "extension"
+      ],
       "active": true,
-      "ifrsReferences": ["IAS 2 net realisable value"]
+      "ifrsReferences": [
+        "IAS 2 net realisable value"
+      ]
     },
     {
       "code": "1211",
       "name": "Land",
-      "description": "Optional property, plant and equipment detail for land.",
+      "description": "IFRS account 1211 (Land) is used under parent account code 1210 to recognize and monitor this balance area in the financial position. It normally carries a debit balance. Primary reference: IAS 16 property plant and equipment. Classification focus: non current, extension.",
       "parentCode": "1210",
       "level": 4,
       "type": "asset",
       "reporting": "debit",
       "statement": "financial-position",
-      "classificationTags": ["non-current", "detail", "extension"],
+      "classificationTags": [
+        "non-current",
+        "detail",
+        "extension"
+      ],
       "active": true,
-      "ifrsReferences": ["IAS 16 property plant and equipment"]
+      "ifrsReferences": [
+        "IAS 16 property plant and equipment"
+      ]
     },
     {
       "code": "1212",
       "name": "Buildings",
-      "description": "Optional property, plant and equipment detail for buildings.",
+      "description": "IFRS account 1212 (Buildings) is used under parent account code 1210 to recognize and monitor this balance area in the financial position. It normally carries a debit balance. Primary reference: IAS 16 property plant and equipment. Classification focus: non current, extension.",
       "parentCode": "1210",
       "level": 4,
       "type": "asset",
       "reporting": "debit",
       "statement": "financial-position",
-      "classificationTags": ["non-current", "detail", "extension"],
+      "classificationTags": [
+        "non-current",
+        "detail",
+        "extension"
+      ],
       "active": true,
-      "ifrsReferences": ["IAS 16 property plant and equipment"]
+      "ifrsReferences": [
+        "IAS 16 property plant and equipment"
+      ]
     },
     {
       "code": "1213",
       "name": "Plant and machinery",
-      "description": "Optional property, plant and equipment detail for plant and machinery.",
+      "description": "IFRS account 1213 (Plant and machinery) is used under parent account code 1210 to recognize and monitor this balance area in the financial position. It normally carries a debit balance. Primary reference: IAS 16 property plant and equipment. Classification focus: non current, extension.",
       "parentCode": "1210",
       "level": 4,
       "type": "asset",
       "reporting": "debit",
       "statement": "financial-position",
-      "classificationTags": ["non-current", "detail", "extension"],
+      "classificationTags": [
+        "non-current",
+        "detail",
+        "extension"
+      ],
       "active": true,
-      "ifrsReferences": ["IAS 16 property plant and equipment"]
+      "ifrsReferences": [
+        "IAS 16 property plant and equipment"
+      ]
     },
     {
       "code": "1214",
       "name": "Furniture, fixtures and equipment",
-      "description": "Optional property, plant and equipment detail for fixtures and equipment.",
+      "description": "IFRS account 1214 (Furniture, fixtures and equipment) is used under parent account code 1210 to recognize and monitor this balance area in the financial position. It normally carries a debit balance. Primary reference: IAS 16 property plant and equipment. Classification focus: non current, extension.",
       "parentCode": "1210",
       "level": 4,
       "type": "asset",
       "reporting": "debit",
       "statement": "financial-position",
-      "classificationTags": ["non-current", "detail", "extension"],
+      "classificationTags": [
+        "non-current",
+        "detail",
+        "extension"
+      ],
       "active": true,
-      "ifrsReferences": ["IAS 16 property plant and equipment"]
+      "ifrsReferences": [
+        "IAS 16 property plant and equipment"
+      ]
     },
     {
       "code": "1251",
       "name": "Software assets",
-      "description": "Optional intangible asset detail for capitalized software.",
+      "description": "IFRS account 1251 (Software assets) is used under parent account code 1250 to recognize and monitor this balance area in the financial position. It normally carries a debit balance. Primary reference: IAS 38 intangible assets. Classification focus: non current, extension.",
       "parentCode": "1250",
       "level": 4,
       "type": "asset",
       "reporting": "debit",
       "statement": "financial-position",
-      "classificationTags": ["non-current", "detail", "extension"],
+      "classificationTags": [
+        "non-current",
+        "detail",
+        "extension"
+      ],
       "active": true,
-      "ifrsReferences": ["IAS 38 intangible assets"]
+      "ifrsReferences": [
+        "IAS 38 intangible assets"
+      ]
     },
     {
       "code": "1252",
       "name": "Customer relationships",
-      "description": "Optional intangible asset detail for acquired customer relationships.",
+      "description": "IFRS account 1252 (Customer relationships) is used under parent account code 1250 to recognize and monitor this balance area in the financial position. It normally carries a debit balance. Primary reference: IFRS 3 business combinations. Classification focus: non current, extension.",
       "parentCode": "1250",
       "level": 4,
       "type": "asset",
       "reporting": "debit",
       "statement": "financial-position",
-      "classificationTags": ["non-current", "detail", "extension"],
+      "classificationTags": [
+        "non-current",
+        "detail",
+        "extension"
+      ],
       "active": true,
-      "ifrsReferences": ["IFRS 3 business combinations", "IAS 38 intangible assets"]
+      "ifrsReferences": [
+        "IFRS 3 business combinations",
+        "IAS 38 intangible assets"
+      ]
     },
     {
       "code": "2115",
       "name": "Supplier accruals",
-      "description": "Optional accrued expense detail for supplier invoices not received.",
+      "description": "IFRS account 2115 (Supplier accruals) is used under parent account code 2120 to recognize and monitor this balance area in the financial position. It normally carries a credit balance. Primary reference: IAS 37 accruals and provisions distinction. Classification focus: current, extension.",
       "parentCode": "2120",
       "level": 4,
       "type": "liability",
       "reporting": "credit",
       "statement": "financial-position",
-      "classificationTags": ["current", "detail", "extension"],
+      "classificationTags": [
+        "current",
+        "detail",
+        "extension"
+      ],
       "active": true,
-      "ifrsReferences": ["IAS 37 accruals and provisions distinction"]
+      "ifrsReferences": [
+        "IAS 37 accruals and provisions distinction"
+      ]
     },
     {
       "code": "2145",
       "name": "Bank overdrafts",
-      "description": "Optional current financing detail for overdrafts.",
+      "description": "IFRS account 2145 (Bank overdrafts) is used under parent account code 2140 to recognize and monitor this balance area in the financial position. It normally carries a credit balance. Primary reference: IAS 7 bank overdrafts. Classification focus: current, financing, extension.",
       "parentCode": "2140",
       "level": 4,
       "type": "liability",
       "reporting": "credit",
       "statement": "financial-position",
-      "classificationTags": ["current", "financing", "detail", "extension"],
+      "classificationTags": [
+        "current",
+        "financing",
+        "detail",
+        "extension"
+      ],
       "active": true,
-      "ifrsReferences": ["IAS 7 bank overdrafts", "IFRS 9 financial liabilities"]
+      "ifrsReferences": [
+        "IAS 7 bank overdrafts",
+        "IFRS 9 financial liabilities"
+      ]
     },
     {
       "code": "2245",
       "name": "Defined benefit obligation",
-      "description": "Optional employee benefit detail for defined benefit plans.",
+      "description": "IFRS account 2245 (Defined benefit obligation) is used under parent account code 2240 to recognize and monitor this balance area in the financial position. It normally carries a credit balance. Primary reference: IAS 19 defined benefit obligations. Classification focus: non current, extension.",
       "parentCode": "2240",
       "level": 4,
       "type": "liability",
       "reporting": "credit",
       "statement": "financial-position",
-      "classificationTags": ["non-current", "detail", "extension"],
+      "classificationTags": [
+        "non-current",
+        "detail",
+        "extension"
+      ],
       "active": true,
-      "ifrsReferences": ["IAS 19 defined benefit obligations"]
+      "ifrsReferences": [
+        "IAS 19 defined benefit obligations"
+      ]
     },
     {
       "code": "4111",
       "name": "Product revenue",
-      "description": "Optional IFRS 15 disaggregation for product revenue.",
+      "description": "IFRS account 4111 (Product revenue) is used under parent account code 4110 to recognize and monitor this balance area in the profit or loss. It normally carries a credit balance. Primary reference: IFRS 15 revenue disaggregation. Classification focus: operating, extension.",
       "parentCode": "4110",
       "level": 4,
       "type": "revenue",
       "reporting": "credit",
       "statement": "profit-or-loss",
-      "classificationTags": ["operating", "detail", "extension"],
+      "classificationTags": [
+        "operating",
+        "detail",
+        "extension"
+      ],
       "active": true,
-      "ifrsReferences": ["IFRS 15 revenue disaggregation"]
+      "ifrsReferences": [
+        "IFRS 15 revenue disaggregation"
+      ]
     },
     {
       "code": "4112",
       "name": "Service revenue",
-      "description": "Optional IFRS 15 disaggregation for service revenue.",
+      "description": "IFRS account 4112 (Service revenue) is used under parent account code 4110 to recognize and monitor this balance area in the profit or loss. It normally carries a credit balance. Primary reference: IFRS 15 revenue disaggregation. Classification focus: operating, extension.",
       "parentCode": "4110",
       "level": 4,
       "type": "revenue",
       "reporting": "credit",
       "statement": "profit-or-loss",
-      "classificationTags": ["operating", "detail", "extension"],
+      "classificationTags": [
+        "operating",
+        "detail",
+        "extension"
+      ],
       "active": true,
-      "ifrsReferences": ["IFRS 15 revenue disaggregation"]
+      "ifrsReferences": [
+        "IFRS 15 revenue disaggregation"
+      ]
     },
     {
       "code": "4113",
       "name": "Returns, rebates and discounts",
-      "description": "Optional contra revenue detail for variable consideration.",
+      "description": "IFRS account 4113 (Returns, rebates and discounts) is used under parent account code 4110 to recognize and monitor this balance area in the profit or loss. It is a contra account and normally carries the opposite balance to the related base account. Primary reference: IFRS 15 variable consideration. Classification focus: operating, extension.",
       "parentCode": "4110",
       "level": 4,
       "type": "revenue",
       "reporting": "debit",
       "statement": "profit-or-loss",
-      "classificationTags": ["operating", "contra", "detail", "extension"],
+      "classificationTags": [
+        "operating",
+        "contra",
+        "detail",
+        "extension"
+      ],
       "active": true,
-      "ifrsReferences": ["IFRS 15 variable consideration"]
+      "ifrsReferences": [
+        "IFRS 15 variable consideration"
+      ]
     },
     {
       "code": "5325",
       "name": "Capitalized contract acquisition costs amortization",
-      "description": "Optional expense detail for amortization of capitalized costs to obtain contracts.",
+      "description": "IFRS account 5325 (Capitalized contract acquisition costs amortization) is used under parent account code 5300 to recognize and monitor this balance area in the profit or loss. It normally carries a debit balance. Primary reference: IFRS 15 costs to obtain a contract. Classification focus: operating, extension.",
       "parentCode": "5300",
       "level": 3,
       "type": "expense",
       "reporting": "debit",
       "statement": "profit-or-loss",
-      "classificationTags": ["operating", "detail", "extension"],
+      "classificationTags": [
+        "operating",
+        "detail",
+        "extension"
+      ],
       "active": true,
-      "ifrsReferences": ["IFRS 15 costs to obtain a contract"]
+      "ifrsReferences": [
+        "IFRS 15 costs to obtain a contract"
+      ]
     },
     {
       "code": "5465",
       "name": "Environmental levies and compliance costs",
-      "description": "Optional management detail for environmental taxes and levies.",
+      "description": "IFRS account 5465 (Environmental levies and compliance costs) is used under parent account code 5400 to recognize and monitor this balance area in the profit or loss. It normally carries a debit balance. Primary reference: IFRIC 21 levies. Classification focus: operating, extension.",
       "parentCode": "5400",
       "level": 3,
       "type": "expense",
       "reporting": "debit",
       "statement": "profit-or-loss",
-      "classificationTags": ["operating", "detail", "extension"],
+      "classificationTags": [
+        "operating",
+        "detail",
+        "extension"
+      ],
       "active": true,
-      "ifrsReferences": ["IFRIC 21 levies"]
+      "ifrsReferences": [
+        "IFRIC 21 levies"
+      ]
     },
     {
       "code": "5535",
       "name": "Goodwill impairment losses",
-      "description": "Optional impairment detail for goodwill.",
+      "description": "IFRS account 5535 (Goodwill impairment losses) is used under parent account code 5500 to recognize and monitor this balance area in the profit or loss. It normally carries a debit balance. Primary reference: IAS 36 goodwill impairment. Classification focus: operating, extension.",
       "parentCode": "5500",
       "level": 3,
       "type": "expense",
       "reporting": "debit",
       "statement": "profit-or-loss",
-      "classificationTags": ["operating", "detail", "extension"],
+      "classificationTags": [
+        "operating",
+        "detail",
+        "extension"
+      ],
       "active": true,
-      "ifrsReferences": ["IAS 36 goodwill impairment"]
+      "ifrsReferences": [
+        "IAS 36 goodwill impairment"
+      ]
     },
     {
       "code": "5915",
       "name": "Borrowing cost capitalisation offset",
-      "description": "Optional contra financing expense detail for capitalized borrowing costs.",
+      "description": "IFRS account 5915 (Borrowing cost capitalisation offset) is used under parent account code 5900 to recognize and monitor this balance area in the profit or loss. It is a contra account and normally carries the opposite balance to the related base account. Primary reference: IAS 23 borrowing costs. Classification focus: financing, extension.",
       "parentCode": "5900",
       "level": 3,
       "type": "expense",
       "reporting": "credit",
       "statement": "profit-or-loss",
-      "classificationTags": ["financing", "contra", "detail", "extension"],
+      "classificationTags": [
+        "financing",
+        "contra",
+        "detail",
+        "extension"
+      ],
       "active": true,
-      "ifrsReferences": ["IAS 23 borrowing costs"]
+      "ifrsReferences": [
+        "IAS 23 borrowing costs"
+      ]
     }
   ]
 }
